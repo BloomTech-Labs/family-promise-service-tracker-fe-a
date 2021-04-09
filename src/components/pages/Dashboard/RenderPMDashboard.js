@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
-import { Card } from 'antd';
+import Header from '../../common/Header';
 import { LeftCircleFilled } from '@ant-design/icons';
 import { UserOutlined } from '@ant-design/icons';
-import Header from '../../common/Header';
+import { Card } from 'antd';
 import './dashboard.css';
 
-function RenderAdminDashboard({ handleLogout }) {
+function RenderPMDashboard({ handleLogout }) {
   return (
     <div className="dashboard-container">
       <div className="btn-cont">
@@ -22,13 +22,8 @@ function RenderAdminDashboard({ handleLogout }) {
           Profile
         </Button>
       </div>
-      <Header title="Admin Dashboard" classType="dashboard-header" />
+      <Header title="Program Manager Dashboard" classType="dashboard-header" />
       <div className="navigation-container">
-        <Link to="/employees">
-          <Card title="Employees">
-            <p>View, add, and update employees</p>
-          </Card>
-        </Link>
         <Link to="/programs">
           <Card title="Programs">
             <p>View, add, and update programs</p>
@@ -49,4 +44,4 @@ function RenderAdminDashboard({ handleLogout }) {
   );
 }
 
-export default RenderAdminDashboard;
+export default RenderPMDashboard;
