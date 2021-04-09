@@ -14,11 +14,11 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
-import { HomePage } from './components/pages/Home';
+import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { LoadingOutlined } from '@ant-design/icons';
 
 ReactDOM.render(
   <Router>
@@ -50,7 +50,7 @@ function App() {
         <SecureRoute
           path="/"
           exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          component={() => <Dashboard LoadingOutlined={LoadingOutlined} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
