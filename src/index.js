@@ -14,12 +14,11 @@ import { MyProfile } from './components/pages/MyProfile';
 import { EmployeesPage } from './components/pages/Employees';
 import { ProgramsPage } from './components/pages/Programs';
 import { RecipientsPage } from './components/pages/Recipients';
+import { ServicesPage } from './components/pages/Services';
 import { NotFoundPage } from './components/pages/NotFound';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { TabletHeader } from './components/common/index';
@@ -59,6 +58,7 @@ function App() {
         <SecureRoute path="/employees" component={EmployeesPage} />
         <SecureRoute path="/programs" component={ProgramsPage} />
         <SecureRoute path="/recipients" component={RecipientsPage} />
+        <SecureRoute path="/services" component={ServicesPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
