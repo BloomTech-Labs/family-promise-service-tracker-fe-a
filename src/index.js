@@ -12,6 +12,8 @@ import 'antd/dist/antd.less';
 
 import { MyProfile } from './components/pages/MyProfile';
 import { EmployeesPage } from './components/pages/Employees';
+import { ProgramsPage } from './components/pages/Programs';
+import { RecipientsPage } from './components/pages/Recipients';
 import { NotFoundPage } from './components/pages/NotFound';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
@@ -55,8 +57,8 @@ function App() {
           component={() => <MyProfile LoadingOutlined={LoadingOutlined} />}
         />
         <SecureRoute path="/employees" component={EmployeesPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
+        <SecureRoute path="/programs" component={ProgramsPage} />
+        <SecureRoute path="/recipients" component={RecipientsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
