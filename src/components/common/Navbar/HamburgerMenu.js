@@ -27,6 +27,13 @@ const HamburgerMenu = () => {
     setVisible(false);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('okta-token-storage');
+    localStorage.removeItem('okta-cache-storage');
+    localStorage.removeItem('username');
+    history.push('/');
+  };
+
   return (
     <>
       <Button type="dark" onClick={showDrawer} className="menu-button">
@@ -48,7 +55,7 @@ const HamburgerMenu = () => {
             <Menu.Item
               key="1"
               icon={<UserOutlined />}
-              onClick={() => history.push('/my-profile')}
+              onClick={() => history.push('/')}
             >
               My Profile
             </Menu.Item>
@@ -89,7 +96,7 @@ const HamburgerMenu = () => {
               key="6"
               icon={<LeftCircleOutlined />}
               className="logout-ctn"
-              onClick={() => history.push('/logout')}
+              onClick={handleLogout}
             >
               Logout
             </Menu.Item>
