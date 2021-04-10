@@ -10,15 +10,18 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
 
+import { MyProfile } from './components/pages/MyProfile';
+import { EmployeesPage } from './components/pages/Employees';
+import { ProgramsPage } from './components/pages/Programs';
+import { RecipientsPage } from './components/pages/Recipients';
+import { ServicesPage } from './components/pages/Services';
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
+import { TabletHeader } from './components/common/index';
 
 ReactDOM.render(
   <Router>
@@ -43,18 +46,19 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
-        <Route path="/login" component={LoginPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
           exact
-          component={() => <Dashboard LoadingOutlined={LoadingOutlined} />}
+          component={() => <MyProfile LoadingOutlined={LoadingOutlined} />}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
+        <SecureRoute path="/employees" component={EmployeesPage} />
+        <SecureRoute path="/programs" component={ProgramsPage} />
+        <SecureRoute path="/recipients" component={RecipientsPage} />
+        <SecureRoute path="/services" component={ServicesPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
