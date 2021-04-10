@@ -16,8 +16,7 @@ const NavbarHeader = props => {
 };
 
 NavbarHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  classType: PropTypes.string.isRequired,
+  classType: PropTypes.string,
 };
 
 export default NavbarHeader;

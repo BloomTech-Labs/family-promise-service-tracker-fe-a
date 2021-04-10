@@ -11,6 +11,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { MyProfile } from './components/pages/MyProfile';
+import { EmployeesPage } from './components/pages/Employees';
 import { NotFoundPage } from './components/pages/NotFound';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
@@ -53,7 +54,7 @@ function App() {
           exact
           component={() => <MyProfile LoadingOutlined={LoadingOutlined} />}
         />
-        <SecureRoute path="/example-list" component={MyProfile} />
+        <SecureRoute path="/employees" component={EmployeesPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/datavis" component={ExampleDataViz} />
         <Route component={NotFoundPage} />
