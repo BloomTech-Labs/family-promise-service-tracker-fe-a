@@ -6,7 +6,9 @@ import logo from '../../../assets/logo.png';
 const NavbarHeader = props => {
   return (
     <div className={props.classType} style={{ display: 'flex' }}>
-      <HamburgerMenu />
+      <div className="test">
+        <HamburgerMenu />
+      </div>
       <div style={{ paddingLeft: 100 }}>
         <img src={logo} style={{ width: 350 }} alt="family promise logo" />
       </div>
