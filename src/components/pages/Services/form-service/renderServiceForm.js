@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Input,
@@ -30,7 +30,35 @@ const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
 
 const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
 
+const initialValues = {
+  recipient: '',
+  program: '',
+  location: '',
+  quantity: null,
+  status: '',
+  date: '',
+  time: '',
+  provider: '',
+  description: '',
+};
+
 function RenderServiceForm() {
+  const { form, setForm } = useState(initialValues);
+
+  const onChange = e => {
+    const { value, name } = e.target;
+    // dispatchEvent(
+    //     setService({
+    //         initialValues,
+    //         [name]:value
+    //     })
+    // )
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div className="service-form">
@@ -39,6 +67,7 @@ function RenderServiceForm() {
             <Col span={8}>
               <Form.Item
                 label="Recipient Name"
+                name="recipient"
                 rules={[
                   {
                     required: true,
@@ -51,6 +80,7 @@ function RenderServiceForm() {
 
               <Form.Item
                 label="Project Single"
+                name="program"
                 rules={[
                   {
                     required: true,
@@ -67,6 +97,7 @@ function RenderServiceForm() {
 
               <Form.Item
                 label="Location"
+                name="location"
                 rules={[
                   {
                     required: true,
@@ -79,6 +110,7 @@ function RenderServiceForm() {
 
               <Form.Item
                 label="Quantity"
+                name="quantity"
                 //   rules={[
                 //     {
                 //       required: false,
@@ -112,6 +144,7 @@ function RenderServiceForm() {
 
               <Form.Item
                 label="Status"
+                name="status"
                 rules={[
                   {
                     required: true,
@@ -128,6 +161,7 @@ function RenderServiceForm() {
               <div className="date-time-wrapper">
                 <Form.Item
                   label="Date"
+                  name="date"
                   rules={[
                     {
                       required: true,
@@ -140,6 +174,7 @@ function RenderServiceForm() {
 
                 <Form.Item
                   label="Time"
+                  name="time"
                   rules={[
                     {
                       required: true,
@@ -152,6 +187,7 @@ function RenderServiceForm() {
               </div>
               <Form.Item
                 label="Provider(s)"
+                name="provider"
                 rules={[
                   {
                     required: true,
@@ -172,7 +208,7 @@ function RenderServiceForm() {
             </Col>
           </Row>
 
-          <Form.Item label="Insert Description">
+          <Form.Item label="Insert Description" name="description">
             <TextArea showCount maxLength={240} />
           </Form.Item>
           <Button size="large">Cancel</Button>
