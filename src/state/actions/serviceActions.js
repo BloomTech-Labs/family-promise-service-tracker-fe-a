@@ -97,7 +97,7 @@ export const deleteServiceAction = serviceId => dispatch => {
   dispatch({ type: DELETE_SERVICE_START });
 
   axiosWithAuth()
-    .get(`/api/service/${serviceId}`)
+    .delete(`/api/service/${serviceId}`)
     .then(res => {
       dispatch({ type: DELETE_SERVICE_SUCCESS, payload: res.data });
     })
