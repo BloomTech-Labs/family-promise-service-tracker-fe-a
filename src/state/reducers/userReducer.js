@@ -57,7 +57,6 @@ export const userReducer = (state = initialUserState, action) => {
       return {
         ...state,
         status: 'Resolved',
-        error: action.payload,
       };
     case EDIT_USER_START:
       return {
@@ -89,7 +88,6 @@ export const userReducer = (state = initialUserState, action) => {
       return {
         ...state,
         status: 'Resolved',
-        error: action.payload,
       };
     default:
       return state;
