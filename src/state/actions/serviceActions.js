@@ -61,11 +61,11 @@ export const getServiceByIdAction = serviceId => dispatch => {
     });
 };
 
-export const addServiceAction = () => dispatch => {
+export const addServiceAction = serviceObj => dispatch => {
   dispatch({ type: ADD_SERVICE_START });
 
   axiosWithAuth()
-    .post(`/api/service`)
+    .post(`/api/service`, serviceObj)
     .then(res => {
       dispatch({ type: ADD_SERVICE_SUCCESS, payload: res.data });
     })
