@@ -21,7 +21,7 @@ export const initialUserState = {
     role: '',
     updated_at: '',
   },
-  status: 'Sleeping...',
+  status: 'Resolved',
   error: '',
 };
 
@@ -56,7 +56,7 @@ export const userReducer = (state = initialUserState, action) => {
     case GET_USER_RESOLVE:
       return {
         ...state,
-        status: 'Sleeping...',
+        status: 'Resolved',
         error: action.payload,
       };
     case EDIT_USER_START:
@@ -88,7 +88,7 @@ export const userReducer = (state = initialUserState, action) => {
     case EDIT_USER_RESOLVE:
       return {
         ...state,
-        status: 'Sleeping...',
+        status: 'Resolved',
         error: action.payload,
       };
     default:
