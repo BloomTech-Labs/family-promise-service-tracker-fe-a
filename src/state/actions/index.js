@@ -13,3 +13,11 @@ export {
   editServiceAction,
   deleteServiceAction,
 } from './serviceActions';
+
+export {
+  getAllProgramsAction,
+  getProgramByIdAction,
+  addProgramAction,
+  editProgramAction,
+  deleteProgramAction,
+} from './programActions';
