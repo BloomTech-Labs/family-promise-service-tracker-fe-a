@@ -19,7 +19,7 @@ export const getUserAction = userId => dispatch => {
   dispatch({ type: GET_USER_START });
 
   axiosWithAuth()
-    .get(`/api/profile/${userId}`)
+    .get(`/api/profiles/${userId}`)
     .then(res => {
       dispatch({ type: GET_USER_SUCCESS, payload: res.data });
     })
@@ -36,7 +36,7 @@ export const updateUserAction = (userId, userObj) => dispatch => {
   dispatch({ type: EDIT_USER_START });
 
   axiosWithAuth()
-    .put(`/api/profile/${userId}`, userObj)
+    .put(`/api/profiles/${userId}`, userObj)
     .then(res => {
       dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
