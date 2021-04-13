@@ -9,6 +9,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(false);
   const [curUser, setCurUser] = useState(false);
+  const [disabled, setDisabled] = useState('true');
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
@@ -43,6 +44,10 @@ function MyProfileContainer({ LoadingOutlined }) {
   }, [userInfo]);
 
   console.log(curUser);
+  const handleEdit = e => {
+    setDisabled(!disabled);
+  };
+
   return (
     <div>
       <TabletHeader />
@@ -54,6 +59,8 @@ function MyProfileContainer({ LoadingOutlined }) {
           curUser={curUser}
           LoadingOutlined={LoadingOutlined}
           authState={authState}
+          onClick={handleEdit}
+          disabled={disabled}
         />
       )}
     </div>
