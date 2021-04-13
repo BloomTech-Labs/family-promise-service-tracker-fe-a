@@ -8,6 +8,9 @@ import {
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
+import { Provider } from 'react-redux';
+import { store } from './state/index.js';
+
 import 'antd/dist/antd.less';
 
 import { MyProfile } from './components/pages/MyProfile';
@@ -26,7 +29,9 @@ import { TabletHeader } from './components/common/index';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
