@@ -9,6 +9,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
+import 'app.scss';
 
 import { MyProfile } from './components/pages/MyProfile';
 import { EmployeesPage } from './components/pages/Employees';
