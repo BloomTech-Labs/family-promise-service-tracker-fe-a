@@ -10,6 +10,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   const [userInfo, setUserInfo] = useState(false);
   const [curUser, setCurUser] = useState(false);
   const [disabled, setDisabled] = useState('true');
+  const [cancel, setCancel] = useState('false');
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
@@ -46,6 +47,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   console.log(curUser);
   const handleEdit = e => {
     setDisabled(!disabled);
+    setCancel(!cancel);
   };
 
   return (
@@ -61,6 +63,7 @@ function MyProfileContainer({ LoadingOutlined }) {
           authState={authState}
           onClick={handleEdit}
           disabled={disabled}
+          cancel={cancel}
         />
       )}
     </div>

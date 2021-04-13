@@ -3,7 +3,7 @@ import { Avatar, Form, Input, Button, Select } from 'antd';
 
 const programs = ['Prevention', 'After Care'];
 
-function RenderMyProfile({ curUser, handleEdit }) {
+function RenderMyProfile({ curUser, onClick, disabled, cancel }) {
   return (
     <div className="profile-container">
       <Form layout="vertical">
@@ -21,7 +21,12 @@ function RenderMyProfile({ curUser, handleEdit }) {
           //   },
           // ]}
         >
-          <Input disabled="true" placeholder={curUser.name} size="large" />
+          <Input
+            disabled={disabled}
+            placeholder={curUser.name}
+            size="large"
+            defaultValue={curUser.name}
+          />
         </Form.Item>
         <Form.Item
           label="Programs"
@@ -38,8 +43,13 @@ function RenderMyProfile({ curUser, handleEdit }) {
             ))}
           </Select>
         </Form.Item>
-        <Button size="large" type="primary">
-          Edit Name
+        <Button
+          size="large"
+          type="primary"
+          onClick={onClick}
+          className="profile-btn"
+        >
+          {cancel ? 'Edit Name' : 'Save Name'}
         </Button>
       </Form>
     </div>
