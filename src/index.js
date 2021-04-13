@@ -8,6 +8,9 @@ import {
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
+import { Provider } from 'react-redux';
+import { store } from './state/index';
+
 import 'antd/dist/antd.less';
 
 import { MyProfile } from './components/pages/MyProfile';
@@ -22,11 +25,14 @@ import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { TabletHeader } from './components/common/index';
+import { formatCountdown } from 'antd/lib/statistic/utils';
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
