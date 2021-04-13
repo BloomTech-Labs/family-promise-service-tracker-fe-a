@@ -36,13 +36,13 @@ function MyProfileContainer({ LoadingOutlined }) {
       .get(`api/profile/${userInfo}`)
       .then(res => {
         setCurUser(res.data);
+        localStorage.setItem('role', res.data.role);
       })
       .catch(err => {
         console.log(err);
       });
   }, [userInfo]);
 
-  console.log(curUser);
   return (
     <div>
       <TabletHeader />
