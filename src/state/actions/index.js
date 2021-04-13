@@ -21,3 +21,11 @@ export {
   editProgramAction,
   deleteProgramAction,
 } from './programActions';
+
+export {
+  getAllEmployeeAction,
+  getEmployeeByIdAction,
+  addEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+} from './employeeActions';
