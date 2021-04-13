@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './state/index.js';
 
 import 'antd/dist/antd.less';
+import 'app.scss';
 
 import { MyProfile } from './components/pages/MyProfile';
 import { EmployeesPage } from './components/pages/Employees';

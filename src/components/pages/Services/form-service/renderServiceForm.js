@@ -42,22 +42,8 @@ const initialValues = {
   description: '',
 };
 
-function RenderServiceForm() {
+function RenderServiceForm({ onChange, onSubmit }) {
   const { form, setForm } = useState(initialValues);
-
-  const onChange = e => {
-    const { value, name } = e.target;
-    // dispatchEvent(
-    //     setService({
-    //         initialValues,
-    //         [name]:value
-    //     })
-    // )
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
 
   return (
     <>
