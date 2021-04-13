@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 
 //component imports
-import RenderServiceForm from './form-service/RenderServiceForm';
-import AddServiceForm from './form-service';
+
+import { AddServiceForm } from './form-service';
 
 function RenderServicesPage() {
   return (
