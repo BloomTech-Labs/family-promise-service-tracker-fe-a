@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 
 //component imports
-import RenderServiceForm from './form-service/renderServiceForm';
+import RenderServiceForm from './form-service/RenderServiceForm';
+import AddServiceForm from './form-service';
 
 function RenderServicesPage() {
   return (
@@ -10,7 +11,8 @@ function RenderServicesPage() {
       <div>
         <h1>Services</h1>
       </div>
-      <RenderServiceForm />
+      {/* Conditional goes here  IF needed*/}
+      <AddServiceForm />
     </>
   );
 }
