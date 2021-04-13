@@ -1,15 +1,47 @@
 import React from 'react';
-import { Avatar } from 'antd';
+import { Avatar, Form, Input, Button, Select } from 'antd';
 
-function RenderMyProfile({ curUser }) {
+const programs = ['Prevention', 'After Care'];
+
+function RenderMyProfile({ curUser, handleEdit }) {
   return (
-    <div>
-      <h2>Welcome, {curUser.name}</h2>
-      <div className="avatar-ctn">
-        <Avatar size={200} src={curUser.avatarUrl} />
-      </div>
-      <h3>Email: {curUser.email}</h3>
-      <h3>Role: {curUser.role}</h3>
+    <div className="profile-container">
+      <Form layout="vertical">
+        <div className="avatar-ctn">
+          <Avatar size={200} src={curUser.avatarUrl} />
+        </div>
+        <Form.Item
+          label="Name"
+          name="name"
+
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: 'Please select the Recipient',
+          //   },
+          // ]}
+        >
+          <Input disabled="true" placeholder={curUser.name} size="large" />
+        </Form.Item>
+        <Form.Item
+          label="Programs"
+          rules={[
+            {
+              required: true,
+              message: 'Please select the Project',
+            },
+          ]}
+        >
+          <Select size="large" mode="multiple" disabled defaultValue={programs}>
+            {programs.map(item => (
+              <Select.Option key={item}> {item}</Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Button size="large" type="primary">
+          Edit Name
+        </Button>
+      </Form>
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.profile-container {
+  border: black 1px solid;
+  background: pink;
+  border-radius: 10px;
+  width: 30%;
+  height: 70vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+}
