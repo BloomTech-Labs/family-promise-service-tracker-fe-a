@@ -45,11 +45,16 @@ function MyProfileContainer({ LoadingOutlined }) {
       });
   }, [userInfo]);
 
-  console.log(curUser);
   const handleEdit = e => {
     setDisabled(!disabled);
     setCancel(!cancel);
   };
+
+  // calling the action to update DB
+  const onSave = e => {
+    return;
+  };
+  //? Does onSave go on <Form> or <Button>?
 
   return (
     <div>
@@ -65,6 +70,7 @@ function MyProfileContainer({ LoadingOutlined }) {
           onClick={handleEdit}
           disabled={disabled}
           cancel={cancel}
+          onSubmit={onSave}
         />
       )}
     </div>
