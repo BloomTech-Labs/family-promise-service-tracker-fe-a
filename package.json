@@ -11,9 +11,12 @@
     "antd": "^4.4.3",
     "axios": "^0.21.1",
     "craco-less": "^1.17.0",
+    "multiselect-react-dropdown": "^1.6.11",
     "plotly.js": "^1.54.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropdown": "^1.9.2",
+    "react-modal": "^3.13.1",
     "react-plotly.js": "^2.4.0",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
@@ -21,7 +24,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "styled-components": "^5.2.3"
   },
   "scripts": {
     "start": "craco start",
