@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RenderServiceForm from './RenderServiceForm';
+import RenderFormService from './RenderFormService';
 
 function FormContainer() {
   //this is where handlers go
@@ -21,7 +21,7 @@ function FormContainer() {
 
   return (
     <div>
-      <RenderServiceForm onChange={onChange} onSubmit={handleSubmit} />
+      <RenderFormService onChange={onChange} onSubmit={handleSubmit} />
     </div>
   );
 }

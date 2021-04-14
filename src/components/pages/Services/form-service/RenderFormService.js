@@ -42,7 +42,7 @@ const initialValues = {
   description: '',
 };
 
-function RenderServiceForm({ onChange, onSubmit }) {
+function RenderFormService({ onChange, onSubmit }) {
   const { form, setForm } = useState(initialValues);
 
   return (
@@ -207,4 +207,4 @@ function RenderServiceForm({ onChange, onSubmit }) {
   );
 }
 
-export default RenderServiceForm;
+export default RenderFormService;
