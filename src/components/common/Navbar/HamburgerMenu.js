@@ -19,6 +19,8 @@ const HamburgerMenu = () => {
   const { Sider } = Layout;
   const history = useHistory();
 
+  const userRole = localStorage.getItem('role');
+
   const showDrawer = () => {
     setVisible(true);
   };
@@ -51,56 +53,136 @@ const HamburgerMenu = () => {
         width="200"
       >
         <Sider>
-          <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item
-              key="1"
-              icon={<UserOutlined />}
-              onClick={() => history.push('/')}
-            >
-              My Profile
-            </Menu.Item>
+          {userRole === 'administrator' ? (
+            <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+              <Menu.Item
+                key="1"
+                icon={<UserOutlined />}
+                onClick={() => history.push('/')}
+              >
+                My Profile
+              </Menu.Item>
 
-            <Menu.Item
-              key="2"
-              icon={<TeamOutlined />}
-              onClick={() => history.push('/employees')}
-            >
-              Employees
-            </Menu.Item>
+              <Menu.Item
+                key="2"
+                icon={<TeamOutlined />}
+                onClick={() => history.push('/employees')}
+              >
+                Employees
+              </Menu.Item>
 
-            <Menu.Item
-              key="3"
-              icon={<ProjectOutlined />}
-              onClick={() => history.push('/programs')}
-            >
-              Programs
-            </Menu.Item>
+              <Menu.Item
+                key="3"
+                icon={<ProjectOutlined />}
+                onClick={() => history.push('/programs')}
+              >
+                Programs
+              </Menu.Item>
 
-            <Menu.Item
-              key="4"
-              icon={<UsergroupAddOutlined />}
-              onClick={() => history.push('/recipients')}
-            >
-              Recipients
-            </Menu.Item>
+              <Menu.Item
+                key="4"
+                icon={<UsergroupAddOutlined />}
+                onClick={() => history.push('/recipients')}
+              >
+                Recipients
+              </Menu.Item>
 
-            <Menu.Item
-              key="5"
-              icon={<ReconciliationOutlined />}
-              onClick={() => history.push('/services')}
-            >
-              Services
-            </Menu.Item>
+              <Menu.Item
+                key="5"
+                icon={<ReconciliationOutlined />}
+                onClick={() => history.push('/services')}
+              >
+                Services
+              </Menu.Item>
 
-            <Menu.Item
-              key="6"
-              icon={<LeftCircleOutlined />}
-              className="logout-ctn"
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu.Item>
-          </Menu>
+              <Menu.Item
+                key="6"
+                icon={<LeftCircleOutlined />}
+                className="logout-ctn"
+                onClick={handleLogout}
+              >
+                Logout
+              </Menu.Item>
+            </Menu>
+          ) : (
+            <></>
+          )}
+          {userRole === 'program_manager' ? (
+            <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+              <Menu.Item
+                key="1"
+                icon={<UserOutlined />}
+                onClick={() => history.push('/')}
+              >
+                My Profile
+              </Menu.Item>
+
+              <Menu.Item
+                key="3"
+                icon={<ProjectOutlined />}
+                onClick={() => history.push('/programs')}
+              >
+                Programs
+              </Menu.Item>
+
+              <Menu.Item
+                key="4"
+                icon={<UsergroupAddOutlined />}
+                onClick={() => history.push('/recipients')}
+              >
+                Recipients
+              </Menu.Item>
+
+              <Menu.Item
+                key="5"
+                icon={<ReconciliationOutlined />}
+                onClick={() => history.push('/services')}
+              >
+                Services
+              </Menu.Item>
+
+              <Menu.Item
+                key="6"
+                icon={<LeftCircleOutlined />}
+                className="logout-ctn"
+                onClick={handleLogout}
+              >
+                Logout
+              </Menu.Item>
+            </Menu>
+          ) : (
+            <></>
+          )}
+          {userRole === 'service_provider' ? (
+            <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+              <Menu.Item
+                key="1"
+                icon={<UserOutlined />}
+                onClick={() => history.push('/')}
+              >
+                My Profile
+              </Menu.Item>
+
+              <Menu.Item
+                key="5"
+                icon={<ReconciliationOutlined />}
+                onClick={() => history.push('/services')}
+              >
+                Services
+              </Menu.Item>
+
+              <Menu.Item
+                key="6"
+                icon={<LeftCircleOutlined />}
+                className="logout-ctn"
+                onClick={handleLogout}
+              >
+                Logout
+              </Menu.Item>
+            </Menu>
+          ) : (
+            <></>
+          )}
         </Sider>
       </Drawer>
     </>
