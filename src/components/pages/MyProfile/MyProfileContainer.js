@@ -7,6 +7,7 @@ import './profile.css';
 import { connect } from 'react-redux';
 
 import { updateUserAction } from '../../../state/actions';
+import { compose } from 'redux';
 
 const initialFormValues = {
   firstName: '',
@@ -16,14 +17,13 @@ const initialFormValues = {
 
 function MyProfileContainer({ LoadingOutlined }) {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(false);
+  const [userId, setUserId] = useState(false);
   const [curUser, setCurUser] = useState(false);
   const [profileValues, setProfileValues] = useState(initialFormValues);
   const [prevValue, setPrevValue] = useState({
-    firstName: curUser.name,
-    lastName: curUser.name,
+    firstName: '',
+    lastName: '',
   });
-  console.log('previous value', prevValue);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
@@ -41,12 +41,12 @@ function MyProfileContainer({ LoadingOutlined }) {
         // if user is authenticated we can use the authService to snag some user info.
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
         if (isSubscribed) {
-          setUserInfo(info.sub);
+          setUserId(info.sub);
         }
       })
       .catch(err => {
         isSubscribed = false;
-        return setUserInfo(null);
+        return setUserId(null);
       });
     return () => (isSubscribed = false);
   }, [memoAuthService]);
@@ -54,7 +54,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   //brings in user data from back-end
   useEffect(() => {
     axiosWithAuth()
-      .get(`api/profile/${userInfo}`)
+      .get(`api/profile/${userId}`)
       .then(res => {
         setCurUser(res.data);
         localStorage.setItem('role', res.data.role);
@@ -62,18 +62,19 @@ function MyProfileContainer({ LoadingOutlined }) {
       .catch(err => {
         console.log(err);
       });
-  }, [userInfo]);
+  }, [userId]);
 
   //upload functionality for images.
   const uploadImage = async e => {
+    console.log('upload started');
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
-    data.append('upload_preset', 'co-work');
+    data.append('upload_preset', 'service-tracker-lambda-labs33');
 
     setLoading(true);
     const res = await fetch(
-      // '	https://api.cloudinary.com/v1_1/dyp2opcpj/image/upload',
+      'https://api.cloudinary.com/v1_1/dsknipjet/image/upload',
       {
         method: 'POST',
         body: data,
@@ -84,7 +85,6 @@ function MyProfileContainer({ LoadingOutlined }) {
     profileValues.avatarUrl = file.secure_url;
     console.log(file);
   };
-
   //handlers
 
   const handleEdit = e => {
@@ -107,6 +107,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   const onSave = e => {
     e.preventDefault();
     updateUserAction(profileValues);
+    console.log('saved');
   };
 
   console.log('profileValues', profileValues);

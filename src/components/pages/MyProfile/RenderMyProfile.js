@@ -35,30 +35,13 @@ function RenderMyProfile({
   return (
     <div className="profile-container">
       <Form layout="vertical" onSubmit={onSubmit}>
-        <div>
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}
-            action={uploadImage}
-            // beforeUpload={beforeUpload}
-            // onChange={this.handleChange}
-          >
-            {curUser.avatarUrl ? (
-              <img
-                src={curUser.avatarUrl}
-                alt="avatar"
-                style={{ width: '100%' }}
-                className="avatar-ctn"
-              />
-            ) : (
-              uploadButton
-            )}
-          </Upload>
+        <Form.Item>
+          <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
+          {isInEditMode && (
+            <input type="file" name="file" onChange={uploadImage}></input>
+          )}
+        </Form.Item>
 
-          {/* <Avatar size={200} src={curUser.avatarUrl} /> */}
-        </div>
         <Form.Item label="First Name" className="label-header">
           <Input
             disabled={disabled}
