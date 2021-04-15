@@ -8,8 +8,9 @@ import { connect } from 'react-redux';
 
 import { updateUserAction } from '../../../state/actions';
 
-const initialValues = {
-  name: '',
+const initialFormValues = {
+  firstName: '',
+  lastName: '',
   avatarUrl: '',
 };
 
@@ -17,14 +18,19 @@ function MyProfileContainer({ LoadingOutlined }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(false);
   const [curUser, setCurUser] = useState(false);
-  const [profile, setProfile] = useState(initialValues);
+  const [profileValues, setProfileValues] = useState(initialFormValues);
+  const [prevValue, setPrevValue] = useState({
+    firstName: curUser.name,
+    lastName: curUser.name,
+  });
+  console.log('previous value', prevValue);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
   //state needed for profile edit
   const [disabled, setDisabled] = useState(true);
   const [isInEditMode, setIsInEditMode] = useState(false);
-  console.log('editMode', isInEditMode);
+  const [, setLoading] = useState(false);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -45,6 +51,7 @@ function MyProfileContainer({ LoadingOutlined }) {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
+  //brings in user data from back-end
   useEffect(() => {
     axiosWithAuth()
       .get(`api/profile/${userInfo}`)
@@ -57,25 +64,52 @@ function MyProfileContainer({ LoadingOutlined }) {
       });
   }, [userInfo]);
 
+  //upload functionality for images.
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'co-work');
+
+    setLoading(true);
+    const res = await fetch(
+      // '	https://api.cloudinary.com/v1_1/dyp2opcpj/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+
+    const file = await res.json();
+    profileValues.avatarUrl = file.secure_url;
+    console.log(file);
+  };
+
+  //handlers
+
   const handleEdit = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
+    //add the previous values to state
   };
 
   const handleCancel = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
+    setProfileValues(prevValue);
   };
 
   const handleChange = e => {
     const { value, name } = e.target;
-    setProfile({ ...initialValues, [name]: value });
+    setProfileValues({ ...profileValues, [name]: value });
   };
   // calling the action to update DB
   const onSave = e => {
     e.preventDefault();
-    updateUserAction(profile);
+    updateUserAction(profileValues);
   };
+
+  console.log('profileValues', profileValues);
 
   return (
     <div>
@@ -94,8 +128,8 @@ function MyProfileContainer({ LoadingOutlined }) {
           disabled={disabled}
           isInEditMode={isInEditMode}
           onSubmit={onSave}
-          setProfile={setProfile}
-          profile={profile}
+          profileValues={profileValues}
+          uploadImage={uploadImage}
         />
       )}
     </div>

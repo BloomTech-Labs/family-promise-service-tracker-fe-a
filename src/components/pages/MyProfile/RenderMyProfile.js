@@ -14,13 +14,14 @@ let programs = ['Sheltering', 'After Care'];
 
 function RenderMyProfile({
   curUser,
-  profile,
+  profileValues,
   handleEdit,
   handleCancel,
   disabled,
   isInEditMode,
   onSubmit,
   onChange,
+  uploadImage,
 }) {
   const [loading, setLoading] = useState('false');
 
@@ -40,7 +41,7 @@ function RenderMyProfile({
             listType="picture-card"
             className="avatar-uploader"
             showUploadList={false}
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            action={uploadImage}
             // beforeUpload={beforeUpload}
             // onChange={this.handleChange}
           >
@@ -61,12 +62,12 @@ function RenderMyProfile({
         <Form.Item label="First Name" className="label-header">
           <Input
             disabled={disabled}
-            // placeholder={curUser.name}
+            placeholder={curUser.name}
             size="large"
             defaultValue={curUser.name}
-            value={curUser.name}
+            value={profileValues.firstName}
             onChange={onChange}
-            name="name"
+            name="firstName"
           />
 
           {/* {!isInEditMode ? 
@@ -93,12 +94,12 @@ function RenderMyProfile({
         <Form.Item label="Last Name" className="label-header">
           <Input
             disabled={disabled}
-            // placeholder={curUser.name}
+            placeholder={curUser.name}
             size="large"
             defaultValue={curUser.name}
-            value={curUser.name}
+            value={profileValues.lastName}
             onChange={onChange}
-            name="name"
+            name="lastName"
           />
         </Form.Item>
         <Form.Item label="Your Programs">
