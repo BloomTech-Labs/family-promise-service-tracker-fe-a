@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from 'react-modal';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import { Multiselect } from 'multiselect-react-dropdown';
+import { Form, Input, Select, Modal } from 'antd';
+// import Modal from 'react-modal';
+// import Dropdown from 'react-dropdown';
+// import 'react-dropdown/style.css';
+// import { Multiselect } from 'multiselect-react-dropdown';
 
 const Wrapper = styled.div``;
 
@@ -11,10 +12,6 @@ const Button = styled.button``;
 
 const FormTitle = styled.h1`
   border-bottom: 1px solid black;
-  padding: 1rem;
-`;
-
-const Form = styled.form`
   padding: 1rem;
 `;
 
@@ -26,14 +23,6 @@ const DropdownTitle = styled.h3`
 
 const Star = styled.span`
   color: red;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  border: 1px solid #e7e7e7;
-  border-radius: 0.375rem;
-  line-height: 2.5rem;
-  margin-bottom: 2rem;
 `;
 
 const Cancel = styled.button`
@@ -87,31 +76,31 @@ const customStyles = {
 
 const options = ['Administrator', 'Program Manager', 'Service Provider'];
 
-const multiOptions = [
-  { name: 'Prevention', id: 1 },
-  { name: 'After Care', id: 2 },
-  { name: 'Sheltering', id: 3 },
-];
-
-Modal.setAppElement('#root');
+const multiOptions = ['Prevention', 'After Care', 'Sheltering'];
 
 function RenderEmployeePage() {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <Wrapper>
-      <Button onClick={openModal}>Add Employee</Button>
+      <Button onClick={showModal}>Add Employee</Button>
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        footer={null}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
         style={customStyles}
         contentLabel="Add Employee"
       >
@@ -120,22 +109,49 @@ function RenderEmployeePage() {
           <InputTitle>
             <Star>*</Star>First Name
           </InputTitle>
-          <Input placeholder="Enter Employee's First Name" type="text" />
+          <Input
+            style={{ marginBottom: '2rem' }}
+            placeholder="Enter Employee's First Name"
+            type="text"
+            size="large"
+          />
           <InputTitle>
             <Star>*</Star>Last Name
           </InputTitle>
-          <Input placeholder="Enter Employee's Last Name" type="text" />
+          <Input
+            style={{ marginBottom: '2rem' }}
+            placeholder="Enter Employee's Last Name"
+            type="text"
+            size="large"
+          />
           <InputTitle>
             <Star>*</Star>Role
           </InputTitle>
-          <Dropdown options={options} placeholder="Select an option" />
+          <Select
+            size="large"
+            style={{ width: '100%' }}
+            placeholder="Select a Role"
+          >
+            {options.map(item => (
+              <Select.Option key={item}> {item}</Select.Option>
+            ))}
+          </Select>
           <DropdownTitle>
             <Star>*</Star>Programs
           </DropdownTitle>
-          <Multiselect options={multiOptions} displayValue="name" />
+          <Select
+            size="large"
+            style={{ width: '100%' }}
+            placeholder="Programs"
+            mode="multiple"
+          >
+            {multiOptions.map(item => (
+              <Select.Option key={item}> {item}</Select.Option>
+            ))}
+          </Select>
         </Form>
         <ButtonDiv>
-          <Cancel onClick={closeModal}>Cancel</Cancel>
+          <Cancel onClick={handleCancel}>Cancel</Cancel>
           <AddEmployee>Add Employee</AddEmployee>
         </ButtonDiv>
       </Modal>
