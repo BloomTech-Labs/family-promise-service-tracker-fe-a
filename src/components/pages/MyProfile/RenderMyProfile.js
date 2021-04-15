@@ -10,17 +10,17 @@ import {
 } from 'antd';
 // import { LoadingOutlined, PlusOutlined } from 'ant-design/icons';
 
-const programs = ['Prevention', 'After Care', 'sheltering'];
+let programs = ['Sheltering', 'After Care'];
 
 function RenderMyProfile({
   curUser,
-  onClick,
+  profile,
+  handleEdit,
+  handleCancel,
   disabled,
   isInEditMode,
   onSubmit,
   onChange,
-  profile,
-  setProfile,
 }) {
   const [loading, setLoading] = useState('false');
 
@@ -58,17 +58,19 @@ function RenderMyProfile({
 
           {/* <Avatar size={200} src={curUser.avatarUrl} /> */}
         </div>
-        <Form.Item
-          label="Name"
+        <Form.Item label="First Name" className="label-header">
+          <Input
+            disabled={disabled}
+            // placeholder={curUser.name}
+            size="large"
+            defaultValue={curUser.name}
+            value={curUser.name}
+            onChange={onChange}
+            name="name"
+          />
 
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: 'Please select the Recipient',
-          //   },
-          // ]}
-        >
-          {!isInEditMode ? (
+          {/* {!isInEditMode ? 
+          (
             <Input
               disabled={disabled}
               // placeholder={curUser.name}
@@ -80,15 +82,35 @@ function RenderMyProfile({
             />
           ) : (
             <Input
-              size="small"
+              size="large"
               defaultValue={curUser.name}
-              value={profile.name}
+              value={curUser.name}
               onChange={onChange}
               name="name"
             />
-          )}
+          )} */}
         </Form.Item>
-        <Form.Item
+        <Form.Item label="Last Name" className="label-header">
+          <Input
+            disabled={disabled}
+            // placeholder={curUser.name}
+            size="large"
+            defaultValue={curUser.name}
+            value={curUser.name}
+            onChange={onChange}
+            name="name"
+          />
+        </Form.Item>
+        <Form.Item label="Your Programs">
+          <div>
+            {curUser.programs.map(program => (
+              <>
+                <h4>{program.name}</h4>
+              </>
+            ))}
+          </div>
+        </Form.Item>
+        {/* <Form.Item
           label="Programs"
           rules={[
             {
@@ -98,17 +120,17 @@ function RenderMyProfile({
           ]}
         >
           <Select size="large" mode="multiple" disabled defaultValue={programs}>
-            {programs.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
+            {curUser.programs.map(item => (
+              <Select.Option key={item}> {item.name}</Select.Option>
             ))}
           </Select>
-        </Form.Item>
+        </Form.Item> */}
         <div className="save-edit-container">
           {!isInEditMode && (
             <Button
               size="large"
               type="primary"
-              onClick={onClick}
+              onClick={handleEdit}
               className="profile-btn"
             >
               Edit Name
@@ -131,7 +153,7 @@ function RenderMyProfile({
               type="text"
               className="cancel-btn"
               size="large"
-              onClick={onClick}
+              onClick={handleCancel}
             >
               Cancel
             </Button>

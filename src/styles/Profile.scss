@@ -1,8 +1,8 @@
 .profile-container {
-  border: black 1px solid;
+  border: rgb(202, 202, 202) 1px solid;
   border-radius: 10px;
   width: 20%;
-  height: 530.7px;
+  height: 700.7px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,6 +16,11 @@
   @media screen and (max-width: 1025px) {
     width: 75%;
   }
+}
+
+.ant-form-item-label label {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .save-edit-container {

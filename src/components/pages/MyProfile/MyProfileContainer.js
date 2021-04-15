@@ -57,7 +57,12 @@ function MyProfileContainer({ LoadingOutlined }) {
       });
   }, [userInfo]);
 
-  const handleEditMode = e => {
+  const handleEdit = e => {
+    setDisabled(!disabled);
+    setIsInEditMode(!isInEditMode);
+  };
+
+  const handleCancel = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
   };
@@ -66,14 +71,11 @@ function MyProfileContainer({ LoadingOutlined }) {
     const { value, name } = e.target;
     setProfile({ ...initialValues, [name]: value });
   };
-  console.log('profile', profile);
   // calling the action to update DB
   const onSave = e => {
     e.preventDefault();
     updateUserAction(profile);
-    console.log('save');
   };
-  //? Does onSave go on <Form> or <Button>?
 
   return (
     <div>
@@ -86,7 +88,8 @@ function MyProfileContainer({ LoadingOutlined }) {
           curUser={curUser}
           LoadingOutlined={LoadingOutlined}
           authState={authState}
-          onClick={handleEditMode}
+          handleEdit={handleEdit}
+          handleCancel={handleCancel}
           onChange={handleChange}
           disabled={disabled}
           isInEditMode={isInEditMode}
