@@ -8,24 +8,33 @@ import {
   Upload,
   uploadButton,
 } from 'antd';
-import { LoadingOutlined, PlusOutlined } from 'ant-design/icons';
+// import { LoadingOutlined, PlusOutlined } from 'ant-design/icons';
 
-const programs = ['Prevention', 'After Care'];
+const programs = ['Prevention', 'After Care', 'sheltering'];
 
-function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
+function RenderMyProfile({
+  curUser,
+  onClick,
+  disabled,
+  isInEditMode,
+  onSubmit,
+  onChange,
+  profile,
+  setProfile,
+}) {
   const [loading, setLoading] = useState('false');
 
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      {/* {loading ? <LoadingOutlined /> : <PlusOutlined />} */}
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
 
   return (
     <div className="profile-container">
-      <Form layout="vertical">
-        <div className="avatar-ctn">
+      <Form layout="vertical" onSubmit={onSubmit}>
+        <div>
           <Upload
             name="avatar"
             listType="picture-card"
@@ -33,24 +42,24 @@ function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
             showUploadList={false}
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             // beforeUpload={beforeUpload}
-            onChange={this.handleChange}
+            // onChange={this.handleChange}
           >
             {curUser.avatarUrl ? (
               <img
                 src={curUser.avatarUrl}
                 alt="avatar"
                 style={{ width: '100%' }}
+                className="avatar-ctn"
               />
             ) : (
               uploadButton
             )}
           </Upload>
 
-          <Avatar size={200} src={curUser.avatarUrl} />
+          {/* <Avatar size={200} src={curUser.avatarUrl} /> */}
         </div>
         <Form.Item
           label="Name"
-          name="name"
 
           // rules={[
           //   {
@@ -59,12 +68,25 @@ function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
           //   },
           // ]}
         >
-          <Input
-            disabled={disabled}
-            placeholder={curUser.name}
-            size="large"
-            defaultValue={curUser.name}
-          />
+          {!isInEditMode ? (
+            <Input
+              disabled={disabled}
+              // placeholder={curUser.name}
+              size="large"
+              defaultValue={curUser.name}
+              value={curUser.name}
+              onChange={onChange}
+              name="name"
+            />
+          ) : (
+            <Input
+              size="small"
+              defaultValue={curUser.name}
+              value={profile.name}
+              onChange={onChange}
+              name="name"
+            />
+          )}
         </Form.Item>
         <Form.Item
           label="Programs"
@@ -82,7 +104,7 @@ function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
           </Select>
         </Form.Item>
         <div className="save-edit-container">
-          {cancel && (
+          {!isInEditMode && (
             <Button
               size="large"
               type="primary"
@@ -92,7 +114,7 @@ function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
               Edit Name
             </Button>
           )}
-          {!cancel && (
+          {isInEditMode && (
             <Button
               size="large"
               type="primary"
@@ -104,7 +126,7 @@ function RenderMyProfile({ curUser, onClick, disabled, cancel, onSubmit }) {
           )}
         </div>
         <div className="cancel-contain">
-          {!cancel && (
+          {isInEditMode && (
             <Button
               type="text"
               className="cancel-btn"

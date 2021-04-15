@@ -9,6 +9,13 @@
   flex-direction: column;
   padding-top: 2rem;
   margin-left: 5rem;
+  .avatar-uploader {
+    display: flex;
+    justify-content: center;
+  }
+  @media screen and (max-width: 1025px) {
+    width: 75%;
+  }
 }
 
 .save-edit-container {
@@ -18,8 +25,10 @@
 .cancel-contain {
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 .cancel-btn:hover {
   border-bottom: 1px solid black;
+  margin-top: 1rem;
 }

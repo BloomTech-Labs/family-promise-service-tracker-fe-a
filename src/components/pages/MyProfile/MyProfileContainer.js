@@ -4,15 +4,27 @@ import { useOktaAuth } from '@okta/okta-react';
 import { TabletHeader } from '../../common/index';
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import './profile.css';
+import { connect } from 'react-redux';
+
+import { updateUserAction } from '../../../state/actions';
+
+const initialValues = {
+  name: '',
+  avatarUrl: '',
+};
 
 function MyProfileContainer({ LoadingOutlined }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(false);
   const [curUser, setCurUser] = useState(false);
-  const [disabled, setDisabled] = useState('true');
-  const [cancel, setCancel] = useState('false');
+  const [profile, setProfile] = useState(initialValues);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
+
+  //state needed for profile edit
+  const [disabled, setDisabled] = useState(true);
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  console.log('editMode', isInEditMode);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -45,14 +57,21 @@ function MyProfileContainer({ LoadingOutlined }) {
       });
   }, [userInfo]);
 
-  const handleEdit = e => {
+  const handleEditMode = e => {
     setDisabled(!disabled);
-    setCancel(!cancel);
+    setIsInEditMode(!isInEditMode);
   };
 
+  const handleChange = e => {
+    const { value, name } = e.target;
+    setProfile({ ...initialValues, [name]: value });
+  };
+  console.log('profile', profile);
   // calling the action to update DB
   const onSave = e => {
-    return;
+    e.preventDefault();
+    updateUserAction(profile);
+    console.log('save');
   };
   //? Does onSave go on <Form> or <Button>?
 
@@ -67,14 +86,25 @@ function MyProfileContainer({ LoadingOutlined }) {
           curUser={curUser}
           LoadingOutlined={LoadingOutlined}
           authState={authState}
-          onClick={handleEdit}
+          onClick={handleEditMode}
+          onChange={handleChange}
           disabled={disabled}
-          cancel={cancel}
+          isInEditMode={isInEditMode}
           onSubmit={onSave}
+          setProfile={setProfile}
+          profile={profile}
         />
       )}
     </div>
   );
 }
 
-export default MyProfileContainer;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, { updateUserAction })(
+  MyProfileContainer
+);
+
+// export default MyProfileContainer;
