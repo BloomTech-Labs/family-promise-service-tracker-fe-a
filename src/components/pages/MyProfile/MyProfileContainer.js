@@ -18,11 +18,7 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   const [userId, setUserId] = useState(false);
   const [curUser, setCurUser] = useState(false);
   const [profileValues, setProfileValues] = useState(initialFormValues);
-  const [prevValue, setPrevValue] = useState({
-    firstName: '',
-    lastName: '',
-    avatarUrl: '',
-  });
+  const [prevValue, setPrevValue] = useState(null);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
@@ -63,7 +59,15 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
       });
   }, [userId]);
 
-  console.log('user-info', curUser);
+  useEffect(() => {
+    setPrevValue({
+      firstName: curUser.firstName,
+      lastName: curUser.lastName,
+      avatarUrl: curUser.avatarUrl,
+    });
+  }, [curUser]);
+
+  console.log('prev values', prevValue);
   console.log('profile Values', profileValues);
   //upload functionality for images.
   const uploadImage = async e => {
@@ -90,6 +94,7 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   const handleEdit = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
+
     //add the previous values to state
   };
 
@@ -107,7 +112,6 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   const onSave = e => {
     e.preventDefault();
     updateUserAction(curUser.id, profileValues);
-    console.log('saved');
   };
 
   return (
@@ -135,9 +139,13 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   );
 }
 
-// const mapStateToProps = state => {
-//   return state;
-// };
+const mapStateToProps = state => {
+  return {
+    firstName: state.firstName,
+    lastName: state.lastName,
+    role: state.role,
+  };
+};
 
 export default connect(null, { updateUserAction })(MyProfileContainer);
 

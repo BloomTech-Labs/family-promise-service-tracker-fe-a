@@ -7,8 +7,13 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 1rem;
   margin-left: 5rem;
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
   .avatar-uploader {
     display: flex;
     justify-content: center;
