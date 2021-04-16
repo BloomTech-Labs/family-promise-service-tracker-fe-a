@@ -38,6 +38,7 @@ export const updateUserAction = (userId, userObj) => dispatch => {
   axiosWithAuth()
     .put(`/api/profiles/${userId}`, userObj)
     .then(res => {
+      console.log('what is sent in action', userObj);
       dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
