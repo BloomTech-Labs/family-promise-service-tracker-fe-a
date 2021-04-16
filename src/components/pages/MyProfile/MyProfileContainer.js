@@ -5,9 +5,7 @@ import { TabletHeader } from '../../common/index';
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import './profile.css';
 import { connect } from 'react-redux';
-
 import { updateUserAction } from '../../../state/actions';
-import { compose } from 'redux';
 
 const initialFormValues = {
   firstName: '',
@@ -15,7 +13,7 @@ const initialFormValues = {
   avatarUrl: '',
 };
 
-function MyProfileContainer({ LoadingOutlined }) {
+function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   const { authState, authService } = useOktaAuth();
   const [userId, setUserId] = useState(false);
   const [curUser, setCurUser] = useState(false);
@@ -23,6 +21,7 @@ function MyProfileContainer({ LoadingOutlined }) {
   const [prevValue, setPrevValue] = useState({
     firstName: '',
     lastName: '',
+    avatarUrl: '',
   });
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
@@ -64,9 +63,10 @@ function MyProfileContainer({ LoadingOutlined }) {
       });
   }, [userId]);
 
+  console.log('user-info', curUser);
+  console.log('profile Values', profileValues);
   //upload functionality for images.
   const uploadImage = async e => {
-    console.log('upload started');
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
@@ -106,11 +106,9 @@ function MyProfileContainer({ LoadingOutlined }) {
   // calling the action to update DB
   const onSave = e => {
     e.preventDefault();
-    updateUserAction(profileValues);
+    updateUserAction(curUser.id, profileValues);
     console.log('saved');
   };
-
-  console.log('profileValues', profileValues);
 
   return (
     <div>
@@ -137,12 +135,10 @@ function MyProfileContainer({ LoadingOutlined }) {
   );
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+// const mapStateToProps = state => {
+//   return state;
+// };
 
-export default connect(mapStateToProps, { updateUserAction })(
-  MyProfileContainer
-);
+export default connect(null, { updateUserAction })(MyProfileContainer);
 
 // export default MyProfileContainer;

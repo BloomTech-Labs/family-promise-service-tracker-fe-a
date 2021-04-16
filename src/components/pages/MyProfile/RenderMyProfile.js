@@ -10,8 +10,6 @@ import {
 } from 'antd';
 // import { LoadingOutlined, PlusOutlined } from 'ant-design/icons';
 
-let programs = ['Sheltering', 'After Care'];
-
 function RenderMyProfile({
   curUser,
   profileValues,
@@ -45,9 +43,9 @@ function RenderMyProfile({
         <Form.Item label="First Name" className="label-header">
           <Input
             disabled={disabled}
-            placeholder={curUser.name}
+            placeholder={curUser.firstName}
             size="large"
-            defaultValue={curUser.name}
+            defaultValue={curUser.firstName}
             value={profileValues.firstName}
             onChange={onChange}
             name="firstName"
@@ -77,9 +75,9 @@ function RenderMyProfile({
         <Form.Item label="Last Name" className="label-header">
           <Input
             disabled={disabled}
-            placeholder={curUser.name}
+            placeholder={curUser.lastName}
             size="large"
-            defaultValue={curUser.name}
+            defaultValue={curUser.lastName}
             value={profileValues.lastName}
             onChange={onChange}
             name="lastName"
