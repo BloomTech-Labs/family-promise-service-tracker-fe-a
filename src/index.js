@@ -19,6 +19,9 @@ import { LandingPage } from './components/pages/Landing';
 import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { EmployeesPage } from './components/pages/AdminPages/index';
+
+import './styles/styles.less';
 
 ReactDOM.render(
   <Router>
@@ -41,22 +44,25 @@ function App() {
   };
 
   return (
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
-        <Route path="/landing" component={LandingPage} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Security>
+    <>
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/implicit/callback" component={LoginCallback} />
+          <Route path="/landing" component={LandingPage} />
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            path="/"
+            exact
+            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          />
+          <SecureRoute path="/example-list" component={ExampleListPage} />
+          <SecureRoute path="/profile-list" component={ProfileListPage} />
+          <SecureRoute path="/datavis" component={ExampleDataViz} />
+          <SecureRoute path="/employees" component={EmployeesPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Security>
+    </>
   );
 }
