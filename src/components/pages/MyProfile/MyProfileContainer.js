@@ -6,6 +6,7 @@ import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import './profile.css';
 import { connect } from 'react-redux';
 import { updateUserAction } from '../../../state/actions';
+import Title from '../../common/Title';
 
 const initialFormValues = {
   firstName: '',
@@ -117,6 +118,8 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
   return (
     <div>
       <TabletHeader />
+      <Title TitleText="My Profile" />
+
       {authState.isAuthenticated && !curUser && (
         <LoadingOutlined className="loader" />
       )}

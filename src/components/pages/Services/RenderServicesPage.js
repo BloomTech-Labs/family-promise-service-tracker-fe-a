@@ -8,9 +8,6 @@ import { AddServiceForm } from './form-service';
 function RenderServicesPage() {
   return (
     <>
-      <div>
-        <h1>Services</h1>
-      </div>
       {/* Conditional goes here  IF needed*/}
       <AddServiceForm />
     </>
