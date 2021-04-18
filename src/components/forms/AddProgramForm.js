@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 
 function AddProgramForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
+  const programs = ['Prevention', 'After Care', 'Sheltering'];
 
   return (
     <Modal
@@ -53,7 +54,11 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input />
+          <Select size="large" placeholder="Select Program">
+            {programs.map(item => (
+              <Select.Option key={item}>{item}</Select.Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="Program Description" name="description">
           <Input.TextArea showCount maxLength={240} />
