@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import AddProgramForm from '../../forms/AddProgramForm.js';
+import { addProgramAction } from '../../../state/actions/index.js';
+import { connect } from 'react-redux';
 import { Button } from 'antd';
 
-function RenderProgramsPage() {
+function RenderProgramsPage({ addProgramAction }) {
   const [visible, setVisible] = useState(false);
 
-  const onCreate = values => {
-    console.log('Recieved valuies of form: ', values);
+  const onCreate = programObj => {
+    console.log('Recieved valuies of form: ', programObj);
+    addProgramAction(programObj);
     setVisible(false);
   };
 
@@ -31,4 +34,4 @@ function RenderProgramsPage() {
   );
 }
 
-export default RenderProgramsPage;
+export default connect(null, { addProgramAction })(RenderProgramsPage);
