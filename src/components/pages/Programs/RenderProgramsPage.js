@@ -8,7 +8,6 @@ function RenderProgramsPage({ addProgramAction }) {
   const [visible, setVisible] = useState(false);
 
   const onCreate = programObj => {
-    console.log('Recieved valuies of form: ', programObj);
     addProgramAction(programObj);
     setVisible(false);
   };
