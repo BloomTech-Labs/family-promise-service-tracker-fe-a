@@ -7,8 +7,10 @@ function ProgramsContainer() {
   return (
     <div>
       <TabletHeader />
-      <TitleComponent TitleText="Programs" />
-      <RenderProgramsPage />
+      <div className="sub-header">
+        <TitleComponent TitleText="Programs" />
+        <RenderProgramsPage />
+      </div>
     </div>
   );
 }
