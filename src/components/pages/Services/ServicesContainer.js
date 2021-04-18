@@ -7,8 +7,10 @@ function ServicesContainer() {
   return (
     <div>
       <TabletHeader />
-      <TitleComponent TitleText="Services" />
-      <RenderServicesPage />
+      <div className="sub-header">
+        <TitleComponent TitleText="Services" />
+        <RenderServicesPage />
+      </div>
     </div>
   );
 }
