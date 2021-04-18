@@ -14,6 +14,7 @@ function RenderServicesPage({ addProgramAction }) {
   const onCreate = values => {
     console.log('received values of form:', values);
     setVisible(false);
+    //addProgramAction goes in here
   };
 
   return (

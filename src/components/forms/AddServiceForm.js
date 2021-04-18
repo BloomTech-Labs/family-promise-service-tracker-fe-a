@@ -60,9 +60,9 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
           >
             <Input placeholder="Enter Name" size="large" />
           </Form.Item>
-
+          //? Do we need both program Name and Program Type in form?
           <Form.Item
-            label="Program Single"
+            label="Program Name"
             name="program"
             rules={[
               {
@@ -77,7 +77,6 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
               ))}
             </Select>
           </Form.Item>
-
           <Form.Item
             label="Address"
             name="Address"
@@ -126,20 +125,9 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
           >
             <Input placeholder="Enter address" size="large" />
           </Form.Item>
-
-          <Form.Item
-            label="Quantity"
-            name="quantity"
-            //   rules={[
-            //     {
-            //       required: false,
-            //       message: 'Select Time',
-            //     },
-            //   ]}
-          >
+          <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" />
           </Form.Item>
-
           <Form.Item
             label="Status"
             name="status"
@@ -200,7 +188,6 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
               ))}
             </Select>
           </Form.Item>
-
           <Form.Item label="Insert Description" name="description">
             <TextArea showCount maxLength={240} />
           </Form.Item>
