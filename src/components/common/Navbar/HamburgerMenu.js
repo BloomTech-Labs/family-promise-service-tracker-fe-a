@@ -3,13 +3,12 @@ import { Drawer, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
-  MenuUnfoldOutlined,
+  MenuOutlined,
   UserOutlined,
   TeamOutlined,
   ProjectOutlined,
   ReconciliationOutlined,
   UsergroupAddOutlined,
-  MenuFoldOutlined,
   LeftCircleOutlined,
 } from '@ant-design/icons';
 import './navbar.css';
@@ -39,11 +38,7 @@ const HamburgerMenu = () => {
   return (
     <>
       <Button type="dark" onClick={showDrawer} className="menu-button">
-        {visible ? (
-          <MenuFoldOutlined className="menu-icon" />
-        ) : (
-          <MenuUnfoldOutlined className="menu-icon" />
-        )}
+        <MenuOutlined className="menu-icon" />
       </Button>
       <Drawer
         placement="left"
