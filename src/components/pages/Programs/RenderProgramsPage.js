@@ -1,7 +1,7 @@
 import React from 'react';
 
 function RenderProgramsPage() {
-  return;
+  return <div></div>;
 }
 
 export default RenderProgramsPage;
