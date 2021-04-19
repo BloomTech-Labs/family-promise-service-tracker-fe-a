@@ -33,7 +33,12 @@ const HamburgerMenu = () => {
     localStorage.removeItem('okta-cache-storage');
     localStorage.removeItem('username');
     history.push('/login');
-    window.location.reload();
+    window.location.reload(); // quick fix need to change later
+  };
+
+  const onClick = s => {
+    history.push(s);
+    setVisible(false);
   };
 
   return (
@@ -54,7 +59,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="1"
                 icon={<UserOutlined />}
-                onClick={() => history.push('/')}
+                onClick={() => onClick('/')}
               >
                 My Profile
               </Menu.Item>
@@ -62,7 +67,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="2"
                 icon={<TeamOutlined />}
-                onClick={() => history.push('/employees')}
+                onClick={() => onClick('/employees')}
               >
                 Employees
               </Menu.Item>
@@ -70,7 +75,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="3"
                 icon={<ProjectOutlined />}
-                onClick={() => history.push('/programs')}
+                onClick={() => onClick('/programs')}
               >
                 Programs
               </Menu.Item>
@@ -78,7 +83,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="4"
                 icon={<UsergroupAddOutlined />}
-                onClick={() => history.push('/recipients')}
+                onClick={() => onClick('/recipients')}
               >
                 Recipients
               </Menu.Item>
@@ -86,7 +91,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="5"
                 icon={<ReconciliationOutlined />}
-                onClick={() => history.push('/services')}
+                onClick={() => onClick('/services')}
               >
                 Services
               </Menu.Item>
@@ -108,7 +113,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="1"
                 icon={<UserOutlined />}
-                onClick={() => history.push('/')}
+                onClick={() => onClick('/')}
               >
                 My Profile
               </Menu.Item>
@@ -116,7 +121,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="3"
                 icon={<ProjectOutlined />}
-                onClick={() => history.push('/programs')}
+                onClick={() => onClick('/programs')}
               >
                 Programs
               </Menu.Item>
@@ -124,7 +129,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="4"
                 icon={<UsergroupAddOutlined />}
-                onClick={() => history.push('/recipients')}
+                onClick={() => onClick('/recipients')}
               >
                 Recipients
               </Menu.Item>
@@ -132,7 +137,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="5"
                 icon={<ReconciliationOutlined />}
-                onClick={() => history.push('/services')}
+                onClick={() => onClick('/services')}
               >
                 Services
               </Menu.Item>
@@ -154,7 +159,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="1"
                 icon={<UserOutlined />}
-                onClick={() => history.push('/')}
+                onClick={() => onClick('/')}
               >
                 My Profile
               </Menu.Item>
@@ -162,7 +167,7 @@ const HamburgerMenu = () => {
               <Menu.Item
                 key="5"
                 icon={<ReconciliationOutlined />}
-                onClick={() => history.push('/services')}
+                onClick={() => onClick('/services')}
               >
                 Services
               </Menu.Item>
