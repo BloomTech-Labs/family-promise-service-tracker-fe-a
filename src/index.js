@@ -8,25 +8,36 @@ import {
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
-import 'antd/dist/antd.less';
+import { Provider } from 'react-redux';
+import { store } from './state/index';
 
+import 'antd/dist/antd.less';
+import './app.scss';
+
+import { MyProfile } from './components/pages/MyProfile';
+// import { EmployeesPage } from './components/pages/Employees';
+import { ProgramsPage } from './components/pages/Programs';
+import { RecipientsPage } from './components/pages/Recipients';
+import { ServicesPage } from './components/pages/Services';
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
-import { HomePage } from './components/pages/Home';
+import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EmployeesPage } from './components/pages/AdminPages/index';
 
 import './styles/styles.less';
+import { LoadingOutlined } from '@ant-design/icons';
+import { TabletHeader } from './components/common/index';
+import { formatCountdown } from 'antd/lib/statistic/utils';
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
@@ -44,25 +55,24 @@ function App() {
   };
 
   return (
-    <>
-      <Security {...config} onAuthRequired={authHandler}>
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/implicit/callback" component={LoginCallback} />
-          <Route path="/landing" component={LandingPage} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <SecureRoute
-            path="/"
-            exact
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
-          />
-          <SecureRoute path="/example-list" component={ExampleListPage} />
-          <SecureRoute path="/profile-list" component={ProfileListPage} />
-          <SecureRoute path="/datavis" component={ExampleDataViz} />
-          <SecureRoute path="/employees" component={EmployeesPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Security>
-    </>
+    <Security {...config} onAuthRequired={authHandler}>
+      {localStorage.getItem('okta-token-storage') ? <TabletHeader /> : <></>}
+      <Switch>
+        <Route exact path="/login" component={LoginPage} />
+        <Route path="/implicit/callback" component={LoginCallback} />
+        <Route path="/landing" component={LandingPage} />
+        {/* any of the routes you need secured should be registered as SecureRoutes */}
+        <SecureRoute
+          path="/"
+          exact
+          component={() => <MyProfile LoadingOutlined={LoadingOutlined} />}
+        />
+        <SecureRoute path="/employees" component={EmployeesPage} />
+        <SecureRoute path="/programs" component={ProgramsPage} />
+        <SecureRoute path="/recipients" component={RecipientsPage} />
+        <SecureRoute path="/services" component={ServicesPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Security>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, input } from 'react';
+import React, { useState, input, useEffect } from 'react';
 import { TweenOneGroup } from 'rc-tween-one';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -12,6 +12,7 @@ const TagsComponent = props => {
   };
 
   const [state, setState] = useState(initialTagValues);
+  console.log(state.tags, 'tags');
 
   const handleClose = removedTag => {
     const tags = state.tags.filter(tag => tag !== removedTag);
