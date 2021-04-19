@@ -5,15 +5,21 @@ import logo from '../../../assets/logo.png';
 
 const NavbarHeader = props => {
   return (
-    <div className={props.classType} style={{ display: 'flex' }}>
-      <div className="test">
-        <HamburgerMenu />
-      </div>
-      <div style={{ paddingLeft: 100 }}>
-        <img src={logo} style={{ width: 350 }} alt="family promise logo" />
-      </div>
-      {/* do classses instead of inline styling */}
-    </div>
+    <>
+      {localStorage.getItem('okta-token-storage') ? (
+        <div className={props.classType} style={{ display: 'flex' }}>
+          <div className="test">
+            <HamburgerMenu />
+          </div>
+          <div style={{ paddingLeft: 100 }}>
+            <img src={logo} style={{ width: 350 }} alt="family promise logo" />
+          </div>
+          {/* do classses instead of inline styling */}
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

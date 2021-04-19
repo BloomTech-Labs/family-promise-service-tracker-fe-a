@@ -33,6 +33,7 @@ const HamburgerMenu = () => {
     localStorage.removeItem('okta-cache-storage');
     localStorage.removeItem('username');
     history.push('/login');
+    window.location.reload();
   };
 
   return (
