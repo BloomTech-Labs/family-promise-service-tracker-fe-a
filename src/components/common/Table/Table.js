@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { TagsComponent } from '../index';
 import {
   Table,
   Input,
   Dropdown,
   Menu,
-  Button,
   Typography,
   Form,
   Tag,
@@ -22,7 +22,7 @@ const users = [
   {
     name: 'Michael Scott',
     role: 'Program Manager',
-    programs: ['Prevention', 'Sheltering', 'Aftercare'],
+    programs: ['Prevention'],
   },
   {
     name: 'John Legend',
@@ -156,17 +156,24 @@ const TableComponent = () => {
       dataIndex: 'programs',
       key: 'programs',
       editable: true,
-      render: programs => (
-        <>
-          {programs.map(program => {
-            return (
-              <Tag color="magenta" size="small" key={program}>
-                {program}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <>
+            <TagsComponent users={record} />
+          </>
+        ) : (
+          <>
+            {record.programs.map(program => {
+              return (
+                <Tag color="magenta" size="small" key={program}>
+                  {program}
+                </Tag>
+              );
+            })}
+          </>
+        );
+      },
     },
     {
       title: 'Actions',
@@ -178,12 +185,12 @@ const TableComponent = () => {
           <span>
             <Space size="middle">
               <a
-                onClick={() => saveEdit(record.key)}
+                onClick={() => save(record.key)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
               </a>
-              <Popconfirm title="Sure to cancelEdit?" onConfirm={cancelEdit}>
+              <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
                 <a style={{ color: '#1890FF' }}>Cancel</a>
               </Popconfirm>
             </Space>
@@ -193,7 +200,7 @@ const TableComponent = () => {
             <Typography.Link
               disabled={editingKey !== ''}
               style={{ color: '#1890FF' }}
-              onClick={() => editUser(record)}
+              onClick={() => edit(record)}
             >
               Edit
             </Typography.Link>
@@ -227,7 +234,7 @@ const TableComponent = () => {
 
   const isEditing = record => record.key === editingKey;
 
-  const editUser = record => {
+  const edit = record => {
     console.log('editing user');
     form.setFieldsValue({
       name: '',
@@ -239,11 +246,11 @@ const TableComponent = () => {
     setEditingKey(record.key);
   };
 
-  const cancelEdit = () => {
+  const cancel = () => {
     setEditingKey('');
   };
 
-  const saveEdit = async key => {
+  const save = async key => {
     try {
       const row = await form.validateFields();
       console.log(row, 'row');
@@ -294,29 +301,10 @@ const TableComponent = () => {
     onChange: onSelectChange,
   };
 
-  //   const mergedColumns = columns.map(col => {
-  //     if (!col.editable) {
-  //       return col;
-  //     }
-
-  //     return {
-  //       ...col,
-  //       onCell: record => ({
-  //         record,
-  //         inputType: col.dataIndex === 'text',
-  //         dataIndex: col.dataIndex,
-  //         title: col.title,
-  //         editing: isEditing(record),
-  //       }),
-  //     };
-  //   });
-
   return (
     <Table
       rowSelection={rowSelection}
       columns={columns}
-      //   rowClassName="editable-row"
-      //   pagination={{ onChange: cancelEdit }}
       dataSource={tableData}
     />
   );
