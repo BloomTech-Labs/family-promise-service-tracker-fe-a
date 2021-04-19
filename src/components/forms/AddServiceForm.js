@@ -25,9 +25,9 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
     <>
       <Modal
         visible={visible}
-        title="Enter New Service"
-        okText="Enter Service"
-        cancelText="Cancel Entry"
+        title="Log New Service"
+        okText="Log Service"
+        cancelText="Cancel"
         onCancel={onCancel}
         onOk={() => {
           form
@@ -60,8 +60,8 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
           >
             <Input placeholder="Enter Name" size="large" />
           </Form.Item>
-          //? Do we need both program Name and Program Type in form?
-          <Form.Item
+
+          {/* <Form.Item
             label="Program Name"
             name="program"
             rules={[
@@ -76,7 +76,7 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
                 <Select.Option key={item}> {item}</Select.Option>
               ))}
             </Select>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             label="Address"
             name="Address"
