@@ -117,7 +117,6 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
 
   return (
     <div>
-      <TabletHeader />
       <Title TitleText="My Profile" />
 
       {authState.isAuthenticated && !curUser && (

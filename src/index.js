@@ -52,6 +52,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      {localStorage.getItem('okta-token-storage') ? <TabletHeader /> : <></>}
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
