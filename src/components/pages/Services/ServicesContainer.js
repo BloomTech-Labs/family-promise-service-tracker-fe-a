@@ -6,7 +6,7 @@ import TitleComponent from '../../common/Title';
 function ServicesContainer() {
   return (
     <div>
-      <div className="sub-header">
+      <div className="services-header">
         <TitleComponent TitleText="Services" />
         <RenderServicesPage />
       </div>

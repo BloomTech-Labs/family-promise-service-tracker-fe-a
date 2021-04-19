@@ -1,5 +1,14 @@
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
 .add-services-btn-ctn {
   margin-right: 5rem;
+}
+.add-type-btn-ctn {
+  margin-left: 13rem;
 }
 
 .date-time-wrapper {
