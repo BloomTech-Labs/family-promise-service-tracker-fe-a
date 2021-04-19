@@ -5,7 +5,6 @@ import { TabletHeader } from '../../common/index';
 function RecipientsContainer() {
   return (
     <div>
-      <TabletHeader />
       <RenderRecipientsPage />
     </div>
   );
