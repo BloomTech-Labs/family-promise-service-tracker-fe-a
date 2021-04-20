@@ -1,0 +1,103 @@
+import {
+  GET_ALL_SERVICE_TYPE_START,
+  GET_ALL_SERVICE_TYPE_SUCCESS,
+  GET_ALL_SERVICE_TYPE_FAIL,
+  GET_ALL_SERVICE_TYPE_RESOLVE,
+  //   GET_SERVICE_TYPE_START,
+  //   GET_SERVICE_TYPE_SUCCESS,
+  //   GET_SERVICE_TYPE_FAIL,
+  //   GET_SERVICE_TYPE_RESOLVE,
+  ADD_SERVICE_TYPE_START,
+  ADD_SERVICE_TYPE_SUCCESS,
+  ADD_SERVICE_TYPE_FAIL,
+  ADD_SERVICE_TYPE_RESOLVE,
+  EDIT_SERVICE_TYPE_START,
+  EDIT_SERVICE_TYPE_SUCCESS,
+  EDIT_SERVICE_TYPE_FAIL,
+  EDIT_SERVICE_TYPE_RESOLVE,
+  DELETE_SERVICE_TYPE_START,
+  DELETE_SERVICE_TYPE_SUCCESS,
+  DELETE_SERVICE_TYPE_FAIL,
+  DELETE_SERVICE_TYPE_RESOLVE,
+} from '../actions/ServiceTypeActions';
+
+export const initialServiceTypeState = {
+  types: [],
+  type: null,
+  status: 'Resolved',
+  error: '',
+};
+
+export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
+  switch (action.type) {
+    //get all service types
+    case GET_ALL_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case GET_ALL_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        types: action.payload,
+        status: 'Success',
+      };
+    case GET_ALL_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case GET_ALL_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
+    //edit service types
+    case EDIT_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case EDIT_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        status: 'Success',
+      };
+    case EDIT_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case EDIT_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
+    case DELETE_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case DELETE_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        status: 'Success',
+      };
+    case DELETE_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case DELETE_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
+    //default
+    default:
+      return state;
+  }
+};
