@@ -1,17 +1,6 @@
-import React, { useState } from 'react';
-import { TagsComponent } from '../index';
-import {
-  Table,
-  Input,
-  Dropdown,
-  Menu,
-  Typography,
-  Form,
-  Tag,
-  Space,
-  Popconfirm,
-} from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
+import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
 
 const users = [
   {
@@ -76,28 +65,13 @@ const users = [
   },
 ];
 
-const TableComponent = () => {
-  const tableData = [];
+const tableData = [];
 
+const TableComponent = () => {
   const [form] = Form.useForm();
   const [formData, setFormData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
-  const [selected, setSelected] = useState([]);
   const [userData, setUserData] = useState(users);
-
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <a>Administrator</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a>Program Manager</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a>Service Provider</a>
-      </Menu.Item>
-    </Menu>
-  );
 
   const columns = [
     {
@@ -137,15 +111,7 @@ const TableComponent = () => {
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Dropdown overlay={menu}>
-            <a
-              className="ant-dropdown-link"
-              style={{ color: '#1890FF' }}
-              onClick={e => e.preventDefault()}
-            >
-              {record.role} <DownOutlined />
-            </a>
-          </Dropdown>
+          <DropdownComponent record={record} />
         ) : (
           <>{record.role}</>
         );
@@ -191,7 +157,9 @@ const TableComponent = () => {
                 Save
               </a>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <a href="javascript;:" style={{ color: '#1890FF' }}>
+                  Cancel
+                </a>
               </Popconfirm>
             </Space>
           </span>
@@ -281,29 +249,9 @@ const TableComponent = () => {
     setUserData(tableData.filter(user => user.key !== key));
   };
 
-  const selectedRowKeys = selected;
-
-  const onSelectChange = selectedRowKeys => {
-    setSelected(selectedRowKeys);
-    const selectedUsers = [];
-    selectedRowKeys.map(key => {
-      tableData.map(user => {
-        if (user.key === key) {
-          selectedUsers.push(user);
-        }
-      });
-    });
-    console.log(`Selected User Data:`, selectedUsers);
-  };
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-
   return (
     <Table
-      rowSelection={rowSelection}
+      rowSelection={CheckboxComponent(tableData)}
       columns={columns}
       dataSource={tableData}
     />

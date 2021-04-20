@@ -4,7 +4,6 @@ import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const TagsComponent = props => {
-  console.log(props, 'props');
   const initialTagValues = {
     tags: props.users.programs,
     inputVisible: false,

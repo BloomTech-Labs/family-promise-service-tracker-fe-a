@@ -15,7 +15,7 @@ import 'antd/dist/antd.less';
 import './app.scss';
 
 import { MyProfile } from './components/pages/MyProfile';
-// import { EmployeesPage } from './components/pages/Employees';
+import { EmployeesPage } from './components/pages/Employees';
 import { ProgramsPage } from './components/pages/Programs';
 import { RecipientsPage } from './components/pages/Recipients';
 import { ServicesPage } from './components/pages/Services';
@@ -25,7 +25,6 @@ import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import { EmployeesPage } from './components/pages/AdminPages/index';
 
 import './styles/styles.less';
 import { LoadingOutlined } from '@ant-design/icons';
