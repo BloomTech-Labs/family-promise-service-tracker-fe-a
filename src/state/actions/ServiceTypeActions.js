@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { DELETE_EMPLOYEE_FAIL } from './employeeActions';
 import { EDIT_PROGRAM_SUCCESS } from './programActions';
