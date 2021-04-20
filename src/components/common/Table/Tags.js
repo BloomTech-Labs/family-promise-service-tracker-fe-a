@@ -1,5 +1,5 @@
 import React, { useState, input, useEffect } from 'react';
-import { TweenOneGroup } from 'rc-tween-one';
+//import { TweenOneGroup } from 'rc-tween-one';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -71,7 +71,7 @@ const TagsComponent = props => {
   return (
     <>
       <div style={{ marginBottom: 16 }}>
-        <TweenOneGroup
+        {/* <TweenOneGroup
           enter={{
             scale: 0.8,
             opacity: 0,
@@ -85,7 +85,7 @@ const TagsComponent = props => {
           appear={false}
         >
           {tagChild}
-        </TweenOneGroup>
+        </TweenOneGroup> */}
       </div>
       {inputVisible && (
         <Input
