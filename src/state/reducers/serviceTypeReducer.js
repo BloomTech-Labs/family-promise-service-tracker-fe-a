@@ -3,10 +3,10 @@ import {
   GET_ALL_SERVICE_TYPE_SUCCESS,
   GET_ALL_SERVICE_TYPE_FAIL,
   GET_ALL_SERVICE_TYPE_RESOLVE,
-  //   GET_SERVICE_TYPE_START,
-  //   GET_SERVICE_TYPE_SUCCESS,
-  //   GET_SERVICE_TYPE_FAIL,
-  //   GET_SERVICE_TYPE_RESOLVE,
+  GET_SERVICE_TYPE_START,
+  GET_SERVICE_TYPE_SUCCESS,
+  GET_SERVICE_TYPE_FAIL,
+  GET_SERVICE_TYPE_RESOLVE,
   ADD_SERVICE_TYPE_START,
   ADD_SERVICE_TYPE_SUCCESS,
   ADD_SERVICE_TYPE_FAIL,
@@ -53,6 +53,29 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
         ...state,
         status: 'Resolved',
       };
+    //get service type by id
+    case GET_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case GET_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        type: action.payload,
+        status: 'Success',
+      };
+    case GET_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case GET_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
     //edit service types
     case EDIT_SERVICE_TYPE_START:
       return {
@@ -71,6 +94,28 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
         error: action.payload,
       };
     case EDIT_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
+    //add service
+    case ADD_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case ADD_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        status: 'Success',
+      };
+    case ADD_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case ADD_SERVICE_TYPE_RESOLVE:
       return {
         ...state,
         status: 'Resolved',
