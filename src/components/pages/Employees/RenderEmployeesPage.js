@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { addEmployeeAction } from '../../../state/actions';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import { TableComponent } from '../../common';
 import AddEmployeeForm from '../../forms/AddEmployeeForm';
 
 function RenderEmployeePage({ addEmployeeAction }) {
@@ -13,23 +14,26 @@ function RenderEmployeePage({ addEmployeeAction }) {
   };
 
   return (
-    <div className="add-employee-btn-ctn">
-      <Button
-        type="primary"
-        onClick={() => {
-          setVisible(true);
-        }}
-      >
-        Add Employee
-      </Button>
-      <AddEmployeeForm
-        visible={visible}
-        onCreate={onCreate}
-        onCancel={() => {
-          setVisible(false);
-        }}
-      />
-    </div>
+    <>
+      <div className="add-employee-btn-ctn">
+        <Button
+          type="primary"
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          Add Employee
+        </Button>
+        <AddEmployeeForm
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+      </div>
+      <TableComponent />
+    </>
   );
 }
 
