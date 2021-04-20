@@ -32,7 +32,6 @@ function RenderEmployeePage({ addEmployeeAction }) {
           }}
         />
       </div>
-      <TableComponent />
     </>
   );
 }

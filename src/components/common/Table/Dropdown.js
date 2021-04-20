@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Link } from 'react';
 import { Dropdown, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -21,13 +21,13 @@ const DropdownComponent = props => {
   return (
     <>
       <Dropdown overlay={menu}>
-        <a
+        <Link
           className="ant-dropdown-link"
           style={{ color: '#1890FF' }}
           onClick={e => e.preventDefault()}
         >
           {props.record.role} <DownOutlined />
-        </a>
+        </Link>
       </Dropdown>
     </>
   );
