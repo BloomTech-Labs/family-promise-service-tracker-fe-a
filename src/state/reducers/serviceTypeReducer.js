@@ -120,6 +120,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
         ...state,
         status: 'Resolved',
       };
+    //delete service type
     case DELETE_SERVICE_TYPE_START:
       return {
         ...state,
