@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderEmployeesPage from './RenderEmployeesPage';
-import { TabletHeader } from '../../common/index';
+import { TableComponent } from '../../common';
 import TitleComponent from '../../common/Title';
 
 function EmployeesContainer() {
@@ -9,6 +9,9 @@ function EmployeesContainer() {
       <div className="sub-header">
         <TitleComponent TitleText="Employees" />
         <RenderEmployeesPage />
+      </div>
+      <div className="tablectn">
+        <TableComponent />
       </div>
     </div>
   );

@@ -21,12 +21,10 @@ import { RecipientsPage } from './components/pages/Recipients';
 import { ServicesPage } from './components/pages/Services';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
-import { Dashboard } from './components/pages/Dashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { TabletHeader } from './components/common/index';
-import { formatCountdown } from 'antd/lib/statistic/utils';
 
 ReactDOM.render(
   <Router>
