@@ -22,8 +22,8 @@ import {
 } from '../actions/ServiceTypeActions';
 
 export const initialServiceTypeState = {
-  types: [],
-  type: null,
+  serviceTypes: [],
+  serviceType: null,
   status: 'Resolved',
   error: '',
 };

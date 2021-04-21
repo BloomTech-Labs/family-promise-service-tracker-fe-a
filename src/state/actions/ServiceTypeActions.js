@@ -1,7 +1,4 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
-import { DELETE_EMPLOYEE_FAIL } from './employeeActions';
-import { EDIT_PROGRAM_SUCCESS } from './programActions';
-import { GET_SERVICE_FAIL } from './serviceActions';
 
 export const GET_ALL_SERVICE_TYPE_START = 'GET_ALL_SERVICE_TYPE_START';
 export const GET_ALL_SERVICE_TYPE_SUCCESS = 'GET_ALL_SERVICE_TYPE_SUCCESS';
@@ -28,11 +25,11 @@ export const DELETE_SERVICE_TYPE_SUCCESS = 'DELETE_SERVICE_TYPE_SUCCESS';
 export const DELETE_SERVICE_TYPE_FAIL = 'DELETE_SERVICE_TYPE_FAIL';
 export const DELETE_SERVICE_TYPE_RESOLVE = 'DELETE_SERVICE_TYPE_RESOLVE';
 
-export const getAllServiceTypes = () => dispatch => {
+export const getAllServiceTypesAction = () => dispatch => {
   dispatch({ type: GET_ALL_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .get('service type endpoint')
+    .get('/api/service_types')
     .then(res => {
       dispatch({ type: GET_ALL_SERVICE_TYPE_SUCCESS, payload: res.data });
     })
@@ -48,25 +45,25 @@ export const getServiceTypeByIdAction = typeId => dispatch => {
   dispatch({ type: GET_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .get(`service type endpoint ${typeId}`)
+    .get(`/api/service_type/${typeId}`)
     .then(res => {
       dispatch({ type: GET_SERVICE_TYPE_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: GET_SERVICE_FAIL, payload: err.message });
+      dispatch({ type: GET_SERVICE_TYPE_FAIL, payload: err.message });
     })
     .finally(() => {
       dispatch({ type: GET_SERVICE_TYPE_RESOLVE });
     });
 };
 
-export const editServiceType = (typeId, typeObj) => dispatch => {
+export const editServiceTypeAction = (typeId, typeObj) => dispatch => {
   dispatch({ type: EDIT_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .put('service type endpoint', typeObj)
+    .put(`/api/service/${typeId}`, typeObj)
     .then(res => {
-      dispatch({ type: EDIT_PROGRAM_SUCCESS, payload: res.data });
+      dispatch({ type: EDIT_SERVICE_TYPE_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: EDIT_SERVICE_TYPE_FAIL, payload: err.message });
@@ -76,11 +73,11 @@ export const editServiceType = (typeId, typeObj) => dispatch => {
     });
 };
 
-export const deleteServiceType = typeId => dispatch => {
+export const deleteServiceTypeAction = typeId => dispatch => {
   dispatch({ type: DELETE_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .delete(`service type endpoint/${typeId}`)
+    .delete(`/api/service/${typeId}`)
     .then(res => {
       dispatch({ type: DELETE_SERVICE_TYPE_SUCCESS, payload: res.data });
     })
