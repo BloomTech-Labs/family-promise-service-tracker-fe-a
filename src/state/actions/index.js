@@ -15,6 +15,13 @@ export {
 } from './serviceActions';
 
 export {
+  getAllServiceTypesAction,
+  getServiceTypeByIdAction,
+  editServiceTypeAction,
+  deleteServiceTypeAction,
+} from './ServiceTypeActions';
+
+export {
   getAllProgramsAction,
   getProgramByIdAction,
   addProgramAction,

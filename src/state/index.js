@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 import {
   userReducer,
   serviceReducer,
+  serviceTypeReducer,
   programReducer,
   employeeReducer,
 } from './reducers/index';
@@ -11,6 +12,7 @@ import {
 export const rootReducer = combineReducers({
   user: userReducer,
   service: serviceReducer,
+  serviceType: serviceTypeReducer,
   program: programReducer,
   employee: employeeReducer,
 });

@@ -3,5 +3,6 @@
 
 export { userReducer } from './userReducer.js';
 export { serviceReducer } from './serviceReducer';
+export { serviceTypeReducer } from './serviceTypeReducer';
 export { programReducer } from './programReducer';
 export { employeeReducer } from './employeeReducer';
