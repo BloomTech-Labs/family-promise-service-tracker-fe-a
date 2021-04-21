@@ -1,77 +1,99 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
 import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
 
-const users = [
-  {
-    name: 'Ruben Ramirez',
-    role: 'Administrator',
-    programs: ['Sheltering', 'Aftercare', 'Prevention'],
-  },
-  {
-    name: 'Michael Scott',
-    role: 'Program Manager',
-    programs: ['Prevention'],
-  },
-  {
-    name: 'John Legend',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Mary Higgins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Bilbo Baggins',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Frodo Baggins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Ruben Ramirez',
-    role: 'Administrator',
-    programs: ['Sheltering', 'Aftercare', 'Prevention'],
-  },
-  {
-    name: 'Michael Scott',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'John Legend',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Mary Higgins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Bilbo Baggins',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Frodo Baggins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-];
+//action import
+import {
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+} from '../../../state/actions';
+
+//0. Import the actions ✅
+//1. Obtain employee data from the backend using action from store and setting that to users array using useEffect
+//2. Bring in delete action and edit action from store
+//3. Change color of programs
+//4. Make Programs area dynamic for when people have more than 3 programs
+//5. Comment out checkboxes
+//6. Replace Edit and Delete with Pencil and Trash icon (preferably from Ant D)
+
+// const users = [
+//   {
+//     name: 'Ruben Ramirez',
+//     role: 'Administrator',
+//     programs: ['Sheltering', 'Aftercare', 'Prevention'],
+//   },
+//   {
+//     name: 'Michael Scott',
+//     role: 'Program Manager',
+//     programs: ['Prevention'],
+//   },
+//   {
+//     name: 'John Legend',
+//     role: 'Program Manager',
+//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
+//   },
+//   {
+//     name: 'Mary Higgins',
+//     role: 'Service Provider',
+//     programs: ['Sheltering', 'Aftercare'],
+//   },
+//   {
+//     name: 'Bilbo Baggins',
+//     role: 'Program Manager',
+//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
+//   },
+//   {
+//     name: 'Frodo Baggins',
+//     role: 'Service Provider',
+//     programs: ['Sheltering', 'Aftercare'],
+//   },
+//   {
+//     name: 'Ruben Ramirez',
+//     role: 'Administrator',
+//     programs: ['Sheltering', 'Aftercare', 'Prevention'],
+//   },
+//   {
+//     name: 'Michael Scott',
+//     role: 'Program Manager',
+//     programs: ['Prevention', 'Sheltering', 'Aftercare'],
+//   },
+//   {
+//     name: 'John Legend',
+//     role: 'Program Manager',
+//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
+//   },
+//   {
+//     name: 'Mary Higgins',
+//     role: 'Service Provider',
+//     programs: ['Sheltering', 'Aftercare'],
+//   },
+//   {
+//     name: 'Bilbo Baggins',
+//     role: 'Program Manager',
+//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
+//   },
+//   {
+//     name: 'Frodo Baggins',
+//     role: 'Service Provider',
+//     programs: ['Sheltering', 'Aftercare'],
+//   },
+// ];
 
 const tableData = [];
 
-const TableComponent = () => {
+const TableComponent = ({ getAllEmployeeAction, employees }) => {
   const [form] = Form.useForm();
   const [formData, setFormData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
-  const [userData, setUserData] = useState(users);
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    getAllEmployeeAction();
+  }, []);
+
+  console.log('employees', employees);
 
   const columns = [
     {
@@ -186,12 +208,12 @@ const TableComponent = () => {
   ];
 
   const userObjCreator = () => {
-    let key = 1;
-    if (userData) {
-      userData.map(user => {
+    // let key = 1;
+    if (employees) {
+      employees.map(user => {
         return tableData.push({
-          key: key++,
-          name: user.name,
+          key: user.id,
+          name: user.firstName,
           role: user.role,
           programs: user.programs,
         });
@@ -258,4 +280,14 @@ const TableComponent = () => {
   );
 };
 
-export default TableComponent;
+const mapStateToProps = state => {
+  return {
+    employees: state.employee.employees,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+})(TableComponent);
