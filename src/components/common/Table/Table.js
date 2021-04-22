@@ -2,98 +2,47 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
 import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 //action import
 import {
   getAllEmployeeAction,
   editEmployeeAction,
   deleteEmployeeAction,
+  getEmployeeByIdAction,
 } from '../../../state/actions';
 
 //0. Import the actions ✅
-//1. Obtain employee data from the backend using action from store and setting that to users array using useEffect
-//2. Bring in delete action and edit action from store
-//3. Change color of programs
+//1. Obtain employee data from the backend using action from store and setting that to users array using useEffect  ✅
+//2. Bring in delete action and edit action from store  ✅
+//3. Change color of programs -Jose
 //4. Make Programs area dynamic for when people have more than 3 programs
-//5. Comment out checkboxes
+//5. Comment out checkboxes  ✅
 //6. Replace Edit and Delete with Pencil and Trash icon (preferably from Ant D)
+//7. Changing
 
-// const users = [
-//   {
-//     name: 'Ruben Ramirez',
-//     role: 'Administrator',
-//     programs: ['Sheltering', 'Aftercare', 'Prevention'],
-//   },
-//   {
-//     name: 'Michael Scott',
-//     role: 'Program Manager',
-//     programs: ['Prevention'],
-//   },
-//   {
-//     name: 'John Legend',
-//     role: 'Program Manager',
-//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
-//   },
-//   {
-//     name: 'Mary Higgins',
-//     role: 'Service Provider',
-//     programs: ['Sheltering', 'Aftercare'],
-//   },
-//   {
-//     name: 'Bilbo Baggins',
-//     role: 'Program Manager',
-//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
-//   },
-//   {
-//     name: 'Frodo Baggins',
-//     role: 'Service Provider',
-//     programs: ['Sheltering', 'Aftercare'],
-//   },
-//   {
-//     name: 'Ruben Ramirez',
-//     role: 'Administrator',
-//     programs: ['Sheltering', 'Aftercare', 'Prevention'],
-//   },
-//   {
-//     name: 'Michael Scott',
-//     role: 'Program Manager',
-//     programs: ['Prevention', 'Sheltering', 'Aftercare'],
-//   },
-//   {
-//     name: 'John Legend',
-//     role: 'Program Manager',
-//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
-//   },
-//   {
-//     name: 'Mary Higgins',
-//     role: 'Service Provider',
-//     programs: ['Sheltering', 'Aftercare'],
-//   },
-//   {
-//     name: 'Bilbo Baggins',
-//     role: 'Program Manager',
-//     programs: ['Prevention', 'Aftercare', 'Sheltering'],
-//   },
-//   {
-//     name: 'Frodo Baggins',
-//     role: 'Service Provider',
-//     programs: ['Sheltering', 'Aftercare'],
-//   },
-// ];
+const TableComponent = ({
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+  employees,
+}) => {
+  const tableData = [];
+  const users = employees;
 
-const tableData = [];
-
-const TableComponent = ({ getAllEmployeeAction, employees }) => {
   const [form] = Form.useForm();
   const [formData, setFormData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
-  const [userData, setUserData] = useState([]);
+  // const [userData, setUserData] = useState(users);
 
   useEffect(() => {
     getAllEmployeeAction();
   }, []);
 
-  console.log('employees', employees);
+  useEffect(() => {
+    console.log('tableData:', tableData);
+    console.log('tableData length:', tableData.length);
+  }, [tableData]);
 
   const columns = [
     {
@@ -145,6 +94,8 @@ const TableComponent = ({ getAllEmployeeAction, employees }) => {
       key: 'programs',
       editable: true,
       render: (_, record) => {
+        // console.log(record, 'record');
+        // console.log(record.programs, 'record programs');
         const editable = isEditing(record);
         return editable ? (
           <>
@@ -194,13 +145,13 @@ const TableComponent = ({ getAllEmployeeAction, employees }) => {
             >
               Edit
             </Typography.Link>
-            <Popconfirm
+            {/* <Popconfirm
               title="Sure to delete?"
               onConfirm={() => deleteUser(record.key)}
               danger
             >
               <a>Delete</a>
-            </Popconfirm>
+            </Popconfirm> */}
           </Space>
         );
       },
@@ -208,14 +159,21 @@ const TableComponent = ({ getAllEmployeeAction, employees }) => {
   ];
 
   const userObjCreator = () => {
-    // let key = 1;
-    if (employees) {
-      employees.map(user => {
+    console.log('I just ran');
+    let key = 1;
+    if (users) {
+      users.map(user => {
+        const programs = [];
+        user.programs.map(program => {
+          if (program !== null) {
+            programs.push(program.name);
+          }
+        });
         return tableData.push({
-          key: user.id,
-          name: user.firstName,
+          key: key++,
+          name: `${user.firstName} ${user.lastName}`,
           role: user.role,
-          programs: user.programs,
+          programs: programs,
         });
       });
     }
@@ -266,17 +224,22 @@ const TableComponent = ({ getAllEmployeeAction, employees }) => {
     }
   };
 
-  const deleteUser = key => {
-    console.log('deleting user');
-    setUserData(tableData.filter(user => user.key !== key));
-  };
+  // const deleteUser = key => {
+  //   console.log('deleting user');
+  //   setUserData(tableData.filter(user => user.key !== key));
+  // };
 
   return (
-    <Table
-      rowSelection={CheckboxComponent(tableData)}
-      columns={columns}
-      dataSource={tableData}
-    />
+    <>
+      {tableData.length < 1 && <LoadingOutlined className="loader" />},
+      {tableData.length >= 1 && (
+        <Table
+          // rowSelection={CheckboxComponent(tableData)}
+          columns={columns}
+          dataSource={tableData}
+        />
+      )}
+    </>
   );
 };
 
