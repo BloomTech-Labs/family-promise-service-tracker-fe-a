@@ -39,6 +39,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
         status: 'Pending...',
       };
     case GET_ALL_EMPLOYEE_SUCCESS:
+      // console.log(action.payload, 'payload inside reducer');
       return {
         ...state,
         employees: action.payload,
@@ -51,6 +52,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
         error: action.payload,
       };
     case GET_ALL_EMPLOYEE_RESOLVE:
+      // console.log(state.employees, 'state inside reducer');
       return {
         ...state,
         status: 'Resolved',

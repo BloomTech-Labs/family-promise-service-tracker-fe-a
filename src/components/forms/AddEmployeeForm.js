@@ -3,8 +3,7 @@ import { Modal, Form, Input, Select } from 'antd';
 
 function AddEmployeeForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
-  const roles = ['administrator', 'program_manager', 'service_provider'];
-  const programs = ['Prevention', 'After Care', 'Sheltering'];
+  const programs = ['Prevention', 'Aftercare', 'Sheltering'];
 
   return (
     <Modal
@@ -17,6 +16,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         form
           .validateFields()
           .then(values => {
+            console.log('employee form values', values);
             form.resetFields();
             onCreate(values);
           })
@@ -68,9 +68,15 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
           ]}
         >
           <Select size="large" placeholder="Select Employee Role">
-            {roles.map(item => (
-              <Select.Option key={item}>{item}</Select.Option>
-            ))}
+            {/* Could be dynamic by mapping through list of roles */}
+            <Select.Option value="administrator">Administrator</Select.Option>
+            <Select.Option value="program_manager">
+              Program Manager
+            </Select.Option>
+            <Select.Option value="service_provider">
+              Service Provider
+            </Select.Option>
+            ))
           </Select>
         </Form.Item>
         <Form.Item label="Programs" name="programs">
