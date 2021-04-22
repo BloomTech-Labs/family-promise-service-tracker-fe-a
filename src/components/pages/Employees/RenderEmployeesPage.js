@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addEmployeeAction } from '../../../state/actions';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
-import { TableComponent } from '../../common';
 import AddEmployeeForm from '../../forms/AddEmployeeForm';
 
 function RenderEmployeePage({ addEmployeeAction }) {

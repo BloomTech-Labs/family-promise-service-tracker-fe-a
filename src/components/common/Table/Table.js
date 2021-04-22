@@ -1,77 +1,120 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
 import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
 
-const users = [
-  {
-    name: 'Ruben Ramirez',
-    role: 'Administrator',
-    programs: ['Sheltering', 'Aftercare', 'Prevention'],
-  },
-  {
-    name: 'Michael Scott',
-    role: 'Program Manager',
-    programs: ['Prevention'],
-  },
-  {
-    name: 'John Legend',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Mary Higgins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Bilbo Baggins',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Frodo Baggins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Ruben Ramirez',
-    role: 'Administrator',
-    programs: ['Sheltering', 'Aftercare', 'Prevention'],
-  },
-  {
-    name: 'Michael Scott',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'John Legend',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Mary Higgins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-  {
-    name: 'Bilbo Baggins',
-    role: 'Program Manager',
-    programs: ['Prevention', 'Aftercare', 'Sheltering'],
-  },
-  {
-    name: 'Frodo Baggins',
-    role: 'Service Provider',
-    programs: ['Sheltering', 'Aftercare'],
-  },
-];
+//action import
+import {
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+  getEmployeeByIdAction,
+} from '../../../state/actions';
 
-const tableData = [];
+const TableComponent = ({
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+  employees,
+}) => {
+  // tableData is what is consumed by the antd table on render
+  const tableData = [];
 
-const TableComponent = () => {
   const [form] = Form.useForm();
   const [formData, setFormData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
-  const [userData, setUserData] = useState(users);
+
+  useEffect(() => {
+    getAllEmployeeAction();
+  }, []);
+
+  const selectRole = role => {
+    return role === 'administrator'
+      ? 'Administrator'
+      : role === 'program_manager'
+      ? 'Program Manager'
+      : role === 'service_provider'
+      ? 'Service Provider'
+      : role === 'unassigned'
+      ? 'None'
+      : role;
+  };
+
+  const userObjCreator = () => {
+    if (employees) {
+      employees.map(employee => {
+        const programs = [];
+        employee.programs.map(program => {
+          if (program !== null) {
+            programs.push(program.name);
+          }
+        });
+        return tableData.push({
+          key: employee.id,
+          name: `${employee.firstName} ${employee.lastName}`,
+          role: selectRole(employee.role),
+          programs: programs,
+        });
+      });
+    }
+  };
+  userObjCreator();
+
+  const isEditing = record => record.key === editingKey;
+
+  const edit = record => {
+    console.log('editing user');
+    form.setFieldsValue({
+      name: '',
+      role: '',
+      programs: [],
+      ...record,
+    });
+    console.log(record, 'record');
+    setEditingKey(record.key);
+  };
+
+  const cancel = () => {
+    setEditingKey('');
+  };
+
+  const save = async key => {
+    try {
+      const row = await form.validateFields();
+      console.log(row, 'row');
+      console.log(key, 'key');
+      const newData = [...formData];
+      const index = newData.findIndex(item => key === item.key);
+
+      if (index > -1) {
+        const item = newData[index];
+        console.log(item, 'item');
+        console.log(row, 'row');
+        newData.splice(index, 1, { ...item, ...row });
+        console.log(newData);
+        setFormData(newData);
+        setEditingKey('');
+      } else {
+        newData.push(row);
+        setFormData(newData);
+        setEditingKey('');
+      }
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
+    }
+  };
+
+  const deleteUser = key => {
+    console.log('deleting user');
+    // setUserData(tableData.filter(user => user.key !== key));
+    deleteEmployeeAction(key);
+  };
 
   const columns = [
     {
@@ -132,7 +175,19 @@ const TableComponent = () => {
           <>
             {record.programs.map(program => {
               return (
-                <Tag color="magenta" size="small" key={program}>
+                <Tag
+                  color={
+                    program === 'Prevention'
+                      ? 'magenta'
+                      : program === 'Sheltering'
+                      ? 'blue'
+                      : program === 'Aftercare'
+                      ? 'purple'
+                      : 'magenta'
+                  }
+                  size="small"
+                  key={program}
+                >
                   {program}
                 </Tag>
               );
@@ -157,9 +212,7 @@ const TableComponent = () => {
                 Save
               </a>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a href="javascript;:" style={{ color: '#1890FF' }}>
-                  Cancel
-                </a>
+                <a style={{ color: '#1890FF' }}>Cancel</a>
               </Popconfirm>
             </Space>
           </span>
@@ -170,14 +223,14 @@ const TableComponent = () => {
               style={{ color: '#1890FF' }}
               onClick={() => edit(record)}
             >
-              Edit
+              {<EditOutlined />}
             </Typography.Link>
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => deleteUser(record.key)}
               danger
             >
-              <a>Delete</a>
+              {<DeleteOutlined />}
             </Popconfirm>
           </Space>
         );
@@ -185,77 +238,29 @@ const TableComponent = () => {
     },
   ];
 
-  const userObjCreator = () => {
-    let key = 1;
-    if (userData) {
-      userData.map(user => {
-        return tableData.push({
-          key: key++,
-          name: user.name,
-          role: user.role,
-          programs: user.programs,
-        });
-      });
-    }
-  };
-  userObjCreator();
-
-  const isEditing = record => record.key === editingKey;
-
-  const edit = record => {
-    console.log('editing user');
-    form.setFieldsValue({
-      name: '',
-      role: '',
-      programs: [],
-      ...record,
-    });
-    console.log(record, 'record');
-    setEditingKey(record.key);
-  };
-
-  const cancel = () => {
-    setEditingKey('');
-  };
-
-  const save = async key => {
-    try {
-      const row = await form.validateFields();
-      console.log(row, 'row');
-      console.log(key, 'key');
-      const newData = [...formData];
-      const index = newData.findIndex(item => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        console.log(item, 'item');
-        console.log(row, 'row');
-        newData.splice(index, 1, { ...item, ...row });
-        console.log(newData);
-        setFormData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setFormData(newData);
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
-
-  const deleteUser = key => {
-    console.log('deleting user');
-    setUserData(tableData.filter(user => user.key !== key));
-  };
-
   return (
-    <Table
-      rowSelection={CheckboxComponent(tableData)}
-      columns={columns}
-      dataSource={tableData}
-    />
+    <>
+      {tableData.length < 1 && <LoadingOutlined className="loader" />},
+      {tableData.length >= 1 && (
+        <Table
+          // rowSelection={CheckboxComponent(tableData)}
+          columns={columns}
+          dataSource={tableData}
+          bordered
+        />
+      )}
+    </>
   );
 };
 
-export default TableComponent;
+const mapStateToProps = state => {
+  return {
+    employees: state.employee.employees,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getAllEmployeeAction,
+  editEmployeeAction,
+  deleteEmployeeAction,
+})(TableComponent);
