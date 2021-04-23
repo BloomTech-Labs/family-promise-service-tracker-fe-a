@@ -3,7 +3,6 @@ import { Modal, Form, Input, Select } from 'antd';
 
 function AddProgramForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
-  const programs = ['Prevention', 'After Care', 'Sheltering'];
 
   return (
     <Modal

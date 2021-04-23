@@ -19,66 +19,41 @@ import {
 
 const ProgramTable = ({
   getAllProgramsAction,
-  addProgramAction,
   editProgramAction,
   deleteProgramAction,
   programs,
 }) => {
-  // tableData is what is consumed by the antd table on render
-  const tableData = [];
+  const [form] = Form.useForm();
+  const [formData, setFormData] = useState('');
+  const [editingKey, setEditingKey] = useState('');
+  const [programList, setProgramList] = useState(null);
 
   useEffect(() => {
     getAllProgramsAction();
-  }, []);
+    setProgramList(programs);
+  }, [programList, getAllProgramsAction]);
 
-  const [form] = Form.useForm();
-  const [formData, setFormData] = useState(tableData);
-  const [editingKey, setEditingKey] = useState('');
-
-  const selectRole = role => {
-    return role === 'administrator'
-      ? 'Administrator'
-      : role === 'program_manager'
-      ? 'Program Manager'
-      : role === 'service_provider'
-      ? 'Service Provider'
-      : role === 'unassigned'
-      ? 'None'
-      : role;
-  };
-
-  const programObjCreator = () => {
-    if (programs) {
-      programs.map(program => {
-        return tableData.push({
-          key: program.id,
-          name: program.name,
-          type: program.type,
-          description: program.description,
-        });
-      });
-    }
-  };
-  programObjCreator();
-
-  console.log('programs', programs);
+  console.log('program', programs);
 
   const isEditing = record => record.key === editingKey;
 
   const edit = record => {
-    console.log('editing user');
     form.setFieldsValue({
       name: '',
       role: '',
       programs: [],
       ...record,
     });
-    console.log(record, 'record');
     setEditingKey(record.key);
   };
 
   const cancel = () => {
     setEditingKey('');
+  };
+
+  const deleteProgram = key => {
+    deleteProgramAction(key);
+    console.log('key', key);
   };
 
   const save = async key => {
@@ -105,12 +80,6 @@ const ProgramTable = ({
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
-  };
-
-  const deleteUser = key => {
-    console.log('deleting user');
-    // setUserData(tableData.filter(user => user.key !== key));
-    deleteProgramAction(key);
   };
 
   const columns = [
@@ -211,7 +180,7 @@ const ProgramTable = ({
           <span>
             <Space size="middle">
               <a
-                onClick={() => save(record.key)}
+                onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
@@ -230,9 +199,12 @@ const ProgramTable = ({
             >
               {<EditOutlined />}
             </Typography.Link>
+
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => deleteUser(record.key)}
+              onConfirm={() => {
+                deleteProgram(record.id);
+              }}
               danger
             >
               {<DeleteOutlined />}
@@ -245,20 +217,20 @@ const ProgramTable = ({
 
   return (
     <>
-      {tableData.length < 1 && <LoadingOutlined className="loader" />},
-      {tableData.length >= 1 && (
+      {programs.length < 1 && <LoadingOutlined className="loader" />},
+      {programs.length >= 1 && (
         <Table
           // rowSelection={CheckboxComponent(tableData)}
           columns={columns}
-          dataSource={tableData}
+          dataSource={programs}
           bordered
         />
       )}
     </>
   );
 };
-
 const mapStateToProps = state => {
+  console.log(state);
   return {
     programs: state.program.programs,
   };
