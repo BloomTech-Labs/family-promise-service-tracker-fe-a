@@ -54,11 +54,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Select size="large" placeholder="Select Program">
-            {programs.map(item => (
-              <Select.Option key={item}>{item}</Select.Option>
-            ))}
-          </Select>
+          <Input />
         </Form.Item>
         <Form.Item label="Program Description" name="description">
           <Input.TextArea showCount maxLength={240} />
