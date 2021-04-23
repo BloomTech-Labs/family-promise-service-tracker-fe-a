@@ -3,7 +3,6 @@ import { Modal, Form, Input, Select } from 'antd';
 
 function AddProgramForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
-  const programs = ['Prevention', 'After Care', 'Sheltering'];
 
   return (
     <Modal
@@ -54,11 +53,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Select size="large" placeholder="Select Program">
-            {programs.map(item => (
-              <Select.Option key={item}>{item}</Select.Option>
-            ))}
-          </Select>
+          <Input />
         </Form.Item>
         <Form.Item label="Program Description" name="description">
           <Input.TextArea showCount maxLength={240} />
