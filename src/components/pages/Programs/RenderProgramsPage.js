@@ -16,9 +16,9 @@ function RenderProgramsPage({ addProgramAction, getAllProgramsAction }) {
     setVisible(false);
   };
 
-  // useEffect(() => {
-  //   onCreate();
-  // }, [addProgramAction]);
+  useEffect(() => {
+    onCreate();
+  }, [addProgramAction]);
 
   return (
     <div className="add-program-btn-ctn">
