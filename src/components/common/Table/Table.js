@@ -243,6 +243,7 @@ const TableComponent = ({
       {tableData.length < 1 && <LoadingOutlined className="loader" />},
       {tableData.length >= 1 && (
         <Table
+          className="desktop-table"
           // rowSelection={CheckboxComponent(tableData)}
           columns={columns}
           dataSource={tableData}
