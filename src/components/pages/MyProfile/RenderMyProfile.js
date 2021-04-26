@@ -31,7 +31,7 @@ function RenderMyProfile({
   );
 
   return (
-    <div className="profile-container">
+    <div className="profile-container desktop-profile">
       <Form layout="vertical" onSubmit={onSubmit}>
         <Form.Item>
           <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
