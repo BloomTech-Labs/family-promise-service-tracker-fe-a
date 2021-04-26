@@ -14,16 +14,18 @@ You can find the deployed project at [a.familypromiseservicetracker.dev/](a.fami
 
 ## Contributors
 
-|                                                        [Hussain Ali](https://github.com/princeali415)                                                        |                                                   [Ruben Ramirez](https://github.com/rubesworld)                                                   |                                                      [Bryan Diaz](https://github.com/bdiaz12345)                                                      |                                                 [Student 4](https://github.com/)                                                  |                                                      [Student 5](https://github.com/)                                                       |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://res.cloudinary.com/dyp2opcpj/image/upload/v1618184678/images/gij4edsbp3709samouln.jpg" width = "200" />](https://github.com/princeali415) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1618698077/ruben-ramirez.jpg" width = "200" />](https://github.com/rubesworld) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/bdiaz12345) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619463650/bryanD.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/princeali415)                                   |                               [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                               |                               [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                                |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                     |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/hussain-ali-58a9b690/)             |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/rubenandresramirez)         |                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                     |           [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)           |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+| [Hussain Ali](https://github.com/princeali415) | [Ruben Ramirez](https://github.com/rubesworld) | [Bryan Diaz](https://github.com/bdiaz12345) | [Brandon O'Neal](https://github.com/brandononeal) | [Chris Sutton](https://github.com/christophersutton) |
+[Jose Robles](https://github.com/jcrobles1989) |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://res.cloudinary.com/dyp2opcpj/image/upload/v1618184678/images/gij4edsbp3709samouln.jpg" width = "200" />](https://github.com/princeali415) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1618698077/ruben-ramirez.jpg" width = "200" />](https://github.com/rubesworld) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619463650/bryanD.png" width = "200" />](https://github.com/bdiaz12345) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619473829/BrandonON.jpg" width = "200" />](https://github.com/brandononeal) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619477734/Jose.png" width = "200" />](https://github.com/jcrobles1989) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619474173/ChrisS.jpg" width = "200" />](https://github.com/christophersutton) |
+
+
+
+
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/hussain-ali-58a9b690/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/rubenandresramirez) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/bryan-diaz-816a081b9/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/brandonaoneal/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jcroblesorozco/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/suttonchristopher/) |
 
 <br>
 <br>
-
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![https://mit-license.org](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![https://reactjs.org](https://img.shields.io/badge/react-v16.13.1-blue)
@@ -56,16 +58,9 @@ You can find the deployed project at [a.familypromiseservicetracker.dev/](a.fami
 # Installation Instructions
 
 create your project repo by forking or using this as a template.
-run: npm install to download all dependencies.
-run:
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+run: `npm install` to download all dependencies.
+run: `npm start` to start the live server. Note: must be running on localhost:3000
+g
 
 # Contributing
 
