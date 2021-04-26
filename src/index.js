@@ -21,7 +21,6 @@ import { RecipientsPage } from './components/pages/Recipients';
 import { ServicesPage } from './components/pages/Services';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
-import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { TabletHeader } from './components/common/index';
@@ -54,7 +53,6 @@ function App() {
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
-        <Route path="/landing" component={LandingPage} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"

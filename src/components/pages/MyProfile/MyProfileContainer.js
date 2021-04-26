@@ -68,8 +68,6 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
     });
   }, [curUser]);
 
-  console.log('prev values', prevValue);
-  console.log('profile Values', profileValues);
   //upload functionality for images.
   const uploadImage = async e => {
     const files = e.target.files;
