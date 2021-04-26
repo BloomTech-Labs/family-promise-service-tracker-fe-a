@@ -5,7 +5,7 @@ function TitleComponent({ TitleText }) {
   //Be sure to pass the TitleText in quotes when you render component
   const { Title } = Typography;
   return (
-    <div className="title-container">
+    <div className="title-container desktop-title">
       <Title level={2}>{TitleText}</Title>
     </div>
   );
