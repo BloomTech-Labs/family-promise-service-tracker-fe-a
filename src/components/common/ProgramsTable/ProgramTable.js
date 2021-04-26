@@ -220,6 +220,7 @@ const ProgramTable = ({
       {programs.length < 1 && <LoadingOutlined className="loader" />},
       {programs.length >= 1 && (
         <Table
+          className="desktop-table"
           // rowSelection={CheckboxComponent(tableData)}
           columns={columns}
           dataSource={programs}
