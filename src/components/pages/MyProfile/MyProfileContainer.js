@@ -88,8 +88,8 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
     profileValues.avatarUrl = file.secure_url;
     console.log(file);
   };
-  //handlers
 
+  //handlers
   const handleEdit = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
