@@ -16,22 +16,48 @@ import {
   getEmployeeByIdAction,
 } from '../../../state/actions';
 
+const employees = [
+  {
+    firstName: 'Bilbo',
+    lastName: 'Baggins',
+    role: 'Administrator',
+    programs: ['Prevention', 'Sheltering'],
+  },
+  {
+    firstName: 'Frodo',
+    lastName: 'Baggins',
+    role: 'Program Manager',
+    programs: ['Prevention'],
+  },
+  {
+    firstName: 'Samwise',
+    lastName: 'Gamgee',
+    role: 'Service Provider',
+    programs: ['Prevention', 'Aftercare'],
+  },
+];
+
 const TableComponent = ({
   getAllEmployeeAction,
   editEmployeeAction,
   deleteEmployeeAction,
-  employees,
+  // employees,
 }) => {
   // tableData is what is consumed by the antd table on render
   const tableData = [];
+  // const initialFormValues = {
+  //   name: '',
+  //   role: '',
+  //   programs: [],
+  // };
 
   const [form] = Form.useForm();
-  const [formData, setFormData] = useState(tableData);
+  const [data, setData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
 
-  useEffect(() => {
-    getAllEmployeeAction();
-  }, []);
+  // useEffect(() => {
+  //   getAllEmployeeAction();
+  // }, []);
 
   const selectRole = role => {
     return role === 'administrator'
@@ -46,16 +72,19 @@ const TableComponent = ({
   };
 
   const userObjCreator = () => {
+    let key = 1;
     if (employees) {
       employees.map(employee => {
         const programs = [];
         employee.programs.map(program => {
           if (program !== null) {
-            programs.push(program.name);
+            // programs.push(program.name);
+            programs.push(program);
           }
         });
         return tableData.push({
-          key: employee.id,
+          // key: employee.id,
+          key: key++,
           name: `${employee.firstName} ${employee.lastName}`,
           role: selectRole(employee.role),
           programs: programs,
@@ -82,20 +111,22 @@ const TableComponent = ({
   };
 
   const save = async key => {
-    console.log(key, 'from save');
     try {
       const row = await form.validateFields();
-      const newData = [...formData];
+      // editEmployeeAction(key, row);
+      const newData = [...data];
       const index = newData.findIndex(item => key === item.key);
 
       if (index > -1) {
+        console.log(row, 'row');
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        setFormData(newData);
+        console.log(newData, 'newData');
+        setData(newData);
         setEditingKey('');
       } else {
         newData.push(row);
-        setFormData(newData);
+        setData(newData);
         setEditingKey('');
       }
     } catch (errInfo) {
@@ -117,22 +148,18 @@ const TableComponent = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form form={form} component={false}>
-            <td>
-              <Form.Item
-                name={record.dataIndex}
-                style={{ margin: 0 }}
-                rules={[
-                  {
-                    required: true,
-                    message: `Please Input ${record.title}!`,
-                  },
-                ]}
-              >
-                <Input defaultValue={record.name} />
-              </Form.Item>
-            </td>
-          </Form>
+          <Form.Item
+            name={record.dataIndex}
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input ${record.title}!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.name} />
+          </Form.Item>
         ) : (
           <>{record.name}</>
         );
@@ -146,7 +173,9 @@ const TableComponent = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <DropdownComponent record={record} />
+          <Form.Item name={record.dataIndex}>
+            <DropdownComponent record={record} />
+          </Form.Item>
         ) : (
           <>{record.role}</>
         );
@@ -160,9 +189,9 @@ const TableComponent = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <>
+          <Form.Item name={record.dataIndex}>
             <TagsComponent users={record} />
-          </>
+          </Form.Item>
         ) : (
           <>
             {record.programs.map(program => {
@@ -234,13 +263,15 @@ const TableComponent = ({
     <>
       {tableData.length < 1 && <LoadingOutlined className="loader" />},
       {tableData.length >= 1 && (
-        <Table
-          className="desktop-table"
-          // rowSelection={CheckboxComponent(tableData)}
-          columns={columns}
-          dataSource={tableData}
-          bordered
-        />
+        <Form form={form}>
+          <Table
+            className="desktop-table"
+            // rowSelection={CheckboxComponent(tableData)}
+            columns={columns}
+            dataSource={tableData}
+            bordered
+          />
+        </Form>
       )}
     </>
   );
