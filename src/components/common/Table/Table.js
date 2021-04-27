@@ -4,7 +4,6 @@ import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
 import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -69,14 +68,12 @@ const TableComponent = ({
   const isEditing = record => record.key === editingKey;
 
   const edit = record => {
-    console.log('editing user');
     form.setFieldsValue({
       name: '',
       role: '',
       programs: [],
       ...record,
     });
-    console.log(record, 'record');
     setEditingKey(record.key);
   };
 
@@ -85,19 +82,15 @@ const TableComponent = ({
   };
 
   const save = async key => {
+    console.log(key, 'from save');
     try {
       const row = await form.validateFields();
-      console.log(row, 'row');
-      console.log(key, 'key');
       const newData = [...formData];
       const index = newData.findIndex(item => key === item.key);
 
       if (index > -1) {
         const item = newData[index];
-        console.log(item, 'item');
-        console.log(row, 'row');
         newData.splice(index, 1, { ...item, ...row });
-        console.log(newData);
         setFormData(newData);
         setEditingKey('');
       } else {
@@ -110,10 +103,9 @@ const TableComponent = ({
     }
   };
 
+  // Delete functionality is on hold for now
   const deleteUser = key => {
-    console.log('deleting user');
-    // setUserData(tableData.filter(user => user.key !== key));
-    deleteEmployeeAction(key);
+    // deleteEmployeeAction(key);
   };
 
   const columns = [
@@ -137,7 +129,7 @@ const TableComponent = ({
                   },
                 ]}
               >
-                <Input />
+                <Input defaultValue={record.name} />
               </Form.Item>
             </td>
           </Form>
@@ -178,11 +170,11 @@ const TableComponent = ({
                 <Tag
                   color={
                     program === 'Prevention'
-                      ? 'magenta'
-                      : program === 'Sheltering'
                       ? 'blue'
-                      : program === 'Aftercare'
+                      : program === 'Sheltering'
                       ? 'purple'
+                      : program === 'Aftercare'
+                      ? 'gold'
                       : 'magenta'
                   }
                   size="small"
