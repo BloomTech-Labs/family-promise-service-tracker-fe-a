@@ -27,6 +27,7 @@ const ProgramTable = ({
   const [formData, setFormData] = useState('');
   const [editingKey, setEditingKey] = useState('');
   const [programList, setProgramList] = useState(null);
+  const [refetched, setFetched] = useState({});
 
   useEffect(() => {
     getAllProgramsAction();
@@ -234,6 +235,7 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     programs: state.program.programs,
+    refetched: state.program.refetched,
   };
 };
 

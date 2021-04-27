@@ -1,9 +1,15 @@
-.sub-header{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  @media (min-width: 992px) {
+    margin-left: 20px;
+  }
 }
 
-.add-program-btn-ctn{
-    margin-right: 5rem;
+.add-program-btn-ctn {
+  margin-right: 1.5rem;
+  @media (min-width: 992px) {
+    margin-right: 4rem;
+  }
 }

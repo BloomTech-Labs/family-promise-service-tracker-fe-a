@@ -6,7 +6,7 @@ import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import './profile.css';
 import { connect } from 'react-redux';
 import { updateUserAction } from '../../../state/actions';
-import Title from '../../common/Title';
+import TitleComponent from '../../common/Title';
 
 const initialFormValues = {
   firstName: '',
@@ -88,8 +88,8 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
     profileValues.avatarUrl = file.secure_url;
     console.log(file);
   };
-  //handlers
 
+  //handlers
   const handleEdit = e => {
     setDisabled(!disabled);
     setIsInEditMode(!isInEditMode);
@@ -115,7 +115,9 @@ function MyProfileContainer({ LoadingOutlined, updateUserAction }) {
 
   return (
     <div>
-      <Title TitleText="My Profile" />
+      <div className="sub-header">
+        <TitleComponent TitleText="My Profile" />
+      </div>
 
       {authState.isAuthenticated && !curUser && (
         <LoadingOutlined className="loader" />

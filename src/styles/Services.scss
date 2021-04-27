@@ -2,13 +2,22 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+  @media (min-width: 992px) {
+    margin-left: 20px;
+  }
 }
 
 .add-services-btn-ctn {
   margin-right: 5rem;
+  @media (min-width: 992px) {
+    margin-left: 1rem;
+  }
 }
 .add-type-btn-ctn {
   margin-left: 13rem;
+  @media (min-width: 992px) {
+    margin-left: 30rem;
+  }
 }
 
 .date-time-wrapper {

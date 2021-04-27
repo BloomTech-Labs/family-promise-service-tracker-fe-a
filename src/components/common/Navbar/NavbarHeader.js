@@ -11,8 +11,8 @@ const NavbarHeader = props => {
           <div className="test">
             <HamburgerMenu />
           </div>
-          <div style={{ paddingLeft: 100 }}>
-            <img src={logo} style={{ width: 350 }} alt="family promise logo" />
+          <div className="top-bar-div">
+            <img src={logo} className="top-bar-img" alt="family promise logo" />
           </div>
           {/* do classses instead of inline styling */}
         </div>

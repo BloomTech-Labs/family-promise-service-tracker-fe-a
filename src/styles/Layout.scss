@@ -1,47 +1,47 @@
 .tablet {
-    @media (min-width: 992px) {
-        display: none;
-    }
+  @media (min-width: 992px) {
+    display: none;
+  }
 }
 
 .desktop {
-    @media (max-width: 992px) {
-        display: none;
-    }
-    @media (min-width: 992px) {
-        position: fixed;
-        width: 250px;
-        height: 100%;
-    }
+  @media (max-width: 992px) {
+    display: none;
+  }
+  @media (min-width: 992px) {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+  }
 }
 
 .upper-desktop {
-    @media (max-width: 992px) {
-        display: none;
-    }
-    @media (min-width: 992px) {
-       width: 250px;
-    }
+  @media (max-width: 992px) {
+    display: none;
+  }
+  @media (min-width: 992px) {
+    width: 250px;
+  }
 }
 
 .desktop-table {
-    @media (min-width:992px) {
-        margin-left: 260px;
-        width: 80%;
-    }
+  @media (min-width: 992px) {
+    margin-left: 280px;
+    margin-right: 10px;
+    width: 80%;
+  }
 }
 
 .desktop-profile {
-    @media (min-width: 992px) {
-        margin-left: 20rem;
-        width: 500px;
-        height: 600px;
-    }
+  @media (min-width: 992px) {
+    margin-left: 20rem;
+    width: 500px;
+    height: 600px;
+  }
 }
 
 .desktop-title {
-    @media (min-width: 992px) {
-        margin-left: 260px
-    }
+  @media (min-width: 992px) {
+    margin-left: 260px;
+  }
 }
-
