@@ -23,6 +23,7 @@ You can find the deployed project at [a.familypromiseservicetracker.dev/](a.fami
 
 
 <br>
+
 ### Back-End Team
 |                                                   [Chris Sutton](https://github.com/suttonchristopher)                                                       |                                                      [Brandon O'Neal](https://github.com/brandononeal)                                                       |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
