@@ -11,7 +11,6 @@ import {
   UsergroupAddOutlined,
   LeftCircleOutlined,
 } from '@ant-design/icons';
-import './navbar.css';
 
 const HamburgerMenu = () => {
   const [visible, setVisible] = useState(false);
