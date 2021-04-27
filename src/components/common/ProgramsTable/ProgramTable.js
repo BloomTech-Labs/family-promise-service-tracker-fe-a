@@ -1,69 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
+import TagsComponent from './Tags';
 import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
 import {
   LoadingOutlined,
+  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
 
 //action import
 import {
-  getAllEmployeeAction,
-  editEmployeeAction,
-  deleteEmployeeAction,
-  getEmployeeByIdAction,
+  getAllProgramsAction,
+  addProgramAction,
+  editProgramAction,
+  deleteProgramAction,
 } from '../../../state/actions';
 
-const TableComponent = ({
-  getAllEmployeeAction,
-  editEmployeeAction,
-  deleteEmployeeAction,
-  employees,
+const ProgramTable = ({
+  getAllProgramsAction,
+  editProgramAction,
+  deleteProgramAction,
+  programs,
 }) => {
-  // tableData is what is consumed by the antd table on render
-  const tableData = [];
-
   const [form] = Form.useForm();
-  const [formData, setFormData] = useState(tableData);
+  const [formData, setFormData] = useState('');
   const [editingKey, setEditingKey] = useState('');
+  const [programList, setProgramList] = useState(null);
 
   useEffect(() => {
-    getAllEmployeeAction();
-  }, []);
+    getAllProgramsAction();
+    setProgramList(programs);
+  }, [programList, getAllProgramsAction]);
 
-  const selectRole = role => {
-    return role === 'administrator'
-      ? 'Administrator'
-      : role === 'program_manager'
-      ? 'Program Manager'
-      : role === 'service_provider'
-      ? 'Service Provider'
-      : role === 'unassigned'
-      ? 'None'
-      : role;
-  };
-
-  const userObjCreator = () => {
-    if (employees) {
-      employees.map(employee => {
-        const programs = [];
-        employee.programs.map(program => {
-          if (program !== null) {
-            programs.push(program.name);
-          }
-        });
-        return tableData.push({
-          key: employee.id,
-          name: `${employee.firstName} ${employee.lastName}`,
-          role: selectRole(employee.role),
-          programs: programs,
-        });
-      });
-    }
-  };
-  userObjCreator();
+  console.log('program', programs);
 
   const isEditing = record => record.key === editingKey;
 
@@ -81,16 +51,25 @@ const TableComponent = ({
     setEditingKey('');
   };
 
+  const deleteProgram = key => {
+    deleteProgramAction(key);
+    console.log('key', key);
+  };
+
   const save = async key => {
-    console.log(key, 'from save');
     try {
       const row = await form.validateFields();
+      console.log(row, 'row');
+      console.log(key, 'key');
       const newData = [...formData];
       const index = newData.findIndex(item => key === item.key);
 
       if (index > -1) {
         const item = newData[index];
+        console.log(item, 'item');
+        console.log(row, 'row');
         newData.splice(index, 1, { ...item, ...row });
+        console.log(newData);
         setFormData(newData);
         setEditingKey('');
       } else {
@@ -103,14 +82,9 @@ const TableComponent = ({
     }
   };
 
-  // Delete functionality is on hold for now
-  const deleteUser = key => {
-    // deleteEmployeeAction(key);
-  };
-
   const columns = [
     {
-      title: 'Name',
+      title: 'Program Name',
       dataIndex: 'name',
       key: 'name',
       editable: true,
@@ -129,7 +103,7 @@ const TableComponent = ({
                   },
                 ]}
               >
-                <Input defaultValue={record.name} />
+                <Input />
               </Form.Item>
             </td>
           </Form>
@@ -139,52 +113,60 @@ const TableComponent = ({
       },
     },
     {
-      title: 'Role',
-      dataIndex: 'role',
-      key: 'role',
+      title: 'Type',
+      dataIndex: 'type',
+      key: 'type',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <DropdownComponent record={record} />
+          <Form form={form} component={false}>
+            <td>
+              <Form.Item
+                name={record.dataIndex}
+                style={{ margin: 0 }}
+                rules={[
+                  {
+                    required: true,
+                    message: `Please Input ${record.title}!`,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </td>
+          </Form>
         ) : (
-          <>{record.role}</>
+          <>{record.type}</>
         );
       },
     },
     {
-      title: 'Programs',
-      dataIndex: 'programs',
-      key: 'programs',
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <>
-            <TagsComponent users={record} />
-          </>
+          <Form form={form} component={false}>
+            <td>
+              <Form.Item
+                name={record.dataIndex}
+                style={{ margin: 0 }}
+                rules={[
+                  {
+                    required: true,
+                    message: `Please Input ${record.title}!`,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </td>
+          </Form>
         ) : (
-          <>
-            {record.programs.map(program => {
-              return (
-                <Tag
-                  color={
-                    program === 'Prevention'
-                      ? 'blue'
-                      : program === 'Sheltering'
-                      ? 'purple'
-                      : program === 'Aftercare'
-                      ? 'gold'
-                      : 'magenta'
-                  }
-                  size="small"
-                  key={program}
-                >
-                  {program}
-                </Tag>
-              );
-            })}
-          </>
+          <>{record.description} </>
         );
       },
     },
@@ -198,7 +180,7 @@ const TableComponent = ({
           <span>
             <Space size="middle">
               <a
-                onClick={() => save(record.key)}
+                onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
@@ -217,9 +199,12 @@ const TableComponent = ({
             >
               {<EditOutlined />}
             </Typography.Link>
+
             <Popconfirm
               title="Sure to delete?"
-              onConfirm={() => deleteUser(record.key)}
+              onConfirm={() => {
+                deleteProgram(record.id);
+              }}
               danger
             >
               {<DeleteOutlined />}
@@ -232,28 +217,29 @@ const TableComponent = ({
 
   return (
     <>
-      {tableData.length < 1 && <LoadingOutlined className="loader" />},
-      {tableData.length >= 1 && (
+      {programs.length < 1 && <LoadingOutlined className="loader" />},
+      {programs.length >= 1 && (
         <Table
           className="desktop-table"
           // rowSelection={CheckboxComponent(tableData)}
           columns={columns}
-          dataSource={tableData}
+          dataSource={programs}
           bordered
         />
       )}
     </>
   );
 };
-
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    employees: state.employee.employees,
+    programs: state.program.programs,
   };
 };
 
 export default connect(mapStateToProps, {
-  getAllEmployeeAction,
-  editEmployeeAction,
-  deleteEmployeeAction,
-})(TableComponent);
+  getAllProgramsAction,
+  addProgramAction,
+  editProgramAction,
+  deleteProgramAction,
+})(ProgramTable);
