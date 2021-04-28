@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { TagsComponent, CheckboxComponent, DropdownComponent } from '../index';
-import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
+import { CheckboxComponent } from '../index';
+import {
+  Table,
+  Input,
+  Typography,
+  Form,
+  Tag,
+  Space,
+  Popconfirm,
+  Select,
+} from 'antd';
 import {
   LoadingOutlined,
   DeleteOutlined,
@@ -14,50 +23,78 @@ import {
   editEmployeeAction,
   deleteEmployeeAction,
   getEmployeeByIdAction,
+  getAllProgramsAction,
 } from '../../../state/actions';
-
-const employees = [
-  {
-    firstName: 'Bilbo',
-    lastName: 'Baggins',
-    role: 'Administrator',
-    programs: ['Prevention', 'Sheltering'],
-  },
-  {
-    firstName: 'Frodo',
-    lastName: 'Baggins',
-    role: 'Program Manager',
-    programs: ['Prevention'],
-  },
-  {
-    firstName: 'Samwise',
-    lastName: 'Gamgee',
-    role: 'Service Provider',
-    programs: ['Prevention', 'Aftercare'],
-  },
-];
 
 const TableComponent = ({
   getAllEmployeeAction,
   editEmployeeAction,
   deleteEmployeeAction,
-  // employees,
+  getAllProgramsAction,
+  employees,
+  programs,
 }) => {
   // tableData is what is consumed by the antd table on render
   const tableData = [];
-  // const initialFormValues = {
-  //   name: '',
-  //   role: '',
-  //   programs: [],
+
+  // const initialTagValues = {
+  //   selectedTags: employees.programs,
   // };
 
   const [form] = Form.useForm();
-  const [data, setData] = useState(tableData);
   const [editingKey, setEditingKey] = useState('');
+  // const [selected, setSelected] = useState(initialTagValues);
 
-  // useEffect(() => {
-  //   getAllEmployeeAction();
-  // }, []);
+  useEffect(() => {
+    getAllEmployeeAction();
+    getAllProgramsAction();
+  }, []);
+
+  const isEditing = record => record.key === editingKey;
+
+  const edit = record => {
+    form.setFieldsValue({
+      firstName: '',
+      lastName: '',
+      role: '',
+      programs: [],
+      ...record,
+    });
+    setEditingKey(record.key);
+  };
+
+  const cancel = () => {
+    setEditingKey('');
+  };
+
+  const save = async employeeId => {
+    try {
+      const employeeObj = await form.validateFields();
+      console.log('key', employeeId);
+      console.log('edited Row', employeeObj);
+      editEmployeeAction(employeeId, employeeObj);
+      setEditingKey('');
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
+    }
+  };
+
+  // Delete functionality is on hold for now
+  const deleteUser = key => {
+    // deleteEmployeeAction(key);
+  };
+
+  // const { CheckableTag } = Tag;
+
+  // const { selectedTags } = selected;
+
+  // const handleSelected = (tag, checked) => {
+  //   // const { selectedTags } = selected;
+  //   const nextSelectedTags = checked
+  //     ? [...selectedTags, tag]
+  //     : selectedTags.filter(t => t !== tag);
+  //   setSelected({ selectedTags: nextSelectedTags });
+  // };
 
   const selectRole = role => {
     return role === 'administrator'
@@ -72,20 +109,18 @@ const TableComponent = ({
   };
 
   const userObjCreator = () => {
-    let key = 1;
     if (employees) {
       employees.map(employee => {
         const programs = [];
         employee.programs.map(program => {
           if (program !== null) {
-            // programs.push(program.name);
-            programs.push(program);
+            programs.push(program.name);
           }
         });
         return tableData.push({
-          // key: employee.id,
-          key: key++,
-          name: `${employee.firstName} ${employee.lastName}`,
+          key: employee.id,
+          firstName: employee.firstName,
+          lastName: employee.lastName,
           role: selectRole(employee.role),
           programs: programs,
         });
@@ -94,74 +129,54 @@ const TableComponent = ({
   };
   userObjCreator();
 
-  const isEditing = record => record.key === editingKey;
-
-  const edit = record => {
-    form.setFieldsValue({
-      name: '',
-      role: '',
-      programs: [],
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
-
-  const cancel = () => {
-    setEditingKey('');
-  };
-
-  const save = async key => {
-    try {
-      const row = await form.validateFields();
-      // editEmployeeAction(key, row);
-      const newData = [...data];
-      const index = newData.findIndex(item => key === item.key);
-
-      if (index > -1) {
-        console.log(row, 'row');
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        console.log(newData, 'newData');
-        setData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
-
-  // Delete functionality is on hold for now
-  const deleteUser = key => {
-    // deleteEmployeeAction(key);
-  };
-
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'First Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name={record.dataIndex}
+            name="firstName"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: `Please Input ${record.title}!`,
+                message: `Please Input First Name!`,
               },
             ]}
           >
-            <Input defaultValue={record.name} />
+            <Input defaultValue={record.firstName} />
           </Form.Item>
         ) : (
-          <>{record.name}</>
+          <>{record.firstName}</>
+        );
+      },
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'lastName',
+      key: 'lastName',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="lastName"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input Last Name!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.lastName} />
+          </Form.Item>
+        ) : (
+          <>{record.lastName}</>
         );
       },
     },
@@ -173,8 +188,18 @@ const TableComponent = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form.Item name={record.dataIndex}>
-            <DropdownComponent record={record} />
+          <Form.Item name="role" style={{ margin: 0 }}>
+            <Select size="middle" defaultValue={record.role}>
+              {/* Could be dynamic by mapping through list of roles */}
+              <Select.Option value="administrator">Administrator</Select.Option>
+              <Select.Option value="program_manager">
+                Program Manager
+              </Select.Option>
+              <Select.Option value="service_provider">
+                Service Provider
+              </Select.Option>
+              ))
+            </Select>
           </Form.Item>
         ) : (
           <>{record.role}</>
@@ -189,10 +214,39 @@ const TableComponent = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form.Item name={record.dataIndex}>
-            <TagsComponent users={record} />
+          <Form.Item
+            name="programs"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please select programs',
+              },
+            ]}
+          >
+            <Select size="middle" mode="multiple">
+              {programs.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
+          //   <Form.Item name={record.dataIndex}>
+          //     <>
+          //       {programs.map(tag => (
+          //         <CheckableTag
+          //           key={tag}
+          //           checked={selectedTags.indexOf(tag) > -1}
+          //           onChange={checked => handleSelected(tag, checked)}
+          //         >
+          //           {tag}
+          //         </CheckableTag>
+          //       ))}
+          //     </>
+          //   </Form.Item>
+          // )
           <>
             {record.programs.map(program => {
               return (
@@ -280,6 +334,7 @@ const TableComponent = ({
 const mapStateToProps = state => {
   return {
     employees: state.employee.employees,
+    programs: state.program.programs,
   };
 };
 
@@ -287,4 +342,5 @@ export default connect(mapStateToProps, {
   getAllEmployeeAction,
   editEmployeeAction,
   deleteEmployeeAction,
+  getAllProgramsAction,
 })(TableComponent);
