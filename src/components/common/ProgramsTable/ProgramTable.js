@@ -24,28 +24,24 @@ const ProgramTable = ({
   programs,
 }) => {
   const [form] = Form.useForm();
-  const [formData, setFormData] = useState('');
   const [editingKey, setEditingKey] = useState('');
   const [programList, setProgramList] = useState(null);
-  const [refetched, setFetched] = useState({});
+  // const [refetched, setFetched] = useState({});
 
   useEffect(() => {
     getAllProgramsAction();
-    setProgramList(programs);
-  }, [programList, getAllProgramsAction]);
+  }, []);
 
-  console.log('program', programs);
-
-  const isEditing = record => record.key === editingKey;
+  const isEditing = record => record.id === editingKey;
 
   const edit = record => {
     form.setFieldsValue({
       name: '',
-      role: '',
-      programs: [],
+      type: '',
+      description: '',
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
@@ -57,27 +53,13 @@ const ProgramTable = ({
     console.log('key', key);
   };
 
-  const save = async key => {
+  const save = async programId => {
     try {
-      const row = await form.validateFields();
-      console.log(row, 'row');
-      console.log(key, 'key');
-      const newData = [...formData];
-      const index = newData.findIndex(item => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        console.log(item, 'item');
-        console.log(row, 'row');
-        newData.splice(index, 1, { ...item, ...row });
-        console.log(newData);
-        setFormData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setFormData(newData);
-        setEditingKey('');
-      }
+      const programObj = await form.validateFields();
+      console.log('programObj', programObj);
+      console.log('programId', programId);
+      editProgramAction(programId, programObj);
+      setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
@@ -92,22 +74,18 @@ const ProgramTable = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form form={form} component={false}>
-            <td>
-              <Form.Item
-                name={record.dataIndex}
-                style={{ margin: 0 }}
-                rules={[
-                  {
-                    required: true,
-                    message: `Please Input ${record.title}!`,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </td>
-          </Form>
+          <Form.Item
+            name="name"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input name!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.name} />
+          </Form.Item>
         ) : (
           <>{record.name}</>
         );
@@ -121,22 +99,18 @@ const ProgramTable = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form form={form} component={false}>
-            <td>
-              <Form.Item
-                name={record.dataIndex}
-                style={{ margin: 0 }}
-                rules={[
-                  {
-                    required: true,
-                    message: `Please Input ${record.title}!`,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </td>
-          </Form>
+          <Form.Item
+            name="type"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input type!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.type} />
+          </Form.Item>
         ) : (
           <>{record.type}</>
         );
@@ -150,22 +124,18 @@ const ProgramTable = ({
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form form={form} component={false}>
-            <td>
-              <Form.Item
-                name={record.dataIndex}
-                style={{ margin: 0 }}
-                rules={[
-                  {
-                    required: true,
-                    message: `Please Input ${record.title}!`,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </td>
-          </Form>
+          <Form.Item
+            name="description"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input description!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.description} />
+          </Form.Item>
         ) : (
           <>{record.description} </>
         );
@@ -220,22 +190,25 @@ const ProgramTable = ({
     <>
       {programs.length < 1 && <LoadingOutlined className="loader" />},
       {programs.length >= 1 && (
-        <Table
-          className="desktop-table"
-          // rowSelection={CheckboxComponent(tableData)}
-          columns={columns}
-          dataSource={programs}
-          bordered
-        />
+        <Form form={form}>
+          <Table
+            className="desktop-table"
+            // rowSelection={CheckboxComponent(tableData)}
+            columns={columns}
+            dataSource={programs}
+            bordered
+          />
+        </Form>
       )}
     </>
   );
 };
+
 const mapStateToProps = state => {
   console.log(state);
   return {
     programs: state.program.programs,
-    refetched: state.program.refetched,
+    // refetched: state.program.refetched,
   };
 };
 

@@ -86,7 +86,7 @@ export const editProgramAction = (programId, programObj) => dispatch => {
       dispatch({ type: EDIT_PROGRAM_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: EDIT_PROGRAM_FAIL, payload: err.message });
+      dispatch({ type: EDIT_PROGRAM_FAIL, payload: err.response.data });
     })
     .finally(() => {
       dispatch({ type: EDIT_PROGRAM_RESOLVE });
