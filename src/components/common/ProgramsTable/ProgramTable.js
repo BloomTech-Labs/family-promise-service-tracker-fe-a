@@ -22,15 +22,14 @@ const ProgramTable = ({
   editProgramAction,
   deleteProgramAction,
   programs,
+  change,
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const [programList, setProgramList] = useState(null);
-  // const [refetched, setFetched] = useState({});
 
   useEffect(() => {
     getAllProgramsAction();
-  }, []);
+  }, [change]);
 
   const isEditing = record => record.id === editingKey;
 
@@ -205,10 +204,9 @@ const ProgramTable = ({
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     programs: state.program.programs,
-    // refetched: state.program.refetched,
+    change: state.program.change,
   };
 };
 
