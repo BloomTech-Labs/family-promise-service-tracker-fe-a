@@ -27,6 +27,7 @@ export const initialProgramState = {
   programs: [],
   program: null,
   status: 'Resolved',
+  change: '',
   error: '',
 };
 
@@ -88,6 +89,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'added',
       };
     case ADD_PROGRAM_FAIL:
       return {
@@ -99,6 +101,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Edit Program
     case EDIT_PROGRAM_START:
@@ -110,6 +113,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'edited',
       };
     case EDIT_PROGRAM_FAIL:
       return {
@@ -121,6 +125,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     // Delete Program
     case DELETE_PROGRAM_START:
@@ -132,6 +137,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'deleted',
       };
     case DELETE_PROGRAM_FAIL:
       return {
@@ -143,6 +149,7 @@ export const programReducer = (state = initialProgramState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Default
     default:

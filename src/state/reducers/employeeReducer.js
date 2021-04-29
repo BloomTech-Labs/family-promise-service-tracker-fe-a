@@ -27,6 +27,7 @@ export const initialEmployeeState = {
   employees: [],
   employee: null,
   status: 'Resolved',
+  change: '',
   error: '',
 };
 
@@ -90,6 +91,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'added',
       };
     case ADD_EMPLOYEE_FAIL:
       return {
@@ -101,6 +103,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Edit Employee
     case EDIT_EMPLOYEE_START:
@@ -112,6 +115,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'edited',
       };
     case EDIT_EMPLOYEE_FAIL:
       return {
@@ -123,6 +127,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     // Delete Employee
     case DELETE_EMPLOYEE_START:
@@ -134,6 +139,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'deleted',
       };
     case DELETE_EMPLOYEE_FAIL:
       return {
@@ -145,6 +151,7 @@ export const employeeReducer = (state = initialEmployeeState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Default
     default:

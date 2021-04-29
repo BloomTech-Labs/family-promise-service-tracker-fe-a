@@ -25,6 +25,7 @@ export const initialServiceTypeState = {
   serviceTypes: [],
   serviceType: null,
   status: 'Resolved',
+  change: '',
   error: '',
 };
 
@@ -76,28 +77,6 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
         ...state,
         status: 'Resolved',
       };
-    //edit service types
-    case EDIT_SERVICE_TYPE_START:
-      return {
-        ...state,
-        status: 'Pending...',
-      };
-    case EDIT_SERVICE_TYPE_SUCCESS:
-      return {
-        ...state,
-        status: 'Success',
-      };
-    case EDIT_SERVICE_TYPE_FAIL:
-      return {
-        ...state,
-        status: 'Failed',
-        error: action.payload,
-      };
-    case EDIT_SERVICE_TYPE_RESOLVE:
-      return {
-        ...state,
-        status: 'Resolved',
-      };
     //add service
     case ADD_SERVICE_TYPE_START:
       return {
@@ -108,6 +87,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'added',
       };
     case ADD_SERVICE_TYPE_FAIL:
       return {
@@ -119,7 +99,33 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
+    //edit service types
+    case EDIT_SERVICE_TYPE_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case EDIT_SERVICE_TYPE_SUCCESS:
+      return {
+        ...state,
+        status: 'Success',
+        change: 'edited',
+      };
+    case EDIT_SERVICE_TYPE_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case EDIT_SERVICE_TYPE_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+        change: '',
+      };
+
     //delete service type
     case DELETE_SERVICE_TYPE_START:
       return {
@@ -130,6 +136,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'deleted',
       };
     case DELETE_SERVICE_TYPE_FAIL:
       return {
@@ -141,6 +148,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //default
     default:
