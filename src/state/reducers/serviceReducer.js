@@ -27,6 +27,7 @@ export const initialServiceState = {
   services: [],
   service: null,
   status: 'Resolved',
+  change: '',
   error: '',
 };
 
@@ -88,6 +89,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: '',
       };
     case ADD_SERVICE_FAIL:
       return {
@@ -99,6 +101,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Edit Service
     case EDIT_SERVICE_START:
@@ -110,6 +113,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'edited',
       };
     case EDIT_SERVICE_FAIL:
       return {
@@ -121,6 +125,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     // Delete Service
     case DELETE_SERVICE_START:
@@ -132,6 +137,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Success',
+        change: 'deleted',
       };
     case DELETE_SERVICE_FAIL:
       return {
@@ -143,6 +149,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state,
         status: 'Resolved',
+        change: '',
       };
     //Default
     default:
