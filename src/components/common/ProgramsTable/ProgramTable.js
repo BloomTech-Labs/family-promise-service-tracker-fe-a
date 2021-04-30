@@ -192,7 +192,6 @@ const ProgramTable = ({
         <Form form={form}>
           <Table
             className="desktop-table"
-            // rowSelection={CheckboxComponent(tableData)}
             columns={columns}
             dataSource={programs}
             bordered
