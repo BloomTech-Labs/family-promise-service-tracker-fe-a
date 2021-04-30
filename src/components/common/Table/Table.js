@@ -33,6 +33,7 @@ const TableComponent = ({
   getAllProgramsAction,
   employees,
   programs,
+  change,
 }) => {
   // tableData is what is consumed by the antd table on render
   const tableData = [];
@@ -48,7 +49,7 @@ const TableComponent = ({
   useEffect(() => {
     getAllEmployeeAction();
     getAllProgramsAction();
-  }, []);
+  }, [change]);
 
   const isEditing = record => record.key === editingKey;
 
@@ -335,6 +336,7 @@ const mapStateToProps = state => {
   return {
     employees: state.employee.employees,
     programs: state.program.programs,
+    change: state.employee.change,
   };
 };
 
