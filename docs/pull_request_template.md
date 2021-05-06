@@ -1,8 +1,14 @@
 ### Description
 
+**Invited Collaborator(s) to Review
+- Added person to review relating to feature/bug
+- If not available, ask another reviewer on team
+
 **What work was done?**
+- Describe in detail what's been modified/created
 
 **Why was this work done?**
+- What is the purpose of the feature?
 
 **What feature / user story is it for?**
 (Link if possible) 
@@ -12,10 +18,12 @@
 Please delete options that are not relevant.
 [] New feature (non-breaking change which adds functionality)
 
+Testing
+[] Has this feature been tested before conflict?
+[] Has this feature been tested after conflict?
+
 Change Status
 [] Completed, ready to review and merge
-Has This Been Tested
-[] Yes
 
 ### Checklist
 [] My code follows the style guidelines of this project
