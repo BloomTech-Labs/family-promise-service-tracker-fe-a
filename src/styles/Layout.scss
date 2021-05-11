@@ -1,7 +1,6 @@
-.tablet {
-  @media (min-width: 992px) {
 
-  }
+.tablet {
+ 
 }
 
 
@@ -42,6 +41,6 @@
 
 .desktop-title {
   @media (min-width: 992px) {
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 }

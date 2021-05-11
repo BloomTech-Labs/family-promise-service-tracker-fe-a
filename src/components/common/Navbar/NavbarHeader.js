@@ -5,7 +5,7 @@ import logo from '../../../assets/logo.png';
 
 const NavbarHeader = props => {
   return (
-    <div className="testWrapper">
+    <div>
       {localStorage.getItem('okta-token-storage') ? (
         <div
           className={props.classType}
