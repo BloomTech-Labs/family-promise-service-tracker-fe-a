@@ -54,6 +54,23 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
             <Input placeholder="Enter Age" size="large" />
           </Form.Item>
           <Form.Item
+            name="select"
+            label="Select"
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Please select their gender',
+              },
+            ]}
+          >
+            <Select placeholder="Please select their gender">
+              <Option value="male">Male</Option>
+              <Option value="female">Female</Option>
+              <Option value="nonbinary">Non-Binary Gender</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
             label="Address"
             name="Address"
             rules={[
@@ -120,8 +137,8 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               mode="multiple"
               placeholder="Please select the race of the recipient"
             >
-              <Option value="indian_alaskan">
-                American Indian or Alaskan Native
+              <Option value="indian_native_alaskan">
+                American Indian or Alaska Native
               </Option>
               <Option value="asian">Asian</Option>
               <Option value="black">Black/African American</Option>
