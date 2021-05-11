@@ -1,13 +1,7 @@
 import React from 'react';
 import { Form, Input, Select, InputNumber, Modal } from 'antd';
 
-const race = [
-  'American Indian or Alaska Native',
-  'Asian',
-  'Black/African-American',
-  'Native Hawaiian or Other Pacific Islander',
-  'White/Caucasian',
-];
+const { Option } = Select;
 
 const ethnicity = ['Hispanic or Latino', 'Not Hispanic or Latino'];
 
@@ -49,7 +43,7 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
             rules={[
               {
                 required: true,
-                message: 'Please enter the Recipient',
+                message: 'Please enter the Recipient Name',
               },
             ]}
           >
@@ -69,7 +63,7 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               },
             ]}
           >
-            <Input placeholder="Enter Address" size="large" />
+            <Input placeholder="Enter Street Address" size="large" />
           </Form.Item>
           <Form.Item
             label="City"
@@ -111,11 +105,32 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
             <InputNumber size="large" />
             <Input placeholder="Enter Size of Household" size="large" />
           </Form.Item>
-          <Select placeholder="Select Race" size="large">
-            {race.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
-            ))}
-          </Select>
+          <Form.Item
+            name="select-race"
+            label="Select Race"
+            rules={[
+              {
+                required: true,
+                message: 'Please select the race of the recipient',
+                type: 'array',
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              placeholder="Please select the race of the recipient"
+            >
+              <Option value="indian_alaskan">
+                American Indian or Alaskan Native
+              </Option>
+              <Option value="asian">Asian</Option>
+              <Option value="black">Black/African American</Option>
+              <Option value="hawaiian_pacific_islander">
+                Native Hawaiian or Pacific Islander
+              </Option>
+              <Option value="white">White/Caucasian</Option>
+            </Select>
+          </Form.Item>
           <Select placeholder="Select Ethnicity" size="large">
             {ethnicity.map(item => (
               <Select.Option key={item}> {item}</Select.Option>
