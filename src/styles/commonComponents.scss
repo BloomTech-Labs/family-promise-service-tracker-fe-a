@@ -1,17 +1,15 @@
 .title-container {
-  margin-left: 1.3em;
-  @media (min-width: 992px) {
-    // margin-left: 10rem;
-    margin-left: 5rem;
-  }
+  padding-left:20px;
 }
 
 .top-bar-div {
-  padding-left: 140px;
-  @media (min-width: 992px) {
-    // margin-left: 10rem;
-    margin-left: 10rem;
-  }
+ 
+}
+
+.testWrapper {
+  display:flex;
+  flex-direction: column;
+  flex-wrap:wrap;
 }
 
 .top-bar-img {

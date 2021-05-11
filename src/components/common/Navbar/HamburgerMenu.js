@@ -51,6 +51,7 @@ const HamburgerMenu = () => {
         placement="left"
         visible={visible}
         onClose={onClose}
+        // position='sticky'
       >
         {userRole === 'administrator' ? (
           <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>

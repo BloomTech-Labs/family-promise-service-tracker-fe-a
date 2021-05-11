@@ -1,8 +1,9 @@
 .tablet {
   @media (min-width: 992px) {
-    
+
   }
 }
+
 
 .desktop {
   @media (max-width: 992px) {
@@ -25,9 +26,8 @@
 }
 
 .desktop-table {
+  justify-content: center;
   @media (min-width: 992px) {
-    margin-left: 280px;
-    margin-right: 10px;
     width: 80%;
   }
 }
@@ -42,6 +42,6 @@
 
 .desktop-title {
   @media (min-width: 992px) {
-    margin-left: 260px;
+    justify-content: space-evenly;
   }
 }
