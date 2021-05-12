@@ -45,12 +45,12 @@ const HamburgerMenu = () => {
     <Layout
       style={{
         backgroundColor: 'white',
+        width: '100%',
       }}
     >
       <Header
-        breakpoint="sm"
+        breakpoint="md"
         collapsedWidth="0"
-        width="100%"
         className="tablet"
         closable={true}
         placement="center"
