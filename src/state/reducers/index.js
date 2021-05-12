@@ -6,3 +6,4 @@ export { serviceReducer } from './serviceReducer';
 export { serviceTypeReducer } from './serviceTypeReducer';
 export { programReducer } from './programReducer';
 export { employeeReducer } from './employeeReducer';
+export { recipientReducer } from './recipientReducer';
