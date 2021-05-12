@@ -12,6 +12,7 @@ export {
   addServiceAction,
   editServiceAction,
   deleteServiceAction,
+  getServiceProviders,
 } from './serviceActions';
 
 export {

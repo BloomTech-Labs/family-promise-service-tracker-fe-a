@@ -23,11 +23,13 @@ import {
   editEmployeeAction,
   deleteEmployeeAction,
   getEmployeeByIdAction,
+  getServiceProviders,
   getAllProgramsAction,
 } from '../../../state/actions';
 
 const TableComponent = ({
   getAllEmployeeAction,
+  getServiceProviders,
   editEmployeeAction,
   deleteEmployeeAction,
   getAllProgramsAction,
@@ -49,6 +51,7 @@ const TableComponent = ({
   useEffect(() => {
     getAllEmployeeAction();
     getAllProgramsAction();
+    getServiceProviders();
   }, [change]);
 
   const isEditing = record => record.key === editingKey;
@@ -345,4 +348,5 @@ export default connect(mapStateToProps, {
   editEmployeeAction,
   deleteEmployeeAction,
   getAllProgramsAction,
+  getServiceProviders,
 })(TableComponent);

@@ -9,8 +9,9 @@ import {
   Modal,
 } from 'antd';
 // import { Modal, Form, Input, Select } from 'antd';
-
+const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
 const programs = ['Prevention', 'After Care', 'Sheltering'];
+const serviceStatus = ['In Progress', 'Completed'];
 
 function AddServiceTypeForm({ onCreate, onCancel, visible }) {
   const [form] = Form.useForm();
@@ -73,19 +74,39 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             <Form.Item label="Service Description" name="description">
               <Input.TextArea showCount maxLength={240} />
             </Form.Item>
-            <Form.Item label="Unit" name="unit">
+            {/* <Form.Item label="Unit" name="unit">
               <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            <Form.Item label="Quantity" name="quantity">
+            </Form.Item> */}
+            {/* <Form.Item label="Quantity" name="quantity">
+              <InputNumber size="large" />
+              <Input placeholder="Enter quantity of unit" size="large" />
+            </Form.Item> */}
+            {/* <Form.Item label="Value" name="value">
               <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            <Form.Item label="Value" name="value">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            <Form.Item label="Provider" name="provider">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            <Form.Item label="Recipient" name="recipient">
+            </Form.Item> */}
+
+            {/* <Form.Item
+              label="Provider(s)"
+              name="provider"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please select the providers',
+                },
+              ]}
+            >
+              <Select
+                placeholder="Select Providers"
+                mode="multiple"
+                size="large"
+              >
+                {providers.map(item => (
+                  <Select.Option key={item}> {item}</Select.Option>
+                ))}
+              </Select>
+            </Form.Item> */}
+
+            {/* <Form.Item label="Recipient" name="recipient">
               <Input.TextArea showCount maxLength={240} />
             </Form.Item>
             <div className="date-time-wrapper">
@@ -100,8 +121,8 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
                 ]}
               >
                 <DatePicker size="large" />
-              </Form.Item>
-              <Form.Item
+              </Form.Item> */}
+            {/* <Form.Item
                 label="Time"
                 className="time-input"
                 name="time"
@@ -114,10 +135,10 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
               >
                 <TimePicker use12Hours format="h:mm a" size="large" />
               </Form.Item>
-            </div>
+            </div> */}
           </Form.Item>
 
-          <Form.Item
+          {/* <Form.Item
             label="Address"
             name="Address"
             rules={[
@@ -128,8 +149,8 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             ]}
           >
             <Input placeholder="Enter City" size="large" />
-          </Form.Item>
-          <Form.Item
+          </Form.Item> */}
+          {/* <Form.Item
             label="City"
             name="city"
             rules={[
@@ -140,8 +161,8 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             ]}
           >
             <Input placeholder="Enter State" size="large" />
-          </Form.Item>
-          <Form.Item
+          </Form.Item> */}
+          {/* <Form.Item
             label="State"
             name="state"
             rules={[
@@ -152,8 +173,8 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             ]}
           >
             <Input placeholder="Enter Zipcode" size="large" />
-          </Form.Item>
-          <Form.Item
+          </Form.Item> */}
+          {/* <Form.Item
             label="Zip Code"
             name="zipcode"
             rules={[
@@ -164,7 +185,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             ]}
           >
             <Input placeholder="Enter address" size="large" />
-          </Form.Item>
+          </Form.Item> */}
           {/* <Form.Item
             name="type"
             label="Employees"
@@ -181,7 +202,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
               ))}
             </Select>
           </Form.Item> */}
-          <Form.Item
+          {/* <Form.Item
             name="type"
             label="Status"
             rules={[
@@ -196,7 +217,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
                 <Select.Option key={item}>{item}</Select.Option>
               ))}
             </Select>
-          </Form.Item>
+          </Form.Item> */}
         </Form>
       </Modal>
     </>

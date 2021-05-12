@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Button } from 'antd';
 
 //redux import
-import { addServiceAction } from '../../../state/actions/index';
+import {
+  addServiceAction,
+  getServiceProviders,
+} from '../../../state/actions/index';
 import { connect } from 'react-redux';
 
 //component import
@@ -10,13 +13,16 @@ import AddServiceForm from '../../forms/AddServiceForm';
 import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
 
 //addServiceTypeAction
-function RenderServicesPage({ addServiceAction }) {
+function RenderServicesPage({ addServiceAction, getServiceProviders }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
-
+  // const [providers, setProviders] = useState([]);
   const onCreate = values => {
     console.log('received values of form:', values);
     setVisible(false);
+    // setProviders(getServiceProviders());
+    console.log('about to hit service providers');
+    getServiceProviders();
     addServiceAction(values);
   };
 
@@ -66,5 +72,14 @@ function RenderServicesPage({ addServiceAction }) {
     </>
   );
 }
+const mapStateToProps = state => {
+  console.log('mstp', state);
+  return {
+    providers: state.serviceProviders,
+  };
+};
 
-export default RenderServicesPage;
+export default connect(mapStateToProps, {
+  addServiceAction,
+  getServiceProviders,
+})(RenderServicesPage);

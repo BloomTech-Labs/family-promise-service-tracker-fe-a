@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Input,
@@ -8,17 +8,33 @@ import {
   TimePicker,
   Modal,
 } from 'antd';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import {
+  getServiceProviders,
+  addServiceAction,
+} from '../../state/actions/serviceActions';
+import { connect } from 'react-redux';
 
 const { TextArea } = Input;
 
 const programs = ['Prevention', 'After Care', 'Sheltering'];
 
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
-
-const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
+const providers2 = ['john wick'];
+axiosWithAuth()
+  .get('/api/profiles/getserviceproviders')
+  .then(res => {
+    getServiceProviders(res);
+    // providers = res.forEach(name => name.firstName + name.lastName);
+    // console.log(providers);
+  })
+  .catch(err => {
+    console.log(err, 'this is error fetching service providers');
+  });
 
 function AddServiceForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
+  const [providers, setProviders] = useState([]);
 
   return (
     <>
@@ -76,7 +92,7 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
               ))}
             </Select>
           </Form.Item> */}
-          <Form.Item
+          {/* <Form.Item
             label="Address"
             name="Address"
             rules={[
@@ -123,7 +139,7 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
             ]}
           >
             <Input placeholder="Enter address" size="large" />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" />
           </Form.Item>
@@ -182,7 +198,7 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
             ]}
           >
             <Select placeholder="Select Providers" mode="multiple" size="large">
-              {providers.map(item => (
+              {providers2.map(item => (
                 <Select.Option key={item}> {item}</Select.Option>
               ))}
             </Select>
@@ -195,5 +211,13 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
     </>
   );
 }
-
-export default AddServiceForm;
+const mapStateToProps = state => {
+  console.log('mstp', state);
+  return {
+    providers: state.serviceProviders,
+  };
+};
+export default connect(mapStateToProps, {
+  addServiceAction,
+  getServiceProviders,
+})(AddServiceForm);

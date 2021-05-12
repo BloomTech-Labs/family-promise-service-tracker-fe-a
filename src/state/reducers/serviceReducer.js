@@ -19,12 +19,17 @@ import {
   DELETE_SERVICE_SUCCESS,
   DELETE_SERVICE_FAIL,
   DELETE_SERVICE_RESOLVE,
+  GET_ALL_SERVICE_PROVIDERS_START,
+  GET_ALL_SERVICE_PROVIDERS_SUCCESS,
+  GET_ALL_SERVICE_PROVIDERS_FAIL,
+  GET_ALL_SERVICE_PROVIDERS_RESOLVE,
 } from '../actions/serviceActions';
 
 // Initial Service State
 
 export const initialServiceState = {
   services: [],
+  serviceProviders: [],
   service: null,
   status: 'Resolved',
   change: '',
@@ -150,6 +155,29 @@ export const serviceReducer = (state = initialServiceState, action) => {
         ...state,
         status: 'Resolved',
         change: '',
+      };
+    //get all service providers
+    case GET_ALL_SERVICE_PROVIDERS_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case GET_ALL_SERVICE_PROVIDERS_SUCCESS:
+      return {
+        ...state,
+        serviceProviders: action.payload,
+        status: 'Success',
+      };
+    case GET_ALL_SERVICE_PROVIDERS_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case GET_ALL_SERVICE_PROVIDERS_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
       };
     //Default
     default:

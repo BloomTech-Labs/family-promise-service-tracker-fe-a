@@ -27,13 +27,21 @@ export const DELETE_SERVICE_SUCCESS = 'DELETE_SERVICE_SUCCESS';
 export const DELETE_SERVICE_FAIL = 'DELETE_SERVICE_FAIL';
 export const DELETE_SERVICE_RESOLVE = 'DELETE_SERVICE_RESOLVE';
 
+export const GET_ALL_SERVICE_PROVIDERS_START =
+  'GET_ALL_SERVICE_PROVIDERS_START';
+export const GET_ALL_SERVICE_PROVIDERS_SUCCESS =
+  'GET_ALL_SERVICE_PROVIDERS_SUCCESS';
+export const GET_ALL_SERVICE_PROVIDERS_FAIL = 'GET_ALL_SERVICE_PROVIDERS_FAIL';
+export const GET_ALL_SERVICE_PROVIDERS_RESOLVE =
+  'GET_ALL_SERVICE_PROVIDERS_RESOLVE';
+
 // SERVICES ACTIONS
 
 export const getAllServicesAction = () => dispatch => {
   dispatch({ type: GET_ALL_SERVICE_START });
 
   axiosWithAuth()
-    .get(`/api/services`)
+    .get(`/api/service_entries`)
     .then(res => {
       dispatch({ type: GET_ALL_SERVICE_SUCCESS, payload: res.data });
     })
@@ -49,7 +57,7 @@ export const getServiceByIdAction = serviceId => dispatch => {
   dispatch({ type: GET_SERVICE_START });
 
   axiosWithAuth()
-    .get(`/api/service/${serviceId}`)
+    .get(`/api/service_entries/${serviceId}`)
     .then(res => {
       dispatch({ type: GET_SERVICE_SUCCESS, payload: res.data });
     })
@@ -65,7 +73,7 @@ export const addServiceAction = serviceObj => dispatch => {
   dispatch({ type: ADD_SERVICE_START });
 
   axiosWithAuth()
-    .post(`/api/service`, serviceObj)
+    .post(`/api/service_entries`, serviceObj)
     .then(res => {
       dispatch({ type: ADD_SERVICE_SUCCESS, payload: res.data });
     })
@@ -81,7 +89,7 @@ export const editServiceAction = (serviceId, serviceObj) => dispatch => {
   dispatch({ type: EDIT_SERVICE_START });
 
   axiosWithAuth()
-    .put(`/api/service/${serviceId}`, serviceObj)
+    .put(`/api/service_entries/${serviceId}`, serviceObj)
     .then(res => {
       dispatch({ type: EDIT_SERVICE_SUCCESS, payload: res.data });
     })
@@ -97,7 +105,7 @@ export const deleteServiceAction = serviceId => dispatch => {
   dispatch({ type: DELETE_SERVICE_START });
 
   axiosWithAuth()
-    .delete(`/api/service/${serviceId}`)
+    .delete(`/api/service_entries/${serviceId}`)
     .then(res => {
       dispatch({ type: DELETE_SERVICE_SUCCESS, payload: res.data });
     })
@@ -106,5 +114,21 @@ export const deleteServiceAction = serviceId => dispatch => {
     })
     .finally(() => {
       dispatch({ type: DELETE_SERVICE_RESOLVE });
+    });
+};
+export const getServiceProviders = () => dispatch => {
+  dispatch({ type: GET_ALL_SERVICE_PROVIDERS_START });
+
+  axiosWithAuth()
+    .get(`/api/service_entries`)
+    .then(res => {
+      console.log(res.data, 'this is res.data for getServiceProviders');
+      dispatch({ type: GET_ALL_SERVICE_PROVIDERS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_ALL_SERVICE_PROVIDERS_FAIL, payload: err.message });
+    })
+    .finally(() => {
+      dispatch({ type: GET_ALL_SERVICE_PROVIDERS_RESOLVE });
     });
 };
