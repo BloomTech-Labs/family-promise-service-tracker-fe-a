@@ -42,16 +42,16 @@ const RecipientTable = ({
 
   const edit = record => {
     form.setFieldsValue({
-      recipient_name: '',
+      name: '',
       age: '',
-      select: [],
-      Address: '',
+      gender: '',
+      address: '',
       city: '',
       state: '',
-      zipcode: '',
-      selectrace: [],
-      ethnicity: [],
-      vet_status: [],
+      zip_code: '',
+      race: '',
+      ethnicity: '',
+      veteran_status: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -81,14 +81,14 @@ const RecipientTable = ({
   const columns = [
     {
       title: 'Recipients Name',
-      dataIndex: 'recipient_name',
-      key: 'recipient_name',
+      dataIndex: 'name',
+      key: 'name',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="recipient_name"
+            name="name"
             style={{ margin: 0 }}
             rules={[
               {
@@ -131,14 +131,14 @@ const RecipientTable = ({
     },
     {
       title: 'Gender',
-      dataIndex: 'select',
-      key: 'select',
+      dataIndex: 'gender',
+      key: 'gender',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="select"
+            name="gender"
             style={{ margin: 0 }}
             rules={[
               {
@@ -156,20 +156,20 @@ const RecipientTable = ({
             </Select>
           </Form.Item>
         ) : (
-          <>{record.select}</>
+          <>{record.gender}</>
         );
       },
     },
     {
       title: 'Address',
-      dataIndex: 'Address',
-      key: 'Address',
+      dataIndex: 'address',
+      key: 'address',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="Address"
+            name="address"
             style={{ margin: 0 }}
             rules={[
               {
@@ -178,10 +178,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.Address} />
+            <Input defaultValue={record.address} />
           </Form.Item>
         ) : (
-          <>{record.Address}</>
+          <>{record.address}</>
         );
       },
     },
@@ -207,6 +207,131 @@ const RecipientTable = ({
           </Form.Item>
         ) : (
           <>{record.city}</>
+        );
+      },
+    },
+    {
+      title: 'State',
+      dataIndex: 'state',
+      key: 'state',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="state"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input a state',
+              },
+            ]}
+          >
+            <Input defaultValue={record.state} />
+          </Form.Item>
+        ) : (
+          <>{record.state}</>
+        );
+      },
+    },
+    {
+      title: 'Zip Code',
+      dataIndex: 'zip_code',
+      key: 'zip_code',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="state"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input a state',
+              },
+            ]}
+          >
+            <Input defaultValue={record.zip_code} />
+          </Form.Item>
+        ) : (
+          <>{record.zip_code}</>
+        );
+      },
+    },
+    {
+      title: 'Race',
+      dataIndex: 'race',
+      key: 'race',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="race"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input a race',
+              },
+            ]}
+          >
+            <Input defaultValue={record.race} />
+          </Form.Item>
+        ) : (
+          <>{record.race}</>
+        );
+      },
+    },
+    {
+      title: 'Ethnicity',
+      dataIndex: 'ethnicity',
+      key: 'ethnicity',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="ethnicity"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input a race',
+              },
+            ]}
+          >
+            <Input defaultValue={record.ethnicity} />
+          </Form.Item>
+        ) : (
+          <>{record.ethnicity}</>
+        );
+      },
+    },
+    {
+      title: 'Veteran Status',
+      dataIndex: 'veteran_status',
+      key: 'veteran_status',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="veteran_status"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input a race',
+              },
+            ]}
+          >
+            <Input defaultValue={record.veteran_status} />
+          </Form.Item>
+        ) : (
+          <>{record.veteran_status}</>
         );
       },
     },
