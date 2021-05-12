@@ -35,7 +35,7 @@ export const getAllRecipientAction = () => dispatch => {
   axiosWithAuth()
     .get(`/api/recipients`)
     .then(res => {
-      dispatch({ type: GET_ALL_RECIPIENT_SUCCESS, paylod: res.data });
+      dispatch({ type: GET_ALL_RECIPIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_ALL_RECIPIENT_FAIL, payload: err.message });
