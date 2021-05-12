@@ -52,6 +52,7 @@ const RecipientTable = ({
       race: '',
       ethnicity: '',
       veteran_status: '',
+      household_size: [],
       ...record,
     });
     setEditingKey(record.key);
@@ -249,7 +250,7 @@ const RecipientTable = ({
             rules={[
               {
                 required: true,
-                message: 'Please input a state',
+                message: 'Please input a zip code',
               },
             ]}
           >
@@ -274,7 +275,7 @@ const RecipientTable = ({
             rules={[
               {
                 required: true,
-                message: 'Please input a race',
+                message: 'Please select a race',
               },
             ]}
           >
@@ -299,7 +300,7 @@ const RecipientTable = ({
             rules={[
               {
                 required: true,
-                message: 'Please input a race',
+                message: 'Please select an ethnicity',
               },
             ]}
           >
@@ -324,7 +325,7 @@ const RecipientTable = ({
             rules={[
               {
                 required: true,
-                message: 'Please input a race',
+                message: 'Please select a veteran status',
               },
             ]}
           >
@@ -332,6 +333,31 @@ const RecipientTable = ({
           </Form.Item>
         ) : (
           <>{record.veteran_status}</>
+        );
+      },
+    },
+    {
+      title: 'Household Size',
+      dataIndex: 'household_size',
+      key: 'household_size',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="household_size"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please input the household size',
+              },
+            ]}
+          >
+            <Input defaultValue={record.household_size} />
+          </Form.Item>
+        ) : (
+          <>{record.household_size}</>
         );
       },
     },
