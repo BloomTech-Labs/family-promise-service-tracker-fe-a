@@ -2,13 +2,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+  margin-left:2rem;
   width:100%;
  
 }
 
 .add-program-btn-ctn {
-  margin-right: 1.5rem;
-  @media (min-width: 992px) {
-    margin-right: 4rem;
-  }
+  margin-right: 4rem;
 }

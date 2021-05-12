@@ -6,7 +6,7 @@ function RenderRecipientsPage() {
   return (
     <>
       <div>
-        <h1>Recipients</h1>
+        <h1 className="recipientsHeader">Recipients</h1>
         <AddRecipientForm />
       </div>
     </>
