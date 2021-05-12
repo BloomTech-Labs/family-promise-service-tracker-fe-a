@@ -210,6 +210,49 @@ const RecipientTable = ({
         );
       },
     },
+    {
+      title: 'Actions',
+      dataIndex: 'actions',
+      key: 'actions',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <Space size="middle">
+              <a
+                onClick={() => save(record.id)}
+                style={{ color: '#1890FF', marginRight: 8 }}
+              >
+                Save
+              </a>
+              <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                <a style={{ color: '#1890FF' }}>Cancel</a>
+              </Popconfirm>
+            </Space>
+          </span>
+        ) : (
+          <Space size="large">
+            <Typography.Link
+              disabled={editingKey !== ''}
+              style={{ color: '#1890FF' }}
+              onClick={() => edit(record)}
+            >
+              {<EditOutlined />}
+            </Typography.Link>
+
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => {
+                deleteRecipient(record.id);
+              }}
+              danger
+            >
+              {<DeleteOutlined />}
+            </Popconfirm>
+          </Space>
+        );
+      },
+    },
   ];
 
   return (
