@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import {
   addServiceAction,
   getServiceProviders,
+  addRecipientAction,
 } from '../../../state/actions/index';
 import { connect } from 'react-redux';
 
@@ -14,7 +15,11 @@ import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 //addServiceTypeAction
-function RenderServicesPage({ addServiceAction, getServiceProviders }) {
+function RenderServicesPage({
+  addServiceAction,
+  getServiceProviders,
+  addRecipientAction,
+}) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
   // const [providers, setProviders] = useState([]);
@@ -29,16 +34,7 @@ function RenderServicesPage({ addServiceAction, getServiceProviders }) {
       .catch(err => {
         console.log(err, 'this is error fetching service providers');
       });
-
-    axiosWithAuth()
-      .get('/api/recipients')
-      .then(res => {
-        console.log('recepients res inside RenderServicesPage', res.data);
-        getServiceProviders(res.data);
-      })
-      .catch(err => {
-        console.log(err, 'this is error fetching service providers');
-      });
+    //addRecipientAction();
   }, []);
 
   const onCreate = values => {
@@ -106,7 +102,8 @@ const mapStateToProps = state => {
   return {
     //providers: state.serviceProviders,
     // serviceProviders: serviceProviderNames
-    default: state,
+    recipients: state.recipient.recipients,
+    //default: state,
   };
 };
 

@@ -24,7 +24,13 @@ const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
 //const providers2 = ['john wick'];
 
-function AddServiceForm({ visible, onCreate, onCancel, serviceProviders }) {
+function AddServiceForm({
+  visible,
+  onCreate,
+  onCancel,
+  serviceProviders,
+  recipients,
+}) {
   useEffect(() => {
     axiosWithAuth()
       .get('/api/profiles/getserviceproviders')
@@ -77,7 +83,11 @@ function AddServiceForm({ visible, onCreate, onCancel, serviceProviders }) {
               },
             ]}
           >
-            <Input placeholder="Enter Name" size="large" />
+            <Select size="large" placeholder="Select Recipient Type">
+              {recipients.map(item => (
+                <Select.Option key={item}> {item}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
 
           <Form.Item
@@ -181,6 +191,7 @@ const mapStateToProps = state => {
   return {
     //providers: state.serviceProviders,
     serviceProviders: state.service.serviceProviders,
+    recipients: state.recipient.recipients,
   };
 };
 export default connect(mapStateToProps, {
