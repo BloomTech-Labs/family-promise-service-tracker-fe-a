@@ -7,6 +7,7 @@ import {
   serviceTypeReducer,
   programReducer,
   employeeReducer,
+  recipientReducer,
 } from './reducers/index';
 
 export const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   serviceType: serviceTypeReducer,
   program: programReducer,
   employee: employeeReducer,
+  recipient: recipientReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
