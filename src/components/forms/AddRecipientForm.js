@@ -1,9 +1,7 @@
 import React from 'react';
-import { Form, Input, Select, InputNumber, Modal, Checkbox } from 'antd';
+import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
 
 const { Option } = Select;
-
-const ethnicity = ['Hispanic or Latino', 'Not Hispanic or Latino']; //eslint-disable-line
 
 function AddRecipientForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
@@ -37,15 +35,27 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
         >
           <Form.Item
             label="Recipient Name"
-            name="name"
+            name="first_name"
             rules={[
               {
                 required: true,
-                message: 'Please enter the Recipient Name',
+                message: "Please enter the Recipient's First Name",
               },
             ]}
           >
-            <Input placeholder="Enter Name" size="large" />
+            <Input placeholder="Enter First Name" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Last Name"
+            name="last_name"
+            rules={[
+              {
+                required: true,
+                message: "Please enter the Recipient's Last Name",
+              },
+            ]}
+          >
+            <Input placeholder="Enter Last Name" size="large" />
           </Form.Item>
           <Form.Item
             label="Age"
@@ -121,17 +131,9 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               },
             ]}
           >
-            <Input placeholder="Enter Zip Code" size="large" />
+            <InputNumber placeholder="Enter Zip Code" size="large" />
           </Form.Item>
-          <Form.Item
-            label="Household Size"
-            name="household_size"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
+          <Form.Item label="Household Size" name="household_size">
             <InputNumber size="large" placeholder="0" min="0" max="20" />
           </Form.Item>
           <Form.Item
@@ -160,33 +162,18 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               <Option value="white">White/Caucasian</Option>
             </Select>
           </Form.Item>
-          {/* Disabled temporarily while we hash out the storage of ethnicity inside the recipients table 
-          <Select placeholder="Select Ethnicity" size="large">
-            {ethnicity.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
-            ))}
-          </Select> */}
-          <Form.Item
-            name="veteran_status"
-            label="Veteran Status"
-            hasFeedback
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Select placeholder="Select Veteran Status">
-              <Option value="true">Veteran</Option>
-              <Option value="false">Not a Veteran</Option>
-            </Select>
+          <Form.Item label="Select Ethnicity" name="ethnicity">
+            <Radio.Group>
+              <Radio value="hispanic">Hispanic or Latino</Radio>
+              <Radio value="not_hispanic">Not Hispanic or Latino</Radio>
+            </Radio.Group>
           </Form.Item>
-          {/* 
-          <Select placeholder="Select Veteran Status" size="large">
-            {vet_status.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
-            ))}
-          </Select> */}
+          <Form.Item label="Select Veteran Status" name="veteran_status">
+            <Radio.Group>
+              <Radio value="true">Veteran</Radio>
+              <Radio value="false">Not a Veteran</Radio>
+            </Radio.Group>
+          </Form.Item>
         </Form>
       </Modal>
     </>
