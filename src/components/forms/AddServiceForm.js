@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Form,
   Input,
@@ -8,17 +8,43 @@ import {
   TimePicker,
   Modal,
 } from 'antd';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import {
+  getServiceProviders,
+  addServiceAction,
+} from '../../state/actions/serviceActions';
+import { connect } from 'react-redux';
 
 const { TextArea } = Input;
 
-const programs = ['Prevention', 'After Care', 'Sheltering'];
+//const programs = ['Prevention', 'After Care', 'Sheltering'];
+
+const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
 
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
+//const providers2 = ['john wick'];
 
-const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
+function AddServiceForm({
+  visible,
+  onCreate,
+  onCancel,
+  serviceProviders,
+  recipients,
+}) {
+  useEffect(() => {
+    axiosWithAuth()
+      .get('/api/profiles/getserviceproviders')
+      .then(res => {
+        console.log('res inside AddServiceForm', res.data);
+        getServiceProviders(res.data);
+      })
+      .catch(err => {
+        console.log(err, 'this is error fetching service providers');
+      });
+  }, []);
 
-function AddServiceForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
+  //const [providers, setProviders] = useState([]);
 
   return (
     <>
@@ -57,73 +83,30 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
               },
             ]}
           >
-            <Input placeholder="Enter Name" size="large" />
-          </Form.Item>
-
-          {/* <Form.Item
-            label="Program Name"
-            name="program"
-            rules={[
-              {
-                required: true,
-                message: 'Please select the Project',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select Program">
-              {programs.map(item => (
+            <Select size="large" placeholder="Select Recipient Type">
+              {recipients.map(item => (
                 <Select.Option key={item}> {item}</Select.Option>
               ))}
             </Select>
-          </Form.Item> */}
+          </Form.Item>
+
           <Form.Item
-            label="Address"
-            name="Address"
+            label="Service Type"
+            name="service_type"
             rules={[
               {
                 required: true,
-                message: 'Please enter the address',
+                message: 'Please select the Service Type',
               },
             ]}
           >
-            <Input placeholder="Enter City" size="large" />
+            <Select size="large" placeholder="Select Service Type">
+              {service_types.map(item => (
+                <Select.Option key={item}> {item}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
-          <Form.Item
-            label="City"
-            name="city"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter State" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="State"
-            name="state"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter Zipcode" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="Zip Code"
-            name="zipcode"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the ZipCode',
-              },
-            ]}
-          >
-            <Input placeholder="Enter address" size="large" />
-          </Form.Item>
+
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" />
           </Form.Item>
@@ -182,8 +165,11 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
             ]}
           >
             <Select placeholder="Select Providers" mode="multiple" size="large">
-              {providers.map(item => (
-                <Select.Option key={item}> {item}</Select.Option>
+              {serviceProviders.map(provider => (
+                <Select.Option key={provider}>
+                  {' '}
+                  {provider.firstName + ' ' + provider.lastName}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
@@ -195,5 +181,20 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
     </>
   );
 }
-
-export default AddServiceForm;
+const mapStateToProps = state => {
+  console.log('MSTP inside AddServiceForm', state);
+  // const serviceProviderNames =
+  //   state.service.serviceProviders.map(provider => {
+  //     provider = provider.firstName+' '+provider.lastName;
+  // });
+  console.log('serviceProviderNames:', state.service.serviceProviders);
+  return {
+    //providers: state.serviceProviders,
+    serviceProviders: state.service.serviceProviders,
+    recipients: state.recipient.recipients,
+  };
+};
+export default connect(mapStateToProps, {
+  addServiceAction,
+  getServiceProviders,
+})(AddServiceForm);
