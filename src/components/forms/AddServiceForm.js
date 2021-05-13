@@ -13,6 +13,9 @@ import {
   getServiceProviders,
   addServiceAction,
 } from '../../state/actions/serviceActions';
+
+//import {getAllRecipientAction} from '../../state/actions/recipientActions';
+
 import { connect } from 'react-redux';
 
 const { TextArea } = Input;
@@ -85,7 +88,7 @@ function AddServiceForm({
           >
             <Select size="large" placeholder="Select Recipient Type">
               {recipients.map(item => (
-                <Select.Option key={item}> {item}</Select.Option>
+                <Select.Option key={item}> {item.name}</Select.Option>
               ))}
             </Select>
           </Form.Item>

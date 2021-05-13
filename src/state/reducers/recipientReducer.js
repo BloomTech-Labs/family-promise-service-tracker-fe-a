@@ -42,7 +42,7 @@ export const recipientReducer = (state = initialRecipientState, action) => {
     case GET_ALL_RECIPIENT_SUCCESS:
       // console.log(action.payload, 'payload inside reducer');
       return {
-        ...state,
+        ...state.recipient,
         recipients: action.payload,
         status: 'Success',
       };

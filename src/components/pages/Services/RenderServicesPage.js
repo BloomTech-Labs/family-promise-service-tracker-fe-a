@@ -5,8 +5,10 @@ import { Button } from 'antd';
 import {
   addServiceAction,
   getServiceProviders,
-  addRecipientAction,
 } from '../../../state/actions/index';
+
+import { getAllRecipientAction } from '../../../state/actions/recipientActions';
+
 import { connect } from 'react-redux';
 
 //component import
@@ -18,7 +20,7 @@ import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 function RenderServicesPage({
   addServiceAction,
   getServiceProviders,
-  addRecipientAction,
+  getAllRecipientAction,
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
@@ -34,7 +36,7 @@ function RenderServicesPage({
       .catch(err => {
         console.log(err, 'this is error fetching service providers');
       });
-    //addRecipientAction();
+    getAllRecipientAction();
   }, []);
 
   const onCreate = values => {
@@ -110,4 +112,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   addServiceAction,
   getServiceProviders,
+  getAllRecipientAction,
 })(RenderServicesPage);
