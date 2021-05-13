@@ -6,14 +6,12 @@ import TitleComponent from '../../common/Title';
 
 function RecipientsContainer() {
   return (
-    <div style={{}}>
+    <div>
       <div className="sub-header">
         <TitleComponent TitleText="Recipients" />
         <RenderRecipientsPage />
       </div>
-      <div style={{}}>
-        <RecipientTable />
-      </div>
+      <RecipientTable />
     </div>
   );
 }

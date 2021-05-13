@@ -29,14 +29,14 @@ function HomeContainer({ LoadingComponent }) {
   }, [memoAuthService]);
 
   return (
-    <>
+    <div style={{ margin: '0 auto' }}>
       {authState.isAuthenticated && !userInfo && (
         <LoadingComponent message="Fetching user profile..." />
       )}
       {authState.isAuthenticated && userInfo && (
         <RenderHomePage userInfo={userInfo} authService={authService} />
       )}
-    </>
+    </div>
   );
 }
 
