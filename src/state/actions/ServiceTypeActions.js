@@ -61,7 +61,7 @@ export const editServiceTypeAction = (typeId, typeObj) => dispatch => {
   dispatch({ type: EDIT_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .put(`/api/service/${typeId}`, typeObj)
+    .put(`/api/service_type/${typeId}`, typeObj)
     .then(res => {
       dispatch({ type: EDIT_SERVICE_TYPE_SUCCESS, payload: res.data });
     })
@@ -77,7 +77,7 @@ export const deleteServiceTypeAction = typeId => dispatch => {
   dispatch({ type: DELETE_SERVICE_TYPE_START });
 
   axiosWithAuth()
-    .delete(`/api/service/${typeId}`)
+    .delete(`/api/service_type/${typeId}`)
     .then(res => {
       dispatch({ type: DELETE_SERVICE_TYPE_SUCCESS, payload: res.data });
     })

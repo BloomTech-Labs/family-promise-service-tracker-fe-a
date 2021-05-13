@@ -1,11 +1,7 @@
 import React from 'react';
-import { Form, Input, Select, InputNumber, Modal } from 'antd';
+import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
 
 const { Option } = Select;
-
-const ethnicity = ['Hispanic or Latino', 'Not Hispanic or Latino'];
-
-const vet_status = ['Veteran', 'Not a Veteran'];
 
 function AddRecipientForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
@@ -39,23 +35,42 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
         >
           <Form.Item
             label="Recipient Name"
-            name="recipient_name"
+            name="first_name"
             rules={[
               {
                 required: true,
-                message: 'Please enter the Recipient Name',
+                message: "Please enter the Recipient's First Name",
               },
             ]}
           >
-            <Input placeholder="Enter Name" size="large" />
-          </Form.Item>
-          <Form.Item label="Age" name="age">
-            <InputNumber size="large" />
-            <Input placeholder="Enter Age" size="large" />
+            <Input placeholder="Enter First Name" size="large" />
           </Form.Item>
           <Form.Item
-            name="select"
-            label="Select"
+            label="Last Name"
+            name="last_name"
+            rules={[
+              {
+                required: true,
+                message: "Please enter the Recipient's Last Name",
+              },
+            ]}
+          >
+            <Input placeholder="Enter Last Name" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Age"
+            name="age"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <InputNumber size="large" placeholder="0" min="0" max="130" />
+          </Form.Item>
+          <Form.Item
+            name="gender"
+            label="Select Gender"
             hasFeedback
             rules={[
               {
@@ -72,7 +87,7 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
           </Form.Item>
           <Form.Item
             label="Address"
-            name="Address"
+            name="address"
             rules={[
               {
                 required: true,
@@ -108,7 +123,7 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
           </Form.Item>
           <Form.Item
             label="Zip Code"
-            name="zipcode"
+            name="zip_code"
             rules={[
               {
                 required: true,
@@ -116,25 +131,24 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               },
             ]}
           >
-            <Input placeholder="Enter Zip Code" size="large" />
+            <InputNumber placeholder="Enter Zip Code" size="large" />
           </Form.Item>
           <Form.Item label="Household Size" name="household_size">
-            <InputNumber size="large" />
-            <Input placeholder="Enter Size of Household" size="large" />
+            <InputNumber size="large" placeholder="0" min="0" max="20" />
           </Form.Item>
           <Form.Item
-            name="select-race"
+            name="race"
             label="Select Race"
             rules={[
               {
                 required: true,
                 message: 'Please select the race of the recipient',
-                type: 'array',
+                // type: 'array',
               },
             ]}
           >
             <Select
-              mode="multiple"
+              // mode="multiple" - limiting race to 1 temporarily to test Create Recipient
               placeholder="Please select the race of the recipient"
             >
               <Option value="indian_native_alaskan">
@@ -148,16 +162,18 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               <Option value="white">White/Caucasian</Option>
             </Select>
           </Form.Item>
-          <Select placeholder="Select Ethnicity" size="large">
-            {ethnicity.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
-            ))}
-          </Select>
-          <Select placeholder="Select Veteran Status" size="large">
-            {vet_status.map(item => (
-              <Select.Option key={item}> {item}</Select.Option>
-            ))}
-          </Select>
+          <Form.Item label="Select Ethnicity" name="ethnicity">
+            <Radio.Group>
+              <Radio value="hispanic">Hispanic or Latino</Radio>
+              <Radio value="not_hispanic">Not Hispanic or Latino</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item label="Select Veteran Status" name="veteran_status">
+            <Radio.Group>
+              <Radio value="true">Veteran</Radio>
+              <Radio value="false">Not a Veteran</Radio>
+            </Radio.Group>
+          </Form.Item>
         </Form>
       </Modal>
     </>
