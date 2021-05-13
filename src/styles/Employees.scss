@@ -1,19 +1,17 @@
 .add-employee-btn-ctn {
-  margin-right: 1.5rem;
-  @media (min-width: 992px) {
-    // margin-left: 10rem;
-    margin-right: 4.2rem;
-  }
+  margin-right: 4rem
+ 
 }
 
 .ant-table-wrapper {
-  width: 95%;
+  width: 90%;
   height: 100%;
-  margin-left: 2.5%;
+  margin:0 auto;
   padding: 1px;
   background: #f0f0f0;
   border: 1px solid #f0f0f0;
   border-radius: 2px;
+
 
   .ant-tag {
     margin-bottom: 7px;

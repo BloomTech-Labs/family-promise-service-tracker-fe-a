@@ -1,7 +1,10 @@
+
 .tablet {
-  @media (min-width: 992px) {
-    display: none;
-  }
+ 
+}
+
+.navBar{
+ visibility:visible;
 }
 
 .desktop {
@@ -24,12 +27,25 @@
   }
 }
 
-.desktop-table {
-  @media (min-width: 992px) {
-    margin-left: 280px;
-    margin-right: 10px;
-    width: 80%;
+.recipientTable{
+  width:100%;
+  @media (width:768px){
+    justify-content: center;
+    width:fit-content;
   }
+}
+
+
+.desktop-table {
+  justify-content: center;
+  margin:0 auto;
+  width:80%;
+  display:flex;
+  background:none;
+  overflow:visible;
+  border:none;
+  flex-direction:row;
+  height:100%;
 }
 
 .desktop-profile {
@@ -42,6 +58,6 @@
 
 .desktop-title {
   @media (min-width: 992px) {
-    margin-left: 260px;
+    justify-content: space-around;
   }
 }
