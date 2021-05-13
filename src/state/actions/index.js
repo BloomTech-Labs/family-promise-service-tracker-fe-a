@@ -36,3 +36,11 @@ export {
   editEmployeeAction,
   deleteEmployeeAction,
 } from './employeeActions';
+
+export {
+  getAllRecipientAction,
+  getRecipientByIdAction,
+  addRecipientAction,
+  editRecipientAction,
+  deleteRecipientAction,
+} from './recipientActions';
