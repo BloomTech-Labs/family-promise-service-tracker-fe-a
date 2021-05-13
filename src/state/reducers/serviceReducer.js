@@ -25,6 +25,8 @@ import {
   GET_ALL_SERVICE_PROVIDERS_RESOLVE,
 } from '../actions/serviceActions';
 
+import { connect } from 'react-redux';
+
 // Initial Service State
 
 export const initialServiceState = {
@@ -164,8 +166,9 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_ALL_SERVICE_PROVIDERS_SUCCESS:
       return {
-        ...state,
+        ...state.service,
         serviceProviders: action.payload,
+
         status: 'Success',
       };
     case GET_ALL_SERVICE_PROVIDERS_FAIL:

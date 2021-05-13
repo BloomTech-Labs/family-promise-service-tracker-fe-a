@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Form,
   Input,
@@ -21,20 +21,22 @@ const programs = ['Prevention', 'After Care', 'Sheltering'];
 
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
 const providers2 = ['john wick'];
-axiosWithAuth()
-  .get('/api/profiles/getserviceproviders')
-  .then(res => {
-    getServiceProviders(res);
-    // providers = res.forEach(name => name.firstName + name.lastName);
-    // console.log(providers);
-  })
-  .catch(err => {
-    console.log(err, 'this is error fetching service providers');
-  });
 
-function AddServiceForm({ visible, onCreate, onCancel }) {
+function AddServiceForm({ visible, onCreate, onCancel, serviceProviders }) {
+  useEffect(() => {
+    axiosWithAuth()
+      .get('/api/profiles/getserviceproviders')
+      .then(res => {
+        console.log('res inside AddServiceForm', res.data);
+        getServiceProviders(res.data);
+      })
+      .catch(err => {
+        console.log(err, 'this is error fetching service providers');
+      });
+  }, []);
+
   const [form] = Form.useForm();
-  const [providers, setProviders] = useState([]);
+  //const [providers, setProviders] = useState([]);
 
   return (
     <>
@@ -198,8 +200,11 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
             ]}
           >
             <Select placeholder="Select Providers" mode="multiple" size="large">
-              {providers2.map(item => (
-                <Select.Option key={item}> {item}</Select.Option>
+              {serviceProviders.map(provider => (
+                <Select.Option key={provider}>
+                  {' '}
+                  {provider.firstName + ' ' + provider.lastName}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
@@ -212,9 +217,15 @@ function AddServiceForm({ visible, onCreate, onCancel }) {
   );
 }
 const mapStateToProps = state => {
-  console.log('mstp', state);
+  console.log('MSTP inside AddServiceForm', state);
+  // const serviceProviderNames =
+  //   state.service.serviceProviders.map(provider => {
+  //     provider = provider.firstName+' '+provider.lastName;
+  // });
+  console.log('serviceProviderNames:', state.service.serviceProviders);
   return {
-    providers: state.serviceProviders,
+    //providers: state.serviceProviders,
+    serviceProviders: state.service.serviceProviders,
   };
 };
 export default connect(mapStateToProps, {
