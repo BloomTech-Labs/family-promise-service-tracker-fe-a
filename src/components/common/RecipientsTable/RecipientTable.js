@@ -42,7 +42,8 @@ const RecipientTable = ({
 
   const edit = record => {
     form.setFieldsValue({
-      name: '',
+      first_name: '',
+      last_name: '',
       age: '',
       gender: '',
       address: '',
@@ -81,27 +82,52 @@ const RecipientTable = ({
 
   const columns = [
     {
-      title: 'Recipients Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'First Name',
+      dataIndex: 'first_name',
+      key: 'first_name',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="name"
+            first_name="first_name"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: `Please input a name!`,
+                message: `Please input a first name!`,
               },
             ]}
           >
-            <Input defaultValue={record.name} />
+            <Input defaultValue={record.first_name} />
           </Form.Item>
         ) : (
-          <>{record.name}</>
+          <>{record.first_name}</>
+        );
+      },
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'last_name',
+      key: 'last_name',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            last_name="last_name"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please input a last name!`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.last_name} />
+          </Form.Item>
+        ) : (
+          <>{record.last_name}</>
         );
       },
     },
