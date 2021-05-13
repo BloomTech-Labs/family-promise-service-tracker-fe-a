@@ -1,17 +1,15 @@
 .title-container {
-  margin-left: 1.3em;
-  @media (min-width: 992px) {
-    // margin-left: 10rem;
-    margin-left: 5rem;
-  }
+  padding-left:20px;
 }
 
+
 .top-bar-div {
-  padding-left: 140px;
-  @media (min-width: 992px) {
-    // margin-left: 10rem;
-    margin-left: 10rem;
-  }
+  padding:2rem;
+}
+
+.recipientsHeader{
+  margin-left:3rem;
+  margin-top:1rem;
 }
 
 .top-bar-img {
@@ -32,6 +30,7 @@
   width: 256px;
 }
 
+
 .ant-menu-vertical .ant-menu-item,
 .ant-menu-vertical-left .ant-menu-item,
 .ant-menu-vertical-right .ant-menu-item,
@@ -48,7 +47,6 @@
   text-overflow: ellipsis;
   padding-left: 24px;
   padding-bottom: 50px;
-  padding-top: 5px;
   margin-bottom: 8px;
 }
 

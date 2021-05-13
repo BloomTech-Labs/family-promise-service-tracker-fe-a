@@ -332,7 +332,7 @@ const RecipientTable = ({
             <Input defaultValue={record.veteran_status} />
           </Form.Item>
         ) : (
-          <>{record.veteran_status}</>
+          <>{record.veteran_status ? 'Yes' : 'No'}</>
         );
       },
     },
@@ -407,7 +407,7 @@ const RecipientTable = ({
   ];
 
   return (
-    <>
+    <div className="recipientTable">
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form}>
@@ -415,11 +415,12 @@ const RecipientTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={recipients}
-            bordered
+            size="small"
+            tableLayout="auto"
           />
         </Form>
       )}
-    </>
+    </div>
   );
 };
 

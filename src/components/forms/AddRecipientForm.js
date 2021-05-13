@@ -1,10 +1,7 @@
 import React from 'react';
 import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
-import FormItem from 'antd/lib/form/FormItem';
 
 const { Option } = Select;
-
-const ethnicity = ['Hispanic or Latino', 'Not Hispanic or Latino'];
 
 function AddRecipientForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
@@ -38,18 +35,38 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
         >
           <Form.Item
             label="Recipient Name"
-            name="name"
+            name="first_name"
             rules={[
               {
                 required: true,
-                message: 'Please enter the Recipient Name',
+                message: "Please enter the Recipient's First Name",
               },
             ]}
           >
-            <Input placeholder="Enter Name" size="large" />
+            <Input placeholder="Enter First Name" size="large" />
           </Form.Item>
-          <Form.Item label="Age" name="age">
-            <InputNumber size="large" />
+          <Form.Item
+            label="Last Name"
+            name="last_name"
+            rules={[
+              {
+                required: true,
+                message: "Please enter the Recipient's Last Name",
+              },
+            ]}
+          >
+            <Input placeholder="Enter Last Name" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Age"
+            name="age"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <InputNumber size="large" placeholder="0" min="0" max="130" />
           </Form.Item>
           <Form.Item
             name="gender"
@@ -117,7 +134,7 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
             <InputNumber placeholder="Enter Zip Code" size="large" />
           </Form.Item>
           <Form.Item label="Household Size" name="household_size">
-            <InputNumber size="large" />
+            <InputNumber size="large" placeholder="0" min="0" max="20" />
           </Form.Item>
           <Form.Item
             name="race"
@@ -126,12 +143,12 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               {
                 required: true,
                 message: 'Please select the race of the recipient',
-                type: 'array',
+                // type: 'array',
               },
             ]}
           >
             <Select
-              mode="multiple"
+              // mode="multiple" - limiting race to 1 temporarily to test Create Recipient
               placeholder="Please select the race of the recipient"
             >
               <Option value="indian_native_alaskan">
@@ -153,8 +170,8 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
           </Form.Item>
           <Form.Item label="Select Veteran Status" name="veteran_status">
             <Radio.Group>
-              <Radio value="veteran">Veteran</Radio>
-              <Radio value="non_veteran">Not a Veteran</Radio>
+              <Radio value="true">Veteran</Radio>
+              <Radio value="false">Not a Veteran</Radio>
             </Radio.Group>
           </Form.Item>
         </Form>
