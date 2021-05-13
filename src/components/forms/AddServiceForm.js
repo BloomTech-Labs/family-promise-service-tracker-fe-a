@@ -17,10 +17,12 @@ import { connect } from 'react-redux';
 
 const { TextArea } = Input;
 
-const programs = ['Prevention', 'After Care', 'Sheltering'];
+//const programs = ['Prevention', 'After Care', 'Sheltering'];
+
+const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
 
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
-const providers2 = ['john wick'];
+//const providers2 = ['john wick'];
 
 function AddServiceForm({ visible, onCreate, onCancel, serviceProviders }) {
   useEffect(() => {
@@ -78,70 +80,23 @@ function AddServiceForm({ visible, onCreate, onCancel, serviceProviders }) {
             <Input placeholder="Enter Name" size="large" />
           </Form.Item>
 
-          {/* <Form.Item
-            label="Program Name"
-            name="program"
+          <Form.Item
+            label="Service Type"
+            name="service_type"
             rules={[
               {
                 required: true,
-                message: 'Please select the Project',
+                message: 'Please select the Service Type',
               },
             ]}
           >
-            <Select size="large" placeholder="Select Program">
-              {programs.map(item => (
+            <Select size="large" placeholder="Select Service Type">
+              {service_types.map(item => (
                 <Select.Option key={item}> {item}</Select.Option>
               ))}
             </Select>
-          </Form.Item> */}
-          {/* <Form.Item
-            label="Address"
-            name="Address"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter City" size="large" />
           </Form.Item>
-          <Form.Item
-            label="City"
-            name="city"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter State" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="State"
-            name="state"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter Zipcode" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="Zip Code"
-            name="zipcode"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the ZipCode',
-              },
-            ]}
-          >
-            <Input placeholder="Enter address" size="large" />
-          </Form.Item> */}
+
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" />
           </Form.Item>

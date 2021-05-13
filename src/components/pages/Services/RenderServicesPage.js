@@ -23,7 +23,17 @@ function RenderServicesPage({ addServiceAction, getServiceProviders }) {
     axiosWithAuth()
       .get('/api/profiles/getserviceproviders')
       .then(res => {
-        console.log('res inside RenderServicesPage', res.data);
+        console.log('serviceProviders res inside RenderServicesPage', res.data);
+        getServiceProviders(res.data);
+      })
+      .catch(err => {
+        console.log(err, 'this is error fetching service providers');
+      });
+
+    axiosWithAuth()
+      .get('/api/recipients')
+      .then(res => {
+        console.log('recepients res inside RenderServicesPage', res.data);
         getServiceProviders(res.data);
       })
       .catch(err => {
