@@ -86,9 +86,15 @@ function AddServiceForm({
               },
             ]}
           >
-            <Select size="large" placeholder="Select Recipient Type">
-              {recipients.map(item => (
-                <Select.Option key={item}> {item.name}</Select.Option>
+            <Select
+              size="large"
+              mode="multiple"
+              placeholder="Select Recipients"
+            >
+              {recipients.map(recipient => (
+                <Select.Option key={recipient}>
+                  {recipient.first_name + ' ' + recipient.last_name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
@@ -170,7 +176,6 @@ function AddServiceForm({
             <Select placeholder="Select Providers" mode="multiple" size="large">
               {serviceProviders.map(provider => (
                 <Select.Option key={provider}>
-                  {' '}
                   {provider.firstName + ' ' + provider.lastName}
                 </Select.Option>
               ))}
