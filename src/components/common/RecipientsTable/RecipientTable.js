@@ -332,7 +332,7 @@ const RecipientTable = ({
             <Input defaultValue={record.veteran_status} />
           </Form.Item>
         ) : (
-          <>{record.veteran_status}</>
+          <>{record.veteran_status ? 'Yes' : 'No'}</>
         );
       },
     },
