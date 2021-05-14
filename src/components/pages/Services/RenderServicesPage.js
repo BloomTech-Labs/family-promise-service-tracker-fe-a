@@ -5,36 +5,42 @@ import { Button } from 'antd';
 import {
   addServiceAction,
   getServiceProviders,
-  addRecipientAction,
+  getServiceTypes,
 } from '../../../state/actions/index';
+
+import { getAllRecipientAction } from '../../../state/actions/recipientActions';
+
 import { connect } from 'react-redux';
 
 //component import
 import AddServiceForm from '../../forms/AddServiceForm';
 import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
-import { axiosWithAuth } from '../../../utils/axiosWithAuth';
+//import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 //addServiceTypeAction
 function RenderServicesPage({
   addServiceAction,
   getServiceProviders,
-  addRecipientAction,
+  getAllRecipientAction,
+  getServiceTypes,
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
   // const [providers, setProviders] = useState([]);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get('/api/profiles/getserviceproviders')
-      .then(res => {
-        console.log('serviceProviders res inside RenderServicesPage', res.data);
-        getServiceProviders(res.data);
-      })
-      .catch(err => {
-        console.log(err, 'this is error fetching service providers');
-      });
-    //addRecipientAction();
+    // axiosWithAuth()
+    //   .get('/api/profiles/getserviceproviders')
+    //   .then(res => {
+    //     console.log('serviceProviders res inside RenderServicesPage', res.data);
+    //     getServiceProviders(res.data);
+    //   })
+    //   .catch(err => {
+    //     console.log(err, 'this is error fetching service providers');
+    //   });
+    getServiceProviders();
+    getAllRecipientAction();
+    getServiceTypes();
   }, []);
 
   const onCreate = values => {
@@ -100,8 +106,8 @@ const mapStateToProps = state => {
   // });
   // console.log('serviceProviderNames:',serviceProviderNames);
   return {
-    //providers: state.serviceProviders,
-    // serviceProviders: serviceProviderNames
+    serviceProviders: state.service.serviceProviders,
+    serviceTypes: state.service.serviceTypes,
     recipients: state.recipient.recipients,
     //default: state,
   };
@@ -110,4 +116,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   addServiceAction,
   getServiceProviders,
+  getAllRecipientAction,
+  getServiceTypes,
 })(RenderServicesPage);

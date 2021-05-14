@@ -35,6 +35,11 @@ export const GET_ALL_SERVICE_PROVIDERS_FAIL = 'GET_ALL_SERVICE_PROVIDERS_FAIL';
 export const GET_ALL_SERVICE_PROVIDERS_RESOLVE =
   'GET_ALL_SERVICE_PROVIDERS_RESOLVE';
 
+export const GET_ALL_SERVICE_TYPES_START = 'GET_ALL_SERVICE_TYPES_START';
+export const GET_ALL_SERVICE_TYPES_SUCCESS = 'GET_ALL_SERVICE_TYPES_SUCCESS';
+export const GET_ALL_SERVICE_TYPES_FAIL = 'GET_ALL_SERVICE_TYPES_FAIL';
+export const GET_ALL_SERVICE_TYPES_RESOLVE = 'GET_ALL_SERVICE_TYPES_RESOLVE';
+
 // SERVICES ACTIONS
 
 export const getAllServicesAction = () => dispatch => {
@@ -130,5 +135,22 @@ export const getServiceProviders = () => dispatch => {
     })
     .finally(() => {
       dispatch({ type: GET_ALL_SERVICE_PROVIDERS_RESOLVE });
+    });
+};
+
+export const getServiceTypes = () => dispatch => {
+  dispatch({ type: GET_ALL_SERVICE_TYPES_START });
+
+  axiosWithAuth()
+    .get(`api/service_types`)
+    .then(res => {
+      console.log(res.data, 'this is res.data for getServiceTypes');
+      dispatch({ type: GET_ALL_SERVICE_TYPES_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_ALL_SERVICE_TYPES_FAIL, payload: err.message });
+    })
+    .finally(() => {
+      dispatch({ type: GET_ALL_SERVICE_TYPES_RESOLVE });
     });
 };
