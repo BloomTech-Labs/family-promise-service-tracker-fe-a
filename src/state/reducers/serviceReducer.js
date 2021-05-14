@@ -23,16 +23,18 @@ import {
   GET_ALL_SERVICE_PROVIDERS_SUCCESS,
   GET_ALL_SERVICE_PROVIDERS_FAIL,
   GET_ALL_SERVICE_PROVIDERS_RESOLVE,
+  GET_ALL_SERVICE_TYPES_START,
+  GET_ALL_SERVICE_TYPES_SUCCESS,
+  GET_ALL_SERVICE_TYPES_FAIL,
+  GET_ALL_SERVICE_TYPES_RESOLVE,
 } from '../actions/serviceActions';
-
-import { connect } from 'react-redux';
 
 // Initial Service State
 
 export const initialServiceState = {
   services: [],
   serviceProviders: [],
-  service: null,
+  //serviceTypes: [],
   status: 'Resolved',
   change: '',
   error: '',
@@ -48,7 +50,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_ALL_SERVICE_SUCCESS:
       return {
-        ...state,
+        ...state.services,
         services: action.payload,
         status: 'Success',
       };
@@ -71,7 +73,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_SERVICE_SUCCESS:
       return {
-        ...state,
+        ...state.services,
         service: action.payload,
         status: 'Success',
       };
@@ -94,9 +96,9 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case ADD_SERVICE_SUCCESS:
       return {
-        ...state,
+        ...state.service,
+        services: action.payload,
         status: 'Success',
-        change: '',
       };
     case ADD_SERVICE_FAIL:
       return {
@@ -118,7 +120,8 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case EDIT_SERVICE_SUCCESS:
       return {
-        ...state,
+        ...state.service,
+        services: action.payload,
         status: 'Success',
         change: 'edited',
       };
@@ -168,7 +171,6 @@ export const serviceReducer = (state = initialServiceState, action) => {
       return {
         ...state.service,
         serviceProviders: action.payload,
-
         status: 'Success',
       };
     case GET_ALL_SERVICE_PROVIDERS_FAIL:
@@ -178,6 +180,29 @@ export const serviceReducer = (state = initialServiceState, action) => {
         error: action.payload,
       };
     case GET_ALL_SERVICE_PROVIDERS_RESOLVE:
+      return {
+        ...state,
+        status: 'Resolved',
+      };
+    // get all service types
+    case GET_ALL_SERVICE_TYPES_START:
+      return {
+        ...state,
+        status: 'Pending...',
+      };
+    case GET_ALL_SERVICE_TYPES_SUCCESS:
+      return {
+        ...state.service,
+        serviceTypes: action.payload,
+        status: 'Success',
+      };
+    case GET_ALL_SERVICE_TYPES_FAIL:
+      return {
+        ...state,
+        status: 'Failed',
+        error: action.payload,
+      };
+    case GET_ALL_SERVICE_TYPES_RESOLVE:
       return {
         ...state,
         status: 'Resolved',

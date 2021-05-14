@@ -12,6 +12,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import {
   getServiceProviders,
   addServiceAction,
+  getServiceTypes,
 } from '../../state/actions/serviceActions';
 
 //import {getAllRecipientAction} from '../../state/actions/recipientActions';
@@ -33,21 +34,16 @@ function AddServiceForm({
   onCancel,
   serviceProviders,
   recipients,
+  serviceTypes,
 }) {
-  useEffect(() => {
-    axiosWithAuth()
-      .get('/api/profiles/getserviceproviders')
-      .then(res => {
-        console.log('res inside AddServiceForm', res.data);
-        getServiceProviders(res.data);
-      })
-      .catch(err => {
-        console.log(err, 'this is error fetching service providers');
-      });
-  }, []);
+  // useEffect(() => {
+
+  //   getServiceProviders();
+  //   //getAllRecipientAction();
+  //   getServiceTypes();
+  // }, []);
 
   const [form] = Form.useForm();
-  //const [providers, setProviders] = useState([]);
 
   return (
     <>
@@ -191,18 +187,16 @@ function AddServiceForm({
 }
 const mapStateToProps = state => {
   console.log('MSTP inside AddServiceForm', state);
-  // const serviceProviderNames =
-  //   state.service.serviceProviders.map(provider => {
-  //     provider = provider.firstName+' '+provider.lastName;
-  // });
-  console.log('serviceProviderNames:', state.service.serviceProviders);
+  console.log('serviceTypes:', state.service.serviceTypes);
+  console.log('serviceProviders', state.service.serviceProviders);
   return {
-    //providers: state.serviceProviders,
     serviceProviders: state.service.serviceProviders,
     recipients: state.recipient.recipients,
+    serviceTypes: state.service.serviceTypes,
   };
 };
 export default connect(mapStateToProps, {
   addServiceAction,
   getServiceProviders,
+  getServiceTypes,
 })(AddServiceForm);
