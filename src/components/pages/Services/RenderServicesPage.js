@@ -40,7 +40,7 @@ function RenderServicesPage({
     //   });
     getServiceProviders();
     getAllRecipientAction();
-    //getServiceTypes();
+    getServiceTypes();
   }, []);
 
   const onCreate = values => {

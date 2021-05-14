@@ -34,7 +34,7 @@ import {
 export const initialServiceState = {
   services: [],
   serviceProviders: [],
-  //serviceTypes: [],
+  serviceTypes: [],
   status: 'Resolved',
   change: '',
   error: '',
@@ -96,7 +96,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case ADD_SERVICE_SUCCESS:
       return {
-        ...state.service,
+        ...state,
         services: action.payload,
         status: 'Success',
       };
@@ -120,7 +120,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case EDIT_SERVICE_SUCCESS:
       return {
-        ...state.service,
+        ...state,
         services: action.payload,
         status: 'Success',
         change: 'edited',
@@ -169,7 +169,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_ALL_SERVICE_PROVIDERS_SUCCESS:
       return {
-        ...state.service,
+        ...state,
         serviceProviders: action.payload,
         status: 'Success',
       };
@@ -192,7 +192,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_ALL_SERVICE_TYPES_SUCCESS:
       return {
-        ...state.service,
+        ...state,
         serviceTypes: action.payload,
         status: 'Success',
       };
