@@ -23,7 +23,7 @@ const { TextArea } = Input;
 
 //const programs = ['Prevention', 'After Care', 'Sheltering'];
 
-const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
+// const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
 
 const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
 //const providers2 = ['john wick'];
@@ -88,7 +88,7 @@ function AddServiceForm({
               placeholder="Select Recipients"
             >
               {recipients.map(recipient => (
-                <Select.Option key={recipient}>
+                <Select.Option key={recipient} value={recipient.id}>
                   {recipient.first_name + ' ' + recipient.last_name}
                 </Select.Option>
               ))}
@@ -106,14 +106,19 @@ function AddServiceForm({
             ]}
           >
             <Select size="large" placeholder="Select Service Type">
-              {service_types.map(item => (
-                <Select.Option key={item}> {item}</Select.Option>
+              {serviceTypes.map(item => (
+                <Select.Option key={item}> {item.name}</Select.Option>
               ))}
             </Select>
           </Form.Item>
-
+          <Form.Item label="Unit" name="unit">
+            <Input size="large" min="0" />
+          </Form.Item>
           <Form.Item label="Quantity" name="quantity">
-            <InputNumber size="large" />
+            <InputNumber size="large" min="0" />
+          </Form.Item>
+          <Form.Item label="Value" name="value">
+            <InputNumber size="large" min="0" />
           </Form.Item>
           <Form.Item
             label="Status"
@@ -130,6 +135,54 @@ function AddServiceForm({
                 <Select.Option key={item}> {item}</Select.Option>
               ))}
             </Select>
+          </Form.Item>
+          <Form.Item
+            label="Address"
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the address',
+              },
+            ]}
+          >
+            <Input placeholder="Enter Street Address" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="City"
+            name="city"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the city',
+              },
+            ]}
+          >
+            <Input placeholder="Enter City" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="State"
+            name="state"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the state',
+              },
+            ]}
+          >
+            <Input placeholder="Enter State" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Zip Code"
+            name="zip_code"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the zip code',
+              },
+            ]}
+          >
+            <Input placeholder="Enter Zip Code" size="large" />
           </Form.Item>
           <div className="date-time-wrapper">
             <Form.Item

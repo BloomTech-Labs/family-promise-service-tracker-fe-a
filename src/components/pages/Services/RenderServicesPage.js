@@ -46,9 +46,6 @@ function RenderServicesPage({
   const onCreate = values => {
     console.log('received values of form:', values);
     setVisible(false);
-    // setProviders(getServiceProviders());
-    console.log('about to hit service providers');
-    //getServiceProviders();
     addServiceAction(values);
   };
 
