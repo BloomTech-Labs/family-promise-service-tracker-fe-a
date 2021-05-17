@@ -5,12 +5,12 @@ import TitleComponent from '../../common/Title';
 
 function EmployeesContainer() {
   return (
-    <div>
+    <div style={{ margin: '0 auto' }}>
       <div className="sub-header">
         <TitleComponent TitleText="Employees" />
         <RenderEmployeesPage />
       </div>
-      <div className="tablectn">
+      <div>
         <TableComponent />
       </div>
     </div>

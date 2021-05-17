@@ -5,6 +5,7 @@
 
 .top-bar-div {
   padding:2rem;
+  margin: 0 auto;
 }
 
 .recipientsHeader{
@@ -21,15 +22,14 @@
   flex-grow: 1;
   padding: 0px;
   overflow: auto;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5715;
-  word-wrap: break-word;
+  word-wrap:normal;
 }
 
 .ant-drawer-left.ant-drawer-open .ant-drawer-content-wrapper {
   width: 256px;
 }
-
 
 .ant-menu-vertical .ant-menu-item,
 .ant-menu-vertical-left .ant-menu-item,

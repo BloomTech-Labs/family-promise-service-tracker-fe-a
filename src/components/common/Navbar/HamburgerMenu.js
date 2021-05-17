@@ -47,19 +47,17 @@ const HamburgerMenu = () => {
       style={{
         backgroundColor: 'white',
         width: '100%',
+        // position:'static',
       }}
     >
       <Header
-        breakpoint="md"
-        collapsedWidth="0"
-        className="tablet"
-        closable={true}
         placement="center"
         visible={visible}
         onClose={onClose}
         style={{
           backgroundColor: 'white',
           margin: '0 auto',
+          display: 'flex',
         }}
         // position='sticky'
       >

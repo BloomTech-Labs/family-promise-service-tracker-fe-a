@@ -433,7 +433,7 @@ const RecipientTable = ({
   ];
 
   return (
-    <div className="recipientTable">
+    <div style={{}}>
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form}>
@@ -442,7 +442,7 @@ const RecipientTable = ({
             columns={columns}
             dataSource={recipients}
             size="small"
-            tableLayout="auto"
+            tableLayout="fixed"
           />
         </Form>
       )}

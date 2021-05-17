@@ -34,13 +34,15 @@ function RenderMyProfile({
     <div className="profile-container desktop-profile">
       <Form layout="vertical" onSubmit={onSubmit}>
         <Form.Item>
-          <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
-          {isInEditMode && (
-            <input type="file" name="file" onChange={uploadImage}></input>
-          )}
+          <div style={{ justifyContent: 'center' }}>
+            <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
+            {isInEditMode && (
+              <input type="file" name="file" onChange={uploadImage}></input>
+            )}
+          </div>
         </Form.Item>
 
-        <Form.Item label="First Name" className="label-header">
+        <Form.Item label="First Name">
           <Input
             disabled={disabled}
             placeholder={curUser.firstName}

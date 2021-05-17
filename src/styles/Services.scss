@@ -1,26 +1,4 @@
 .services-header {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-left:2rem;
-}
-
-.add-services-btn-ctn {
-  margin-right: 5rem;
-  @media (min-width: 992px) {
-    margin-left: 1rem;
-  }
-}
-.add-type-btn-ctn {
-  margin-left: 13rem;
-  @media (min-width: 992px) {
-    margin-left: 30rem;
-  }
-}
-
-.date-time-wrapper {
-  display: flex;
-}
-.time-input {
-  margin-left: 3rem;
+  justify-content: space-around;
 }
