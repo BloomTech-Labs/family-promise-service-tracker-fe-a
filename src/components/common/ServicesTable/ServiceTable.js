@@ -18,6 +18,7 @@ import {
 
 // Action Imports
 import {
+  getAllServicesAction,
   getAllRecipientAction,
   addRecipientAction,
   editRecipientAction,
@@ -25,10 +26,11 @@ import {
 } from '../../../state/actions';
 
 const RecipientTable = ({
+  getAllServicesAction,
   getAllRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
-  recipients,
+  services,
   change,
 }) => {
   const [form] = Form.useForm();
@@ -36,6 +38,7 @@ const RecipientTable = ({
 
   useEffect(() => {
     getAllRecipientAction();
+    getAllServicesAction();
   }, [change]);
 
   const isEditing = record => record.id === editingKey;
@@ -45,15 +48,17 @@ const RecipientTable = ({
       first_name: '',
       last_name: '',
       serviceType: '',
+      unit: '',
       quantity: '',
+      value: '',
+      status: '',
       address: '',
       city: '',
       state: '',
       zip_code: '',
-      race: '',
-      ethnicity: '',
-      veteran_status: '',
-      household_size: [],
+      date: '',
+      time: '',
+      description: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -99,10 +104,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.first_name} />
+            <Input defaultValue={record.recipient_id} />
           </Form.Item>
         ) : (
-          <>{record.first_name}</>
+          <>{record.recipient_id}</>
         );
       },
     },
@@ -157,6 +162,37 @@ const RecipientTable = ({
       },
     },
     {
+      title: 'Unit',
+      dataIndex: 'unit',
+      key: 'unit',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="unit"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a unit',
+              },
+            ]}
+          >
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
+          <>{record.unit}</>
+        );
+      },
+    },
+    {
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
@@ -175,7 +211,7 @@ const RecipientTable = ({
             ]}
           >
             <Select size="middle" mode="multiple">
-              {recipients.map(item => (
+              {services.map(item => (
                 <Select.Option key={item} value={item.id}>
                   {item.name}
                 </Select.Option>
@@ -184,6 +220,68 @@ const RecipientTable = ({
           </Form.Item>
         ) : (
           <>{record.quantity}</>
+        );
+      },
+    },
+    {
+      title: 'Value',
+      dataIndex: 'value',
+      key: 'value',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="value"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a value',
+              },
+            ]}
+          >
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
+          <>{record.value}</>
+        );
+      },
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="status"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a status',
+              },
+            ]}
+          >
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
+          <>{record.status}</>
         );
       },
     },
@@ -288,102 +386,95 @@ const RecipientTable = ({
       },
     },
     {
-      title: 'Race',
-      dataIndex: 'race',
-      key: 'race',
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="race"
+            name="date"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please select a race',
+                message: 'Please select a date',
               },
             ]}
           >
-            <Input defaultValue={record.race} />
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
-          <>{record.race}</>
+          <>{record.date}</>
         );
       },
     },
     {
-      title: 'Ethnicity',
-      dataIndex: 'ethnicity',
-      key: 'ethnicity',
+      title: 'Time',
+      dataIndex: 'time',
+      key: 'time',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="ethnicity"
+            name="time"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please select an ethnicity',
+                message: 'Please select a time',
               },
             ]}
           >
-            <Input defaultValue={record.ethnicity} />
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
-          <>{record.ethnicity}</>
+          <>{record.time}</>
         );
       },
     },
     {
-      title: 'Veteran Status',
-      dataIndex: 'veteran_status',
-      key: 'veteran_status',
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="veteran_status"
+            name="description"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please select a veteran status',
+                message: 'Please select a description',
               },
             ]}
           >
-            <Input defaultValue={record.veteran_status} />
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
-          <>{record.veteran_status ? 'Yes' : 'No'}</>
-        );
-      },
-    },
-    {
-      title: 'Household Size',
-      dataIndex: 'household_size',
-      key: 'household_size',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="household_size"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input the household size',
-              },
-            ]}
-          >
-            <Input defaultValue={record.household_size} />
-          </Form.Item>
-        ) : (
-          <>{record.household_size}</>
+          <>{record.description}</>
         );
       },
     },
@@ -434,13 +525,13 @@ const RecipientTable = ({
 
   return (
     <div className="recipientTable">
-      {recipients.length < 1 && <LoadingOutlined className="loader" />},
-      {recipients.length >= 1 && (
+      {services.length < 1 && <LoadingOutlined className="loader" />},
+      {services.length >= 1 && (
         <Form form={form}>
           <Table
             className="desktop-table"
             columns={columns}
-            dataSource={recipients}
+            dataSource={services}
             size="small"
             tableLayout="auto"
           />
@@ -452,12 +543,16 @@ const RecipientTable = ({
 
 const mapStateToProps = state => {
   return {
-    recipients: state.recipient.recipients,
+    // recipients: state.recipient.recipients,
+    services: state.service.services,
+    // serviceProviders: state.service.serviceProviders,
+    // serviceTypes: state.service.serviceTypes,
     change: state.recipient.change,
   };
 };
 
 export default connect(mapStateToProps, {
+  getAllServicesAction,
   getAllRecipientAction,
   addRecipientAction,
   editRecipientAction,
