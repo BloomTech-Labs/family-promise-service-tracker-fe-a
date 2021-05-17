@@ -46,6 +46,7 @@ const HamburgerMenu = () => {
       style={{
         backgroundColor: 'white',
         width: '100%',
+        // position:'static',
       }}
     >
       <Header
