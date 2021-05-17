@@ -32,6 +32,7 @@ const HamburgerMenu = () => {
     localStorage.removeItem('okta-token-storage');
     localStorage.removeItem('okta-cache-storage');
     localStorage.removeItem('username');
+    localStorage.removeItem('role');
     history.push('/login');
     window.location.reload(); // quick fix need to change later
   };
