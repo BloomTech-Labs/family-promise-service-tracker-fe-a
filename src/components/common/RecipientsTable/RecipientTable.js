@@ -56,7 +56,7 @@ const RecipientTable = ({
       household_size: [],
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
