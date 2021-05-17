@@ -403,16 +403,17 @@ const RecipientTable = ({
               },
             ]}
           >
+            <Input defaultValue={record.provided_at} />
             <Select size="middle" mode="multiple">
               {services.map(item => (
                 <Select.Option key={item} value={item.id}>
-                  {item.name}
+                  {item.provided_at}
                 </Select.Option>
               ))}
             </Select>
           </Form.Item>
         ) : (
-          <>{record.date}</>
+          <>{record.provided_at}</>
         );
       },
     },
@@ -437,7 +438,7 @@ const RecipientTable = ({
             <Select size="middle" mode="multiple">
               {services.map(item => (
                 <Select.Option key={item} value={item.id}>
-                  {item.name}
+                  {item.provided_at}
                 </Select.Option>
               ))}
             </Select>
@@ -468,7 +469,7 @@ const RecipientTable = ({
             <Select size="middle" mode="multiple">
               {services.map(item => (
                 <Select.Option key={item} value={item.id}>
-                  {item.name}
+                  {item.notes}
                 </Select.Option>
               ))}
             </Select>
