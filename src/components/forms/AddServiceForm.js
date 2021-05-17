@@ -113,7 +113,7 @@ function AddServiceForm({
           </Form.Item>
 
           <Form.Item label="Quantity" name="quantity">
-            <InputNumber size="large" />
+            <InputNumber min={0} max={100} />
           </Form.Item>
           <Form.Item
             label="Status"
