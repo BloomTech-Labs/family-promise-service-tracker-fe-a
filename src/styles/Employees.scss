@@ -1,36 +1,4 @@
-.add-employee-btn-ctn {
-  margin-right: 4rem
- 
+.ant-tag {
+  margin-bottom: 7px;
 }
 
-.ant-table-wrapper {
-  width: 90%;
-  height: 100%;
-  margin:0 auto;
-  padding: 1px;
-  background: #f0f0f0;
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
-
-
-  .ant-tag {
-    margin-bottom: 7px;
-  }
-
-  #components-dropdown-demo-arrow .ant-btn {
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-
-  .ant-row-rtl #components-dropdown-demo-arrow .ant-btn {
-    margin-right: 0;
-    margin-bottom: 8px;
-    margin-left: 8px;
-  }
-
-  .editable-row .ant-form-item-explain {
-    position: absolute;
-    top: 100%;
-    font-size: 12px;
-  }
-}
