@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  DatePicker,
-  TimePicker,
-  Modal,
-} from 'antd';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
+
 import {
   getServiceProviders,
   addServiceAction,
   getServiceTypes,
 } from '../../state/actions/serviceActions';
 
-//import {getAllRecipientAction} from '../../state/actions/recipientActions';
-
-import { connect } from 'react-redux';
-
 const { TextArea } = Input;
 
-//const programs = ['Prevention', 'After Care', 'Sheltering'];
-
-// const service_types = ['Bus Pass', 'Rental Assistance', 'Clothing'];
-
-const status = ['Complete', 'In Progress', 'Needs Follow-Up', 'Not Started'];
-//const providers2 = ['john wick'];
+const statuses = [
+  { id: 1, type: 'Complete' },
+  { id: 2, type: 'In Progress' },
+  { id: 3, type: 'Needs Follow-Up' },
+  { id: 4, type: 'Not Started' },
+];
 
 function AddServiceForm({
   visible,
@@ -36,13 +25,6 @@ function AddServiceForm({
   recipients,
   serviceTypes,
 }) {
-  // useEffect(() => {
-
-  //   getServiceProviders();
-  //   //getAllRecipientAction();
-  //   getServiceTypes();
-  // }, []);
-
   const [form] = Form.useForm();
 
   return (
@@ -74,7 +56,7 @@ function AddServiceForm({
         >
           <Form.Item
             label="Recipient Name"
-            name="recipient_name"
+            name="recipient_id"
             rules={[
               {
                 required: true,
@@ -82,13 +64,9 @@ function AddServiceForm({
               },
             ]}
           >
-            <Select
-              size="large"
-              mode="multiple"
-              placeholder="Select Recipients"
-            >
+            <Select size="large" placeholder="Select Recipient">
               {recipients.map(recipient => (
-                <Select.Option key={recipient} value={recipient.id}>
+                <Select.Option key={recipient.id} value={recipient.id}>
                   {recipient.first_name + ' ' + recipient.last_name}
                 </Select.Option>
               ))}
@@ -97,7 +75,7 @@ function AddServiceForm({
 
           <Form.Item
             label="Service Type"
-            name="service_type"
+            name="service_type_id"
             rules={[
               {
                 required: true,
@@ -107,11 +85,22 @@ function AddServiceForm({
           >
             <Select size="large" placeholder="Select Service Type">
               {serviceTypes.map(item => (
-                <Select.Option key={item}> {item.name}</Select.Option>
+                <Select.Option key={item.id} value={item.id}>
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Unit" name="unit">
+          <Form.Item
+            label="Unit"
+            name="unit"
+            rules={[
+              {
+                required: true,
+                message: 'Please select the unit',
+              },
+            ]}
+          >
             <Input size="large" min="0" />
           </Form.Item>
           <Form.Item label="Quantity" name="quantity">
@@ -122,7 +111,7 @@ function AddServiceForm({
           </Form.Item>
           <Form.Item
             label="Status"
-            name="status"
+            name="status_id"
             rules={[
               {
                 required: true,
@@ -131,8 +120,11 @@ function AddServiceForm({
             ]}
           >
             <Select placeholder="Select Status" size="large">
-              {status.map(item => (
-                <Select.Option key={item}> {item}</Select.Option>
+              {statuses.map(item => (
+                <Select.Option key={item.id} value={item.id}>
+                  {' '}
+                  {item.type}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
@@ -186,8 +178,8 @@ function AddServiceForm({
           </Form.Item>
           <div className="date-time-wrapper">
             <Form.Item
-              label="Date"
-              name="date"
+              label="Date & Time"
+              name="provided_at"
               rules={[
                 {
                   required: true,
@@ -195,36 +187,27 @@ function AddServiceForm({
                 },
               ]}
             >
-              <DatePicker size="large" />
-            </Form.Item>
-
-            <Form.Item
-              label="Time"
-              className="time-input"
-              name="time"
-              rules={[
-                {
-                  required: true,
-                  message: 'Select Time',
-                },
-              ]}
-            >
-              <TimePicker use12Hours format="h:mm a" size="large" />
+              <DatePicker
+                showTime
+                use12Hours
+                format="MMMM Do YYYY, h:mm a"
+                size="large"
+              />
             </Form.Item>
           </div>
           <Form.Item
-            label="Provider(s)"
-            name="provider"
+            label="Provider"
+            name="provider_id"
             rules={[
               {
                 required: true,
-                message: 'Please select the providers',
+                message: 'Please select the provider',
               },
             ]}
           >
-            <Select placeholder="Select Providers" mode="multiple" size="large">
+            <Select placeholder="Select Provider" size="large">
               {serviceProviders.map(provider => (
-                <Select.Option key={provider}>
+                <Select.Option key={provider.id} value={provider.id}>
                   {provider.firstName + ' ' + provider.lastName}
                 </Select.Option>
               ))}
@@ -239,9 +222,6 @@ function AddServiceForm({
   );
 }
 const mapStateToProps = state => {
-  console.log('MSTP inside AddServiceForm', state);
-  console.log('serviceTypes:', state.service.serviceTypes);
-  console.log('serviceProviders', state.service.serviceProviders);
   return {
     serviceProviders: state.service.serviceProviders,
     recipients: state.recipient.recipients,
