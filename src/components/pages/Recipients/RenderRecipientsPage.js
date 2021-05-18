@@ -4,16 +4,31 @@ import AddHouseholdForm from '../../forms/AddHouseholdForm';
 import {
   addRecipientAction,
   getAllRecipientAction,
+  addHouseholdAction,
+  getAllHouseholdAction,
 } from '../../../state/actions/index.js';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 
-function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
+function RenderRecipientsPage({
+  addRecipientAction,
+  getAllRecipientAction,
+  addHouseholdAction,
+  getAllHouseholdAction,
+}) {
   const [visible, setVisible] = useState(false);
+  const [typeVisible, setTypeVisible] = useState(false);
 
   const onCreate = recipientObj => {
     addRecipientAction(recipientObj);
     setVisible(false);
+  };
+
+  const onCreateType = householdObj => {
+    console.log('created new household: ', householdObj);
+    console.log(householdObj.household_id);
+    addHouseholdAction(householdObj);
+    setTypeVisible(false);
   };
 
   useEffect(() => {
@@ -39,24 +54,23 @@ function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
           }}
         />
       </div>
-      {/* this is currently rendering both forms at once  
       <div className="add-program-btn-ctn">
         <Button
           type="primary"
           onClick={() => {
-            setVisible(true);
+            setTypeVisible(true);
           }}
         >
           Create Household
         </Button>
         <AddHouseholdForm
-          visible={visible}
-          onCreate={onCreate}
+          visible={typeVisible}
+          onCreate={onCreateType}
           onCancel={() => {
-            setVisible(false);
+            setTypeVisible(false);
           }}
         />
-      </div> */}
+      </div>
     </>
   );
 }
@@ -70,4 +84,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   addRecipientAction,
   getAllRecipientAction,
+  addHouseholdAction,
+  getAllHouseholdAction,
 })(RenderRecipientsPage);
