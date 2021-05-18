@@ -47,9 +47,9 @@ const RecipientTable = ({
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
-  }, [services]);
+  }, []);
 
-  console.log(serviceTypes, 'this is service types state');
+  // console.log(serviceTypes, 'this is service types state');
   const isEditing = record => record.id === editingKey;
 
   const edit = record => {
@@ -84,12 +84,12 @@ const RecipientTable = ({
   const save = async recipientId => {
     try {
       const recipientObj = await form.validateFields();
-      console.log('recipientObj', recipientObj);
-      console.log('recipientId', recipientId);
+      // console.log('recipientObj', recipientObj);
+      // console.log('recipientId', recipientId);
       editRecipientAction(recipientId, recipientObj);
       setEditingKey('');
     } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
+      // console.log('Validate Failed:', errInfo);
     }
   };
 
@@ -101,8 +101,8 @@ const RecipientTable = ({
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        const recipientObj2 = getRecipientByIdAction(record.recipient_id);
-        console.log(recipientObj2, 'recipient object');
+        // const recipientObj2 = getRecipientByIdAction(record.recipient_id);
+        // console.log(recipientObj2, 'recipient object');
         return editable ? (
           <Form.Item
             first_name="first_name"
@@ -114,7 +114,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={recipientObj2.first_name} />
+            <Input defaultValue={record.recipient_id} />
           </Form.Item>
         ) : (
           <>{record.recipient_id}</>

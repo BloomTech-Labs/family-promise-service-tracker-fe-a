@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import {
   Form,
   Input,
@@ -8,14 +10,18 @@ import {
   TimePicker,
   Modal,
 } from 'antd';
+import { getAllProgramsAction } from '../../state/actions/programActions';
 // import { Modal, Form, Input, Select } from 'antd';
 const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
-const programs = ['Prevention', 'After Care', 'Sheltering'];
+// const programs = ['Prevention', 'After Care', 'Sheltering'];
 const serviceStatus = ['In Progress', 'Completed'];
 
-function AddServiceTypeForm({ onCreate, onCancel, visible }) {
+function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
-
+  // useEffect(() => {
+  //   getAllProgramsAction();
+  // }, []);
+  console.log(programs, 'here');
   return (
     <>
       <Modal
@@ -67,7 +73,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             >
               <Select size="large" placeholder="Select Program">
                 {programs.map(item => (
-                  <Select.Option key={item}>{item}</Select.Option>
+                  <Select.Option key={item}>{item.name}</Select.Option>
                 ))}
               </Select>
             </Form.Item>
@@ -80,5 +86,14 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
     </>
   );
 }
-
-export default AddServiceTypeForm;
+const mapStateToProps = state => {
+  return {
+    serviceProviders: state.service.serviceProviders,
+    recipients: state.recipient.recipients,
+    serviceTypes: state.service.serviceTypes,
+    programs: state.program.programs,
+  };
+};
+export default connect(mapStateToProps, {
+  getAllProgramsAction,
+})(AddServiceTypeForm);

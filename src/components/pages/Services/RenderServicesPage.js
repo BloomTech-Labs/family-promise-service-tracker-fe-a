@@ -6,6 +6,7 @@ import {
   addServiceAction,
   getServiceProviders,
   getServiceTypes,
+  getAllProgramsAction,
 } from '../../../state/actions/index';
 
 import { getAllRecipientAction } from '../../../state/actions/recipientActions';
@@ -23,6 +24,8 @@ function RenderServicesPage({
   getServiceProviders,
   getAllRecipientAction,
   getServiceTypes,
+  getAllProgramsAction,
+  addServiceTypeAction,
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
@@ -41,18 +44,19 @@ function RenderServicesPage({
     getServiceProviders();
     getAllRecipientAction();
     getServiceTypes();
+    getAllProgramsAction();
   }, []);
 
   const onCreate = values => {
-    console.log('received values of form:', values);
+    // console.log('received values of form:', values);
     setVisible(false);
     addServiceAction(values);
   };
 
   const onCreateType = values => {
-    console.log('received values from type', values);
+    // console.log('received values from type', values);
     setTypeVisible(false);
-    // addServiceTypeAction(values);
+    addServiceTypeAction(values);
   };
 
   return (
@@ -106,6 +110,7 @@ const mapStateToProps = state => {
     serviceProviders: state.service.serviceProviders,
     serviceTypes: state.service.serviceTypes,
     recipients: state.recipient.recipients,
+    programs: state.program.programs,
     //default: state,
   };
 };
@@ -115,4 +120,5 @@ export default connect(mapStateToProps, {
   getServiceProviders,
   getAllRecipientAction,
   getServiceTypes,
+  getAllProgramsAction,
 })(RenderServicesPage);
