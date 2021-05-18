@@ -19,18 +19,25 @@ import {
 // Action Imports
 import {
   getAllServicesAction,
+  getRecipientByIdAction,
   getAllRecipientAction,
+  getAllServiceTypesAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
 } from '../../../state/actions';
+import axios from 'axios';
 
 const RecipientTable = ({
   getAllServicesAction,
+  getRecipientByIdAction,
   getAllRecipientAction,
+  getAllServiceTypesAction,
   editRecipientAction,
   deleteRecipientAction,
   services,
+  serviceTypes,
+  recipient,
   change,
 }) => {
   const [form] = Form.useForm();
@@ -39,8 +46,10 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllServicesAction();
-  }, [change]);
+    getAllServiceTypesAction();
+  }, [services]);
 
+  console.log(serviceTypes, 'this is service types state');
   const isEditing = record => record.id === editingKey;
 
   const edit = record => {
@@ -92,6 +101,8 @@ const RecipientTable = ({
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
+        const recipientObj2 = getRecipientByIdAction(record.recipient_id);
+        console.log(recipientObj2, 'recipient object');
         return editable ? (
           <Form.Item
             first_name="first_name"
@@ -103,7 +114,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.recipient_id} />
+            <Input defaultValue={recipientObj2.first_name} />
           </Form.Item>
         ) : (
           <>{record.recipient_id}</>
@@ -128,10 +139,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.last_name} />
+            <Input defaultValue={record.recipient_id} />
           </Form.Item>
         ) : (
-          <>{record.last_name}</>
+          <>{record.recipient_id}</>
         );
       },
     },
@@ -144,7 +155,7 @@ const RecipientTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="serviceType"
+            name="service_type_id"
             style={{ margin: 0 }}
             rules={[
               {
@@ -153,10 +164,17 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.serviceType} />
+            <Input defaultValue={record.service_type_id} />
+            {/* <Select size="middle" mode="multiple">
+              {serviceTypes.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select> */}
           </Form.Item>
         ) : (
-          <>{record.serviceType}</>
+          <>{record.service_type_id}</>
         );
       },
     },
@@ -291,7 +309,7 @@ const RecipientTable = ({
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        return editable ? (
+        return record.address; /*editable ? (
           <Form.Item
             name="address"
             style={{ margin: 0 }}
@@ -306,7 +324,7 @@ const RecipientTable = ({
           </Form.Item>
         ) : (
           <>{record.address}</>
-        );
+        );*/
       },
     },
     {
@@ -416,37 +434,6 @@ const RecipientTable = ({
         );
       },
     },
-    // {
-    //   title: 'Time',
-    //   dataIndex: 'time',
-    //   key: 'time',
-    //   editable: true,
-    //   render: (_, record) => {
-    //     const editable = isEditing(record);
-    //     return editable ? (
-    //       <Form.Item
-    //         name="time"
-    //         style={{ margin: 0 }}
-    //         rules={[
-    //           {
-    //             required: true,
-    //             message: 'Please select a time',
-    //           },
-    //         ]}
-    //       >
-    //         <Select size="middle" mode="multiple">
-    //           {services.map(item => (
-    //             <Select.Option key={item} value={item.id}>
-    //               {item.provided_at}
-    //             </Select.Option>
-    //           ))}
-    //         </Select>
-    //       </Form.Item>
-    //     ) : (
-    //       <>{record.time}</>
-    //     );
-    //   },
-    // },
     {
       title: 'Notes',
       dataIndex: 'notes',
@@ -524,7 +511,7 @@ const RecipientTable = ({
   ];
 
   return (
-    <div className="recipientTable">
+    <div className="servicesTable">
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
@@ -543,17 +530,18 @@ const RecipientTable = ({
 
 const mapStateToProps = state => {
   return {
-    // recipients: state.recipient.recipients,
+    recipient: state.recipient.recipients,
     services: state.service.services,
-    // serviceProviders: state.service.serviceProviders,
-    // serviceTypes: state.service.serviceTypes,
+    serviceTypes: state.service.serviceTypes,
     change: state.recipient.change,
   };
 };
 
 export default connect(mapStateToProps, {
   getAllServicesAction,
+  getRecipientByIdAction,
   getAllRecipientAction,
+  getAllServiceTypesAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
