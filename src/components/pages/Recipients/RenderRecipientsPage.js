@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddRecipientForm from '../../forms/AddRecipientForm';
+import AddHouseholdForm from '../../forms/AddHouseholdForm';
 import {
   addRecipientAction,
   getAllRecipientAction,
@@ -20,23 +21,42 @@ function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
   }, [addRecipientAction]);
 
   return (
-    <div className="add-program-btn-ctn">
-      <Button
-        type="primary"
-        onClick={() => {
-          setVisible(true);
-        }}
-      >
-        Add Recipient
-      </Button>
-      <AddRecipientForm
-        visible={visible}
-        onCreate={onCreate}
-        onCancel={() => {
-          setVisible(false);
-        }}
-      />
-    </div>
+    <>
+      <div className="add-program-btn-ctn">
+        <Button
+          type="primary"
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          Add Recipient
+        </Button>
+        <AddRecipientForm
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+      </div>
+      <div className="add-program-btn-ctn">
+        <Button
+          type="primary"
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          Add Recipient
+        </Button>
+        <AddHouseholdForm
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+      </div>
+    </>
   );
 }
 
