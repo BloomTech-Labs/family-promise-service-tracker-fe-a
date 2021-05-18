@@ -10,7 +10,7 @@ import {
 } from '../../../state/actions/index';
 
 import { getAllRecipientAction } from '../../../state/actions/recipientActions';
-
+import { addServiceTypeAction } from '../../../state/actions/ServiceTypeActions';
 import { connect } from 'react-redux';
 
 //component import
@@ -45,6 +45,7 @@ function RenderServicesPage({
     getAllRecipientAction();
     getServiceTypes();
     getAllProgramsAction();
+    addServiceTypeAction();
   }, []);
 
   const onCreate = values => {
@@ -117,6 +118,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   addServiceAction,
+  addServiceTypeAction,
   getServiceProviders,
   getAllRecipientAction,
   getServiceTypes,

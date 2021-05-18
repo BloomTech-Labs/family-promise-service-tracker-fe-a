@@ -19,6 +19,7 @@ export {
 export {
   getAllServiceTypesAction,
   getServiceTypeByIdAction,
+  addServiceTypeAction,
   editServiceTypeAction,
   deleteServiceTypeAction,
 } from './ServiceTypeActions';

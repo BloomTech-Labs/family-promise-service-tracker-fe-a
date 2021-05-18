@@ -51,7 +51,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
           }}
         >
           <Form.Item
-            name="name2"
+            name="name"
             label="Service Name"
             rules={[
               {
@@ -60,26 +60,28 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
               },
             ]}
           >
-            <Input placeholder="Add service name" />
-            <Form.Item
-              name="type"
-              label="Program"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input the program type',
-                },
-              ]}
-            >
-              <Select size="large" placeholder="Select Program">
-                {programs.map(item => (
-                  <Select.Option key={item}>{item.name}</Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Service Description" name="description">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
+            <Input size="large" placeholder="Enter Name" />
+          </Form.Item>
+          <Form.Item
+            name="program_id"
+            label="Program"
+            rules={[
+              {
+                required: true,
+                message: 'Please input the program type',
+              },
+            ]}
+          >
+            <Select size="large" placeholder="Select Program">
+              {programs.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item label="Service Description" name="description">
+            <Input.TextArea showCount maxLength={240} />
           </Form.Item>
         </Form>
       </Modal>
