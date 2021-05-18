@@ -46,7 +46,7 @@ function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
             setVisible(true);
           }}
         >
-          Add Recipient
+          Create Household
         </Button>
         <AddHouseholdForm
           visible={visible}
