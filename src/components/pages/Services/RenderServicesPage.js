@@ -62,7 +62,7 @@ function RenderServicesPage({
 
   return (
     <>
-      <div className="add-type-btn-ctn">
+      <div>
         <Button
           type="primary"
           onClick={() => {
@@ -80,7 +80,7 @@ function RenderServicesPage({
         />
       </div>
 
-      <div className="add-services-btn-ctn">
+      <div>
         <Button
           type="primary"
           onClick={() => {

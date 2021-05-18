@@ -34,13 +34,15 @@ function RenderMyProfile({
     <div className="profile-container desktop-profile">
       <Form layout="vertical" onSubmit={onSubmit}>
         <Form.Item>
-          <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
-          {isInEditMode && (
-            <input type="file" name="file" onChange={uploadImage}></input>
-          )}
+          <div style={{ justifyContent: 'center' }}>
+            <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
+            {isInEditMode && (
+              <input type="file" name="file" onChange={uploadImage}></input>
+            )}
+          </div>
         </Form.Item>
 
-        <Form.Item label="First Name" className="label-header">
+        <Form.Item label="First Name">
           <Input
             disabled={disabled}
             placeholder={curUser.firstName}
@@ -87,7 +89,9 @@ function RenderMyProfile({
           <div>
             {curUser.programs.map(program => (
               <>
-                <h4>{program.name}</h4>
+                <h4>
+                  {program ? program.name : 'No Programs Currently Assigned'}
+                </h4>
               </>
             ))}
           </div>
@@ -115,7 +119,7 @@ function RenderMyProfile({
               onClick={handleEdit}
               className="profile-btn"
             >
-              Edit Name
+              Edit Profile
             </Button>
           )}
           {isInEditMode && (
@@ -125,7 +129,7 @@ function RenderMyProfile({
               onClick={onSubmit}
               className="profile-btn"
             >
-              Save Name
+              Save Profile
             </Button>
           )}
         </div>

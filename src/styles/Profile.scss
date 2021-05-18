@@ -1,26 +1,36 @@
 .profile-container {
   border: rgba(202, 202, 202, 0.65) 1px solid;
   border-radius: 10px;
-  width: 20%;
-  height: 700.7px;
+  width: 50%;
+  height: 30%;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
-  padding-top: 1rem;
-  margin-left: 5rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  margin:0 auto;
   .avatar {
-    width: 150px;
-    height: 150px;
+    width: 40%;
+    height: 20%;
+    margin-left:3rem;
+    margin-top:10%;
     border-radius: 50%;
   }
   .avatar-uploader {
     display: flex;
     justify-content: center;
   }
-  @media screen and (max-width: 1025px) {
-    width: 75%;
-  }
+  // @media screen and (max-width: 1025px) {
+  //   width: 75%;
+  // }
+}
+
+.ant-form ant-form-vertical{
+  margin:0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .ant-form-item-label label {
@@ -31,14 +41,16 @@
 .save-edit-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 10%;
 }
 .cancel-contain {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-bottom: 10%;
 }
 
 .cancel-btn:hover {
   border-bottom: 1px solid black;
   margin-top: 1rem;
+  margin-bottom:10%;
 }

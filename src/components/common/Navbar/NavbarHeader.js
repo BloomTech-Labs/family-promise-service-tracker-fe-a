@@ -11,10 +11,11 @@ const NavbarHeader = props => {
           className={props.classType}
           style={{
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             flexWrap: 'wrap',
             maxWidth: '100%',
-            width: '100%',
+            margin: '0 auto',
+            position: 'relative',
           }}
         >
           <HamburgerMenu />

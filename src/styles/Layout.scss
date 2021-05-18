@@ -1,63 +1,21 @@
-
-.tablet {
- 
+.desktop-profile{
 }
 
-.navBar{
- visibility:visible;
-}
-
-.desktop {
-  @media (max-width: 992px) {
-    display: none;
-  }
-  @media (min-width: 992px) {
-    position: fixed;
-    width: 250px;
-    height: 100%;
-  }
-}
-
-.upper-desktop {
-  @media (max-width: 992px) {
-    display: none;
-  }
-  @media (min-width: 992px) {
-    width: 250px;
-  }
-}
-
-.recipientTable{
-  width:100%;
-  @media (width:768px){
-    justify-content: center;
-    width:fit-content;
-  }
-}
-
-
-.desktop-table {
-  justify-content: center;
+.desktop-table{
   margin:0 auto;
-  width:80%;
-  display:flex;
-  background:none;
-  overflow:visible;
-  border:none;
-  flex-direction:row;
-  height:100%;
+  width:100%;
+  max-width:100%;
+  margin-top: 2rem;
+  position:static;
+  padding:1rem;
 }
 
-.desktop-profile {
-  @media (min-width: 992px) {
-    margin-left: 20rem;
-    width: 500px;
-    height: 600px;
-  }
-}
 
-.desktop-title {
-  @media (min-width: 992px) {
-    justify-content: space-around;
-  }
+.ant-layout-header{
+  position:sticky;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
 }

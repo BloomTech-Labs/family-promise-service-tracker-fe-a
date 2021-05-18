@@ -22,13 +22,16 @@ import {
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
+  getAllHouseholdAction,
 } from '../../../state/actions';
 
 const RecipientTable = ({
+  getAllHouseholdAction,
   getAllRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
   recipients,
+  households,
   change,
 }) => {
   const [form] = Form.useForm();
@@ -36,6 +39,7 @@ const RecipientTable = ({
 
   useEffect(() => {
     getAllRecipientAction();
+    getAllHouseholdAction();
   }, [change]);
 
   const isEditing = record => record.id === editingKey;
@@ -46,17 +50,13 @@ const RecipientTable = ({
       last_name: '',
       age: '',
       gender: '',
-      address: '',
-      city: '',
-      state: '',
-      zip_code: '',
       race: '',
       ethnicity: '',
       veteran_status: '',
-      household_size: [],
+      household_id: [],
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
@@ -79,6 +79,24 @@ const RecipientTable = ({
       console.log('Validate Failed:', errInfo);
     }
   };
+
+  // const userObjCreator = () => {
+  //   if (recipients) {
+  //     recipients.map(recipient => {
+  //       const households = [];
+  //       recipients.households.map(household => {
+  //         if (household !== null) {
+  //           households.push(household.name);
+  //         }
+  //       });
+  //       return recipients.push({
+  //         key: recipient.id,
+  //         households: households,
+  //       });
+  //     });
+  //   }
+  // };
+  // userObjCreator();
 
   const columns = [
     {
@@ -188,106 +206,6 @@ const RecipientTable = ({
       },
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="address"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input an address',
-              },
-            ]}
-          >
-            <Input defaultValue={record.address} />
-          </Form.Item>
-        ) : (
-          <>{record.address}</>
-        );
-      },
-    },
-    {
-      title: 'City',
-      dataIndex: 'city',
-      key: 'city',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="city"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a city',
-              },
-            ]}
-          >
-            <Input defaultValue={record.city} />
-          </Form.Item>
-        ) : (
-          <>{record.city}</>
-        );
-      },
-    },
-    {
-      title: 'State',
-      dataIndex: 'state',
-      key: 'state',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="state"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a state',
-              },
-            ]}
-          >
-            <Input defaultValue={record.state} />
-          </Form.Item>
-        ) : (
-          <>{record.state}</>
-        );
-      },
-    },
-    {
-      title: 'Zip Code',
-      dataIndex: 'zip_code',
-      key: 'zip_code',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="state"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a zip code',
-              },
-            ]}
-          >
-            <Input defaultValue={record.zip_code} />
-          </Form.Item>
-        ) : (
-          <>{record.zip_code}</>
-        );
-      },
-    },
-    {
       title: 'Race',
       dataIndex: 'race',
       key: 'race',
@@ -363,15 +281,15 @@ const RecipientTable = ({
       },
     },
     {
-      title: 'Household Size',
-      dataIndex: 'household_size',
-      key: 'household_size',
+      title: 'Household ID',
+      dataIndex: 'household_id',
+      key: 'household_id',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="household_size"
+            name="household_id"
             style={{ margin: 0 }}
             rules={[
               {
@@ -380,10 +298,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.household_size} />
+            <Input defaultValue={record.household_id} />
           </Form.Item>
         ) : (
-          <>{record.household_size}</>
+          <>{record.household_id}</>
         );
       },
     },
@@ -433,7 +351,7 @@ const RecipientTable = ({
   ];
 
   return (
-    <div className="recipientTable">
+    <div style={{}}>
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form}>
@@ -442,7 +360,7 @@ const RecipientTable = ({
             columns={columns}
             dataSource={recipients}
             size="small"
-            tableLayout="auto"
+            tableLayout="fixed"
           />
         </Form>
       )}
@@ -459,6 +377,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getAllRecipientAction,
+  getAllHouseholdAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,

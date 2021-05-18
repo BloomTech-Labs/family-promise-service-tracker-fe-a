@@ -47,3 +47,11 @@ export {
   editRecipientAction,
   deleteRecipientAction,
 } from './recipientActions';
+
+export {
+  getAllHouseholdAction,
+  getHouseholdByIdAction,
+  addHouseholdAction,
+  editHouseholdAction,
+  deleteHouseholdAction,
+} from './householdActions';

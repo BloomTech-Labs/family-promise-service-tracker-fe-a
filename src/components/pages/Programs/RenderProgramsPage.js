@@ -21,7 +21,7 @@ function RenderProgramsPage({ addProgramAction, getAllProgramsAction }) {
   }, [addProgramAction]);
 
   return (
-    <div className="add-program-btn-ctn">
+    <div>
       <Button
         type="primary"
         onClick={() => {
