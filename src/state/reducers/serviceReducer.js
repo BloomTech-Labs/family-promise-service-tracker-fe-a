@@ -50,7 +50,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_ALL_SERVICE_SUCCESS:
       return {
-        ...state.services,
+        ...state,
         services: action.payload,
         status: 'Success',
       };
@@ -73,7 +73,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case GET_SERVICE_SUCCESS:
       return {
-        ...state.services,
+        ...state,
         service: action.payload,
         status: 'Success',
       };
