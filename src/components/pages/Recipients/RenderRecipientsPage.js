@@ -39,6 +39,7 @@ function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
           }}
         />
       </div>
+      {/* this is currently rendering both forms at once  
       <div className="add-program-btn-ctn">
         <Button
           type="primary"
@@ -55,7 +56,7 @@ function RenderRecipientsPage({ addRecipientAction, getAllRecipientAction }) {
             setVisible(false);
           }}
         />
-      </div>
+      </div> */}
     </>
   );
 }
