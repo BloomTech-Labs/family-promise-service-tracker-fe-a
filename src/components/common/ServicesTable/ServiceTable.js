@@ -57,8 +57,7 @@ const RecipientTable = ({
       state: '',
       zip_code: '',
       date: '',
-      time: '',
-      description: '',
+      notes: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -386,7 +385,7 @@ const RecipientTable = ({
       },
     },
     {
-      title: 'Date',
+      title: 'Date & time',
       dataIndex: 'date',
       key: 'date',
       editable: true,
@@ -399,7 +398,7 @@ const RecipientTable = ({
             rules={[
               {
                 required: true,
-                message: 'Please select a date',
+                message: 'Please select a date and time',
               },
             ]}
           >
@@ -417,52 +416,52 @@ const RecipientTable = ({
         );
       },
     },
+    // {
+    //   title: 'Time',
+    //   dataIndex: 'time',
+    //   key: 'time',
+    //   editable: true,
+    //   render: (_, record) => {
+    //     const editable = isEditing(record);
+    //     return editable ? (
+    //       <Form.Item
+    //         name="time"
+    //         style={{ margin: 0 }}
+    //         rules={[
+    //           {
+    //             required: true,
+    //             message: 'Please select a time',
+    //           },
+    //         ]}
+    //       >
+    //         <Select size="middle" mode="multiple">
+    //           {services.map(item => (
+    //             <Select.Option key={item} value={item.id}>
+    //               {item.provided_at}
+    //             </Select.Option>
+    //           ))}
+    //         </Select>
+    //       </Form.Item>
+    //     ) : (
+    //       <>{record.time}</>
+    //     );
+    //   },
+    // },
     {
-      title: 'Time',
-      dataIndex: 'time',
-      key: 'time',
+      title: 'Notes',
+      dataIndex: 'notes',
+      key: 'notes',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="time"
+            name="notes"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please select a time',
-              },
-            ]}
-          >
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.provided_at}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        ) : (
-          <>{record.time}</>
-        );
-      },
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="description"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a description',
+                message: 'Please select a notes',
               },
             ]}
           >
@@ -475,7 +474,7 @@ const RecipientTable = ({
             </Select>
           </Form.Item>
         ) : (
-          <>{record.description}</>
+          <>{record.notes}</>
         );
       },
     },

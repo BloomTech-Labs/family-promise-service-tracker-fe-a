@@ -213,7 +213,7 @@ function AddServiceForm({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Insert Description" name="description">
+          <Form.Item label="Insert notes" name="notes">
             <TextArea showCount maxLength={240} />
           </Form.Item>
         </Form>
