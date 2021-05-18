@@ -8,6 +8,7 @@ import {
   programReducer,
   employeeReducer,
   recipientReducer,
+  householdReducer,
 } from './reducers/index';
 // test
 export const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   program: programReducer,
   employee: employeeReducer,
   recipient: recipientReducer,
+  household: householdReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
