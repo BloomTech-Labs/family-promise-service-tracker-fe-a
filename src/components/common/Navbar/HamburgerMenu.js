@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Drawer, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
-  MenuOutlined,
   UserOutlined,
   TeamOutlined,
   ProjectOutlined,
@@ -11,7 +9,6 @@ import {
   UsergroupAddOutlined,
   LeftCircleOutlined,
 } from '@ant-design/icons';
-import Sider from 'antd/lib/layout/Sider';
 
 const HamburgerMenu = () => {
   const [visible, setVisible] = useState(false);
@@ -19,14 +16,6 @@ const HamburgerMenu = () => {
   const history = useHistory();
 
   const userRole = localStorage.getItem('role');
-
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
 
   const handleLogout = () => {
     localStorage.removeItem('okta-token-storage');
@@ -47,13 +36,10 @@ const HamburgerMenu = () => {
       style={{
         backgroundColor: 'white',
         width: '100%',
-        // position:'static',
       }}
     >
       <Header
         placement="center"
-        visible={visible}
-        onClose={onClose}
         style={{
           backgroundColor: 'white',
           margin: '0 auto',
@@ -111,7 +97,6 @@ const HamburgerMenu = () => {
             <Menu.Item
               key="6"
               icon={<LeftCircleOutlined />}
-              className="logout-ctn"
               onClick={handleLogout}
             >
               Logout
