@@ -19,6 +19,7 @@ export {
 export {
   getAllServiceTypesAction,
   getServiceTypeByIdAction,
+  addServiceTypeAction,
   editServiceTypeAction,
   deleteServiceTypeAction,
 } from './ServiceTypeActions';
@@ -46,3 +47,11 @@ export {
   editRecipientAction,
   deleteRecipientAction,
 } from './recipientActions';
+
+export {
+  getAllHouseholdAction,
+  getHouseholdByIdAction,
+  addHouseholdAction,
+  editHouseholdAction,
+  deleteHouseholdAction,
+} from './householdActions';

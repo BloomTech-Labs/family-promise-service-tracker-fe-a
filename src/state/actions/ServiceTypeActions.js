@@ -5,6 +5,11 @@ export const GET_ALL_SERVICE_TYPE_SUCCESS = 'GET_ALL_SERVICE_TYPE_SUCCESS';
 export const GET_ALL_SERVICE_TYPE_FAIL = 'GET_ALL_SERVICE_TYPE_FAIL';
 export const GET_ALL_SERVICE_TYPE_RESOLVE = 'GET_ALL_SERVICE_TYPE_RESOLVE';
 
+// export const ADD_SERVICE_TYPE_START = 'ADD_SERVICE_TYPE_START'
+// export const ADD_SERVICE_TYPE_SUCCESS = 'ADD_SERVICE_TYPE_SUCCESS'
+// export const ADD_SERVICE_TYPE_FAIL= 'ADD_SERVICE_TYPE_FAIL'
+// export const ADD_SERVICE_TYPE_RESOLVE= 'ADD_SERVICE_TYPE_RESOLVE'
+
 export const GET_SERVICE_TYPE_START = 'GET_SERVICE_TYPE_START';
 export const GET_SERVICE_TYPE_SUCCESS = 'GET_SERVICE_TYPE_SUCCESS';
 export const GET_SERVICE_TYPE_FAIL = 'GET_SERVICE_TYPE_FAIL';
@@ -70,6 +75,21 @@ export const editServiceTypeAction = (typeId, typeObj) => dispatch => {
     })
     .finally(() => {
       dispatch({ type: EDIT_SERVICE_TYPE_RESOLVE });
+    });
+};
+export const addServiceTypeAction = typeObj => dispatch => {
+  dispatch({ type: ADD_SERVICE_TYPE_START });
+
+  axiosWithAuth()
+    .post(`/api/service_types/`, typeObj)
+    .then(res => {
+      dispatch({ type: ADD_SERVICE_TYPE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_SERVICE_TYPE_FAIL, payload: err.message });
+    })
+    .finally(() => {
+      dispatch({ type: ADD_SERVICE_TYPE_RESOLVE });
     });
 };
 

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import {
   Form,
   Input,
@@ -8,14 +10,18 @@ import {
   TimePicker,
   Modal,
 } from 'antd';
+import { getAllProgramsAction } from '../../state/actions/programActions';
 // import { Modal, Form, Input, Select } from 'antd';
 const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
-const programs = ['Prevention', 'After Care', 'Sheltering'];
+// const programs = ['Prevention', 'After Care', 'Sheltering'];
 const serviceStatus = ['In Progress', 'Completed'];
 
-function AddServiceTypeForm({ onCreate, onCancel, visible }) {
+function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
-
+  // useEffect(() => {
+  //   getAllProgramsAction();
+  // }, []);
+  console.log(programs, 'here');
   return (
     <>
       <Modal
@@ -49,179 +55,47 @@ function AddServiceTypeForm({ onCreate, onCancel, visible }) {
             label="Service Name"
             rules={[
               {
-                required: true,
+                // required: true,
                 message: 'Please input the service name',
               },
             ]}
           >
-            <Input />
-            <Form.Item
-              name="type"
-              label="Program"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input the program type',
-                },
-              ]}
-            >
-              <Select size="large" placeholder="Select Program">
-                {programs.map(item => (
-                  <Select.Option key={item}>{item}</Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="Service Description" name="description">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            {/* <Form.Item label="Unit" name="unit">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item> */}
-            {/* <Form.Item label="Quantity" name="quantity">
-              <InputNumber size="large" />
-              <Input placeholder="Enter quantity of unit" size="large" />
-            </Form.Item> */}
-            {/* <Form.Item label="Value" name="value">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item> */}
-
-            {/* <Form.Item
-              label="Provider(s)"
-              name="provider"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please select the providers',
-                },
-              ]}
-            >
-              <Select
-                placeholder="Select Providers"
-                mode="multiple"
-                size="large"
-              >
-                {providers.map(item => (
-                  <Select.Option key={item}> {item}</Select.Option>
-                ))}
-              </Select>
-            </Form.Item> */}
-
-            {/* <Form.Item label="Recipient" name="recipient">
-              <Input.TextArea showCount maxLength={240} />
-            </Form.Item>
-            <div className="date-time-wrapper">
-              <Form.Item
-                label="Date"
-                name="date"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Enter Date',
-                  },
-                ]}
-              >
-                <DatePicker size="large" />
-              </Form.Item> */}
-            {/* <Form.Item
-                label="Time"
-                className="time-input"
-                name="time"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Select Time',
-                  },
-                ]}
-              >
-                <TimePicker use12Hours format="h:mm a" size="large" />
-              </Form.Item>
-            </div> */}
+            <Input size="large" placeholder="Enter Name" />
           </Form.Item>
-
-          {/* <Form.Item
-            label="Address"
-            name="Address"
+          <Form.Item
+            name="program_id"
+            label="Program"
             rules={[
               {
                 required: true,
-                message: 'Please enter the address',
+                message: 'Please input the program type',
               },
             ]}
           >
-            <Input placeholder="Enter City" size="large" />
-          </Form.Item> */}
-          {/* <Form.Item
-            label="City"
-            name="city"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter State" size="large" />
-          </Form.Item> */}
-          {/* <Form.Item
-            label="State"
-            name="state"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter Zipcode" size="large" />
-          </Form.Item> */}
-          {/* <Form.Item
-            label="Zip Code"
-            name="zipcode"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the ZipCode',
-              },
-            ]}
-          >
-            <Input placeholder="Enter address" size="large" />
-          </Form.Item> */}
-          {/* <Form.Item
-            name="type"
-            label="Employees"
-            rules={[
-              {
-                required: true,
-                message: 'Please select employees associated',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select Employees">
+            <Select size="large" placeholder="Select Program">
               {programs.map(item => (
-                <Select.Option key={item}>{item}</Select.Option>
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
-          </Form.Item> */}
-          {/* <Form.Item
-            name="type"
-            label="Status"
-            rules={[
-              {
-                required: true,
-                message: 'Please select service status',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select status">
-              {programs.map(item => (
-                <Select.Option key={item}>{item}</Select.Option>
-              ))}
-            </Select>
-          </Form.Item> */}
+          </Form.Item>
+          <Form.Item label="Service Description" name="description">
+            <Input.TextArea showCount maxLength={240} />
+          </Form.Item>
         </Form>
       </Modal>
     </>
   );
 }
-
-export default AddServiceTypeForm;
+const mapStateToProps = state => {
+  return {
+    serviceProviders: state.service.serviceProviders,
+    recipients: state.recipient.recipients,
+    serviceTypes: state.service.serviceTypes,
+    programs: state.program.programs,
+  };
+};
+export default connect(mapStateToProps, {
+  getAllProgramsAction,
+})(AddServiceTypeForm);
