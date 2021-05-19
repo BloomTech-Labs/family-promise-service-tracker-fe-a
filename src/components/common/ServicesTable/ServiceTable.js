@@ -114,10 +114,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.recipient_id} />
+            <Input defaultValue={record.recipient.first_name} />
           </Form.Item>
         ) : (
-          <>{record.recipient_id}</>
+          <>{record.recipient.first_name}</>
         );
       },
     },
@@ -139,10 +139,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.recipient_id} />
+            <Input defaultValue={record.recipient.last_name} />
           </Form.Item>
         ) : (
-          <>{record.recipient_id}</>
+          <>{record.recipient.last_name}</>
         );
       },
     },
@@ -164,7 +164,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.service_type_id} />
+            <Input defaultValue={record.service_type.name} />
             {/* <Select size="middle" mode="multiple">
               {serviceTypes.map(item => (
                 <Select.Option key={item} value={item.id}>
@@ -174,7 +174,7 @@ const RecipientTable = ({
             </Select> */}
           </Form.Item>
         ) : (
-          <>{record.service_type_id}</>
+          <>{record.service_type.name}</>
         );
       },
     },
@@ -280,25 +280,26 @@ const RecipientTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="status"
+            name="service_type_id"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please select a status',
+                message: `Please input an service type!`,
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
+            <Input defaultValue={record.status.name} />
+            {/* <Select size="middle" mode="multiple">
+              {serviceTypes.map(item => (
                 <Select.Option key={item} value={item.id}>
                   {item.name}
                 </Select.Option>
               ))}
-            </Select>
+            </Select> */}
           </Form.Item>
         ) : (
-          <>{record.status}</>
+          <>{record.status.name}</>
         );
       },
     },
