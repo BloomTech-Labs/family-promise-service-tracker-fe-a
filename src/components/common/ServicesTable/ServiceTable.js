@@ -271,38 +271,38 @@ const RecipientTable = ({
         );
       },
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="service_type_id"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input an service type!`,
-              },
-            ]}
-          >
-            <Input defaultValue={record.status.name} />
-            {/* <Select size="middle" mode="multiple">
-              {serviceTypes.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select> */}
-          </Form.Item>
-        ) : (
-          <>{record.status.name}</>
-        );
-      },
-    },
+    // {
+    //   title: 'Status',
+    //   dataIndex: 'status',
+    //   key: 'status',
+    //   editable: true,
+    //   render: (_, record) => {
+    //     const editable = isEditing(record);
+    //     return editable ? (
+    //       <Form.Item
+    //         name="service_type_id"
+    //         style={{ margin: 0 }}
+    //         rules={[
+    //           {
+    //             required: true,
+    //             message: `Please input an service type!`,
+    //           },
+    //         ]}
+    //       >
+    //         <Input defaultValue={record.status.name} />
+    //         {/* <Select size="middle" mode="multiple">
+    //           {serviceTypes.map(item => (
+    //             <Select.Option key={item} value={item.id}>
+    //               {item.name}
+    //             </Select.Option>
+    //           ))}
+    //         </Select> */}
+    //       </Form.Item>
+    //     ) : (
+    //       <>{record.status.name}</>
+    //     );
+    //   },
+    // },
     {
       title: 'Address',
       dataIndex: 'address',
