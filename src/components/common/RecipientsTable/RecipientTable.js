@@ -398,6 +398,9 @@ const RecipientTable = ({
       title: 'Household ID',
       dataIndex: 'household_id',
       key: 'household_id',
+      sorter: (a, b) => a.household_id - b.household_id,
+      sortOrder: sortedInfo.columnKey === 'household_id' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
