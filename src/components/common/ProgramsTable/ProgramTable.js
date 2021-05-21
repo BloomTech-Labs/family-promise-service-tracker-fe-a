@@ -194,7 +194,6 @@ const ProgramTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={programs}
-            bordered
           />
         </Form>
       )}

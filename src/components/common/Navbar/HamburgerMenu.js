@@ -106,7 +106,12 @@ const HamburgerMenu = () => {
           <></>
         )}
         {userRole === 'program_manager' ? (
-          <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu
+            theme="light"
+            mode="horizontal"
+            defaultSelectedKeys={['1']}
+            className="navBar"
+          >
             <Menu.Item
               key="1"
               icon={<UserOutlined />}
@@ -152,7 +157,12 @@ const HamburgerMenu = () => {
           <></>
         )}
         {userRole === 'service_provider' ? (
-          <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu
+            theme="light"
+            mode="horizontal"
+            defaultSelectedKeys={['1']}
+            className="navBar"
+          >
             <Menu.Item
               key="1"
               icon={<UserOutlined />}

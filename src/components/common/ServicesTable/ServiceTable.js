@@ -521,7 +521,7 @@ const RecipientTable = ({
             columns={columns}
             dataSource={services}
             size="small"
-            tableLayout="auto"
+            tableLayout="fixed"
           />
         </Form>
       )}
