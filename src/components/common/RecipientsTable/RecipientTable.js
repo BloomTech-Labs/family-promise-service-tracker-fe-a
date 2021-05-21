@@ -293,6 +293,20 @@ const RecipientTable = ({
       title: 'Race',
       dataIndex: 'race',
       key: 'race',
+      filters: [
+        { text: 'Indian Native Alaskan', value: 'indian_native_alaskan' },
+        { text: 'Asian', value: 'asian' },
+        { text: 'Black', value: 'black' },
+        {
+          text: 'Hawaiian Pacific Islander',
+          value: 'hawaiian_pacific_islander',
+        },
+        { text: 'White', value: 'white' },
+      ],
+      filteredValue: filteredInfo.race || null,
+      onFilter: (value, record) => record.race.includes(value),
+      sortOrder: sortedInfo.columnKey === 'race' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
