@@ -55,7 +55,7 @@ const ServicesTable = ({
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
-  }, []);
+  }, [change]);
 
   const handleChange = (pagination, filters, sorter) => {
     console.log('Various parameters', pagination, filters, sorter);
@@ -106,24 +106,24 @@ const ServicesTable = ({
       notes: '',
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
     setEditingKey('');
   };
 
-  const deleteRecipient = key => {
+  const deleteService = key => {
     deleteServiceAction(key);
     console.log('key', key);
   };
 
-  const save = async recipientId => {
+  const save = async serviceId => {
     try {
-      const recipientObj = await form.validateFields();
-      // console.log('recipientObj', recipientObj);
-      // console.log('recipientId', recipientId);
-      editServiceAction(recipientId, recipientObj);
+      const serviceObj = await form.validateFields();
+      console.log('serviceObj', serviceObj);
+      // console.log('serviceId', serviceId);
+      editServiceAction(serviceId, serviceObj);
       setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
@@ -143,8 +143,8 @@ const ServicesTable = ({
       ellipsis: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        // const recipientObj2 = getServiceByIdAction(record.recipient_id);
-        // console.log(recipientObj2, 'recipient object');
+        // const serviceObj2 = getServiceByIdAction(record.recipient_id);
+        // console.log(serviceObj2, 'recipient object');
         return editable ? (
           <Form.Item
             first_name="first_name"
@@ -493,41 +493,41 @@ const ServicesTable = ({
         );
       },
     },
-    {
-      title: 'Date & time',
-      dataIndex: 'date',
-      key: 'date',
-      sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
-      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="date"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a date and time',
-              },
-            ]}
-          >
-            <Input defaultValue={record.provided_at} />
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.provided_at}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        ) : (
-          <>{record.provided_at}</>
-        );
-      },
-    },
+    // {
+    //   title: 'Date & time',
+    //   dataIndex: 'date',
+    //   key: 'date',
+    //   sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
+    //   sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+    //   ellipsis: true,
+    //   editable: false,
+    //   render: (_, record) => {
+    //     const editable = isEditing(record);
+    //     return editable ? (
+    //       <Form.Item
+    //         name="date"
+    //         style={{ margin: 0 }}
+    //         rules={[
+    //           {
+    //             required: true,
+    //             message: 'Please select a date and time',
+    //           },
+    //         ]}
+    //       >
+    //         <Input defaultValue={record.provided_at} />
+    //         <Select size="middle" mode="multiple">
+    //           {services.map(item => (
+    //             <Select.Option key={item} value={item.id}>
+    //               {item.provided_at}
+    //             </Select.Option>
+    //           ))}
+    //         </Select>
+    //       </Form.Item>
+    //     ) : (
+    //       <>{record.provided_at}</>
+    //     );
+    //   },
+    // },
     {
       title: 'Notes',
       dataIndex: 'notes',
@@ -592,7 +592,7 @@ const ServicesTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteRecipient(record.id);
+                deleteService(record.id);
               }}
               danger
             >
