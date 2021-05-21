@@ -219,6 +219,9 @@ const RecipientTable = ({
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
+      sorter: (a, b) => a.age - b.age,
+      sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
