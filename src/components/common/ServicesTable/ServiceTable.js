@@ -19,6 +19,9 @@ import {
 // Action Imports
 import {
   getAllServicesAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
   getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
@@ -30,6 +33,9 @@ import axios from 'axios';
 
 const RecipientTable = ({
   getAllServicesAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
   getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
@@ -77,7 +83,7 @@ const RecipientTable = ({
   };
 
   const deleteRecipient = key => {
-    deleteRecipientAction(key);
+    deleteServiceAction(key);
     console.log('key', key);
   };
 
@@ -86,7 +92,7 @@ const RecipientTable = ({
       const recipientObj = await form.validateFields();
       // console.log('recipientObj', recipientObj);
       // console.log('recipientId', recipientId);
-      editRecipientAction(recipientId, recipientObj);
+      editServiceAction(recipientId, recipientObj);
       setEditingKey('');
     } catch (errInfo) {
       // console.log('Validate Failed:', errInfo);
@@ -101,7 +107,7 @@ const RecipientTable = ({
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        // const recipientObj2 = getRecipientByIdAction(record.recipient_id);
+        // const recipientObj2 = getServiceByIdAction(record.recipient_id);
         // console.log(recipientObj2, 'recipient object');
         return editable ? (
           <Form.Item
@@ -540,6 +546,9 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getAllServicesAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
   getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
