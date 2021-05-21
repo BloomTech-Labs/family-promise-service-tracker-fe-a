@@ -123,11 +123,11 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               <Radio value="false">Not a Veteran</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item label="Select Household" name="household_id">
+          {/* <Form.Item label="Select Household" name="household_id">
             <Select>
               <Select.Option value="household_id"></Select.Option>
             </Select>
-          </Form.Item>
+          </Form.Item> */}
         </Form>
       </Modal>
     </>
