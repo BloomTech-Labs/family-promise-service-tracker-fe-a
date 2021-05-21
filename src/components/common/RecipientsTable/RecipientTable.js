@@ -8,6 +8,7 @@ import {
   Space,
   Popconfirm,
   Select,
+  Button,
 } from 'antd';
 import {
   LoadingOutlined,
@@ -36,6 +37,57 @@ const RecipientTable = ({
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
+  const [sortedInfo, setSortedInfo] = useState('');
+  const [filteredInfo, setFilteredInfo] = useState('');
+
+  // state = {
+  //   filteredInfo: null,
+  //   sortedInfo: null,
+  // };
+
+  const handleChange = (pagination, filters, sorter) => {
+    console.log('Various parameters', pagination, filters, sorter);
+    setSortedInfo(sorter);
+    setFilteredInfo(filters);
+    // this.setState({
+    //   filteredInfo: filters,
+    //   sortedInfo: sorter,
+    // });
+  };
+
+  const clearFilters = () => {
+    setFilteredInfo(null);
+    // this.setState({ filteredInfo: null });
+  };
+
+  const clearAll = () => {
+    setSortedInfo(null);
+    setFilteredInfo(null);
+    // this.setState({
+    //   filteredInfo: null,
+    //   sortedInfo: null,
+    // });
+  };
+
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'age',
+    });
+    // this.setState({
+    //   sortedInfo: {
+    //     order: 'descend',
+    //     columnKey: 'age',
+    //   },
+    // });
+  };
+
+  const setFirstNameSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'first_name',
+    });
+  };
 
   useEffect(() => {
     getAllRecipientAction();
@@ -98,11 +150,21 @@ const RecipientTable = ({
   // };
   // userObjCreator();
 
+  // let { sortedInfo, filteredInfo } = this.state;
+  // sortedInfo = sortedInfo || {};
+  // filteredInfo = filteredInfo || {};
+
   const columns = [
     {
       title: 'First Name',
       dataIndex: 'first_name',
       key: 'first_name',
+      filteredValue: filteredInfo.first_name || null,
+      onFilter: (value, record) => record.first_name.includes(value),
+      sorter: (a, b) => a.first_name.localeCompare(b.first_name),
+      // sorter: (a, b) => a.first_name > b.first_name,
+      sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -355,7 +417,14 @@ const RecipientTable = ({
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form}>
+          <Space style={{ marginBottom: 16 }}>
+            <Button onClick={setFirstNameSort}>Sort Name</Button>
+            <Button onClick={setAgeSort}>Sort age</Button>
+            <Button onClick={clearFilters}>Clear filters</Button>
+            <Button onClick={clearAll}>Clear filters and sorters</Button>
+          </Space>
           <Table
+            onChange={handleChange}
             className="desktop-table"
             columns={columns}
             dataSource={recipients}
