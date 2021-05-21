@@ -162,7 +162,6 @@ const RecipientTable = ({
       filteredValue: filteredInfo.first_name || null,
       onFilter: (value, record) => record.first_name.includes(value),
       sorter: (a, b) => a.first_name.localeCompare(b.first_name),
-      // sorter: (a, b) => a.first_name > b.first_name,
       sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -190,6 +189,11 @@ const RecipientTable = ({
       title: 'Last Name',
       dataIndex: 'last_name',
       key: 'last_name',
+      filteredValue: filteredInfo.last_name || null,
+      onFilter: (value, record) => record.last_name.includes(value),
+      sorter: (a, b) => a.last_name.localeCompare(b.last_name),
+      sortOrder: sortedInfo.columnKey === 'last_name' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
