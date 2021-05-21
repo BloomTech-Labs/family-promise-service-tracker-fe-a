@@ -332,6 +332,14 @@ const RecipientTable = ({
       title: 'Ethnicity',
       dataIndex: 'ethnicity',
       key: 'ethnicity',
+      filters: [
+        { text: 'Hispanic or Latino', value: 'hispanic' },
+        { text: 'Not Hispanic or Latino', value: 'not_hispanic' },
+      ],
+      filteredValue: filteredInfo.ethnicity || null,
+      onFilter: (value, record) => record.ethnicity.includes(value),
+      sortOrder: sortedInfo.columnKey === 'ethnicity' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -357,6 +365,14 @@ const RecipientTable = ({
       title: 'Veteran Status',
       dataIndex: 'veteran_status',
       key: 'veteran_status',
+      filters: [
+        { text: 'Veteran', value: 'true' },
+        { text: 'Not a Veteran', value: 'false' },
+      ],
+      filteredValue: filteredInfo.veteran_status || null,
+      // onFilter: (value, record) => record.veteran_status.includes(value),
+      sortOrder: sortedInfo.columnKey === 'veteran_status' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
