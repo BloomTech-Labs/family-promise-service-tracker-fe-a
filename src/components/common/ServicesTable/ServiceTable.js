@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import {
   Table,
   Input,
@@ -8,6 +9,7 @@ import {
   Space,
   Popconfirm,
   Select,
+  Button,
 } from 'antd';
 import {
   LoadingOutlined,
@@ -19,18 +21,15 @@ import {
 // Action Imports
 import {
   getAllServicesAction,
-  getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
 } from '../../../state/actions';
-import axios from 'axios';
 
-const RecipientTable = ({
+const ServicesTable = ({
   getAllServicesAction,
-  getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
   editRecipientAction,
@@ -42,12 +41,43 @@ const RecipientTable = ({
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
+  const [sortedInfo, setSortedInfo] = useState('');
+  const [filteredInfo, setFilteredInfo] = useState('');
 
   useEffect(() => {
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
   }, []);
+
+  const handleChange = (pagination, filters, sorter) => {
+    console.log('Various parameters', pagination, filters, sorter);
+    setSortedInfo(sorter);
+    setFilteredInfo(filters);
+  };
+
+  const clearFilters = () => {
+    setFilteredInfo(null);
+  };
+
+  const clearAll = () => {
+    setSortedInfo(null);
+    setFilteredInfo(null);
+  };
+
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'age',
+    });
+  };
+
+  const setFirstNameSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'first_name',
+    });
+  };
 
   // console.log(serviceTypes, 'this is service types state');
   const isEditing = record => record.id === editingKey;
@@ -84,12 +114,11 @@ const RecipientTable = ({
   const save = async recipientId => {
     try {
       const recipientObj = await form.validateFields();
-      // console.log('recipientObj', recipientObj);
-      // console.log('recipientId', recipientId);
+
       editRecipientAction(recipientId, recipientObj);
       setEditingKey('');
     } catch (errInfo) {
-      // console.log('Validate Failed:', errInfo);
+      console.log('Validate Failed:', errInfo);
     }
   };
 
@@ -99,10 +128,14 @@ const RecipientTable = ({
       dataIndex: 'first_name',
       key: 'first_name',
       editable: true,
+      filteredValue: filteredInfo.first_name || null,
+      sorter: (a, b) =>
+        a.recipient.first_name.localeCompare(b.recipient.first_name),
+      sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
+      ellipsis: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        // const recipientObj2 = getRecipientByIdAction(record.recipient_id);
-        // console.log(recipientObj2, 'recipient object');
+
         return editable ? (
           <Form.Item
             first_name="first_name"
@@ -125,6 +158,11 @@ const RecipientTable = ({
       title: 'Last Name',
       dataIndex: 'last_name',
       key: 'last_name',
+      filteredValue: filteredInfo.last_name || null,
+      sorter: (a, b) =>
+        a.recipient.last_name.localeCompare(b.recipient.last_name),
+      sortOrder: sortedInfo.columnKey === 'last_name' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -150,6 +188,11 @@ const RecipientTable = ({
       title: 'Service Type',
       dataIndex: 'serviceType',
       key: 'serviceType',
+      filteredValue: filteredInfo.serviceType || null,
+      onFilter: (value, record) => record.service_type.name.includes(value),
+      sorter: (a, b) => a.service_type.name.localeCompare(b.service_type.name),
+      sortOrder: sortedInfo.columnKey === 'serviceType' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -182,6 +225,10 @@ const RecipientTable = ({
       title: 'Unit',
       dataIndex: 'unit',
       key: 'unit',
+      filteredValue: filteredInfo.unit || null,
+      onFilter: (value, record) => record.unit.includes(value),
+      sorter: (a, b) => a.unit.localeCompare(b.unit),
+      sortOrder: sortedInfo.columnKey === 'unit' && sortedInfo.order,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -213,6 +260,9 @@ const RecipientTable = ({
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
+      sorter: (a, b) => a.quantity - b.quantity,
+      sortOrder: sortedInfo.columnKey === 'quantity' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -244,6 +294,9 @@ const RecipientTable = ({
       title: 'Value',
       dataIndex: 'value',
       key: 'value',
+      sorter: (a, b) => a.value - b.value,
+      sortOrder: sortedInfo.columnKey === 'value' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -271,46 +324,61 @@ const RecipientTable = ({
         );
       },
     },
-    // {
-    //   title: 'Status',
-    //   dataIndex: 'status',
-    //   key: 'status',
-    //   editable: true,
-    //   render: (_, record) => {
-    //     const editable = isEditing(record);
-    //     return editable ? (
-    //       <Form.Item
-    //         name="service_type_id"
-    //         style={{ margin: 0 }}
-    //         rules={[
-    //           {
-    //             required: true,
-    //             message: `Please input an service type!`,
-    //           },
-    //         ]}
-    //       >
-    //         <Input defaultValue={record.status.name} />
-    //         {/* <Select size="middle" mode="multiple">
-    //           {serviceTypes.map(item => (
-    //             <Select.Option key={item} value={item.id}>
-    //               {item.name}
-    //             </Select.Option>
-    //           ))}
-    //         </Select> */}
-    //       </Form.Item>
-    //     ) : (
-    //       <>{record.status.name}</>
-    //     );
-    //   },
-    // },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      filters: [
+        { text: 'Complete', value: 'Complete' },
+        { text: 'In Progress', value: 'In Progress' },
+        { text: 'Needs Follow-Up', value: 'Needs Follow-Up' },
+        { text: 'Not Started', value: 'Not Started' },
+      ],
+      filteredValue: filteredInfo.status || null,
+      onFilter: (value, record) => record.status.name.includes(value),
+      sortOrder: sortedInfo.columnKey === 'status' && sortedInfo.order,
+      ellipsis: true,
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="value"
+            style={{ margin: 0 }}
+            rules={[
+              {
+                required: true,
+                message: `Please select a status`,
+              },
+            ]}
+          >
+            <Input defaultValue={record.status.name} />
+            {/* <Select size="middle" mode="multiple">
+              {serviceTypes.map(item => (
+                <Select.Option key={item} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select> */}
+          </Form.Item>
+        ) : (
+          <>{record.status.name}</>
+        );
+      },
+    },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
+      filteredValue: filteredInfo.address || null,
+      onFilter: (value, record) => record.address.includes(value),
+      sorter: (a, b) => a.address.localeCompare(b.address),
+      sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
-        return record.address; /*editable ? (
+        return editable ? (
           <Form.Item
             name="address"
             style={{ margin: 0 }}
@@ -325,13 +393,18 @@ const RecipientTable = ({
           </Form.Item>
         ) : (
           <>{record.address}</>
-        );*/
+        );
       },
     },
     {
       title: 'City',
       dataIndex: 'city',
       key: 'city',
+      filteredValue: filteredInfo.city || null,
+      onFilter: (value, record) => record.city.includes(value),
+      sorter: (a, b) => a.city.localeCompare(b.city),
+      sortOrder: sortedInfo.columnKey === 'city' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -357,6 +430,11 @@ const RecipientTable = ({
       title: 'State',
       dataIndex: 'state',
       key: 'state',
+      filteredValue: filteredInfo.state || null,
+      onFilter: (value, record) => record.state.includes(value),
+      sorter: (a, b) => a.state.localeCompare(b.state),
+      sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -382,6 +460,9 @@ const RecipientTable = ({
       title: 'Zip Code',
       dataIndex: 'zip_code',
       key: 'zip_code',
+      sorter: (a, b) => a.zip_code - b.zip_code,
+      sortOrder: sortedInfo.columnKey === 'zip_code' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -407,6 +488,9 @@ const RecipientTable = ({
       title: 'Date & time',
       dataIndex: 'date',
       key: 'date',
+      sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
+      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -516,12 +600,19 @@ const RecipientTable = ({
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
+          <Space style={{ marginBottom: 16 }}>
+            <Button onClick={setFirstNameSort}>Sort Name</Button>
+            <Button onClick={setAgeSort}>Sort age</Button>
+            <Button onClick={clearFilters}>Clear filters</Button>
+            <Button onClick={clearAll}>Clear filters and sorters</Button>
+          </Space>
           <Table
             className="desktop-table"
             columns={columns}
             dataSource={services}
             size="small"
             tableLayout="fixed"
+            onChange={handleChange}
           />
         </Form>
       )}
@@ -540,10 +631,10 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getAllServicesAction,
-  getRecipientByIdAction,
+  // getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
-})(RecipientTable);
+})(ServicesTable);
