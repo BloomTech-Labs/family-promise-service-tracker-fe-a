@@ -25,6 +25,7 @@ import {
   deleteRecipientAction,
   getAllHouseholdAction,
 } from '../../../state/actions';
+import { strikethrough } from 'kleur';
 
 const RecipientTable = ({
   getAllHouseholdAction,
@@ -247,6 +248,20 @@ const RecipientTable = ({
       title: 'Gender',
       dataIndex: 'gender',
       key: 'gender',
+      filters: [
+        { text: 'Male', value: 'male' },
+        { text: 'Female', value: 'female' },
+        { text: 'Non Binary', value: 'nonbinary' },
+      ],
+      filteredValue: filteredInfo.gender || null,
+      onFilter: (value, record) => record.gender.includes(value),
+      // onFilter: (value, record) => {
+      //   const str = record.gender;
+      //   str.match(/male/g);
+      // },
+      // sorter: (a, b) => a.gender.length - b.gender.length,
+      sortOrder: sortedInfo.columnKey === 'gender' && sortedInfo.order,
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
