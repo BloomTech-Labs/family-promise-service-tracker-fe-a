@@ -21,6 +21,12 @@
   font-size: 11px;
   border:.5px solid gray;
 
+  @media(orientation:portrait){ 
+    font-size:9px;
+  }
+  @media(orientation:landscape){ 
+    font-size:11px;
+  }
   @media (min-width: 1200px) {
     font-size:15px;
   }
