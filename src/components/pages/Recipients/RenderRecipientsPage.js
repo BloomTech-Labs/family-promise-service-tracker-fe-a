@@ -17,18 +17,17 @@ function RenderRecipientsPage({
   getAllHouseholdAction,
 }) {
   const [visible, setVisible] = useState(false);
-  const [typeVisible, setTypeVisible] = useState(false);
+  const [householdVisible, setHouseholdVisible] = useState(false);
 
   const onCreate = recipientObj => {
     addRecipientAction(recipientObj);
     setVisible(false);
   };
 
-  const onCreateType = householdObj => {
+  const onCreateHousehold = householdObj => {
     console.log('created new household: ', householdObj);
-    console.log(householdObj.household_id);
     addHouseholdAction(householdObj);
-    setTypeVisible(false);
+    setHouseholdVisible(false);
   };
 
   useEffect(() => {
@@ -58,16 +57,16 @@ function RenderRecipientsPage({
         <Button
           type="primary"
           onClick={() => {
-            setTypeVisible(true);
+            setHouseholdVisible(true);
           }}
         >
           Create Household
         </Button>
         <AddHouseholdForm
-          visible={typeVisible}
-          onCreate={onCreateType}
+          visible={householdVisible}
+          onCreate={onCreateHousehold}
           onCancel={() => {
-            setTypeVisible(false);
+            setHouseholdVisible(false);
           }}
         />
       </div>
