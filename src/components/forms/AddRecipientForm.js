@@ -29,12 +29,13 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
         <Form
           layout="vertical"
           form={form}
+          name="add_recipient_form_in_modal"
           initialValue={{
             modifier: 'public',
           }}
         >
           <Form.Item
-            label="Recipient Name"
+            label="First Name"
             name="first_name"
             rules={[
               {
@@ -123,11 +124,9 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               <Radio value="false">Not a Veteran</Radio>
             </Radio.Group>
           </Form.Item>
-          {/* <Form.Item label="Select Household" name="household_id">
-            <Select>
-              <Select.Option value="household_id"></Select.Option>
-            </Select>
-          </Form.Item> */}
+          <Form.Item label="Select Household" name="household_id">
+            <InputNumber size="large" placeholder="0" min="0" max="20" />
+          </Form.Item>
         </Form>
       </Modal>
     </>
