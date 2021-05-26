@@ -86,7 +86,7 @@ export const editRecipientAction = (recipientId, recipientObj) => dispatch => {
       dispatch({ type: EDIT_RECIPIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ EDIT_RECIPIENT_FAIL, payload: err.message });
+      dispatch({ type: EDIT_RECIPIENT_FAIL, payload: err.message });
     })
     .finally(() => {
       dispatch({ type: EDIT_RECIPIENT_RESOLVE });
