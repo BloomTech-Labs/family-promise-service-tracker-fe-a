@@ -41,33 +41,19 @@ const RecipientTable = ({
   const [sortedInfo, setSortedInfo] = useState('');
   const [filteredInfo, setFilteredInfo] = useState('');
 
-  // state = {
-  //   filteredInfo: null,
-  //   sortedInfo: null,
-  // };
-
   const handleChange = (pagination, filters, sorter) => {
     console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
-    // this.setState({
-    //   filteredInfo: filters,
-    //   sortedInfo: sorter,
-    // });
   };
 
   const clearFilters = () => {
     setFilteredInfo(null);
-    // this.setState({ filteredInfo: null });
   };
 
   const clearAll = () => {
     setSortedInfo(null);
     setFilteredInfo(null);
-    // this.setState({
-    //   filteredInfo: null,
-    //   sortedInfo: null,
-    // });
   };
 
   const setAgeSort = () => {
@@ -75,12 +61,6 @@ const RecipientTable = ({
       order: 'descend',
       columnKey: 'age',
     });
-    // this.setState({
-    //   sortedInfo: {
-    //     order: 'descend',
-    //     columnKey: 'age',
-    //   },
-    // });
   };
 
   const setFirstNameSort = () => {
@@ -132,28 +112,6 @@ const RecipientTable = ({
       console.log('Validate Failed:', errInfo);
     }
   };
-
-  // const userObjCreator = () => {
-  //   if (recipients) {
-  //     recipients.map(recipient => {
-  //       const households = [];
-  //       recipients.households.map(household => {
-  //         if (household !== null) {
-  //           households.push(household.name);
-  //         }
-  //       });
-  //       return recipients.push({
-  //         key: recipient.id,
-  //         households: households,
-  //       });
-  //     });
-  //   }
-  // };
-  // userObjCreator();
-
-  // let { sortedInfo, filteredInfo } = this.state;
-  // sortedInfo = sortedInfo || {};
-  // filteredInfo = filteredInfo || {};
 
   const columns = [
     {
@@ -255,11 +213,6 @@ const RecipientTable = ({
       ],
       filteredValue: filteredInfo.gender || null,
       onFilter: (value, record) => record.gender.includes(value),
-      // onFilter: (value, record) => {
-      //   const str = record.gender;
-      //   str.match(/male/g);
-      // },
-      // sorter: (a, b) => a.gender.length - b.gender.length,
       sortOrder: sortedInfo.columnKey === 'gender' && sortedInfo.order,
       ellipsis: true,
       editable: true,

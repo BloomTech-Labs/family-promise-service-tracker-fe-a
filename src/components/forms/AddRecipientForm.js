@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
+
+import { addRecipientAction } from '../../state/actions/recipientActions';
 
 const { Option } = Select;
 
-function AddRecipientForm({ visible, onCreate, onCancel }) {
+function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
 
   return (
@@ -29,12 +32,13 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
         <Form
           layout="vertical"
           form={form}
+          name="add_recipient_form_in_modal"
           initialValue={{
             modifier: 'public',
           }}
         >
           <Form.Item
-            label="Recipient Name"
+            label="First Name"
             name="first_name"
             rules={[
               {
@@ -123,15 +127,31 @@ function AddRecipientForm({ visible, onCreate, onCancel }) {
               <Radio value="false">Not a Veteran</Radio>
             </Radio.Group>
           </Form.Item>
-          {/* <Form.Item label="Select Household" name="household_id">
-            <Select>
-              <Select.Option value="household_id"></Select.Option>
+          <Form.Item label="Select Recipient Address" name="household_id">
+            <Select size="large" placeholder="Select Address">
+              {households.map(household => (
+                <Select.Option key={household.id} value={household.id}>
+                  {household.address +
+                    ', ' +
+                    household.city +
+                    ', ' +
+                    household.state}
+                </Select.Option>
+              ))}
             </Select>
-          </Form.Item> */}
+          </Form.Item>
         </Form>
       </Modal>
     </>
   );
 }
 
-export default AddRecipientForm;
+const mapStateToProps = state => {
+  return {
+    households: state.household.households,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addRecipientAction,
+})(AddRecipientForm);
