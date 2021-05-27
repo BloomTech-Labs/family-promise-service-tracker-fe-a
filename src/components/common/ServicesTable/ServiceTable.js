@@ -23,6 +23,9 @@ import {
   getAllServicesAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,
@@ -30,6 +33,10 @@ import {
 
 const ServicesTable = ({
   getAllServicesAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
+  getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
   editRecipientAction,
@@ -48,10 +55,9 @@ const ServicesTable = ({
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
-  }, []);
+  }, [change]);
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
@@ -79,7 +85,6 @@ const ServicesTable = ({
     });
   };
 
-  // console.log(serviceTypes, 'this is service types state');
   const isEditing = record => record.id === editingKey;
 
   const edit = record => {
@@ -99,23 +104,21 @@ const ServicesTable = ({
       notes: '',
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
     setEditingKey('');
   };
 
-  const deleteRecipient = key => {
-    deleteRecipientAction(key);
-    console.log('key', key);
+  const deleteService = key => {
+    deleteServiceAction(key);
   };
 
-  const save = async recipientId => {
+  const save = async serviceId => {
     try {
-      const recipientObj = await form.validateFields();
-
-      editRecipientAction(recipientId, recipientObj);
+      const serviceObj = await form.validateFields();
+      editServiceAction(serviceId, serviceObj);
       setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
@@ -127,7 +130,7 @@ const ServicesTable = ({
       title: 'First Name',
       dataIndex: 'first_name',
       key: 'first_name',
-      editable: true,
+      editable: false,
       filteredValue: filteredInfo.first_name || null,
       sorter: (a, b) =>
         a.recipient.first_name.localeCompare(b.recipient.first_name),
@@ -135,7 +138,6 @@ const ServicesTable = ({
       ellipsis: true,
       render: (_, record) => {
         const editable = isEditing(record);
-
         return editable ? (
           <Form.Item
             first_name="first_name"
@@ -163,7 +165,7 @@ const ServicesTable = ({
         a.recipient.last_name.localeCompare(b.recipient.last_name),
       sortOrder: sortedInfo.columnKey === 'last_name' && sortedInfo.order,
       ellipsis: true,
-      editable: true,
+      editable: false,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -208,13 +210,6 @@ const ServicesTable = ({
             ]}
           >
             <Input defaultValue={record.service_type.name} />
-            {/* <Select size="middle" mode="multiple">
-              {serviceTypes.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select> */}
           </Form.Item>
         ) : (
           <>{record.service_type.name}</>
@@ -243,13 +238,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <Input defaultValue={record.unit} />
           </Form.Item>
         ) : (
           <>{record.unit}</>
@@ -277,13 +266,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <Input defaultValue={record.quantity} />
           </Form.Item>
         ) : (
           <>{record.quantity}</>
@@ -311,13 +294,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <Input defaultValue={record.value} />
           </Form.Item>
         ) : (
           <>{record.value}</>
@@ -352,14 +329,14 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.status.name} />
-            {/* <Select size="middle" mode="multiple">
-              {serviceTypes.map(item => (
+            {/* <Input defaultValue={record.status.name} /> */}
+            <Select size="middle" mode="multiple">
+              {services.map(item => (
                 <Select.Option key={item} value={item.id}>
-                  {item.name}
+                  {item.status.name}
                 </Select.Option>
               ))}
-            </Select> */}
+            </Select>
           </Form.Item>
         ) : (
           <>{record.status.name}</>
@@ -488,10 +465,10 @@ const ServicesTable = ({
       title: 'Date & time',
       dataIndex: 'date',
       key: 'date',
-      sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
-      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
+      // sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
+      // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+      // ellipsis: true,
+      editable: false,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -506,13 +483,13 @@ const ServicesTable = ({
             ]}
           >
             <Input defaultValue={record.provided_at} />
-            <Select size="middle" mode="multiple">
+            {/* <Select size="middle">
               {services.map(item => (
                 <Select.Option key={item} value={item.id}>
                   {item.provided_at}
                 </Select.Option>
               ))}
-            </Select>
+            </Select> */}
           </Form.Item>
         ) : (
           <>{record.provided_at}</>
@@ -537,13 +514,14 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
+            <Input defaultValue={record.notes} />
+            {/* <Select size="middle" mode="multiple">
               {services.map(item => (
                 <Select.Option key={item} value={item.id}>
                   {item.notes}
                 </Select.Option>
               ))}
-            </Select>
+            </Select> */}
           </Form.Item>
         ) : (
           <>{record.notes}</>
@@ -583,7 +561,7 @@ const ServicesTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteRecipient(record.id);
+                deleteService(record.id);
               }}
               danger
             >
@@ -631,7 +609,9 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getAllServicesAction,
-  // getRecipientByIdAction,
+  deleteServiceAction,
+  editServiceAction,
+  getServiceByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
   addRecipientAction,

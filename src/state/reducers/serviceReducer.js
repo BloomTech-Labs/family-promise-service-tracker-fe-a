@@ -42,7 +42,7 @@ export const initialServiceState = {
 
 export const serviceReducer = (state = initialServiceState, action) => {
   switch (action.type) {
-    //Get All Services
+    // Get All Services
     case GET_ALL_SERVICE_START:
       return {
         ...state,
@@ -88,7 +88,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
         ...state,
         status: 'Resolved',
       };
-    //Add Service
+    // Add Service
     case ADD_SERVICE_START:
       return {
         ...state,
@@ -112,7 +112,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
         status: 'Resolved',
         change: '',
       };
-    //Edit Service
+    // Edit Service
     case EDIT_SERVICE_START:
       return {
         ...state,
@@ -161,7 +161,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
         status: 'Resolved',
         change: '',
       };
-    //get all service providers
+    // Get all service providers
     case GET_ALL_SERVICE_PROVIDERS_START:
       return {
         ...state,
@@ -184,7 +184,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
         ...state,
         status: 'Resolved',
       };
-    // get all service types
+    // Get all service types
     case GET_ALL_SERVICE_TYPES_START:
       return {
         ...state,
