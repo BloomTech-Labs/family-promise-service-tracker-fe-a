@@ -120,7 +120,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
       };
     case EDIT_SERVICE_SUCCESS:
       return {
-        ...state.services,
+        ...state,
         services: action.payload,
         status: 'Success',
         change: 'edited',

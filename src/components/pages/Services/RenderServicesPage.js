@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 //component import
 import AddServiceForm from '../../forms/AddServiceForm';
 import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
-//import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 //addServiceTypeAction
 function RenderServicesPage({
@@ -29,18 +28,8 @@ function RenderServicesPage({
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
-  // const [providers, setProviders] = useState([]);
 
   useEffect(() => {
-    // axiosWithAuth()
-    //   .get('/api/profiles/getserviceproviders')
-    //   .then(res => {
-    //     console.log('serviceProviders res inside RenderServicesPage', res.data);
-    //     getServiceProviders(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.log(err, 'this is error fetching service providers');
-    //   });
     getServiceProviders();
     getAllRecipientAction();
     getServiceTypes();
@@ -49,13 +38,11 @@ function RenderServicesPage({
   }, []);
 
   const onCreate = values => {
-    // console.log('received values of form:', values);
     setVisible(false);
     addServiceAction(values);
   };
 
   const onCreateType = values => {
-    // console.log('received values from type', values);
     setTypeVisible(false);
     addServiceTypeAction(values);
   };
@@ -102,17 +89,11 @@ function RenderServicesPage({
 }
 
 const mapStateToProps = state => {
-  // console.log('MSTP inside RenderServicesPage',state);
-  // const serviceProviderNames = state.service.serviceProviders.map(provider => {
-  //   provider = provider.firstName+' '+provider.lastName;
-  // });
-  // console.log('serviceProviderNames:',serviceProviderNames);
   return {
     serviceProviders: state.service.serviceProviders,
     serviceTypes: state.service.serviceTypes,
     recipients: state.recipient.recipients,
     programs: state.program.programs,
-    //default: state,
   };
 };
 
