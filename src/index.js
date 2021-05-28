@@ -6,7 +6,12 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import {
+  Security,
+  LoginCallback,
+  SecureRoute,
+  useOktaAuth,
+} from '@okta/okta-react';
 
 import { Provider } from 'react-redux';
 import { store } from './state/index';
@@ -23,7 +28,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
-import { TabletHeader } from './components/common/index';
+import { NavbarHeader } from './components/common/index';
 
 ReactDOM.render(
   <Router>
@@ -49,7 +54,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
-      {localStorage.getItem('okta-token-storage') ? <TabletHeader /> : <></>}
+      <NavbarHeader />
       <Switch>
         <Route exact path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />

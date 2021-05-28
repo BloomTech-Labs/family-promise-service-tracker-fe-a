@@ -16,5 +16,5 @@ export {
   Button,
   TableComponent,
   CheckboxComponent,
-  NavbarHeader as TabletHeader,
+  NavbarHeader,
 };
