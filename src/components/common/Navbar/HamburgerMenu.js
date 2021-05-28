@@ -47,21 +47,20 @@ const HamburgerMenu = () => {
         }}
         // position='sticky'
       >
-        {userRole === 'administrator' ? (
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['1']}
-            className="navBar"
+        <Menu
+          theme="light"
+          mode="horizontal"
+          defaultSelectedKeys={['1']}
+          className="navBar"
+        >
+          <Menu.Item
+            key="1"
+            icon={<UserOutlined />}
+            onClick={() => onClick('/')}
           >
-            <Menu.Item
-              key="1"
-              icon={<UserOutlined />}
-              onClick={() => onClick('/')}
-            >
-              My Profile
-            </Menu.Item>
-
+            My Profile
+          </Menu.Item>
+          {userRole === 'administrator' ? (
             <Menu.Item
               key="2"
               icon={<TeamOutlined />}
@@ -69,7 +68,10 @@ const HamburgerMenu = () => {
             >
               Employees
             </Menu.Item>
-
+          ) : (
+            <></>
+          )}
+          {userRole === 'administrator' || userRole === 'program_manager' ? (
             <Menu.Item
               key="3"
               icon={<ProjectOutlined />}
@@ -77,120 +79,33 @@ const HamburgerMenu = () => {
             >
               Programs
             </Menu.Item>
-
-            <Menu.Item
-              key="4"
-              icon={<UsergroupAddOutlined />}
-              onClick={() => onClick('/recipients')}
-            >
-              Recipients
-            </Menu.Item>
-
-            <Menu.Item
-              key="5"
-              icon={<ReconciliationOutlined />}
-              onClick={() => onClick('/services')}
-            >
-              Services
-            </Menu.Item>
-
-            <Menu.Item
-              key="6"
-              icon={<LeftCircleOutlined />}
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu.Item>
-          </Menu>
-        ) : (
-          <></>
-        )}
-        {userRole === 'program_manager' ? (
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['1']}
-            className="navBar"
+          ) : (
+            <></>
+          )}
+          <Menu.Item
+            key="4"
+            icon={<UsergroupAddOutlined />}
+            onClick={() => onClick('/recipients')}
           >
-            <Menu.Item
-              key="1"
-              icon={<UserOutlined />}
-              onClick={() => onClick('/')}
-            >
-              My Profile
-            </Menu.Item>
+            Recipients
+          </Menu.Item>
 
-            <Menu.Item
-              key="3"
-              icon={<ProjectOutlined />}
-              onClick={() => onClick('/programs')}
-            >
-              Programs
-            </Menu.Item>
-
-            <Menu.Item
-              key="4"
-              icon={<UsergroupAddOutlined />}
-              onClick={() => onClick('/recipients')}
-            >
-              Recipients
-            </Menu.Item>
-
-            <Menu.Item
-              key="5"
-              icon={<ReconciliationOutlined />}
-              onClick={() => onClick('/services')}
-            >
-              Services
-            </Menu.Item>
-
-            <Menu.Item
-              key="6"
-              icon={<LeftCircleOutlined />}
-              className="logout-ctn"
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu.Item>
-          </Menu>
-        ) : (
-          <></>
-        )}
-        {userRole === 'service_provider' ? (
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['1']}
-            className="navBar"
+          <Menu.Item
+            key="5"
+            icon={<ReconciliationOutlined />}
+            onClick={() => onClick('/services')}
           >
-            <Menu.Item
-              key="1"
-              icon={<UserOutlined />}
-              onClick={() => onClick('/')}
-            >
-              My Profile
-            </Menu.Item>
+            Services
+          </Menu.Item>
 
-            <Menu.Item
-              key="5"
-              icon={<ReconciliationOutlined />}
-              onClick={() => onClick('/services')}
-            >
-              Services
-            </Menu.Item>
-
-            <Menu.Item
-              key="6"
-              icon={<LeftCircleOutlined />}
-              className="logout-ctn"
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu.Item>
-          </Menu>
-        ) : (
-          <></>
-        )}
+          <Menu.Item
+            key="6"
+            icon={<LeftCircleOutlined />}
+            onClick={handleLogout}
+          >
+            Logout
+          </Menu.Item>
+        </Menu>
       </Header>
     </Layout>
   );
