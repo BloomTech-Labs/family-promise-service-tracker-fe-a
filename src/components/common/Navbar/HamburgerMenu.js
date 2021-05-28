@@ -32,7 +32,8 @@ const HamburgerMenu = ({ userRole }) => {
     <Layout
       style={{
         backgroundColor: 'white',
-        width: '100%',
+        maxWidth: 'max-content',
+        margin: '0px auto',
       }}
     >
       <Menu theme="light" mode="horizontal" className="navBar">
