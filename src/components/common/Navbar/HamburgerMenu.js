@@ -10,6 +10,7 @@ import {
   LeftCircleOutlined,
 } from '@ant-design/icons';
 import logo from '../../../assets/logo.png';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
 const HamburgerMenu = () => {
   const [visible, setVisible] = useState(false);
@@ -54,19 +55,13 @@ const HamburgerMenu = () => {
           defaultSelectedKeys={['1']}
           className="navBar"
         >
-          <Menu.Item>
+          <Menu.Item key="logo" disabled="true">
             <img src={logo} className="top-bar-img" alt="family promise logo" />
           </Menu.Item>
-          <Menu.Item
-            key="1"
-            icon={<UserOutlined />}
-            onClick={() => onClick('/')}
-          >
-            My Profile
-          </Menu.Item>
+
           {userRole === 'administrator' ? (
             <Menu.Item
-              key="2"
+              key="employees"
               icon={<TeamOutlined />}
               onClick={() => onClick('/employees')}
             >
@@ -77,7 +72,7 @@ const HamburgerMenu = () => {
           )}
           {userRole === 'administrator' || userRole === 'program_manager' ? (
             <Menu.Item
-              key="3"
+              key="programs"
               icon={<ProjectOutlined />}
               onClick={() => onClick('/programs')}
             >
@@ -87,7 +82,7 @@ const HamburgerMenu = () => {
             <></>
           )}
           <Menu.Item
-            key="4"
+            key="recipients"
             icon={<UsergroupAddOutlined />}
             onClick={() => onClick('/recipients')}
           >
@@ -95,20 +90,28 @@ const HamburgerMenu = () => {
           </Menu.Item>
 
           <Menu.Item
-            key="5"
+            key="services"
             icon={<ReconciliationOutlined />}
             onClick={() => onClick('/services')}
           >
             Services
           </Menu.Item>
-
-          <Menu.Item
-            key="6"
-            icon={<LeftCircleOutlined />}
-            onClick={handleLogout}
-          >
-            Logout
-          </Menu.Item>
+          <SubMenu key="profile" icon={<UserOutlined />} title="Profile">
+            <Menu.Item
+              key="viewProfile"
+              icon={<UserOutlined />}
+              onClick={() => onClick('/')}
+            >
+              My Profile
+            </Menu.Item>
+            <Menu.Item
+              key="6"
+              icon={<LeftCircleOutlined />}
+              onClick={handleLogout}
+            >
+              Logout
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       </Header>
     </Layout>
