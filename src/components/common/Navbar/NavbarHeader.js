@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HamburgerMenu from './HamburgerMenu';
-import logo from '../../../assets/logo.png';
 
 const NavbarHeader = props => {
   return (
@@ -14,17 +13,11 @@ const NavbarHeader = props => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             maxWidth: '100%',
-            margin: '0 auto',
+            margin: '0 auto 40px',
             position: 'relative',
           }}
         >
           <HamburgerMenu />
-
-          <div className="top-bar-div">
-            <img src={logo} className="top-bar-img" alt="family promise logo" />
-          </div>
-
-          {/* do classses instead of inline styling */}
         </div>
       ) : (
         <></>

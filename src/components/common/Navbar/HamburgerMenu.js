@@ -9,6 +9,7 @@ import {
   UsergroupAddOutlined,
   LeftCircleOutlined,
 } from '@ant-design/icons';
+import logo from '../../../assets/logo.png';
 
 const HamburgerMenu = () => {
   const [visible, setVisible] = useState(false);
@@ -53,6 +54,9 @@ const HamburgerMenu = () => {
           defaultSelectedKeys={['1']}
           className="navBar"
         >
+          <Menu.Item>
+            <img src={logo} className="top-bar-img" alt="family promise logo" />
+          </Menu.Item>
           <Menu.Item
             key="1"
             icon={<UserOutlined />}
