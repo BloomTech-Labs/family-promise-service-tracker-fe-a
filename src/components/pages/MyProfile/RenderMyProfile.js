@@ -1,86 +1,48 @@
-import React, { useState } from 'react';
-import {
-  Avatar,
-  Form,
-  Input,
-  Button,
-  Select,
-  Upload,
-  uploadButton,
-} from 'antd';
-// import { LoadingOutlined, PlusOutlined } from 'ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Button } from 'antd';
 
 function RenderMyProfile({
-  curUser,
-  profileValues,
   handleEdit,
   handleCancel,
-  disabled,
   isInEditMode,
   onSubmit,
   onChange,
   uploadImage,
+  loading,
+  formValues,
+  curUser,
 }) {
-  const [loading, setLoading] = useState('false');
-
-  const uploadButton = (
-    <div>
-      {/* {loading ? <LoadingOutlined /> : <PlusOutlined />} */}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-
   return (
-    <div className="profile-container desktop-profile">
+    <div className="profile-container">
       <Form layout="vertical" onSubmit={onSubmit}>
         <Form.Item>
           <div style={{ justifyContent: 'center' }}>
-            <img src={curUser.avatarUrl} alt="avatar" className="avatar" />
-            {isInEditMode && (
+            {isInEditMode ? (
               <input type="file" name="file" onChange={uploadImage}></input>
+            ) : (
+              <img src={formValues.avatarUrl} alt="avatar" className="avatar" />
             )}
           </div>
         </Form.Item>
 
         <Form.Item label="First Name">
           <Input
-            disabled={disabled}
-            placeholder={curUser.firstName}
+            disabled={!isInEditMode}
+            placeholder={formValues.firstName}
             size="large"
-            defaultValue={curUser.firstName}
-            value={profileValues.firstName}
+            defaultValue={formValues.firstName}
+            value={formValues.firstName}
             onChange={onChange}
             name="firstName"
           />
-
-          {/* {!isInEditMode ? 
-          (
-            <Input
-              disabled={disabled}
-              // placeholder={curUser.name}
-              size="large"
-              defaultValue={curUser.name}
-              value={curUser.name}
-              onChange={onChange}
-              name="name"
-            />
-          ) : (
-            <Input
-              size="large"
-              defaultValue={curUser.name}
-              value={curUser.name}
-              onChange={onChange}
-              name="name"
-            />
-          )} */}
         </Form.Item>
         <Form.Item label="Last Name" className="label-header">
           <Input
-            disabled={disabled}
-            placeholder={curUser.lastName}
+            disabled={!isInEditMode}
+            placeholder={formValues.lastName}
             size="large"
-            defaultValue={curUser.lastName}
-            value={profileValues.lastName}
+            defaultValue={formValues.lastName}
+            value={formValues.lastName}
             onChange={onChange}
             name="lastName"
           />
@@ -96,21 +58,7 @@ function RenderMyProfile({
             ))}
           </div>
         </Form.Item>
-        {/* <Form.Item
-          label="Programs"
-          rules={[
-            {
-              required: true,
-              message: 'Please select the Project',
-            },
-          ]}
-        >
-          <Select size="large" mode="multiple" disabled defaultValue={programs}>
-            {curUser.programs.map(item => (
-              <Select.Option key={item}> {item.name}</Select.Option>
-            ))}
-          </Select>
-        </Form.Item> */}
+
         <div className="save-edit-container">
           {!isInEditMode && (
             <Button
@@ -127,6 +75,7 @@ function RenderMyProfile({
               size="large"
               type="primary"
               onClick={onSubmit}
+              loading={loading}
               className="profile-btn"
             >
               Save Profile
