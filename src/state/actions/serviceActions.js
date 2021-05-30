@@ -76,12 +76,10 @@ export const getServiceByIdAction = serviceId => dispatch => {
 
 export const addServiceAction = serviceObj => dispatch => {
   dispatch({ type: ADD_SERVICE_START });
-  console.log(serviceObj, 'this is service obj');
   axiosWithAuth()
     .post(`/api/service_entries`, serviceObj)
     .then(res => {
-      console.log('successful axios');
-      dispatch({ type: ADD_SERVICE_SUCCESS, payload: res.data });
+      dispatch({ type: ADD_SERVICE_SUCCESS, payload: res.data.newEntry });
     })
     .catch(err => {
       dispatch({ type: ADD_SERVICE_FAIL, payload: err.message });

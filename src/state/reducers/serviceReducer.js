@@ -97,7 +97,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
     case ADD_SERVICE_SUCCESS:
       return {
         ...state,
-        services: action.payload,
+        services: [...state.services, action.payload],
         status: 'Success',
       };
     case ADD_SERVICE_FAIL:
