@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+
 import {
   Table,
   Input,
@@ -13,7 +13,6 @@ import {
 } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -55,7 +54,12 @@ const ServicesTable = ({
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
-  }, [change]);
+  }, [
+    change,
+    getAllRecipientAction,
+    getAllServiceTypesAction,
+    getAllServicesAction,
+  ]);
 
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
@@ -537,14 +541,14 @@ const ServicesTable = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>

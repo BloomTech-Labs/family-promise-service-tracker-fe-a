@@ -13,7 +13,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
       authService.getUser().then(user => {
         getUserAction(user.sub);
       });
-  }, [authState.isAuthenticated]);
+  }, [authState.isAuthenticated, authService, getUserAction]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Form, Input, Button } from 'antd';
 
 function RenderMyProfile({
@@ -15,7 +15,7 @@ function RenderMyProfile({
   return (
     <div className="profile-container">
       <Form layout="vertical" onSubmit={onSubmit}>
-        <Form.Item>
+        <Form.Item key="avatar">
           <div style={{ justifyContent: 'center' }}>
             {isInEditMode ? (
               <input type="file" name="file" onChange={uploadImage}></input>
@@ -25,7 +25,7 @@ function RenderMyProfile({
           </div>
         </Form.Item>
 
-        <Form.Item label="First Name">
+        <Form.Item key="first_name" label="First Name">
           <Input
             disabled={!isInEditMode}
             placeholder={formValues.firstName}
@@ -36,7 +36,7 @@ function RenderMyProfile({
             name="firstName"
           />
         </Form.Item>
-        <Form.Item label="Last Name" className="label-header">
+        <Form.Item key="last_name" label="Last Name" className="label-header">
           <Input
             disabled={!isInEditMode}
             placeholder={formValues.lastName}
@@ -47,7 +47,7 @@ function RenderMyProfile({
             name="lastName"
           />
         </Form.Item>
-        <Form.Item label="Your Programs">
+        <Form.Item key="programs" label="Your Programs">
           <div>
             {curUser.programs.map(program => (
               <>

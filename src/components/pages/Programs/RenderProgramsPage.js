@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AddProgramForm from '../../forms/AddProgramForm.js';
 import {
   addProgramAction,
@@ -9,16 +9,11 @@ import { Button } from 'antd';
 
 function RenderProgramsPage({ addProgramAction, getAllProgramsAction }) {
   const [visible, setVisible] = useState(false);
-  // const [programList, setProgramList] = useState(null);
 
   const onCreate = programObj => {
     addProgramAction(programObj);
     setVisible(false);
   };
-
-  useEffect(() => {
-    onCreate();
-  }, [addProgramAction]);
 
   return (
     <div>
@@ -42,7 +37,6 @@ function RenderProgramsPage({ addProgramAction, getAllProgramsAction }) {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     programs: state.program.programs,
   };

@@ -1,4 +1,4 @@
-import React, { useState, input, useEffect } from 'react';
+import React, { useState, input } from 'react';
 //import { TweenOneGroup } from 'rc-tween-one';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -11,11 +11,9 @@ const TagsComponent = props => {
   };
 
   const [state, setState] = useState(initialTagValues);
-  console.log(state.tags, 'tags');
 
   const handleClose = removedTag => {
     const tags = state.tags.filter(tag => tag !== removedTag);
-    console.log(tags);
     setState({ tags });
   };
 
@@ -33,7 +31,6 @@ const TagsComponent = props => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
-    console.log(tags);
     setState({
       tags,
       inputVisible: false,
@@ -65,8 +62,7 @@ const TagsComponent = props => {
     );
   };
 
-  const { tags, inputVisible, inputValue } = state;
-  const tagChild = tags.map(forMap);
+  const { inputVisible, inputValue } = state;
 
   return (
     <>

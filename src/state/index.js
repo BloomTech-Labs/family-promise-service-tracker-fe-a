@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import {
   userReducer,
   serviceReducer,
@@ -19,6 +19,10 @@ export const rootReducer = combineReducers({
   employee: employeeReducer,
   recipient: recipientReducer,
   household: householdReducer,
+});
+
+const logger = createLogger({
+  collapsed: true,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk, logger));

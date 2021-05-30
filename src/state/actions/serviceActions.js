@@ -126,7 +126,6 @@ export const getServiceProviders = () => dispatch => {
   axiosWithAuth()
     .get(`api/profiles/getserviceproviders`)
     .then(res => {
-      console.log(res.data, 'this is res.data for getServiceProviders');
       dispatch({ type: GET_ALL_SERVICE_PROVIDERS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -143,7 +142,6 @@ export const getServiceTypes = () => dispatch => {
   axiosWithAuth()
     .get(`api/service_types`)
     .then(res => {
-      console.log(res.data, 'this is res.data for getServiceTypes');
       dispatch({ type: GET_ALL_SERVICE_TYPES_SUCCESS, payload: res.data });
     })
     .catch(err => {

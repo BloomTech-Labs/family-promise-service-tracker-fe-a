@@ -1,6 +1,5 @@
 import React from 'react';
 import RenderRecipientsPage from './RenderRecipientsPage';
-import { TabletHeader } from '../../common/index';
 import RecipientTable from '../../common/RecipientsTable/RecipientTable';
 import TitleComponent from '../../common/Title';
 

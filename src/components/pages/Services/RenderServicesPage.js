@@ -34,8 +34,12 @@ function RenderServicesPage({
     getAllRecipientAction();
     getServiceTypes();
     getAllProgramsAction();
-    addServiceTypeAction();
-  }, []);
+  }, [
+    getServiceProviders,
+    getAllRecipientAction,
+    getServiceTypes,
+    getAllProgramsAction,
+  ]);
 
   const onCreate = values => {
     setVisible(false);

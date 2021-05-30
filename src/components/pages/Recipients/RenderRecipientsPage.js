@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AddRecipientForm from '../../forms/AddRecipientForm';
 import AddHouseholdForm from '../../forms/AddHouseholdForm';
 import {
@@ -29,10 +29,6 @@ function RenderRecipientsPage({
     addHouseholdAction(householdObj);
     setHouseholdVisible(false);
   };
-
-  useEffect(() => {
-    onCreate();
-  }, [addRecipientAction]);
 
   return (
     <>

@@ -1,27 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  DatePicker,
-  TimePicker,
-  Modal,
-} from 'antd';
+import { Form, Input, Select, Modal } from 'antd';
 import { getAllProgramsAction } from '../../state/actions/programActions';
-// import { Modal, Form, Input, Select } from 'antd';
-const providers = ['Ruth Higgins', 'John Wick', 'Samuel G.'];
-// const programs = ['Prevention', 'After Care', 'Sheltering'];
-const serviceStatus = ['In Progress', 'Completed'];
 
 function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
-  // useEffect(() => {
-  //   getAllProgramsAction();
-  // }, []);
-  console.log(programs, 'here');
   return (
     <>
       <Modal

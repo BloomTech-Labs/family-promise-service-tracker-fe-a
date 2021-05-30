@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -25,7 +24,6 @@ import {
   deleteRecipientAction,
   getAllHouseholdAction,
 } from '../../../state/actions';
-import { strikethrough } from 'kleur';
 
 const RecipientTable = ({
   getAllHouseholdAction,
@@ -42,7 +40,6 @@ const RecipientTable = ({
   const [filteredInfo, setFilteredInfo] = useState('');
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
@@ -73,7 +70,7 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllHouseholdAction();
-  }, [change]);
+  }, [change, getAllHouseholdAction, getAllRecipientAction]);
 
   const isEditing = record => record.id === editingKey;
 
@@ -384,14 +381,14 @@ const RecipientTable = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>
