@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    baseURL: 'https://fp-service-tracker.herokuapp.com',
+    baseURL: process.env.REACT_APP_API_URI,
   });
 };
