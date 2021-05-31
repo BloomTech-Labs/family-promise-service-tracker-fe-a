@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const CheckboxComponent = props => {
   const [selected, setSelected] = useState([]);
@@ -8,7 +8,7 @@ const CheckboxComponent = props => {
     setSelected(selectedRowKeys);
     const selectedUsers = [];
     selectedRowKeys.map(key => {
-      props.map(user => {
+      return props.forEach(user => {
         if (user.key === key) {
           selectedUsers.push(user);
         }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
@@ -13,7 +13,6 @@ import logo from '../../../assets/logo.png';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 const HamburgerMenu = ({ userRole }) => {
-  const { Header } = Layout;
   const history = useHistory();
 
   const handleLogout = () => {

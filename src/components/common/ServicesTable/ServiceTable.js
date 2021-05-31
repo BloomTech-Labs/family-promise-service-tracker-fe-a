@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import { STATUSES } from '../../../const';
 import {
   Table,
   Input,
@@ -13,7 +13,6 @@ import {
 } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -35,15 +34,9 @@ const ServicesTable = ({
   getAllServicesAction,
   deleteServiceAction,
   editServiceAction,
-  getServiceByIdAction,
-  getRecipientByIdAction,
   getAllRecipientAction,
   getAllServiceTypesAction,
-  editRecipientAction,
-  deleteRecipientAction,
   services,
-  serviceTypes,
-  recipient,
   change,
 }) => {
   const [form] = Form.useForm();
@@ -55,20 +48,25 @@ const ServicesTable = ({
     getAllRecipientAction();
     getAllServicesAction();
     getAllServiceTypesAction();
-  }, [change]);
+  }, [
+    change,
+    getAllRecipientAction,
+    getAllServiceTypesAction,
+    getAllServicesAction,
+  ]);
 
-  const handleChange = (pagination, filters, sorter) => {
+  const handleChange = (filters, sorter) => {
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
 
   const clearFilters = () => {
-    setFilteredInfo(null);
+    setFilteredInfo('');
   };
 
   const clearAll = () => {
-    setSortedInfo(null);
-    setFilteredInfo(null);
+    setSortedInfo('');
+    setFilteredInfo('');
   };
 
   const setAgeSort = () => {
@@ -140,7 +138,7 @@ const ServicesTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            first_name="first_name"
+            name="first_name"
             style={{ margin: 0 }}
             rules={[
               {
@@ -149,7 +147,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.recipient.first_name} />
+            <Input value={record.recipient.first_name} />
           </Form.Item>
         ) : (
           <>{record.recipient.first_name}</>
@@ -170,7 +168,7 @@ const ServicesTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            last_name="last_name"
+            name="last_name"
             style={{ margin: 0 }}
             rules={[
               {
@@ -179,7 +177,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.recipient.last_name} />
+            <Input value={record.recipient.last_name} />
           </Form.Item>
         ) : (
           <>{record.recipient.last_name}</>
@@ -209,7 +207,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.service_type.name} />
+            <Input value={record.service_type.name} />
           </Form.Item>
         ) : (
           <>{record.service_type.name}</>
@@ -238,7 +236,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.unit} />
+            <Input value={record.unit} />
           </Form.Item>
         ) : (
           <>{record.unit}</>
@@ -266,7 +264,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.quantity} />
+            <Input value={record.quantity} />
           </Form.Item>
         ) : (
           <>{record.quantity}</>
@@ -294,7 +292,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.value} />
+            <Input value={record.value} />
           </Form.Item>
         ) : (
           <>{record.value}</>
@@ -320,7 +318,7 @@ const ServicesTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="value"
+            name="status_id"
             style={{ margin: 0 }}
             rules={[
               {
@@ -329,11 +327,10 @@ const ServicesTable = ({
               },
             ]}
           >
-            {/* <Input defaultValue={record.status.name} /> */}
-            <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.status.name}
+            <Select size="middle">
+              {STATUSES.map(status => (
+                <Select.Option key={status.id} value={status.id}>
+                  {status.type}
                 </Select.Option>
               ))}
             </Select>
@@ -366,7 +363,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.address} />
+            <Input value={record.address} />
           </Form.Item>
         ) : (
           <>{record.address}</>
@@ -396,7 +393,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.city} />
+            <Input value={record.city} />
           </Form.Item>
         ) : (
           <>{record.city}</>
@@ -426,7 +423,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.state} />
+            <Input value={record.state} />
           </Form.Item>
         ) : (
           <>{record.state}</>
@@ -454,7 +451,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.zip_code} />
+            <Input value={record.zip_code} />
           </Form.Item>
         ) : (
           <>{record.zip_code}</>
@@ -482,14 +479,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.provided_at} />
-            {/* <Select size="middle">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.provided_at}
-                </Select.Option>
-              ))}
-            </Select> */}
+            <Input value={record.provided_at} />
           </Form.Item>
         ) : (
           <>{record.provided_at}</>
@@ -514,14 +504,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.notes} />
-            {/* <Select size="middle" mode="multiple">
-              {services.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.notes}
-                </Select.Option>
-              ))}
-            </Select> */}
+            <Input value={record.notes} />
           </Form.Item>
         ) : (
           <>{record.notes}</>
@@ -537,14 +520,14 @@ const ServicesTable = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>
@@ -591,6 +574,7 @@ const ServicesTable = ({
             size="small"
             tableLayout="fixed"
             onChange={handleChange}
+            rowKey={record => record.id}
           />
         </Form>
       )}

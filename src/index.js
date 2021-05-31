@@ -6,12 +6,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-import {
-  Security,
-  LoginCallback,
-  SecureRoute,
-  useOktaAuth,
-} from '@okta/okta-react';
+import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 import { Provider } from 'react-redux';
 import { store } from './state/index';

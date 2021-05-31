@@ -1,6 +1,5 @@
 import React from 'react';
 import RenderProgramsPage from './RenderProgramsPage';
-import { TabletHeader } from '../../common/index';
 import TitleComponent from '../../common/Title';
 import ProgramTable from '../../common/ProgramsTable/ProgramTable';
 

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import TagsComponent from './Tags';
-import { Table, Input, Typography, Form, Tag, Space, Popconfirm } from 'antd';
+import { Table, Input, Typography, Form, Space, Popconfirm } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -29,7 +27,7 @@ const ProgramTable = ({
 
   useEffect(() => {
     getAllProgramsAction();
-  }, [change]);
+  }, [change, getAllProgramsAction]);
 
   const isEditing = record => record.id === editingKey;
 
@@ -49,14 +47,11 @@ const ProgramTable = ({
 
   const deleteProgram = key => {
     deleteProgramAction(key);
-    console.log('key', key);
   };
 
   const save = async programId => {
     try {
       const programObj = await form.validateFields();
-      console.log('programObj', programObj);
-      console.log('programId', programId);
       editProgramAction(programId, programObj);
       setEditingKey('');
     } catch (errInfo) {
@@ -83,7 +78,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.name} />
+            <Input value={record.name} />
           </Form.Item>
         ) : (
           <>{record.name}</>
@@ -108,7 +103,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.type} />
+            <Input value={record.type} />
           </Form.Item>
         ) : (
           <>{record.type}</>
@@ -133,7 +128,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.description} />
+            <Input value={record.description} />
           </Form.Item>
         ) : (
           <>{record.description} </>
@@ -149,14 +144,14 @@ const ProgramTable = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>
@@ -194,6 +189,7 @@ const ProgramTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={programs}
+            rowKey={record => record.id}
           />
         </Form>
       )}

@@ -27,7 +27,7 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
         <Form
           layout="vertical"
           form={form}
-          initialValue={{
+          initialValues={{
             modifier: 'public',
           }}
         >

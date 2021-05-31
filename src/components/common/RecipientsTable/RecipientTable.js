@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import {
   LoadingOutlined,
-  PlusOutlined,
   DeleteOutlined,
   EditOutlined,
 } from '@ant-design/icons';
@@ -25,7 +24,6 @@ import {
   deleteRecipientAction,
   getAllHouseholdAction,
 } from '../../../state/actions';
-import { strikethrough } from 'kleur';
 
 const RecipientTable = ({
   getAllHouseholdAction,
@@ -42,18 +40,17 @@ const RecipientTable = ({
   const [filteredInfo, setFilteredInfo] = useState('');
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
 
   const clearFilters = () => {
-    setFilteredInfo(null);
+    setFilteredInfo('');
   };
 
   const clearAll = () => {
-    setSortedInfo(null);
-    setFilteredInfo(null);
+    setSortedInfo('');
+    setFilteredInfo('');
   };
 
   const setAgeSort = () => {
@@ -73,7 +70,7 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllHouseholdAction();
-  }, [change]);
+  }, [change, getAllHouseholdAction, getAllRecipientAction]);
 
   const isEditing = record => record.id === editingKey;
 
@@ -137,7 +134,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.first_name} />
+            <Input value={record.first_name} />
           </Form.Item>
         ) : (
           <>{record.first_name}</>
@@ -167,7 +164,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.last_name} />
+            <Input value={record.last_name} />
           </Form.Item>
         ) : (
           <>{record.last_name}</>
@@ -195,7 +192,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.age} />
+            <Input value={record.age} />
           </Form.Item>
         ) : (
           <>{record.age}</>
@@ -229,12 +226,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {recipients.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
+            <Select placeholder="Please select their gender">
+              <Select.Option value="male">Male</Select.Option>
+              <Select.Option value="female">Female</Select.Option>
+              <Select.Option value="nonbinary">Non-Binary Gender</Select.Option>
             </Select>
           </Form.Item>
         ) : (
@@ -274,7 +269,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.race} />
+            <Input value={record.race} />
           </Form.Item>
         ) : (
           <>{record.race}</>
@@ -307,7 +302,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.ethnicity} />
+            <Input value={record.ethnicity} />
           </Form.Item>
         ) : (
           <>{record.ethnicity}</>
@@ -340,7 +335,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.veteran_status} />
+            <Input value={record.veteran_status} />
           </Form.Item>
         ) : (
           <>{record.veteran_status ? 'Yes' : 'No'}</>
@@ -368,7 +363,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.household_id} />
+            <Input value={record.household_id} />
           </Form.Item>
         ) : (
           <>{record.household_id}</>
@@ -384,14 +379,14 @@ const RecipientTable = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.id)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>
@@ -438,6 +433,7 @@ const RecipientTable = ({
             dataSource={recipients}
             size="small"
             tableLayout="fixed"
+            rowKey={record => record.id}
           />
         </Form>
       )}

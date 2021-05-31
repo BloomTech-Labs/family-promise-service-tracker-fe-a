@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { CheckboxComponent } from '../index';
+
 import {
   Table,
   Input,
@@ -22,14 +22,12 @@ import {
   getAllEmployeeAction,
   editEmployeeAction,
   deleteEmployeeAction,
-  getEmployeeByIdAction,
   getAllProgramsAction,
 } from '../../../state/actions';
 
 const TableComponent = ({
   getAllEmployeeAction,
   editEmployeeAction,
-  deleteEmployeeAction,
   getAllProgramsAction,
   employees,
   programs,
@@ -38,18 +36,13 @@ const TableComponent = ({
   // tableData is what is consumed by the antd table on render
   const tableData = [];
 
-  // const initialTagValues = {
-  //   selectedTags: employees.programs,
-  // };
-
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  // const [selected, setSelected] = useState(initialTagValues);
 
   useEffect(() => {
     getAllEmployeeAction();
     getAllProgramsAction();
-  }, [change]);
+  }, [change, getAllEmployeeAction, getAllProgramsAction]);
 
   const isEditing = record => record.key === editingKey;
 
@@ -71,8 +64,6 @@ const TableComponent = ({
   const save = async employeeId => {
     try {
       const employeeObj = await form.validateFields();
-      console.log('key', employeeId);
-      console.log('edited Row', employeeObj);
       editEmployeeAction(employeeId, employeeObj);
       setEditingKey('');
     } catch (errInfo) {
@@ -84,18 +75,6 @@ const TableComponent = ({
   const deleteUser = key => {
     // deleteEmployeeAction(key);
   };
-
-  // const { CheckableTag } = Tag;
-
-  // const { selectedTags } = selected;
-
-  // const handleSelected = (tag, checked) => {
-  //   // const { selectedTags } = selected;
-  //   const nextSelectedTags = checked
-  //     ? [...selectedTags, tag]
-  //     : selectedTags.filter(t => t !== tag);
-  //   setSelected({ selectedTags: nextSelectedTags });
-  // };
 
   const selectRole = role => {
     return role === 'administrator'
@@ -111,14 +90,14 @@ const TableComponent = ({
 
   const userObjCreator = () => {
     if (employees) {
-      employees.map(employee => {
+      employees.forEach(employee => {
         const programs = [];
-        employee.programs.map(program => {
+        employee.programs.forEach(program => {
           if (program !== null) {
             programs.push(program.name);
           }
         });
-        return tableData.push({
+        tableData.push({
           key: employee.id,
           firstName: employee.firstName,
           lastName: employee.lastName,
@@ -149,7 +128,7 @@ const TableComponent = ({
               },
             ]}
           >
-            <Input defaultValue={record.firstName} />
+            <Input value={record.firstName} />
           </Form.Item>
         ) : (
           <>{record.firstName}</>
@@ -174,7 +153,7 @@ const TableComponent = ({
               },
             ]}
           >
-            <Input defaultValue={record.lastName} />
+            <Input value={record.lastName} />
           </Form.Item>
         ) : (
           <>{record.lastName}</>
@@ -190,7 +169,7 @@ const TableComponent = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item name="role" style={{ margin: 0 }}>
-            <Select size="middle" defaultValue={record.role}>
+            <Select size="middle" value={record.role}>
               {/* Could be dynamic by mapping through list of roles */}
               <Select.Option value="administrator">Administrator</Select.Option>
               <Select.Option value="program_manager">
@@ -234,20 +213,6 @@ const TableComponent = ({
             </Select>
           </Form.Item>
         ) : (
-          //   <Form.Item name={record.dataIndex}>
-          //     <>
-          //       {programs.map(tag => (
-          //         <CheckableTag
-          //           key={tag}
-          //           checked={selectedTags.indexOf(tag) > -1}
-          //           onChange={checked => handleSelected(tag, checked)}
-          //         >
-          //           {tag}
-          //         </CheckableTag>
-          //       ))}
-          //     </>
-          //   </Form.Item>
-          // )
           <>
             {record.programs.map(program => {
               return (
@@ -281,14 +246,14 @@ const TableComponent = ({
         return editable ? (
           <span>
             <Space size="middle">
-              <a
+              <button
                 onClick={() => save(record.key)}
                 style={{ color: '#1890FF', marginRight: 8 }}
               >
                 Save
-              </a>
+              </button>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a style={{ color: '#1890FF' }}>Cancel</a>
+                <button style={{ color: '#1890FF' }}>Cancel</button>
               </Popconfirm>
             </Space>
           </span>

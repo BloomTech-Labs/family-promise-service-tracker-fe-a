@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
-
+import { STATUSES } from '../../const';
 import {
   getServiceProviders,
   addServiceAction,
@@ -9,13 +9,6 @@ import {
 } from '../../state/actions/serviceActions';
 
 const { TextArea } = Input;
-
-const statuses = [
-  { id: 1, type: 'Complete' },
-  { id: 2, type: 'In Progress' },
-  { id: 3, type: 'Needs Follow-Up' },
-  { id: 4, type: 'Not Started' },
-];
 
 function AddServiceForm({
   visible,
@@ -50,7 +43,7 @@ function AddServiceForm({
         <Form
           layout="vertical"
           form={form}
-          initialValue={{
+          initialValues={{
             modifier: 'public',
           }}
         >
@@ -120,7 +113,7 @@ function AddServiceForm({
             ]}
           >
             <Select placeholder="Select Status" size="large">
-              {statuses.map(item => (
+              {STATUSES.map(item => (
                 <Select.Option key={item.id} value={item.id}>
                   {' '}
                   {item.type}

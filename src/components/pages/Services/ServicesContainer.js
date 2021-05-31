@@ -1,6 +1,5 @@
 import React from 'react';
 import RenderServicesPage from './RenderServicesPage';
-import { TabletHeader } from '../../common/index';
 import TitleComponent from '../../common/Title';
 import ServiceTable from '../../common/ServicesTable/ServiceTable';
 
