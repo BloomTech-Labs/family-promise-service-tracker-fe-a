@@ -71,11 +71,8 @@ const ServicesTable = ({
       filters: serviceTypes.map(s => {
         return { text: s.name, value: s.name };
       }),
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
       filteredValue: filteredInfo.serviceType || null,
       onFilter: (value, record) => record.service_type.name.includes(value),
-      sorter: (a, b) => a.service_type.name.localeCompare(b.service_type.name),
-      sortOrder: sortedInfo.columnKey === 'serviceType' && sortedInfo.order,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -203,8 +200,6 @@ const ServicesTable = ({
       }),
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status.name.includes(value),
-      sorter: (a, b) => a.status.name.localeCompare(b.status.name),
-      sortOrder: sortedInfo.columnKey === 'status' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
