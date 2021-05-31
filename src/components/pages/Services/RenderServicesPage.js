@@ -56,6 +56,22 @@ function RenderServicesPage({
   return (
     <>
       <div>
+        <AddServiceTypeForm
+          visible={typeVisible}
+          onCreate={onCreateType}
+          onCancel={() => {
+            setTypeVisible(false);
+          }}
+        />
+        <AddServiceForm
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+      </div>
+      <div>
         <Button
           type="primary"
           onClick={() => {
@@ -64,16 +80,6 @@ function RenderServicesPage({
         >
           Add Service Type
         </Button>
-        <AddServiceTypeForm
-          visible={typeVisible}
-          onCreate={onCreateType}
-          onCancel={() => {
-            setTypeVisible(false);
-          }}
-        />
-      </div>
-
-      <div>
         <Button
           type="primary"
           onClick={() => {
@@ -82,13 +88,6 @@ function RenderServicesPage({
         >
           Log Service
         </Button>
-        <AddServiceForm
-          visible={visible}
-          onCreate={onCreate}
-          onCancel={() => {
-            setVisible(false);
-          }}
-        />
       </div>
     </>
   );

@@ -185,13 +185,14 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Quantity',
+      title: 'Qty',
       dataIndex: 'quantity',
       key: 'quantity',
       sorter: (a, b) => a.quantity - b.quantity,
       sortOrder: sortedInfo.columnKey === 'quantity' && sortedInfo.order,
       ellipsis: true,
       editable: true,
+      className: 'col-sm',
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -217,6 +218,7 @@ const ServicesTable = ({
       title: 'Value',
       dataIndex: 'value',
       key: 'value',
+      className: 'col-sm',
       sorter: (a, b) => a.value - b.value,
       sortOrder: sortedInfo.columnKey === 'value' && sortedInfo.order,
       ellipsis: true,
@@ -419,6 +421,7 @@ const ServicesTable = ({
       title: 'Actions',
       dataIndex: 'actions',
       key: 'actions',
+      width: 75,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -473,7 +476,7 @@ const ServicesTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={services}
-            size="small"
+            size="middle"
             tableLayout="fixed"
             onChange={handleChange}
             rowKey={record => record.id}

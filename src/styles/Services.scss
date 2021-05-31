@@ -1,4 +1,6 @@
-.services-header {
-  display: flex;
-  justify-content: space-around;
+.col-sm {
+  width:65px;
+  @media(orientation:portrait){ 
+    width:50px;
+  }
 }

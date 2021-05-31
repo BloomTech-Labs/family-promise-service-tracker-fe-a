@@ -6,7 +6,7 @@ import ServiceTable from '../../common/ServicesTable/ServiceTable';
 function ServicesContainer() {
   return (
     <div>
-      <div className="services-header">
+      <div className="sub-header">
         <TitleComponent TitleText="Services" />
         <RenderServicesPage />
       </div>
