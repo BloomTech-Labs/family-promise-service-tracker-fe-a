@@ -34,6 +34,7 @@ const ServicesTable = ({
   editServiceAction,
   services,
   serviceTypes,
+  recipients,
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
@@ -90,7 +91,28 @@ const ServicesTable = ({
       sortOrder: sortedInfo.columnKey === 'recipient' && sortedInfo.order,
       ellipsis: true,
       render: (_, record) => {
-        return (
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            label="Recipient Name"
+            name="recipient_id"
+            initialValue={record.recipient.id}
+            rules={[
+              {
+                required: true,
+                message: 'Please select the Recipient',
+              },
+            ]}
+          >
+            <Select size="large" placeholder="Select Recipient">
+              {recipients.map(recipient => (
+                <Select.Option key={recipient.id} value={recipient.id}>
+                  {recipient.first_name + ' ' + recipient.last_name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
           <>
             {record.recipient.first_name} {record.recipient.last_name}
           </>
@@ -415,7 +437,7 @@ const ServicesTable = ({
 
 const mapStateToProps = state => {
   return {
-    recipient: state.recipient.recipients,
+    recipients: state.recipient.recipients,
     services: state.service.services,
     serviceTypes: state.serviceType.serviceTypes,
   };
