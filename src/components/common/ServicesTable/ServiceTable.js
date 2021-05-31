@@ -94,7 +94,6 @@ const ServicesTable = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            label="Recipient Name"
             name="recipient_id"
             initialValue={record.recipient.id}
             rules={[
@@ -104,7 +103,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="large" placeholder="Select Recipient">
+            <Select size="medium" placeholder="Select Recipient">
               {recipients.map(recipient => (
                 <Select.Option key={recipient.id} value={recipient.id}>
                   {recipient.first_name + ' ' + recipient.last_name}
@@ -284,10 +283,65 @@ const ServicesTable = ({
       title: 'Location',
       dataIndex: 'location',
       key: 'location',
-      ellipsis: true,
       editable: false,
       render: (_, record) => {
-        return (
+        const editable = isEditing(record);
+        return editable ? (
+          <>
+            <Form.Item
+              name="address"
+              initialValue={record.address}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the address',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="city"
+              initialValue={record.city}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the city',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="state"
+              initialValue={record.state}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the state',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="zip_code"
+              initialValue={record.zip_code}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the zip code',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+          </>
+        ) : (
           <>
             {record.address}
             <br />
