@@ -558,6 +558,11 @@ const ServicesTable = ({
             tableLayout="fixed"
             onChange={handleChange}
             rowKey={record => record.id}
+            pagination={{
+              defaultPageSize: 50,
+              showSizeChanger: true,
+              pageSizeOptions: ['25', '50', '100'],
+            }}
           />
         </Form>
       )}
