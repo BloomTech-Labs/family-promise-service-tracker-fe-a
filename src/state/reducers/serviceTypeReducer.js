@@ -112,6 +112,9 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Success',
+        serviceTypes: state.serviceTypes.map(serviceType =>
+          serviceType.id === action.payload.id ? action.payload : serviceType
+        ),
         change: 'edited',
       };
     case EDIT_SERVICE_TYPE_FAIL:
@@ -137,6 +140,9 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Success',
+        serviceTypes: state.serviceTypes.filter(
+          serviceType => serviceType.id !== action.payload
+        ),
         change: 'deleted',
       };
     case DELETE_SERVICE_TYPE_FAIL:

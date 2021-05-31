@@ -63,7 +63,10 @@ export const editServiceTypeAction = (typeId, typeObj) => dispatch => {
   axiosWithAuth()
     .put(`/api/service_type/${typeId}`, typeObj)
     .then(res => {
-      dispatch({ type: EDIT_SERVICE_TYPE_SUCCESS, payload: res.data });
+      dispatch({
+        type: EDIT_SERVICE_TYPE_SUCCESS,
+        payload: res.data.service_type,
+      });
     })
     .catch(err => {
       dispatch({ type: EDIT_SERVICE_TYPE_FAIL, payload: err.message });
@@ -97,7 +100,10 @@ export const deleteServiceTypeAction = typeId => dispatch => {
   axiosWithAuth()
     .delete(`/api/service_type/${typeId}`)
     .then(res => {
-      dispatch({ type: DELETE_SERVICE_TYPE_SUCCESS, payload: res.data });
+      // backend is returning id of deleted object in a message string - this is a
+      // brittle method to get that id but will work without making backend changes
+      const id = res.data.message.match(/\d+/)[0];
+      dispatch({ type: DELETE_SERVICE_TYPE_SUCCESS, payload: id });
     })
     .catch(err => {
       dispatch({ type: DELETE_SERVICE_TYPE_FAIL, payload: err.message });
