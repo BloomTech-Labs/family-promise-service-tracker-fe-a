@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { STATUSES } from '../../../const';
 import {
   Table,
@@ -10,6 +11,7 @@ import {
   Popconfirm,
   Select,
   Button,
+  DatePicker,
 } from 'antd';
 import {
   LoadingOutlined,
@@ -31,70 +33,25 @@ const ServicesTable = ({
   deleteServiceAction,
   editServiceAction,
   services,
-  change,
+  serviceTypes,
+  recipients,
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
   const [sortedInfo, setSortedInfo] = useState('');
   const [filteredInfo, setFilteredInfo] = useState('');
 
-  const handleChange = (filters, sorter) => {
+  const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
 
-  const clearFilters = () => {
-    setFilteredInfo('');
-  };
-
-  const clearAll = () => {
-    setSortedInfo('');
-    setFilteredInfo('');
-  };
-
-  const setAgeSort = () => {
-    setSortedInfo({
-      order: 'descend',
-      columnKey: 'age',
-    });
-  };
-
-  const setFirstNameSort = () => {
-    setSortedInfo({
-      order: 'descend',
-      columnKey: 'first_name',
-    });
-  };
-
+  const clearFilters = () => setFilteredInfo('');
+  const clearAll = () => setSortedInfo('') && setFilteredInfo('');
   const isEditing = record => record.id === editingKey;
-
-  const edit = record => {
-    form.setFieldsValue({
-      first_name: '',
-      last_name: '',
-      serviceType: '',
-      unit: '',
-      quantity: '',
-      value: '',
-      status: '',
-      address: '',
-      city: '',
-      state: '',
-      zip_code: '',
-      date: '',
-      notes: '',
-      ...record,
-    });
-    setEditingKey(record.id);
-  };
-
-  const cancel = () => {
-    setEditingKey('');
-  };
-
-  const deleteService = key => {
-    deleteServiceAction(key);
-  };
+  const edit = record => setEditingKey(record.id);
+  const cancel = () => setEditingKey('');
+  const deleteService = key => deleteServiceAction(key);
 
   const save = async serviceId => {
     try {
@@ -108,74 +65,14 @@ const ServicesTable = ({
 
   const columns = [
     {
-      title: 'First Name',
-      dataIndex: 'first_name',
-      key: 'first_name',
-      editable: false,
-      filteredValue: filteredInfo.first_name || null,
-      sorter: (a, b) =>
-        a.recipient.first_name.localeCompare(b.recipient.first_name),
-      sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
-      ellipsis: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="first_name"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input a first name!`,
-              },
-            ]}
-          >
-            <Input value={record.recipient.first_name} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient.first_name}</>
-        );
-      },
-    },
-    {
-      title: 'Last Name',
-      dataIndex: 'last_name',
-      key: 'last_name',
-      filteredValue: filteredInfo.last_name || null,
-      sorter: (a, b) =>
-        a.recipient.last_name.localeCompare(b.recipient.last_name),
-      sortOrder: sortedInfo.columnKey === 'last_name' && sortedInfo.order,
-      ellipsis: true,
-      editable: false,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="last_name"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input a last name!`,
-              },
-            ]}
-          >
-            <Input value={record.recipient.last_name} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient.last_name}</>
-        );
-      },
-    },
-    {
       title: 'Service Type',
       dataIndex: 'serviceType',
       key: 'serviceType',
+      filters: serviceTypes.map(s => {
+        return { text: s.name, value: s.name };
+      }),
       filteredValue: filteredInfo.serviceType || null,
       onFilter: (value, record) => record.service_type.name.includes(value),
-      sorter: (a, b) => a.service_type.name.localeCompare(b.service_type.name),
-      sortOrder: sortedInfo.columnKey === 'serviceType' && sortedInfo.order,
-      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -183,6 +80,7 @@ const ServicesTable = ({
           <Form.Item
             name="service_type_id"
             style={{ margin: 0 }}
+            initialValue={record.service_type.id}
             rules={[
               {
                 required: true,
@@ -190,10 +88,46 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input value={record.service_type.name} />
+            <Select size="middle" value={record.service_type.id}>
+              {serviceTypes.map(serviceType => (
+                <Select.Option key={serviceType.id} value={serviceType.id}>
+                  {serviceType.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
           <>{record.service_type.name}</>
+        );
+      },
+    },
+    {
+      title: 'Qty',
+      dataIndex: 'quantity',
+      key: 'quantity',
+      sorter: (a, b) => a.quantity - b.quantity,
+      sortOrder: sortedInfo.columnKey === 'quantity' && sortedInfo.order,
+      ellipsis: true,
+      editable: true,
+      className: 'col-sm',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="quantity"
+            style={{ margin: 0 }}
+            initialValue={record.quantity}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a quantity',
+              },
+            ]}
+          >
+            <Input value={record.quantity} />
+          </Form.Item>
+        ) : (
+          <>{record.quantity}</>
         );
       },
     },
@@ -212,6 +146,7 @@ const ServicesTable = ({
           <Form.Item
             name="unit"
             style={{ margin: 0 }}
+            initialValue={record.unit}
             rules={[
               {
                 required: true,
@@ -227,37 +162,10 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Quantity',
-      dataIndex: 'quantity',
-      key: 'quantity',
-      sorter: (a, b) => a.quantity - b.quantity,
-      sortOrder: sortedInfo.columnKey === 'quantity' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="quantity"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a quantity',
-              },
-            ]}
-          >
-            <Input value={record.quantity} />
-          </Form.Item>
-        ) : (
-          <>{record.quantity}</>
-        );
-      },
-    },
-    {
       title: 'Value',
       dataIndex: 'value',
       key: 'value',
+      className: 'col-sm',
       sorter: (a, b) => a.value - b.value,
       sortOrder: sortedInfo.columnKey === 'value' && sortedInfo.order,
       ellipsis: true,
@@ -268,6 +176,7 @@ const ServicesTable = ({
           <Form.Item
             name="value"
             style={{ margin: 0 }}
+            initialValue={record.value}
             rules={[
               {
                 required: true,
@@ -286,15 +195,11 @@ const ServicesTable = ({
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      filters: [
-        { text: 'Complete', value: 'Complete' },
-        { text: 'In Progress', value: 'In Progress' },
-        { text: 'Needs Follow-Up', value: 'Needs Follow-Up' },
-        { text: 'Not Started', value: 'Not Started' },
-      ],
+      filters: STATUSES.map(s => {
+        return { text: s.type, value: s.type };
+      }),
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status.name.includes(value),
-      sortOrder: sortedInfo.columnKey === 'status' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
@@ -302,6 +207,7 @@ const ServicesTable = ({
         return editable ? (
           <Form.Item
             name="status_id"
+            initialValue={record.status_id}
             style={{ margin: 0 }}
             rules={[
               {
@@ -310,7 +216,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle">
+            <Select size="middle" value={record.status_id}>
               {STATUSES.map(status => (
                 <Select.Option key={status.id} value={status.id}>
                   {status.type}
@@ -324,148 +230,112 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      filteredValue: filteredInfo.address || null,
-      onFilter: (value, record) => record.address.includes(value),
-      sorter: (a, b) => a.address.localeCompare(b.address),
-      sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
+      title: 'Recipient',
+      dataIndex: 'recipient',
+      key: 'recipient',
+      editable: false,
+      filteredValue: filteredInfo.recipient || null,
+      sorter: (a, b) =>
+        a.recipient.last_name.localeCompare(b.recipient.last_name),
+      sortOrder: sortedInfo.columnKey === 'recipient' && sortedInfo.order,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="address"
-            style={{ margin: 0 }}
+            name="recipient_id"
+            initialValue={record.recipient.id}
             rules={[
               {
                 required: true,
-                message: 'Please input an address',
+                message: 'Please select the Recipient',
               },
             ]}
           >
-            <Input value={record.address} />
+            <Select size="medium" placeholder="Select Recipient">
+              {recipients.map(recipient => (
+                <Select.Option key={recipient.id} value={recipient.id}>
+                  {recipient.first_name + ' ' + recipient.last_name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         ) : (
-          <>{record.address}</>
+          <>
+            {record.recipient.first_name} {record.recipient.last_name}
+          </>
         );
       },
     },
     {
-      title: 'City',
-      dataIndex: 'city',
-      key: 'city',
-      filteredValue: filteredInfo.city || null,
-      onFilter: (value, record) => record.city.includes(value),
-      sorter: (a, b) => a.city.localeCompare(b.city),
-      sortOrder: sortedInfo.columnKey === 'city' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="city"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a city',
-              },
-            ]}
-          >
-            <Input value={record.city} />
-          </Form.Item>
-        ) : (
-          <>{record.city}</>
-        );
-      },
-    },
-    {
-      title: 'State',
-      dataIndex: 'state',
-      key: 'state',
-      filteredValue: filteredInfo.state || null,
-      onFilter: (value, record) => record.state.includes(value),
-      sorter: (a, b) => a.state.localeCompare(b.state),
-      sortOrder: sortedInfo.columnKey === 'state' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="state"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a state',
-              },
-            ]}
-          >
-            <Input value={record.state} />
-          </Form.Item>
-        ) : (
-          <>{record.state}</>
-        );
-      },
-    },
-    {
-      title: 'Zip Code',
-      dataIndex: 'zip_code',
-      key: 'zip_code',
-      sorter: (a, b) => a.zip_code - b.zip_code,
-      sortOrder: sortedInfo.columnKey === 'zip_code' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="state"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input a zip code',
-              },
-            ]}
-          >
-            <Input value={record.zip_code} />
-          </Form.Item>
-        ) : (
-          <>{record.zip_code}</>
-        );
-      },
-    },
-    {
-      title: 'Date & time',
-      dataIndex: 'date',
-      key: 'date',
-      // sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
-      // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-      // ellipsis: true,
+      title: 'Location',
+      dataIndex: 'location',
+      key: 'location',
       editable: false,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
-          <Form.Item
-            name="date"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a date and time',
-              },
-            ]}
-          >
-            <Input value={record.provided_at} />
-          </Form.Item>
+          <>
+            <Form.Item
+              name="address"
+              initialValue={record.address}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the address',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="city"
+              initialValue={record.city}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the city',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="state"
+              initialValue={record.state}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the state',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+            <Form.Item
+              name="zip_code"
+              initialValue={record.zip_code}
+              style={{ margin: 1 }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please enter the zip code',
+                },
+              ]}
+            >
+              <Input size="medium" />
+            </Form.Item>
+          </>
         ) : (
-          <>{record.provided_at}</>
+          <>
+            {record.address}
+            <br />
+            {record.city}, {record.state}
+            <br />
+            {record.zip_code}
+          </>
         );
       },
     },
@@ -480,6 +350,7 @@ const ServicesTable = ({
           <Form.Item
             name="notes"
             style={{ margin: 0 }}
+            initialValue={record.notes}
             rules={[
               {
                 required: true,
@@ -495,9 +366,47 @@ const ServicesTable = ({
       },
     },
     {
+      title: 'Date Provided',
+      dataIndex: 'date',
+      key: 'date',
+      editable: true,
+      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
+      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+      defaultSortOrder: 'descend',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="provided_at"
+            initialValue={moment(record.provided_at)}
+            rules={[
+              {
+                required: true,
+                message: 'Enter Date',
+              },
+            ]}
+          >
+            <DatePicker
+              showTime
+              use12Hours
+              format="MMMM Do YYYY, h:mm a"
+              size="medium"
+            />
+          </Form.Item>
+        ) : (
+          <>
+            {moment(record.provided_at).format('MMM Do YYYY')}
+            <br />
+            {moment(record.provided_at).format('h:mm a')}
+          </>
+        );
+      },
+    },
+    {
       title: 'Actions',
       dataIndex: 'actions',
       key: 'actions',
+      width: 75,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -544,9 +453,8 @@ const ServicesTable = ({
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
-          <Space style={{ marginBottom: 16 }}>
-            <Button onClick={setFirstNameSort}>Sort Name</Button>
-            <Button onClick={setAgeSort}>Sort age</Button>
+          <Space className="filters" align="baseline">
+            <p>Filtering Tools:</p>
             <Button onClick={clearFilters}>Clear filters</Button>
             <Button onClick={clearAll}>Clear filters and sorters</Button>
           </Space>
@@ -554,10 +462,15 @@ const ServicesTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={services}
-            size="small"
+            size="middle"
             tableLayout="fixed"
             onChange={handleChange}
             rowKey={record => record.id}
+            pagination={{
+              defaultPageSize: 50,
+              showSizeChanger: true,
+              pageSizeOptions: ['25', '50', '100'],
+            }}
           />
         </Form>
       )}
@@ -567,7 +480,7 @@ const ServicesTable = ({
 
 const mapStateToProps = state => {
   return {
-    recipient: state.recipient.recipients,
+    recipients: state.recipient.recipients,
     services: state.service.services,
     serviceTypes: state.serviceType.serviceTypes,
   };

@@ -24,7 +24,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           flexWrap: 'wrap',
           maxWidth: '100%',
           minHeight: '70px',
-          margin: '0 auto 40px',
+          margin: '0 auto',
           position: 'relative',
         }}
       >

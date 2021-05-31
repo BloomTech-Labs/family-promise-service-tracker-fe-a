@@ -116,7 +116,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
     case EDIT_SERVICE_SUCCESS:
       return {
         ...state,
-        services: state.service.map(s =>
+        services: state.services.map(s =>
           s.id === action.payload.id ? action.payload : s
         ),
         status: 'Success',

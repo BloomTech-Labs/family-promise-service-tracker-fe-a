@@ -31,7 +31,23 @@ function RenderRecipientsPage({
 
   return (
     <>
-      <div className="add-program-btn-ctn">
+      <div>
+        <AddRecipientForm
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+        <AddHouseholdForm
+          visible={householdVisible}
+          onCreate={onCreateHousehold}
+          onCancel={() => {
+            setHouseholdVisible(false);
+          }}
+        />
+      </div>
+      <div>
         <Button
           type="primary"
           onClick={() => {
@@ -40,15 +56,6 @@ function RenderRecipientsPage({
         >
           Add Recipient
         </Button>
-        <AddRecipientForm
-          visible={visible}
-          onCreate={onCreate}
-          onCancel={() => {
-            setVisible(false);
-          }}
-        />
-      </div>
-      <div className="add-program-btn-ctn">
         <Button
           type="primary"
           onClick={() => {
@@ -57,13 +64,6 @@ function RenderRecipientsPage({
         >
           Create Household
         </Button>
-        <AddHouseholdForm
-          visible={householdVisible}
-          onCreate={onCreateHousehold}
-          onCancel={() => {
-            setHouseholdVisible(false);
-          }}
-        />
       </div>
     </>
   );
