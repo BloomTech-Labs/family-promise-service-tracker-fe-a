@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { STATUSES } from '../../../const';
@@ -40,12 +40,6 @@ const ServicesTable = ({
   const [sortedInfo, setSortedInfo] = useState('');
   const [filteredInfo, setFilteredInfo] = useState('');
 
-  useEffect(() => {
-    console.log(services);
-    mapDatesToMoment(services);
-    console.log(services);
-  }, [services]);
-
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
     setFilteredInfo(filters);
@@ -60,18 +54,9 @@ const ServicesTable = ({
     setFilteredInfo('');
   };
 
-  const mapDatesToMoment = services => {
-    services.map(s => {
-      return { ...s, provided_at: moment(s.provided_at) };
-    });
-  };
   const isEditing = record => record.id === editingKey;
 
   const edit = record => {
-    form.initialValues = {
-      service_type: record.service_type,
-      provided_at: moment(record.provided_at),
-    };
     setEditingKey(record.id);
   };
 
@@ -120,7 +105,6 @@ const ServicesTable = ({
       onFilter: (value, record) => record.service_type.name.includes(value),
       sorter: (a, b) => a.service_type.name.localeCompare(b.service_type.name),
       sortOrder: sortedInfo.columnKey === 'serviceType' && sortedInfo.order,
-      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -241,14 +225,9 @@ const ServicesTable = ({
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      filters: [
-        { text: 'Complete', value: 'Complete' },
-        { text: 'In Progress', value: 'In Progress' },
-        { text: 'Needs Follow-Up', value: 'Needs Follow-Up' },
-        { text: 'Not Started', value: 'Not Started' },
-      ],
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status.name.includes(value),
+      sorter: (a, b) => a.status.name.localeCompare(b.status.name),
       sortOrder: sortedInfo.columnKey === 'status' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -302,10 +281,9 @@ const ServicesTable = ({
       dataIndex: 'date',
       key: 'date',
       editable: true,
-      // sorter: (a, b) => moment(a.date).unix() - moment(b.date).unix(),
-      // sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-      // ellipsis: true,
-
+      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
+      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+      defaultSortOrder: 'descend',
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
