@@ -90,7 +90,7 @@ export const editServiceAction = (serviceId, serviceObj) => dispatch => {
   axiosWithAuth()
     .put(`/api/service_entries/${serviceId}`, serviceObj)
     .then(res => {
-      dispatch({ type: EDIT_SERVICE_SUCCESS, payload: res.data });
+      dispatch({ type: EDIT_SERVICE_SUCCESS, payload: res.data.editedEntry });
     })
     .catch(err => {
       dispatch({ type: EDIT_SERVICE_FAIL, payload: err.message });
