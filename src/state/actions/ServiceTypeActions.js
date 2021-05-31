@@ -102,7 +102,7 @@ export const deleteServiceTypeAction = typeId => dispatch => {
     .then(res => {
       // backend is returning id of deleted object in a message string - this is a
       // brittle method to get that id but will work without making backend changes
-      const id = res.data.message.match(/\d+/)[0];
+      const id = parseInt(res.data.message.match(/\d+/)[0]);
       dispatch({ type: DELETE_SERVICE_TYPE_SUCCESS, payload: id });
     })
     .catch(err => {

@@ -141,6 +141,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
     case DELETE_SERVICE_SUCCESS:
       return {
         ...state,
+        services: state.services.filter(s => s.id !== action.payload),
         status: 'Success',
         change: 'deleted',
       };
