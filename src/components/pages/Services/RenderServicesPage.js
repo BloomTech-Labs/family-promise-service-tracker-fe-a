@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
+import { connect } from 'react-redux';
 
 //redux import
 import {
@@ -7,17 +8,14 @@ import {
   getServiceProviders,
   getServiceTypes,
   getAllProgramsAction,
+  getAllRecipientAction,
+  addServiceTypeAction,
 } from '../../../state/actions/index';
-
-import { getAllRecipientAction } from '../../../state/actions/recipientActions';
-import { addServiceTypeAction } from '../../../state/actions/ServiceTypeActions';
-import { connect } from 'react-redux';
 
 //component import
 import AddServiceForm from '../../forms/AddServiceForm';
 import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
 
-//addServiceTypeAction
 function RenderServicesPage({
   addServiceAction,
   getServiceProviders,

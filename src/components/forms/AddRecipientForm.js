@@ -33,7 +33,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           layout="vertical"
           form={form}
           name="add_recipient_form_in_modal"
-          initialValue={{
+          initialValues={{
             modifier: 'public',
           }}
         >

@@ -78,7 +78,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.name} />
+            <Input value={record.name} />
           </Form.Item>
         ) : (
           <>{record.name}</>
@@ -103,7 +103,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.type} />
+            <Input value={record.type} />
           </Form.Item>
         ) : (
           <>{record.type}</>
@@ -128,7 +128,7 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.description} />
+            <Input value={record.description} />
           </Form.Item>
         ) : (
           <>{record.description} </>
@@ -189,6 +189,7 @@ const ProgramTable = ({
             className="desktop-table"
             columns={columns}
             dataSource={programs}
+            rowKey={record => record.id}
           />
         </Form>
       )}

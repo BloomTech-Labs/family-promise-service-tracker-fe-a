@@ -128,7 +128,7 @@ const TableComponent = ({
               },
             ]}
           >
-            <Input defaultValue={record.firstName} />
+            <Input value={record.firstName} />
           </Form.Item>
         ) : (
           <>{record.firstName}</>
@@ -153,7 +153,7 @@ const TableComponent = ({
               },
             ]}
           >
-            <Input defaultValue={record.lastName} />
+            <Input value={record.lastName} />
           </Form.Item>
         ) : (
           <>{record.lastName}</>
@@ -169,7 +169,7 @@ const TableComponent = ({
         const editable = isEditing(record);
         return editable ? (
           <Form.Item name="role" style={{ margin: 0 }}>
-            <Select size="middle" defaultValue={record.role}>
+            <Select size="middle" value={record.role}>
               {/* Could be dynamic by mapping through list of roles */}
               <Select.Option value="administrator">Administrator</Select.Option>
               <Select.Option value="program_manager">

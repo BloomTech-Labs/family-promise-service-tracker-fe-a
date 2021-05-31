@@ -58,7 +58,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
           >
             <Select size="large" placeholder="Select Program">
               {programs.map(item => (
-                <Select.Option key={item} value={item.id}>
+                <Select.Option key={item.id} value={item.id}>
                   {item.name}
                 </Select.Option>
               ))}

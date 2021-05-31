@@ -25,7 +25,6 @@ function RenderRecipientsPage({
   };
 
   const onCreateHousehold = householdObj => {
-    console.log('created new household: ', householdObj);
     addHouseholdAction(householdObj);
     setHouseholdVisible(false);
   };

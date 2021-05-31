@@ -26,8 +26,8 @@ function MyProfileContainer({
   useEffect(() => {
     status === 'Resolved' && setIsInEditMode(false);
     status === 'Resolved' && setLoading(false);
-    status === 'Pending...' && isInEditMode && setLoading(true);
-  }, [status, isInEditMode]);
+    status === 'Pending...' && setLoading(true);
+  }, [status]);
 
   useEffect(() => {
     setFormValues({

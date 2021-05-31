@@ -45,12 +45,12 @@ const RecipientTable = ({
   };
 
   const clearFilters = () => {
-    setFilteredInfo(null);
+    setFilteredInfo('');
   };
 
   const clearAll = () => {
-    setSortedInfo(null);
-    setFilteredInfo(null);
+    setSortedInfo('');
+    setFilteredInfo('');
   };
 
   const setAgeSort = () => {
@@ -134,7 +134,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.first_name} />
+            <Input value={record.first_name} />
           </Form.Item>
         ) : (
           <>{record.first_name}</>
@@ -164,7 +164,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.last_name} />
+            <Input value={record.last_name} />
           </Form.Item>
         ) : (
           <>{record.last_name}</>
@@ -192,7 +192,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.age} />
+            <Input value={record.age} />
           </Form.Item>
         ) : (
           <>{record.age}</>
@@ -226,12 +226,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Select size="middle" mode="multiple">
-              {recipients.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
+            <Select placeholder="Please select their gender">
+              <Select.Option value="male">Male</Select.Option>
+              <Select.Option value="female">Female</Select.Option>
+              <Select.Option value="nonbinary">Non-Binary Gender</Select.Option>
             </Select>
           </Form.Item>
         ) : (
@@ -271,7 +269,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.race} />
+            <Input value={record.race} />
           </Form.Item>
         ) : (
           <>{record.race}</>
@@ -304,7 +302,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.ethnicity} />
+            <Input value={record.ethnicity} />
           </Form.Item>
         ) : (
           <>{record.ethnicity}</>
@@ -337,7 +335,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.veteran_status} />
+            <Input value={record.veteran_status} />
           </Form.Item>
         ) : (
           <>{record.veteran_status ? 'Yes' : 'No'}</>
@@ -365,7 +363,7 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input defaultValue={record.household_id} />
+            <Input value={record.household_id} />
           </Form.Item>
         ) : (
           <>{record.household_id}</>
@@ -435,6 +433,7 @@ const RecipientTable = ({
             dataSource={recipients}
             size="small"
             tableLayout="fixed"
+            rowKey={record => record.id}
           />
         </Form>
       )}
