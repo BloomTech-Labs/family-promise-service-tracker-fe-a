@@ -13,7 +13,6 @@ export {
   editServiceAction,
   deleteServiceAction,
   getServiceProviders,
-  getServiceTypes,
 } from './serviceActions';
 
 export {

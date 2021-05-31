@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import {
   addServiceAction,
   getServiceProviders,
-  getServiceTypes,
+  getAllServiceTypesAction,
   getAllProgramsAction,
   getAllRecipientAction,
   addServiceTypeAction,
+  getAllServicesAction,
 } from '../../../state/actions/index';
 
 //component import
@@ -19,8 +20,9 @@ import AddServiceTypeForm from '../../forms/AddServiceTypeForm';
 function RenderServicesPage({
   addServiceAction,
   getServiceProviders,
+  getAllServicesAction,
   getAllRecipientAction,
-  getServiceTypes,
+  getAllServiceTypesAction,
   getAllProgramsAction,
   addServiceTypeAction,
 }) {
@@ -28,14 +30,16 @@ function RenderServicesPage({
   const [typeVisible, setTypeVisible] = useState(false);
 
   useEffect(() => {
+    getAllServicesAction();
     getServiceProviders();
     getAllRecipientAction();
-    getServiceTypes();
+    getAllServiceTypesAction();
     getAllProgramsAction();
   }, [
+    getAllServicesAction,
     getServiceProviders,
     getAllRecipientAction,
-    getServiceTypes,
+    getAllServiceTypesAction,
     getAllProgramsAction,
   ]);
 
@@ -93,7 +97,7 @@ function RenderServicesPage({
 const mapStateToProps = state => {
   return {
     serviceProviders: state.service.serviceProviders,
-    serviceTypes: state.service.serviceTypes,
+    serviceTypes: state.serviceType.serviceTypes,
     recipients: state.recipient.recipients,
     programs: state.program.programs,
   };
@@ -102,8 +106,9 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   addServiceAction,
   addServiceTypeAction,
+  getAllServicesAction,
   getServiceProviders,
   getAllRecipientAction,
-  getServiceTypes,
+  getAllServiceTypesAction,
   getAllProgramsAction,
 })(RenderServicesPage);

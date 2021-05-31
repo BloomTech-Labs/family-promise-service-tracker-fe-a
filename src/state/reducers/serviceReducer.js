@@ -23,10 +23,6 @@ import {
   GET_ALL_SERVICE_PROVIDERS_SUCCESS,
   GET_ALL_SERVICE_PROVIDERS_FAIL,
   GET_ALL_SERVICE_PROVIDERS_RESOLVE,
-  GET_ALL_SERVICE_TYPES_START,
-  GET_ALL_SERVICE_TYPES_SUCCESS,
-  GET_ALL_SERVICE_TYPES_FAIL,
-  GET_ALL_SERVICE_TYPES_RESOLVE,
 } from '../actions/serviceActions';
 
 // Initial Service State
@@ -34,7 +30,6 @@ import {
 export const initialServiceState = {
   services: [],
   serviceProviders: [],
-  serviceTypes: [],
   status: 'Resolved',
   change: '',
   error: '',
@@ -180,29 +175,6 @@ export const serviceReducer = (state = initialServiceState, action) => {
         error: action.payload,
       };
     case GET_ALL_SERVICE_PROVIDERS_RESOLVE:
-      return {
-        ...state,
-        status: 'Resolved',
-      };
-    // Get all service types
-    case GET_ALL_SERVICE_TYPES_START:
-      return {
-        ...state,
-        status: 'Pending...',
-      };
-    case GET_ALL_SERVICE_TYPES_SUCCESS:
-      return {
-        ...state,
-        serviceTypes: action.payload,
-        status: 'Success',
-      };
-    case GET_ALL_SERVICE_TYPES_FAIL:
-      return {
-        ...state,
-        status: 'Failed',
-        error: action.payload,
-      };
-    case GET_ALL_SERVICE_TYPES_RESOLVE:
       return {
         ...state,
         status: 'Resolved',

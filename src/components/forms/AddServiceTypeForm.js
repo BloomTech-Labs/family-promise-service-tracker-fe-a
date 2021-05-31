@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { Form, Input, Select, Modal } from 'antd';
-import { getAllProgramsAction } from '../../state/actions/programActions';
 
 function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
@@ -80,6 +78,4 @@ const mapStateToProps = state => {
     programs: state.program.programs,
   };
 };
-export default connect(mapStateToProps, {
-  getAllProgramsAction,
-})(AddServiceTypeForm);
+export default connect(mapStateToProps, null)(AddServiceTypeForm);
