@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { STATUSES } from '../../../const';
 import {
@@ -19,9 +19,6 @@ import {
 
 // Action Imports
 import {
-  getAllServicesAction,
-  getAllRecipientAction,
-  getAllServiceTypesAction,
   deleteServiceAction,
   editServiceAction,
   getServiceByIdAction,
@@ -31,11 +28,8 @@ import {
 } from '../../../state/actions';
 
 const ServicesTable = ({
-  getAllServicesAction,
   deleteServiceAction,
   editServiceAction,
-  getAllRecipientAction,
-  getAllServiceTypesAction,
   services,
   change,
 }) => {
@@ -43,17 +37,6 @@ const ServicesTable = ({
   const [editingKey, setEditingKey] = useState('');
   const [sortedInfo, setSortedInfo] = useState('');
   const [filteredInfo, setFilteredInfo] = useState('');
-
-  useEffect(() => {
-    getAllRecipientAction();
-    getAllServicesAction();
-    getAllServiceTypesAction();
-  }, [
-    change,
-    getAllRecipientAction,
-    getAllServiceTypesAction,
-    getAllServicesAction,
-  ]);
 
   const handleChange = (filters, sorter) => {
     setSortedInfo(sorter);
@@ -586,18 +569,14 @@ const mapStateToProps = state => {
   return {
     recipient: state.recipient.recipients,
     services: state.service.services,
-    serviceTypes: state.service.serviceTypes,
-    change: state.recipient.change,
+    serviceTypes: state.serviceType.serviceTypes,
   };
 };
 
 export default connect(mapStateToProps, {
-  getAllServicesAction,
   deleteServiceAction,
   editServiceAction,
   getServiceByIdAction,
-  getAllRecipientAction,
-  getAllServiceTypesAction,
   addRecipientAction,
   editRecipientAction,
   deleteRecipientAction,

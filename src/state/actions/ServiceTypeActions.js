@@ -1,14 +1,9 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-export const GET_ALL_SERVICE_TYPE_START = 'GET_ALL_SERVICE_TYPE_START';
-export const GET_ALL_SERVICE_TYPE_SUCCESS = 'GET_ALL_SERVICE_TYPE_SUCCESS';
-export const GET_ALL_SERVICE_TYPE_FAIL = 'GET_ALL_SERVICE_TYPE_FAIL';
-export const GET_ALL_SERVICE_TYPE_RESOLVE = 'GET_ALL_SERVICE_TYPE_RESOLVE';
-
-// export const ADD_SERVICE_TYPE_START = 'ADD_SERVICE_TYPE_START'
-// export const ADD_SERVICE_TYPE_SUCCESS = 'ADD_SERVICE_TYPE_SUCCESS'
-// export const ADD_SERVICE_TYPE_FAIL= 'ADD_SERVICE_TYPE_FAIL'
-// export const ADD_SERVICE_TYPE_RESOLVE= 'ADD_SERVICE_TYPE_RESOLVE'
+export const GET_ALL_SERVICE_TYPES_START = 'GET_ALL_SERVICE_TYPES_START';
+export const GET_ALL_SERVICE_TYPES_SUCCESS = 'GET_ALL_SERVICE_TYPES_SUCCESS';
+export const GET_ALL_SERVICE_TYPES_FAIL = 'GET_ALL_SERVICE_TYPES_FAIL';
+export const GET_ALL_SERVICE_TYPES_RESOLVE = 'GET_ALL_SERVICE_TYPES_RESOLVE';
 
 export const GET_SERVICE_TYPE_START = 'GET_SERVICE_TYPE_START';
 export const GET_SERVICE_TYPE_SUCCESS = 'GET_SERVICE_TYPE_SUCCESS';
@@ -31,18 +26,18 @@ export const DELETE_SERVICE_TYPE_FAIL = 'DELETE_SERVICE_TYPE_FAIL';
 export const DELETE_SERVICE_TYPE_RESOLVE = 'DELETE_SERVICE_TYPE_RESOLVE';
 
 export const getAllServiceTypesAction = () => dispatch => {
-  dispatch({ type: GET_ALL_SERVICE_TYPE_START });
+  dispatch({ type: GET_ALL_SERVICE_TYPES_START });
 
   axiosWithAuth()
     .get('/api/service_types')
     .then(res => {
-      dispatch({ type: GET_ALL_SERVICE_TYPE_SUCCESS, payload: res.data });
+      dispatch({ type: GET_ALL_SERVICE_TYPES_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: GET_ALL_SERVICE_TYPE_FAIL, payload: err.message });
+      dispatch({ type: GET_ALL_SERVICE_TYPES_FAIL, payload: err.message });
     })
     .finally(() => {
-      dispatch({ type: GET_ALL_SERVICE_TYPE_RESOLVE });
+      dispatch({ type: GET_ALL_SERVICE_TYPES_RESOLVE });
     });
 };
 
@@ -83,7 +78,10 @@ export const addServiceTypeAction = typeObj => dispatch => {
   axiosWithAuth()
     .post(`/api/service_types/`, typeObj)
     .then(res => {
-      dispatch({ type: ADD_SERVICE_TYPE_SUCCESS, payload: res.data });
+      dispatch({
+        type: ADD_SERVICE_TYPE_SUCCESS,
+        payload: res.data.service_type,
+      });
     })
     .catch(err => {
       dispatch({ type: ADD_SERVICE_TYPE_FAIL, payload: err.message });

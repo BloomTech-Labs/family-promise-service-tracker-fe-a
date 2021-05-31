@@ -1,8 +1,8 @@
 import {
-  GET_ALL_SERVICE_TYPE_START,
-  GET_ALL_SERVICE_TYPE_SUCCESS,
-  GET_ALL_SERVICE_TYPE_FAIL,
-  GET_ALL_SERVICE_TYPE_RESOLVE,
+  GET_ALL_SERVICE_TYPES_START,
+  GET_ALL_SERVICE_TYPES_SUCCESS,
+  GET_ALL_SERVICE_TYPES_FAIL,
+  GET_ALL_SERVICE_TYPES_RESOLVE,
   GET_SERVICE_TYPE_START,
   GET_SERVICE_TYPE_SUCCESS,
   GET_SERVICE_TYPE_FAIL,
@@ -32,24 +32,24 @@ export const initialServiceTypeState = {
 export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
   switch (action.type) {
     //get all service types
-    case GET_ALL_SERVICE_TYPE_START:
+    case GET_ALL_SERVICE_TYPES_START:
       return {
         ...state,
         status: 'Pending...',
       };
-    case GET_ALL_SERVICE_TYPE_SUCCESS:
+    case GET_ALL_SERVICE_TYPES_SUCCESS:
       return {
         ...state,
-        types: action.payload,
+        serviceTypes: action.payload,
         status: 'Success',
       };
-    case GET_ALL_SERVICE_TYPE_FAIL:
+    case GET_ALL_SERVICE_TYPES_FAIL:
       return {
         ...state,
         status: 'Failed',
         error: action.payload,
       };
-    case GET_ALL_SERVICE_TYPE_RESOLVE:
+    case GET_ALL_SERVICE_TYPES_RESOLVE:
       return {
         ...state,
         status: 'Resolved',
@@ -63,7 +63,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
     case GET_SERVICE_TYPE_SUCCESS:
       return {
         ...state,
-        type: action.payload,
+        serviceType: action.payload,
         status: 'Success',
       };
     case GET_SERVICE_TYPE_FAIL:
@@ -87,6 +87,7 @@ export const serviceTypeReducer = (state = initialServiceTypeState, action) => {
       return {
         ...state,
         status: 'Success',
+        serviceTypes: [...state.serviceTypes, action.payload],
         change: 'added',
       };
     case ADD_SERVICE_TYPE_FAIL:

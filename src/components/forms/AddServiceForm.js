@@ -5,7 +5,6 @@ import { STATUSES } from '../../const';
 import {
   getServiceProviders,
   addServiceAction,
-  getServiceTypes,
 } from '../../state/actions/serviceActions';
 
 const { TextArea } = Input;
@@ -218,11 +217,10 @@ const mapStateToProps = state => {
   return {
     serviceProviders: state.service.serviceProviders,
     recipients: state.recipient.recipients,
-    serviceTypes: state.service.serviceTypes,
+    serviceTypes: state.serviceType.serviceTypes,
   };
 };
 export default connect(mapStateToProps, {
   addServiceAction,
   getServiceProviders,
-  getServiceTypes,
 })(AddServiceForm);
