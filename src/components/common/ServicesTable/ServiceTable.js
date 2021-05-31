@@ -46,28 +46,12 @@ const ServicesTable = ({
     setFilteredInfo(filters);
   };
 
-  const clearFilters = () => {
-    setFilteredInfo('');
-  };
-
-  const clearAll = () => {
-    setSortedInfo('');
-    setFilteredInfo('');
-  };
-
+  const clearFilters = () => setFilteredInfo('');
+  const clearAll = () => setSortedInfo('') && setFilteredInfo('');
   const isEditing = record => record.id === editingKey;
-
-  const edit = record => {
-    setEditingKey(record.id);
-  };
-
-  const cancel = () => {
-    setEditingKey('');
-  };
-
-  const deleteService = key => {
-    deleteServiceAction(key);
-  };
+  const edit = record => setEditingKey(record.id);
+  const cancel = () => setEditingKey('');
+  const deleteService = key => deleteServiceAction(key);
 
   const save = async serviceId => {
     try {
@@ -81,47 +65,13 @@ const ServicesTable = ({
 
   const columns = [
     {
-      title: 'Recipient',
-      dataIndex: 'recipient',
-      key: 'recipient',
-      editable: false,
-      filteredValue: filteredInfo.recipient || null,
-      sorter: (a, b) =>
-        a.recipient.last_name.localeCompare(b.recipient.last_name),
-      sortOrder: sortedInfo.columnKey === 'recipient' && sortedInfo.order,
-      ellipsis: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="recipient_id"
-            initialValue={record.recipient.id}
-            rules={[
-              {
-                required: true,
-                message: 'Please select the Recipient',
-              },
-            ]}
-          >
-            <Select size="medium" placeholder="Select Recipient">
-              {recipients.map(recipient => (
-                <Select.Option key={recipient.id} value={recipient.id}>
-                  {recipient.first_name + ' ' + recipient.last_name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        ) : (
-          <>
-            {record.recipient.first_name} {record.recipient.last_name}
-          </>
-        );
-      },
-    },
-    {
       title: 'Service Type',
       dataIndex: 'serviceType',
       key: 'serviceType',
+      filters: serviceTypes.map(s => {
+        return { text: s.name, value: s.name };
+      }),
+      onFilter: (value, record) => record.address.indexOf(value) === 0,
       filteredValue: filteredInfo.serviceType || null,
       onFilter: (value, record) => record.service_type.name.includes(value),
       sorter: (a, b) => a.service_type.name.localeCompare(b.service_type.name),
@@ -155,36 +105,6 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Unit',
-      dataIndex: 'unit',
-      key: 'unit',
-      filteredValue: filteredInfo.unit || null,
-      onFilter: (value, record) => record.unit.includes(value),
-      sorter: (a, b) => a.unit.localeCompare(b.unit),
-      sortOrder: sortedInfo.columnKey === 'unit' && sortedInfo.order,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="unit"
-            style={{ margin: 0 }}
-            initialValue={record.unit}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a unit',
-              },
-            ]}
-          >
-            <Input value={record.unit} />
-          </Form.Item>
-        ) : (
-          <>{record.unit}</>
-        );
-      },
-    },
-    {
       title: 'Qty',
       dataIndex: 'quantity',
       key: 'quantity',
@@ -211,6 +131,36 @@ const ServicesTable = ({
           </Form.Item>
         ) : (
           <>{record.quantity}</>
+        );
+      },
+    },
+    {
+      title: 'Unit',
+      dataIndex: 'unit',
+      key: 'unit',
+      filteredValue: filteredInfo.unit || null,
+      onFilter: (value, record) => record.unit.includes(value),
+      sorter: (a, b) => a.unit.localeCompare(b.unit),
+      sortOrder: sortedInfo.columnKey === 'unit' && sortedInfo.order,
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="unit"
+            style={{ margin: 0 }}
+            initialValue={record.unit}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a unit',
+              },
+            ]}
+          >
+            <Input value={record.unit} />
+          </Form.Item>
+        ) : (
+          <>{record.unit}</>
         );
       },
     },
@@ -248,6 +198,9 @@ const ServicesTable = ({
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+      filters: STATUSES.map(s => {
+        return { text: s.type, value: s.type };
+      }),
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status.name.includes(value),
       sorter: (a, b) => a.status.name.localeCompare(b.status.name),
@@ -278,6 +231,43 @@ const ServicesTable = ({
           </Form.Item>
         ) : (
           <>{record.status.name}</>
+        );
+      },
+    },
+    {
+      title: 'Recipient',
+      dataIndex: 'recipient',
+      key: 'recipient',
+      editable: false,
+      filteredValue: filteredInfo.recipient || null,
+      sorter: (a, b) =>
+        a.recipient.last_name.localeCompare(b.recipient.last_name),
+      sortOrder: sortedInfo.columnKey === 'recipient' && sortedInfo.order,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="recipient_id"
+            initialValue={record.recipient.id}
+            rules={[
+              {
+                required: true,
+                message: 'Please select the Recipient',
+              },
+            ]}
+          >
+            <Select size="medium" placeholder="Select Recipient">
+              {recipients.map(recipient => (
+                <Select.Option key={recipient.id} value={recipient.id}>
+                  {recipient.first_name + ' ' + recipient.last_name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ) : (
+          <>
+            {record.recipient.first_name} {record.recipient.last_name}
+          </>
         );
       },
     },
@@ -355,6 +345,32 @@ const ServicesTable = ({
       },
     },
     {
+      title: 'Notes',
+      dataIndex: 'notes',
+      key: 'notes',
+      editable: true,
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="notes"
+            style={{ margin: 0 }}
+            initialValue={record.notes}
+            rules={[
+              {
+                required: true,
+                message: 'Please select a notes',
+              },
+            ]}
+          >
+            <Input value={record.notes} />
+          </Form.Item>
+        ) : (
+          <>{record.notes}</>
+        );
+      },
+    },
+    {
       title: 'Date Provided',
       dataIndex: 'date',
       key: 'date',
@@ -388,32 +404,6 @@ const ServicesTable = ({
             <br />
             {moment(record.provided_at).format('h:mm a')}
           </>
-        );
-      },
-    },
-    {
-      title: 'Notes',
-      dataIndex: 'notes',
-      key: 'notes',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="notes"
-            style={{ margin: 0 }}
-            initialValue={record.notes}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a notes',
-              },
-            ]}
-          >
-            <Input value={record.notes} />
-          </Form.Item>
-        ) : (
-          <>{record.notes}</>
         );
       },
     },
@@ -468,7 +458,8 @@ const ServicesTable = ({
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
-          <Space style={{ marginBottom: 16 }}>
+          <Space className="filters" align="baseline">
+            <p>Filtering Tools:</p>
             <Button onClick={clearFilters}>Clear filters</Button>
             <Button onClick={clearAll}>Clear filters and sorters</Button>
           </Space>
