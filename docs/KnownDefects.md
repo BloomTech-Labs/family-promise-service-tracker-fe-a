@@ -1,3 +1,2 @@
-1. Recipient Table Filter bug: Gender dropdown needs regex, currently "male" returns "female" because those chars appear in both strings
-2. Recipient Table Filter Bug: Veteran Status filter does not work properly
-
+1. Recipient table edit fields not populating with dropdowns or options. (E.g. Radio button yes no for Veteran)
+2. Service provider field on Log Service form is only pulling in service providers and not allowing Admin or Program managers to be set as the provider. Additionally seems to be pulling in all service providers rather than only those assigned to the service type that is being added.
