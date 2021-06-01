@@ -28,6 +28,7 @@ import {
   editRecipientAction,
   deleteRecipientAction,
 } from '../../../state/actions';
+import TextArea from 'antd/lib/input/TextArea';
 
 const ServicesTable = ({
   deleteServiceAction,
@@ -358,7 +359,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Input value={record.notes} />
+            <TextArea value={record.notes} rows={10} />
           </Form.Item>
         ) : (
           <>{record.notes}</>
@@ -411,26 +412,23 @@ const ServicesTable = ({
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <Space size="middle">
-              <button
-                onClick={() => save(record.id)}
-                style={{ color: '#1890FF', marginRight: 8 }}
-              >
-                Save
-              </button>
-              <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <button style={{ color: '#1890FF' }}>Cancel</button>
-              </Popconfirm>
-            </Space>
+            <button
+              onClick={() => save(record.id)}
+              style={{ color: '#1890FF', marginBottom: 8 }}
+            >
+              Save
+            </button>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <button style={{ color: '#1890FF' }}>Cancel</button>
+            </Popconfirm>
           </span>
         ) : (
-          <Space size="large">
+          <Space size="middle">
             <Typography.Link
               disabled={editingKey !== ''}
-              style={{ color: '#1890FF' }}
               onClick={() => edit(record)}
             >
-              {<EditOutlined />}
+              {<EditOutlined style={{ color: '#1890FF', fontSize: '1.5em' }} />}
             </Typography.Link>
 
             <Popconfirm
@@ -440,7 +438,7 @@ const ServicesTable = ({
               }}
               danger
             >
-              {<DeleteOutlined />}
+              {<DeleteOutlined style={{ fontSize: '1.5em' }} />}
             </Popconfirm>
           </Space>
         );
