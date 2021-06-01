@@ -81,7 +81,7 @@ function MyProfileContainer({
 
   return (
     <div>
-      <div className="sub-header">
+      <div style={{ textAlign: 'center' }}>
         <TitleComponent TitleText="My Profile" />
       </div>
 
