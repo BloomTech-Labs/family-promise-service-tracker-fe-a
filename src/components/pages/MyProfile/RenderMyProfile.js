@@ -48,17 +48,15 @@ function RenderMyProfile({
           />
         </Form.Item>
         <Form.Item key="programs" label="Your Programs">
-          <div>
-            {curUser.programs.map(program =>
-              program ? (
-                <div key={program.name}>
-                  <h4>{program.name}</h4>
-                </div>
-              ) : (
-                'No Programs Currently Assigned'
-              )
-            )}
-          </div>
+          {curUser.programs.length >= 1 ? (
+            curUser.programs.map(program => (
+              <div key={program.name}>
+                <h4>{program.name}</h4>
+              </div>
+            ))
+          ) : (
+            <h4>'No Programs Currently Assigned'</h4>
+          )}
         </Form.Item>
 
         <div className="save-edit-container">
