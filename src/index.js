@@ -15,6 +15,7 @@ import 'antd/dist/antd.less';
 import './app.scss';
 
 import { MyProfile } from './components/pages/MyProfile';
+import { DashboardPage } from './components/pages/Dashboard';
 import { EmployeesPage } from './components/pages/Employees';
 import { ProgramsPage } from './components/pages/Programs';
 import { RecipientsPage } from './components/pages/Recipients';
@@ -63,6 +64,7 @@ function App() {
         <SecureRoute path="/programs" component={ProgramsPage} />
         <SecureRoute path="/recipients" component={RecipientsPage} />
         <SecureRoute path="/services" component={ServicesPage} />
+        <SecureRoute path="/dashboard" component={DashboardPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
