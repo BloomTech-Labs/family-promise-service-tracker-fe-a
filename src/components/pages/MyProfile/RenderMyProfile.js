@@ -49,13 +49,17 @@ function RenderMyProfile({
         </Form.Item>
         <Form.Item key="programs" label="Your Programs">
           <div>
-            {curUser.programs.map(program => (
-              <div key={program.name}>
-                <h4>
-                  {program ? program.name : 'No Programs Currently Assigned'}
-                </h4>
-              </div>
-            ))}
+            {curUser.programs.map(program =>
+              program ? (
+                <div key={program.name}>
+                  <h4>
+                    {program ? program.name : 'No Programs Currently Assigned'}
+                  </h4>
+                </div>
+              ) : (
+                'No Programs Currently Assigned'
+              )
+            )}
           </div>
         </Form.Item>
 
