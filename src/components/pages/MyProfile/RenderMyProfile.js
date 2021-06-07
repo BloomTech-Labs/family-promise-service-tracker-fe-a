@@ -52,9 +52,7 @@ function RenderMyProfile({
             {curUser.programs.map(program =>
               program ? (
                 <div key={program.name}>
-                  <h4>
-                    {program ? program.name : 'No Programs Currently Assigned'}
-                  </h4>
+                  <h4>{program.name}</h4>
                 </div>
               ) : (
                 'No Programs Currently Assigned'
