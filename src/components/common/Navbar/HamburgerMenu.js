@@ -8,6 +8,7 @@ import {
   ReconciliationOutlined,
   UsergroupAddOutlined,
   LeftCircleOutlined,
+  AppstoreOutlined,
 } from '@ant-design/icons';
 import logo from '../../../assets/logo.png';
 import SubMenu from 'antd/lib/menu/SubMenu';
@@ -38,6 +39,14 @@ const HamburgerMenu = ({ userRole }) => {
       <Menu theme="light" mode="horizontal" className="navBar">
         <Menu.Item key="logo" disabled="true">
           <img src={logo} className="top-bar-img" alt="Family Promise Logo" />
+        </Menu.Item>
+
+        <Menu.Item
+          key="dashboard"
+          icon={<AppstoreOutlined />}
+          onClick={() => onClick('/dashboard')}
+        >
+          Dashboard
         </Menu.Item>
 
         {userRole === 'administrator' ? (
