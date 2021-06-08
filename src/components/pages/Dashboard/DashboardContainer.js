@@ -5,10 +5,10 @@ import TitleComponent from '../../common/Title';
 function DashboardContainer() {
   return (
     <div>
-      <div className="sub-header">
-        <TitleComponent TitleText="Dashboard" />
-        <RenderDashboardPage />
+      <div className="sub-header center">
+        <TitleComponent TitleText="Dashboard" className="center" />
       </div>
+      <RenderDashboardPage className="dashboard-page" />
     </div>
   );
 }
