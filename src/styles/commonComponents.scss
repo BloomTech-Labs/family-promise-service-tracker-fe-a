@@ -1,20 +1,29 @@
 .title-container {
-  padding-left:20px;
+  padding-left: 20px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  margin: auto;
+  padding: 0%;
 }
 
 .top-bar-div {
-  padding:2rem;
+  padding: 2rem;
   margin: 0 auto;
 }
 
-.recipientsHeader{
-  margin-left:3rem;
-  margin-top:1rem;
+.recipientsHeader {
+  margin-left: 3rem;
+  margin-top: 1rem;
 }
 
 .top-bar-img {
   width: 150px;
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
 
 .logout-ctn {
