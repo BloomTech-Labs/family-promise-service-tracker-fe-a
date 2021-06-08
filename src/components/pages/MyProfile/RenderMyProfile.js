@@ -48,7 +48,7 @@ function RenderMyProfile({
           />
         </Form.Item>
         <Form.Item key="programs" label="Your Programs">
-          {curUser.programs.length >= 1 ? (
+          {curUser.programs[0] ? (
             curUser.programs.map(program => (
               <div key={program.name}>
                 <h4>{program.name}</h4>
