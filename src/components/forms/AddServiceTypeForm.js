@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, Modal } from 'antd';
+import { Form, Input, Select, Modal, width } from 'antd';
 
 function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
@@ -11,6 +11,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
         title="Add Service Type"
         okText="Add Service Type"
         cancelText="Cancel"
+        width="80%"
         onCancel={onCancel}
         onOk={() => {
           form
@@ -63,7 +64,11 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
             </Select>
           </Form.Item>
           <Form.Item label="Service Description" name="description">
-            <Input.TextArea showCount maxLength={240} />
+            <Input.TextArea
+              placeholder="Enter Details..."
+              showCount
+              maxLength={240}
+            />
           </Form.Item>
         </Form>
       </Modal>

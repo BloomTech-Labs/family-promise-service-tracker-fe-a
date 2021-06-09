@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber, Modal } from 'antd';
+import { Form, Input, InputNumber, Modal, width } from 'antd';
 
 function AddHouseholdForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
@@ -11,6 +11,7 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
         title="Create New Household"
         okText="Create Household"
         cancelText="Cancel"
+        width="80%"
         onCancel={onCancel}
         onOk={() => {
           form
@@ -92,7 +93,7 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
               },
             ]}
           >
-            <Input.TextArea />
+            <Input.TextArea placeholder="Enter Details..." />
           </Form.Item>
         </Form>
       </Modal>

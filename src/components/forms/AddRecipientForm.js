@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
+import { Form, Input, Select, InputNumber, Radio, Modal, width } from 'antd';
 
 import { addRecipientAction } from '../../state/actions/recipientActions';
 
@@ -12,6 +12,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   return (
     <>
       <Modal
+        width="80%"
         visible={visible}
         title="Create New Recipient"
         okText="Create Recipient"

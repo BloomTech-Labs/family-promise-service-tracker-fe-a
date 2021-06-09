@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
+import {
+  Form,
+  Input,
+  Select,
+  InputNumber,
+  DatePicker,
+  Modal,
+  width,
+} from 'antd';
 import { STATUSES } from '../../const';
 import {
   getServiceProviders,
@@ -18,6 +26,7 @@ function AddServiceForm({
   serviceTypes,
 }) {
   const [form] = Form.useForm();
+  // console.log("serviceForm", state)
 
   return (
     <>
@@ -26,6 +35,7 @@ function AddServiceForm({
         title="Log New Service"
         okText="Log Service"
         cancelText="Cancel"
+        width="80%"
         onCancel={onCancel}
         onOk={() => {
           form
@@ -93,7 +103,14 @@ function AddServiceForm({
               },
             ]}
           >
-            <Input size="large" min="0" />
+            <Select size="large" placeholder="Select Unit Type">
+              {serviceTypes.map(item => (
+                <Select.Option key={item.id} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+            {/* <Input size="large" min="0" placeholder="Select Service Type"/> */}
           </Form.Item>
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" min="0" />
@@ -206,7 +223,11 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item label="Insert notes" name="notes">
-            <TextArea showCount maxLength={240} />
+            <TextArea
+              placeholder="Enter Details..."
+              showCount
+              maxLength={240}
+            />
           </Form.Item>
         </Form>
       </Modal>
