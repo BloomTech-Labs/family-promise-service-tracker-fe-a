@@ -26,6 +26,7 @@ function AddServiceForm({
         title="Log New Service"
         okText="Log Service"
         cancelText="Cancel"
+        width="80%"
         onCancel={onCancel}
         onOk={() => {
           form
@@ -93,7 +94,13 @@ function AddServiceForm({
               },
             ]}
           >
-            <Input size="large" min="0" />
+            <Select size="large" placeholder="Select Unit Type">
+              {serviceTypes.map(item => (
+                <Select.Option key={item.id} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" min="0" />
@@ -206,7 +213,11 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item label="Insert notes" name="notes">
-            <TextArea showCount maxLength={240} />
+            <TextArea
+              placeholder="Enter Details..."
+              showCount
+              maxLength={240}
+            />
           </Form.Item>
         </Form>
       </Modal>
