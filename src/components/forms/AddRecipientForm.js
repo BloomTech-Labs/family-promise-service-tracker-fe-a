@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, InputNumber, Radio, Modal, width } from 'antd';
+import { Form, Input, Select, InputNumber, Radio, Modal } from 'antd';
 
 import { addRecipientAction } from '../../state/actions/recipientActions';
 

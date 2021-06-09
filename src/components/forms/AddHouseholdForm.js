@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber, Modal, width } from 'antd';
+import { Form, Input, InputNumber, Modal } from 'antd';
 
 function AddHouseholdForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();

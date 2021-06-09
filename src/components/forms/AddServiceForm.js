@@ -1,14 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  DatePicker,
-  Modal,
-  width,
-} from 'antd';
+import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
 import { STATUSES } from '../../const';
 import {
   getServiceProviders,
@@ -110,7 +102,6 @@ function AddServiceForm({
                 </Select.Option>
               ))}
             </Select>
-            {/* <Input size="large" min="0" placeholder="Select Service Type"/> */}
           </Form.Item>
           <Form.Item label="Quantity" name="quantity">
             <InputNumber size="large" min="0" />

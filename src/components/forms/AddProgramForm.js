@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, width } from 'antd';
+import { Modal, Form, Input } from 'antd';
 
 function AddProgramForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Input, Select, width } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 
 function AddEmployeeForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
