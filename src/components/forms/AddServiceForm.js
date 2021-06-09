@@ -18,7 +18,6 @@ function AddServiceForm({
   serviceTypes,
 }) {
   const [form] = Form.useForm();
-  // console.log("serviceForm", state)
 
   return (
     <>
