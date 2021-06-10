@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import MyProfileComponent from '../../common/MyProfileComponent';
+import MetricsFilterBar from '../../common/MetricsFilterBar/MetricsFilterBar';
 
 function RenderDashboardPage({ user, status }) {
-  return <div>{status && <MyProfileComponent user={user} />}</div>;
+  return (
+    <div>
+      <MetricsFilterBar />
+      {status && <MyProfileComponent user={user} />}
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
