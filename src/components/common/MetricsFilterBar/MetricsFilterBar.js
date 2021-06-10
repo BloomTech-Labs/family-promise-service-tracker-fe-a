@@ -1,25 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import {
+  getServiceProviders,
+  getAllServiceTypesAction,
   getAllProgramsAction,
-  getProgramByIdAction,
-} from '../../../state/actions/programActions';
+  getAllRecipientAction,
+} from '../../../state/actions/index';
+import { connect } from 'react-redux';
 import { Select } from 'antd';
 
-const MetricsFilterBar = ({ getAllProgramsAction, getProgramByIdAction }) => {
-  const [receivedPrograms, setReceivedPrograms] = useState(false);
-
+const MetricsFilterBar = ({
+  programs,
+  serviceProviders,
+  serviceTypes,
+  recipients,
+  getServiceProviders,
+  getAllServiceTypesAction,
+  getAllRecipientAction,
+  getAllProgramsAction,
+}) => {
   const { Option } = Select;
 
-  function onChange(value) {}
-
-  function onBlur() {}
-
-  function onFocus() {
-    setReceivedPrograms(!receivedPrograms);
+  //for when a user clicks on a different option in dropdown
+  function onChange(value) {
+    console.log('change', value);
   }
 
-  function onSearch(value) {}
+  //for when a user clicks out of dropdown area
+  function onBlur() {
+    console.log('blur');
+  }
+
+  //for when a user clicks on a dropdown
+  function onFocusPrograms() {
+    getAllProgramsAction();
+  }
+
+  function onFocusServiceTypes() {
+    getAllServiceTypesAction();
+  }
+
+  function onFocusServiceProviders() {
+    getServiceProviders();
+  }
+
+  function onFocusRecipients() {
+    getAllRecipientAction();
+  }
+
+  //for when a user manually searches a dropdown
+  function onSearch(value) {
+    console.log('search', value);
+  }
 
   return (
     <div>
@@ -28,16 +59,20 @@ const MetricsFilterBar = ({ getAllProgramsAction, getProgramByIdAction }) => {
         style={{ width: 200 }}
         placeholder="-Select Program-"
         onChange={onChange}
-        onFocus={onFocus}
+        onFocus={onFocusPrograms}
         onBlur={onBlur}
         onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="Program1">Program1</Option>
-        <Option value="Program2">Program2</Option>
-        <Option value="Program">Program3</Option>
+        {programs.map(individualProgram => {
+          return (
+            <Option value={individualProgram.id} key={individualProgram.id}>
+              {individualProgram.type}
+            </Option>
+          );
+        })}
       </Select>
 
       <Select
@@ -45,16 +80,23 @@ const MetricsFilterBar = ({ getAllProgramsAction, getProgramByIdAction }) => {
         style={{ width: 200 }}
         placeholder="-Select Service Type-"
         onChange={onChange}
-        onFocus={onFocus}
+        onFocus={onFocusServiceTypes}
         onBlur={onBlur}
         onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="Service Type1">Service Type1</Option>
-        <Option value="Service Type2">Service Type2</Option>
-        <Option value="Service Type3">Service Type3</Option>
+        {serviceTypes.map(individualServiceType => {
+          return (
+            <Option
+              value={individualServiceType.prgram_id}
+              key={individualServiceType.id}
+            >
+              {individualServiceType.name}
+            </Option>
+          );
+        })}
       </Select>
 
       <Select
@@ -62,16 +104,23 @@ const MetricsFilterBar = ({ getAllProgramsAction, getProgramByIdAction }) => {
         style={{ width: 200 }}
         placeholder="-Select Service Provider-"
         onChange={onChange}
-        onFocus={onFocus}
+        onFocus={onFocusServiceProviders}
         onBlur={onBlur}
         onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="Service Provider1">Service Provider1</Option>
-        <Option value="Service Provider2">Service Provider2</Option>
-        <Option value="Service Provider3">Service Provider3</Option>
+        {serviceProviders.map(individualServiceProvider => {
+          return (
+            <Option
+              value={individualServiceProvider.id}
+              key={individualServiceProvider.id}
+            >
+              {individualServiceProvider.firstName}
+            </Option>
+          );
+        })}
       </Select>
 
       <Select
@@ -79,21 +128,37 @@ const MetricsFilterBar = ({ getAllProgramsAction, getProgramByIdAction }) => {
         style={{ width: 200 }}
         placeholder="-Select Recipients-"
         onChange={onChange}
-        onFocus={onFocus}
+        onFocus={onFocusRecipients}
         onBlur={onBlur}
         onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="Recipient1">Recipient1</Option>
-        <Option value="Recipient2">Recipient2</Option>
-        <Option value="Recipient3">Recipient3</Option>
+        {recipients.map(individualRecipient => {
+          return (
+            <Option value={individualRecipient.id} key={individualRecipient.id}>
+              {individualRecipient.first_name} {individualRecipient.last_name}
+            </Option>
+          );
+        })}
       </Select>
     </div>
   );
 };
 
-export default connect(null, { getAllProgramsAction, getProgramByIdAction })(
-  MetricsFilterBar
-);
+const mapStateToProps = state => {
+  return {
+    programs: state.program.programs,
+    serviceTypes: state.serviceType.serviceTypes,
+    serviceProviders: state.service.serviceProviders,
+    recipients: state.recipient.recipients,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getServiceProviders,
+  getAllServiceTypesAction,
+  getAllProgramsAction,
+  getAllRecipientAction,
+})(MetricsFilterBar);
