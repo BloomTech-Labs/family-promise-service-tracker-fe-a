@@ -12,6 +12,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   return (
     <>
       <Modal
+        width="80%"
         visible={visible}
         title="Create New Recipient"
         okText="Create Recipient"
