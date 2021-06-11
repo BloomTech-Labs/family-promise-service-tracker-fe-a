@@ -16,3 +16,9 @@
   background-color: rgba(1, 31, 24, 0.623);
 }
 
+@media(max-width: 800px){ /* We should refactor this for min-width since we are styling for tablet-view first */
+  .ant-table-cell{
+    font-size: 0.7rem;
+  }
+}
+
