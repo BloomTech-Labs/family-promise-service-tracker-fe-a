@@ -9,9 +9,6 @@ function ServiceTable() {
       title: 'Service',
       dataIndex: 'service',
       key: 'key',
-      // render: name =>{
-      //     // return <a>{name}</a>
-      // }
     },
     {
       title: 'Cost',
