@@ -53,7 +53,7 @@ const MetricsFilterBar = ({
   }
 
   return (
-    <div>
+    <div className="metrics-filter-bar">
       <Select
         showSearch
         style={{ width: 200 }}
