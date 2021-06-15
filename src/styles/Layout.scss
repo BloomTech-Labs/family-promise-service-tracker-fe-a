@@ -1,33 +1,32 @@
-.desktop-table{
-  margin:0 auto;
-  width:100%;
-  max-width:100%;
+.desktop-table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   margin-top: 2rem;
   // position:static;
-  padding:1rem;
+  padding: 1rem;
 }
 
-
-.ant-layout-header{
-  position:sticky;
-  width:100%;
+.ant-layout-header {
+  position: sticky;
+  width: 100%;
   justify-content: center;
   align-items: center;
   align-content: center;
   justify-items: center;
 }
 
-.ant-table-cell{
+.ant-table-cell {
   font-size: 11px;
-  border:.5px solid gray;
+  border: 0.5px solid gray;
 
-  @media(orientation:portrait){ 
-    font-size:9px;
+  @media (orientation: portrait) {
+    font-size: 9px;
   }
-  @media(orientation:landscape){ 
-    font-size:11px;
+  @media (orientation: landscape) {
+    font-size: 11px;
   }
   @media (min-width: 1200px) {
-    font-size:15px;
+    font-size: 15px;
   }
 }
