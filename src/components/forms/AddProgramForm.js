@@ -9,6 +9,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
       visible={visible}
       title="Add a New Program"
       okText="Add"
+      width="80%"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -41,7 +42,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Program Name" />
         </Form.Item>
         <Form.Item
           name="type"
@@ -53,10 +54,14 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Program Type" />
         </Form.Item>
         <Form.Item label="Program Description" name="description">
-          <Input.TextArea showCount maxLength={240} />
+          <Input.TextArea
+            showCount
+            maxLength={240}
+            placeholder="Description..."
+          />
         </Form.Item>
       </Form>
     </Modal>

@@ -11,6 +11,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
       title="Add a New Employee"
       okText="Add"
       cancelText="Cancel"
+      width="80%"
       onCancel={onCancel}
       onOk={() => {
         form
@@ -43,7 +44,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="First Name" />
         </Form.Item>
         <Form.Item
           name="lastName"
@@ -55,7 +56,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Last Name" />
         </Form.Item>
         <Form.Item
           label="Role"

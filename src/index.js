@@ -55,10 +55,11 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
+
         <SecureRoute
           path="/"
           exact
-          component={() => <MyProfile LoadingOutlined={LoadingOutlined} />}
+          component={() => <DashboardPage LoadingOutlined={LoadingOutlined} />}
         />
         <SecureRoute path="/employees" component={EmployeesPage} />
         <SecureRoute path="/programs" component={ProgramsPage} />
