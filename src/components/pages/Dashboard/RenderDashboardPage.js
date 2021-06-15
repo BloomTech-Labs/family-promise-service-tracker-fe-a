@@ -6,7 +6,10 @@ import MetricsFilterBar from '../../common/MetricsFilterBar/MetricsFilterBar';
 function RenderDashboardPage({ user, status }) {
   return (
     <div>
-      <MetricsFilterBar />
+      <div className="metrics-holder-dashboard center">
+        <MetricsFilterBar />
+        <div className="metrics-dashboard"></div>
+      </div>
       {status && <MyProfileComponent user={user} />}
     </div>
   );

@@ -53,8 +53,9 @@ const MetricsFilterBar = ({
   }
 
   return (
-    <div>
+    <div className="dropdowns-holder">
       <Select
+        className="dropdown-dashboard"
         showSearch
         style={{ width: 200 }}
         placeholder="-Select Program-"
@@ -76,6 +77,7 @@ const MetricsFilterBar = ({
       </Select>
 
       <Select
+        className="dropdown-dashboard"
         showSearch
         style={{ width: 200 }}
         placeholder="-Select Service Type-"
@@ -100,6 +102,7 @@ const MetricsFilterBar = ({
       </Select>
 
       <Select
+        className="dropdown-dashboard"
         showSearch
         style={{ width: 200 }}
         placeholder="-Select Service Provider-"
@@ -124,6 +127,7 @@ const MetricsFilterBar = ({
       </Select>
 
       <Select
+        className="dropdown-dashboard"
         showSearch
         style={{ width: 200 }}
         placeholder="-Select Recipients-"
