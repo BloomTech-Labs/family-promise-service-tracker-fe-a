@@ -37,8 +37,13 @@ const HamburgerMenu = ({ userRole }) => {
       }}
     >
       <Menu theme="light" mode="horizontal" className="navBar">
-        <Menu.Item key="logo" disabled="true">
-          <img src={logo} className="top-bar-img" alt="Family Promise Logo" />
+        <Menu.Item key="logo">
+          <img
+            src={logo}
+            className="top-bar-img"
+            alt="Family Promise Logo"
+            onClick={() => onClick('/')}
+          />
         </Menu.Item>
 
         <Menu.Item
