@@ -26,6 +26,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           minHeight: '70px',
           margin: '0 auto',
           position: 'relative',
+          background: 'white',
         }}
       >
         {user.role ? <HamburgerMenu userRole={user.role} /> : <></>}
