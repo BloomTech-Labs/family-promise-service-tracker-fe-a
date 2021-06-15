@@ -6,20 +6,22 @@
 @import './styles/Layout.scss';
 @import './styles/Dashboard.scss';
 @import './styles/MetricsFilterBar.scss';
+@import './styles/NavBar.scss';
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
-.ant-modal-mask{
+.ant-modal-mask {
   background-color: rgba(1, 31, 24, 0.623);
 }
 
-@media(max-width: 800px){ /* We should refactor this for min-width since we are styling for tablet-view first */
-  .ant-table-cell{
+@media (max-width: 800px) {
+  /* We should refactor this for min-width since we are styling for tablet-view first */
+  .ant-table-cell {
     font-size: 0.7rem;
   }
 }
-
