@@ -1,3 +1,14 @@
+.dashboard .title-container {
+  padding: 0%;
+}
+.dashboard * {
+  max-width: 100%;
+}
+
+.dashboard .dropdown-dashboard {
+  margin-bottom: 1rem;
+}
+
 .tiny-avatar {
   width: 60px;
   height: 60px;
@@ -12,17 +23,30 @@
   justify-items: center;
 }
 
+.metrics-holder-dashboard {
+  padding: 0 1rem 1rem 1rem;
+  width: 90vw;
+}
+
+.dropdowns-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .profile-card {
   width: 90vw;
   display: flex;
   border: 1px solid #000000;
-  padding: 1.5%;
-  border-radius: 1.5vw;
-  -moz-border-radius: 1.5vw;
-  -webkit-border-radius: 1.5vw;
+  padding: 1rem;
+  border-radius: 0.3vw;
+  -moz-border-radius: 0.3vw;
+  -webkit-border-radius: 0.3vw;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  font-size: 1rem;
 }
 
 .card-child {

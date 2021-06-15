@@ -4,7 +4,7 @@ import TitleComponent from '../../common/Title';
 
 function DashboardContainer() {
   return (
-    <div>
+    <div className="dashboard">
       <div className="sub-header center">
         <TitleComponent TitleText="Dashboard" className="center" />
       </div>
