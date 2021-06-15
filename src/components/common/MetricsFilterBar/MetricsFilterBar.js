@@ -53,7 +53,7 @@ const MetricsFilterBar = ({
   }
 
   return (
-    <div className="dropdowns-holder">
+    <div className="dropdowns-holder metrics-filter-bar">
       <Select
         className="dropdown-dashboard"
         showSearch

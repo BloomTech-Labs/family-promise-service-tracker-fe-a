@@ -19,7 +19,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
     <div>
       <div
         style={{
-          display: 'flex',
+          display: 'block',
           flexDirection: 'row',
           flexWrap: 'wrap',
           maxWidth: '100%',

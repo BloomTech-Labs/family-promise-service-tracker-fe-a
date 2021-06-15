@@ -9,8 +9,7 @@ function RenderEmployeePage({ addEmployeeAction, user }) {
   // instead of using Okta Groups, simple react-router-dom is used for convenience
   // permission clauses based on "src/common/Navbar/HamburgerMenu.js"
   const history = useHistory();
-  if (user.role !== "administrator")
-    history.push("/");
+  if (user.role !== 'administrator') history.push('/');
 
   const [visible, setVisible] = useState(false);
 
@@ -44,8 +43,10 @@ function RenderEmployeePage({ addEmployeeAction, user }) {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.user,
   };
 };
 
-export default connect(mapStateToProps, { addEmployeeAction })(RenderEmployeePage);
+export default connect(mapStateToProps, { addEmployeeAction })(
+  RenderEmployeePage
+);

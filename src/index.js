@@ -61,6 +61,7 @@ function App() {
           exact
           component={() => <DashboardPage LoadingOutlined={LoadingOutlined} />}
         />
+        <SecureRoute path="/profile" component={MyProfile} />
         <SecureRoute path="/employees" component={EmployeesPage} />
         <SecureRoute path="/programs" component={ProgramsPage} />
         <SecureRoute path="/recipients" component={RecipientsPage} />

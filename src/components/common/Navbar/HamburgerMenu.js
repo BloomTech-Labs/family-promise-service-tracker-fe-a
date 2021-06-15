@@ -30,9 +30,10 @@ const HamburgerMenu = ({ userRole }) => {
 
   return (
     <Layout
+      className="navBar"
       style={{
         backgroundColor: 'white',
-        maxWidth: 'max-content',
+        maxWidth: '100%',
         margin: '0px auto',
       }}
     >
@@ -59,7 +60,7 @@ const HamburgerMenu = ({ userRole }) => {
             <Menu.Item
               key="viewProfile"
               icon={<UserOutlined />}
-              onClick={() => onClick('/')}
+              onClick={() => onClick('/profile')}
             >
               My Profile
             </Menu.Item>
