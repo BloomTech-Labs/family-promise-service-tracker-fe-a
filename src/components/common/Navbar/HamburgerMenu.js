@@ -82,7 +82,7 @@ const HamburgerMenu = ({ userRole }) => {
             Dashboard
           </Menu.Item>
 
-          {userRole === 'administrator' ? (
+          {userRole === 'Administrator' ? (
             <Menu.Item
               key="employees"
               icon={<TeamOutlined />}
@@ -93,7 +93,7 @@ const HamburgerMenu = ({ userRole }) => {
           ) : (
             <></>
           )}
-          {userRole === 'administrator' || userRole === 'program_manager' ? (
+          {userRole === 'Administrator' || userRole === 'Program Manager' ? (
             <Menu.Item
               key="programs"
               icon={<ProjectOutlined />}
