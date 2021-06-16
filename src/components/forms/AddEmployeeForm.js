@@ -70,8 +70,8 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         >
           <Select size="large" placeholder="Select Employee Role">
             {/* Could be dynamic by mapping through list of roles */}
-            <Select.Option value="administrator">Administrator</Select.Option>
-            <Select.Option value="program_manager">
+            <Select.Option value="Administrator">Administrator</Select.Option>
+            <Select.Option value="Program Manager">
               Program Manager
             </Select.Option>
             <Select.Option value="service_provider">
