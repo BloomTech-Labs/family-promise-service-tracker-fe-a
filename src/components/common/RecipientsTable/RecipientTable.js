@@ -419,8 +419,8 @@ const RecipientTable = ({
     <div style={{}}>
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
-        <Form form={form}>
-          <Space style={{ marginBottom: 16 }}>
+        <Form form={form} className="recipient-table">
+          <Space style={{ marginBottom: 16 }} className="sort-recipient-form">
             <Button onClick={setFirstNameSort}>Sort Name</Button>
             <Button onClick={setAgeSort}>Sort age</Button>
             <Button onClick={clearFilters}>Clear filters</Button>
