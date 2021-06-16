@@ -1,5 +1,4 @@
 import React from 'react';
-import { Carousel } from 'antd';
 import graphA from '../../../assets/graph-a.jpg';
 import graphB from '../../../assets/graph-b.jpg';
 import graphC from '../../../assets/graph-c.jpg';
