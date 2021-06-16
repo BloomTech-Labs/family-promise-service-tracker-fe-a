@@ -1,5 +1,5 @@
 import { useState, React } from 'react';
-import { Table } from 'antd';
+import Table from 'antd/lib/table/Table';
 
 function ServiceTable() {
   const [data, setData] = useState([]);
@@ -19,7 +19,8 @@ function ServiceTable() {
 
   return (
     <div>
-      <Table dataSource={[data]} columns={[column]}></Table>
+      <h1>Working</h1>
+      <Table dataSource={data} columns={column} />
     </div>
   );
 }

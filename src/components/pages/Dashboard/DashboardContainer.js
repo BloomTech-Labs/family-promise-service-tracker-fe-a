@@ -8,7 +8,7 @@ function DashboardContainer() {
     <div>
       <div className="sub-header center">
         <TitleComponent TitleText="Dashboard" className="center" />
-        <ServiceTable />
+        {/* <ServiceTable /> */}
       </div>
       <RenderDashboardPage className="dashboard-page" />
     </div>
