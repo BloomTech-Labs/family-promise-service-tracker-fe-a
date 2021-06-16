@@ -5,23 +5,31 @@ import graphB from '../../../assets/graph-b.jpg';
 import graphC from '../../../assets/graph-c.jpg';
 
 export default function GraphsPlaceholder() {
-  // let graphs = [graphA, graphB, graphC]
+  let graphs = [graphA, graphB, graphC];
 
   const contentStyle = {
     height: '160px',
+    padding: '1rem',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
-    background: '#364d79',
+  };
+
+  const flexStyle = {
+    display: 'flex',
+    margin: '0 auto',
+    width: '80vw',
   };
 
   return (
-    <div>
-      <Carousel autoplay={true}>
-        <div>
-          <img style={contentStyle} src={graphA} />
-        </div>
-      </Carousel>
+    <div style={flexStyle}>
+      {graphs.map(graph => {
+        return (
+          <div>
+            <img style={contentStyle} src={graph} />
+          </div>
+        );
+      })}
     </div>
   );
 }
