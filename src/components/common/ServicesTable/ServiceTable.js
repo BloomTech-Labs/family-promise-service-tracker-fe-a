@@ -226,7 +226,7 @@ const ServicesTable = ({
             </Select>
           </Form.Item>
         ) : (
-          <>{record.status.name}</>
+          <>{console.log(record)}</>
         );
       },
     },
