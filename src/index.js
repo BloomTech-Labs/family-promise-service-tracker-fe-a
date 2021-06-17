@@ -25,6 +25,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { NavbarHeader } from './components/common/index';
+import AddServiceTypeForm_Customizable from './components/forms/AddServiceTypeForm_Customizable';
 
 ReactDOM.render(
   <Router>
@@ -67,6 +68,10 @@ function App() {
         <SecureRoute path="/recipients" component={RecipientsPage} />
         <SecureRoute path="/services" component={ServicesPage} />
         <SecureRoute path="/dashboard" component={DashboardPage} />
+        <Route
+          path="/newserviceform"
+          component={AddServiceTypeForm_Customizable}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
