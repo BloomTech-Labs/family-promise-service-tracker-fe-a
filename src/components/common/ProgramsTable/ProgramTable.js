@@ -33,9 +33,8 @@ const ProgramTable = ({
 
   const edit = record => {
     form.setFieldsValue({
-      name: '',
-      type: '',
-      description: '',
+      program_name: '',
+      program_description: '',
       ...record,
     });
     setEditingKey(record.id);
@@ -62,14 +61,14 @@ const ProgramTable = ({
   const columns = [
     {
       title: 'Program Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'program_name',
+      key: 'program_name',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="name"
+            name="program_name"
             style={{ margin: 0 }}
             rules={[
               {
@@ -78,48 +77,23 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input value={record.name} />
+            <Input value={record.program_name} />
           </Form.Item>
         ) : (
-          <>{record.name}</>
-        );
-      },
-    },
-    {
-      title: 'Type',
-      dataIndex: 'type',
-      key: 'type',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="type"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please Input type!`,
-              },
-            ]}
-          >
-            <Input value={record.type} />
-          </Form.Item>
-        ) : (
-          <>{record.type}</>
+          <>{record.program_name}</>
         );
       },
     },
     {
       title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
+      dataIndex: 'program_description',
+      key: 'program_description',
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="description"
+            name="program_description"
             style={{ margin: 0 }}
             rules={[
               {
@@ -128,10 +102,10 @@ const ProgramTable = ({
               },
             ]}
           >
-            <Input value={record.description} />
+            <Input value={record.program_description} />
           </Form.Item>
         ) : (
-          <>{record.description} </>
+          <>{record.program_description} </>
         );
       },
     },

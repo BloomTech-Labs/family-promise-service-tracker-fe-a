@@ -32,7 +32,7 @@ The Navbar on tablet was a combination of the AntD Drawer component, Sider compo
         width="200"
       >
         <Sider>
-          {userRole === 'administrator' ? (
+          {userRole === 'Administrator' ? (
             <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
               <Menu.Item
                 key="1"
@@ -149,11 +149,11 @@ This is then brought into the useEffect as the second argument so that it re-ren
 ```
 
 ##Styling
-Styling was mostly handled by Ant Design, but in instances where we did need to make changes, we used scss. You will see a `app.scss` file that imports all the other scss files up on top. Those are in the styles folder.  If you need to add another scss file, be sure to import it into the main `app.scss` file. Once you do that, it is automatically connected. You do not have to important on the React files. 
+Styling was mostly handled by Ant Design, but in instances where we did need to make changes, we used scss. You will see a `app.scss` file that imports all the other scss files up on top. Those are in the styles folder. If you need to add another scss file, be sure to import it into the main `app.scss` file. Once you do that, it is automatically connected. You do not have to important on the React files.
 
-##Read-Me-Template 
-You will find a file in the Docs folder called 'pull-request-template.md'. This file automatically populates the Pull Request with this information. It standardizes all Pull-Requests so there is structure. Feel free to change that file. 
+##Read-Me-Template
+You will find a file in the Docs folder called 'pull-request-template.md'. This file automatically populates the Pull Request with this information. It standardizes all Pull-Requests so there is structure. Feel free to change that file.
 
-##Feature Notes 
-The back-end and Redux store is complete for the services and service-types. However, the front-end did not have a chance to be completed for those two. 
-Within the services folder within pages, you will see the buttons that contain the modal. You only need to bring in the table and connect the information. 
+##Feature Notes
+The back-end and Redux store is complete for the services and service-types. However, the front-end did not have a chance to be completed for those two.
+Within the services folder within pages, you will see the buttons that contain the modal. You only need to bring in the table and connect the information.

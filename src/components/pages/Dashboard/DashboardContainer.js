@@ -1,12 +1,14 @@
 import React from 'react';
 import RenderDashboardPage from './RenderDashboardPage';
 import TitleComponent from '../../common/Title';
+import DashboardServiceTable from './DashboardServiceTable';
 
 function DashboardContainer() {
   return (
     <div className="dashboard">
       <div className="sub-header center">
         <TitleComponent TitleText="Dashboard" className="center" />
+        <DashboardServiceTable />
       </div>
       <RenderDashboardPage className="dashboard-page" />
     </div>

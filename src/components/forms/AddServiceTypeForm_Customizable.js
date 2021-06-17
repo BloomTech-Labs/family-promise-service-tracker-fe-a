@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, Modal } from 'antd';
+import { Form, Input, Select, Modal, Card } from 'antd';
 import { CustomFieldForm } from './CustomFieldForm';
 
 function AddServiceTypeForm_Customizable({
@@ -11,10 +11,31 @@ function AddServiceTypeForm_Customizable({
 }) {
   const [form] = Form.useForm();
   const [visibleCustomForm, setVisibleCustomForm] = useState(false);
+  // const [customField, setCustomField] = useState({
+  //     key: 'tab1',
+  //     noTitleKey: 'app',
+  // })
 
-  const openCustomFieldForm = () => {
-    setVisibleCustomForm(true);
-  };
+  // const onTabChange = (key, type) => {
+  //     console.log(key, type);
+  //     setCustomField({ [type]: key });
+  // };
+
+  // const tabList = [
+  //     {
+  //         key: 'tab1',
+  //         tab: 'tab1',
+  //     },
+  //     {
+  //         key: 'tab2',
+  //         tab: 'tab2',
+  //     },
+  // ];
+
+  // const contentList = {
+  //     tab1: <p>content1</p>,
+  //     tab2: <p>content2</p>,
+  // };
 
   return (
     <>
@@ -106,6 +127,29 @@ function AddServiceTypeForm_Customizable({
             Fields that will be collected by default: Cost, Duration, Status,
             Notes
           </h2>
+
+          {/* <div>
+                        <Form.Item label="Service Description" name="description">
+                            <Input.TextArea
+                                placeholder="Enter Details..."
+                                showCount
+                                maxLength={240}
+                            />
+                        </Form.Item>
+                    </div>
+                    <Card
+                        style={{ width: '100%' }}
+                        title="Card title"
+                        extra={<a href="#">More</a>}
+                        tabList={tabList}
+                        activeTabKey={this.state.key}
+                        onTabChange={key => {
+                            this.onTabChange(key, 'key');
+                        }}
+                    >
+                        {contentList[this.state.key]}
+                    </Card> */}
+
           <button onClick={() => setVisibleCustomForm(true)}>
             {' '}
             Add A Custom Field{' '}
