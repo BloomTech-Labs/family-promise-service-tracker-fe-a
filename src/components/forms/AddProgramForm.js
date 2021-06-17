@@ -44,18 +44,6 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
         >
           <Input placeholder="Program Name" />
         </Form.Item>
-        <Form.Item
-          name="type"
-          label="Program Type"
-          rules={[
-            {
-              required: true,
-              message: 'Please input the program type',
-            },
-          ]}
-        >
-          <Input placeholder="Program Type" />
-        </Form.Item>
         <Form.Item label="Program Description" name="description">
           <Input.TextArea
             showCount

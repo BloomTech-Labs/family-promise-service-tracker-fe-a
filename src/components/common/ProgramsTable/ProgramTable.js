@@ -34,7 +34,6 @@ const ProgramTable = ({
   const edit = record => {
     form.setFieldsValue({
       program_name: '',
-      program_type: '',
       program_description: '',
       ...record,
     });
