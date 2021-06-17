@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from 'antd';
+// import { Carousel } from 'antd';
 import graphA from '../../../assets/graph-a.jpg';
 import graphB from '../../../assets/graph-b.jpg';
 import graphC from '../../../assets/graph-c.jpg';
@@ -26,7 +26,7 @@ export default function GraphsPlaceholder() {
       {graphs.map(graph => {
         return (
           <div>
-            <img style={contentStyle} src={graph} />
+            <img style={contentStyle} alt="Graph Place Holder" src={graph} />
           </div>
         );
       })}
