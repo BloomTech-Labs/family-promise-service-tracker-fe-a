@@ -10,28 +10,30 @@ function MyProfileComponent({ user, Role, Programs }) {
     <div className="center">
       <Title TitleText="MyProfile" className="center" />
       <div className="profile-card">
-        {user.avatarUrl && (
-          <img src={user.avatarUrl} alt="avatar" className="avatar" />
-        )}
-        <Space direction="vertical">
+        <div className="tiny-avatar-container">
+          {user.avatarUrl && (
+            <img src={user.avatarUrl} alt="avatar" className="tiny-avatar" />
+          )}
+        </div>
+        <Space direction="vertical" className="card-child">
           <Text type="secondary">Full Name</Text>
-          <Text>
+          <Text className="card-text">
             {user.firstName} {user.lastName}
           </Text>
         </Space>
-        <Space direction="vertical">
+        <Space direction="vertical" className="card-child">
           <Text type="secondary">Role</Text>
-          <Text>{user.role}</Text>
+          <Text className="card-text">{user.role}</Text>
         </Space>
-        <Space direction="vertical">
+        <Space direction="vertical" className="card-child">
           <Text type="secondary">Programs</Text>
-          <Text>{user.programs.length}</Text>
+          <Text className="card-text">{user.programs.length}</Text>
         </Space>
         <Button
-          size="large"
+          size="medium"
           type="primary"
           onClick={() => history.push('/')}
-          className="profile-btn"
+          className="card-btn"
         >
           Edit Profile
         </Button>

@@ -1,0 +1,32 @@
+.sub-navBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#top-nav {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 15px;
+  border: none;
+}
+
+#nav-logo {
+  border: none;
+}
+
+#nav-profile {
+  margin-left: auto;
+  border: none;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.navBar {
+  width: 100vw;
+  margin-bottom: 1rem;
+}
+
+div .element.style {
+  display: block;
+}

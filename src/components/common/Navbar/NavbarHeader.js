@@ -19,13 +19,14 @@ const NavbarHeader = ({ user, getUserAction }) => {
     <div>
       <div
         style={{
-          display: 'flex',
+          display: 'block',
           flexDirection: 'row',
           flexWrap: 'wrap',
           maxWidth: '100%',
           minHeight: '70px',
           margin: '0 auto',
           position: 'relative',
+          background: 'white',
         }}
       >
         {user.role ? <HamburgerMenu userRole={user.role} /> : <></>}
