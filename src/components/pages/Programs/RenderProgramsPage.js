@@ -12,8 +12,8 @@ function RenderProgramsPage({ addProgramAction, getAllProgramsAction, user }) {
   // instead of using Okta Groups, simple react-router-dom is used for convenience
   // permission clauses based on "src/common/Navbar/HamburgerMenu.js"
   const history = useHistory();
-  if (user.role !== 'administrator' && user.role !== 'program_manager') {
-    history.push('/programs');
+  if (user.role !== 'Administrator' && user.role !== 'Program Manager') {
+    history.push('/');
   }
 
   const [visible, setVisible] = useState(false);

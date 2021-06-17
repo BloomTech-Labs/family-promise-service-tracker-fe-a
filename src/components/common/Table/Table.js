@@ -77,9 +77,9 @@ const TableComponent = ({
   };
 
   const selectRole = role => {
-    return role === 'administrator'
+    return role === 'Administrator'
       ? 'Administrator'
-      : role === 'program_manager'
+      : role === 'Program Manager'
       ? 'Program Manager'
       : role === 'service_provider'
       ? 'Service Provider'
@@ -171,8 +171,8 @@ const TableComponent = ({
           <Form.Item name="role" style={{ margin: 0 }}>
             <Select size="middle" value={record.role}>
               {/* Could be dynamic by mapping through list of roles */}
-              <Select.Option value="administrator">Administrator</Select.Option>
-              <Select.Option value="program_manager">
+              <Select.Option value="Administrator">Administrator</Select.Option>
+              <Select.Option value="Program Manager">
                 Program Manager
               </Select.Option>
               <Select.Option value="service_provider">
