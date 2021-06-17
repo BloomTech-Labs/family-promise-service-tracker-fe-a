@@ -33,7 +33,7 @@ export const getAllEmployeeAction = () => dispatch => {
   dispatch({ type: GET_ALL_EMPLOYEE_START });
 
   axiosWithAuth()
-    .get(`/api/profiles`)
+    .get(`/api/providers`)
     .then(res => {
       dispatch({ type: GET_ALL_EMPLOYEE_SUCCESS, payload: res.data });
     })
@@ -49,7 +49,7 @@ export const getEmployeeByIdAction = employeeId => dispatch => {
   dispatch({ type: GET_EMPLOYEE_START });
 
   axiosWithAuth()
-    .get(`/api/profiles/${employeeId}`)
+    .get(`/api/providers/${employeeId}`)
     .then(res => {
       dispatch({ type: GET_EMPLOYEE_SUCCESS, payload: res.data });
     })
@@ -65,7 +65,7 @@ export const addEmployeeAction = employeeObj => dispatch => {
   dispatch({ type: ADD_EMPLOYEE_START });
 
   axiosWithAuth()
-    .post(`/api/profiles`, employeeObj)
+    .post(`/api/providers`, employeeObj)
     .then(res => {
       dispatch({ type: ADD_EMPLOYEE_SUCCESS, payload: res.data });
     })
@@ -81,7 +81,7 @@ export const editEmployeeAction = (employeeId, employeeObj) => dispatch => {
   dispatch({ type: EDIT_EMPLOYEE_START });
 
   axiosWithAuth()
-    .put(`/api/profiles/${employeeId}`, employeeObj)
+    .put(`/api/providers/${employeeId}`, employeeObj)
     .then(res => {
       dispatch({ type: EDIT_EMPLOYEE_SUCCESS, payload: res.data });
     })
@@ -97,7 +97,7 @@ export const deleteEmployeeAction = employeeId => dispatch => {
   dispatch({ type: DELETE_EMPLOYEE_START });
 
   axiosWithAuth()
-    .delete(`/api/profiles/${employeeId}`)
+    .delete(`/api/providers/${employeeId}`)
     .then(res => {
       dispatch({ type: DELETE_EMPLOYEE_SUCCESS, payload: res.data });
     })

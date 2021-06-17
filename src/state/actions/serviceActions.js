@@ -122,7 +122,7 @@ export const getServiceProviders = () => dispatch => {
   dispatch({ type: GET_ALL_SERVICE_PROVIDERS_START });
 
   axiosWithAuth()
-    .get(`api/profiles/getserviceproviders`)
+    .get(`api/providers/getserviceproviders`)
     .then(res => {
       dispatch({ type: GET_ALL_SERVICE_PROVIDERS_SUCCESS, payload: res.data });
     })
