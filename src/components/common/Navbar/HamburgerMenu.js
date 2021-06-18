@@ -105,6 +105,13 @@ const HamburgerMenu = ({ userRole }) => {
             <></>
           )}
           <Menu.Item
+            key="categories"
+            icon={<ReconciliationOutlined />}
+            onClick={() => onClick('/categories')}
+          >
+            Categories
+          </Menu.Item>
+          <Menu.Item
             key="recipients"
             icon={<UsergroupAddOutlined />}
             onClick={() => onClick('/recipients')}
