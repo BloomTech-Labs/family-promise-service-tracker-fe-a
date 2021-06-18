@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Table from 'antd/lib/table/Table';
+import { Table } from 'antd';
 
 function DashboardServiceTable() {
   // const [data, setData] = useState([]);
