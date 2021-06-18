@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Select, Option } from 'antd';
 
 function AddCategoryForm({ visible, onCreate, onCancel }) {
+  const { Option } = Select;
   const [form] = Form.useForm();
 
   return (
@@ -42,7 +43,11 @@ function AddCategoryForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input placeholder="Category Name" />
+          <Select placeholder="Please select the category">
+            <Option value="Program A">Program A</Option>
+            <Option value="Program B">Program B</Option>
+            <Option value="Program C">Program C</Option>
+          </Select>
         </Form.Item>
         <Form.Item
           name="type"
