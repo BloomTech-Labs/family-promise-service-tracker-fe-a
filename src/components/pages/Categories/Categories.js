@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import AddCategoryForm from '../../forms/AddCategoryForm';
+import { connect } from 'react-redux';
+import {
+  addProgramAction,
+  getAllProgramsAction,
+} from '../../../state/actions/index.js';
 
-export default function Categories() {
+function Categories() {
   const [visible, setVisible] = useState(false);
 
   const onCreate = categoryObj => {
@@ -31,3 +36,15 @@ export default function Categories() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.user,
+    programs: state.program.programs,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addProgramAction,
+  getAllProgramsAction,
+})(Categories);

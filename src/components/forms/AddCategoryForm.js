@@ -1,7 +1,7 @@
 import React from 'react';
-import { Modal, Form, Input, Select, Option } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 
-function AddCategoryForm({ visible, onCreate, onCancel }) {
+export default function AddCategoryForm({ visible, onCreate, onCancel }) {
   const { Option } = Select;
   const [form] = Form.useForm();
 
@@ -49,18 +49,7 @@ function AddCategoryForm({ visible, onCreate, onCancel }) {
             <Option value="Program C">Program C</Option>
           </Select>
         </Form.Item>
-        <Form.Item
-          name="type"
-          label="Category type"
-          rules={[
-            {
-              required: true,
-              message: 'Please input the category type',
-            },
-          ]}
-        >
-          <Input placeholder="Category Type" />
-        </Form.Item>
+
         <Form.Item label="Category Description" name="description">
           <Input.TextArea
             showCount
@@ -72,5 +61,3 @@ function AddCategoryForm({ visible, onCreate, onCancel }) {
     </Modal>
   );
 }
-
-export default AddCategoryForm;
