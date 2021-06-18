@@ -119,11 +119,11 @@ const HamburgerMenu = ({ userRole }) => {
             Recipients
           </Menu.Item>
           <Menu.Item
-            key="Properties"
+            key="services"
             icon={<ReconciliationOutlined />}
-            onClick={() => onClick('/properties')}
+            onClick={() => onClick('/services')}
           >
-            Properties
+            Services
           </Menu.Item>
         </Menu>
       </div>
