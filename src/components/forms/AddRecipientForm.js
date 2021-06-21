@@ -55,7 +55,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           </Form.Item>
           <Form.Item
             label="Last Name"
-            name="program_last_name"
+            name="recipient_last_name"
             rules={[
               {
                 required: true,
