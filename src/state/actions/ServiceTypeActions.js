@@ -32,6 +32,7 @@ export const getAllServiceTypesAction = () => dispatch => {
     .get('/api/service_types')
     .then(res => {
       dispatch({ type: GET_ALL_SERVICE_TYPES_SUCCESS, payload: res.data });
+      console.log(res.data);
     })
     .catch(err => {
       dispatch({ type: GET_ALL_SERVICE_TYPES_FAIL, payload: err.message });

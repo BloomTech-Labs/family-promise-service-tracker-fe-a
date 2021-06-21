@@ -82,7 +82,7 @@ const HamburgerMenu = ({ userRole }) => {
             Dashboard
           </Menu.Item>
 
-          {userRole === 'administrator' ? (
+          {userRole === 'Administrator' ? (
             <Menu.Item
               key="employees"
               icon={<TeamOutlined />}
@@ -93,7 +93,7 @@ const HamburgerMenu = ({ userRole }) => {
           ) : (
             <></>
           )}
-          {userRole === 'administrator' || userRole === 'program_manager' ? (
+          {userRole === 'Administrator' || userRole === 'Program Manager' ? (
             <Menu.Item
               key="programs"
               icon={<ProjectOutlined />}
@@ -105,13 +105,19 @@ const HamburgerMenu = ({ userRole }) => {
             <></>
           )}
           <Menu.Item
+            key="categories"
+            icon={<ReconciliationOutlined />}
+            onClick={() => onClick('/categories')}
+          >
+            Categories
+          </Menu.Item>
+          <Menu.Item
             key="recipients"
             icon={<UsergroupAddOutlined />}
             onClick={() => onClick('/recipients')}
           >
             Recipients
           </Menu.Item>
-
           <Menu.Item
             key="services"
             icon={<ReconciliationOutlined />}

@@ -101,8 +101,6 @@ const RecipientTable = ({
   const save = async recipientId => {
     try {
       const recipientObj = await form.validateFields();
-      console.log('recipientObj', recipientObj);
-      console.log('recipientId', recipientId);
       editRecipientAction(recipientId, recipientObj);
       setEditingKey('');
     } catch (errInfo) {
@@ -115,9 +113,10 @@ const RecipientTable = ({
       title: 'First Name',
       dataIndex: 'first_name',
       key: 'first_name',
-      filteredValue: filteredInfo.first_name || null,
-      onFilter: (value, record) => record.first_name.includes(value),
-      sorter: (a, b) => a.first_name.localeCompare(b.first_name),
+      filteredValue: filteredInfo.recipient_first_name || null,
+      onFilter: (value, record) => record.recipient_first_name.includes(value),
+      sorter: (a, b) =>
+        a.recipient_first_name.localeCompare(b.recipient_first_name),
       sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -134,10 +133,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input value={record.first_name} />
+            <Input value={record.recipient_first_name} />
           </Form.Item>
         ) : (
-          <>{record.first_name}</>
+          <>{record.recipient_first_name}</>
         );
       },
     },
@@ -145,9 +144,10 @@ const RecipientTable = ({
       title: 'Last Name',
       dataIndex: 'last_name',
       key: 'last_name',
-      filteredValue: filteredInfo.last_name || null,
-      onFilter: (value, record) => record.last_name.includes(value),
-      sorter: (a, b) => a.last_name.localeCompare(b.last_name),
+      filteredValue: filteredInfo.recipient_last_name || null,
+      onFilter: (value, record) => record.recipient_last_name.includes(value),
+      sorter: (a, b) =>
+        a.recipient_last_name.localeCompare(b.recipient_last_name),
       sortOrder: sortedInfo.columnKey === 'last_name' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -164,10 +164,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input value={record.last_name} />
+            <Input value={record.recipient_last_name} />
           </Form.Item>
         ) : (
-          <>{record.last_name}</>
+          <>{record.recipient_last_name}</>
         );
       },
     },
@@ -175,7 +175,7 @@ const RecipientTable = ({
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      sorter: (a, b) => a.age - b.age,
+      sorter: (a, b) => a.recipient_date_of_birth - b.recipient_date_of_birth,
       sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -192,10 +192,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input value={record.age} />
+            <Input value={record.recipient_date_of_birth} />
           </Form.Item>
         ) : (
-          <>{record.age}</>
+          <>{record.recipient_date_of_birth}</>
         );
       },
     },
@@ -317,8 +317,8 @@ const RecipientTable = ({
         { text: 'Veteran', value: true },
         { text: 'Not a Veteran', value: false },
       ],
-      filteredValue: filteredInfo.veteran_status || null,
-      onFilter: (value, record) => record.veteran_status === value,
+      filteredValue: filteredInfo.recipient_veteran_status || null,
+      onFilter: (value, record) => record.recipient_veteran_status === value,
       sortOrder: sortedInfo.columnKey === 'veteran_status' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -335,10 +335,10 @@ const RecipientTable = ({
               },
             ]}
           >
-            <Input value={record.veteran_status} />
+            <Input value={record.recipient_veteran_status} />
           </Form.Item>
         ) : (
-          <>{record.veteran_status ? 'Yes' : 'No'}</>
+          <>{record.recipient_veteran_status ? 'Yes' : 'No'}</>
         );
       },
     },

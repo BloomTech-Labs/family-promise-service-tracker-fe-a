@@ -1,39 +1,32 @@
 import React, { useState } from 'react';
-import AddProgramForm from '../../forms/AddProgramForm.js';
+import { Button } from 'antd';
+import AddCategoryForm from '../../forms/AddCategoryForm';
+import { connect } from 'react-redux';
 import {
   addProgramAction,
   getAllProgramsAction,
 } from '../../../state/actions/index.js';
-import { connect } from 'react-redux';
-import { Button } from 'antd';
-import { useHistory } from 'react-router-dom';
 
-function RenderProgramsPage({ addProgramAction, getAllProgramsAction, user }) {
-  // instead of using Okta Groups, simple react-router-dom is used for convenience
-  // permission clauses based on "src/common/Navbar/HamburgerMenu.js"
-  const history = useHistory();
-  if (user.role !== 'Administrator' && user.role !== 'Program Manager') {
-    history.push('/');
-  }
-
+function Categories() {
   const [visible, setVisible] = useState(false);
 
-  const onCreate = programObj => {
-    addProgramAction(programObj);
+  const onCreate = categoryObj => {
+    // addCategoryAction(categoryObj);
     setVisible(false);
   };
 
   return (
     <div>
+      <h1>Categories</h1>
       <Button
         type="primary"
         onClick={() => {
           setVisible(true);
         }}
       >
-        Add Program
+        Add Category
       </Button>
-      <AddProgramForm
+      <AddCategoryForm
         visible={visible}
         onCreate={onCreate}
         onCancel={() => {
@@ -54,4 +47,4 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   addProgramAction,
   getAllProgramsAction,
-})(RenderProgramsPage);
+})(Categories);
