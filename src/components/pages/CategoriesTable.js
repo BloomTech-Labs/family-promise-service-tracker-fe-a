@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Table } from 'antd';
 
-function DashboardServiceTable() {
+function CategoriesTable() {
   // const [data, setData] = useState([]);
 
   const data = [
     {
-      service: 'Metrocard',
-      cost: 2.0,
-      usagerate: '100%',
+      category: '',
+      type: 'service',
+      usagerate: '',
     },
     {
-      service: 'Lunch',
-      cost: 5.0,
-      usagerate: '10%',
+      category: '',
+      type: 'program',
+      usagerate: '',
     },
   ];
 
   const column = [
     {
-      title: 'Service',
-      dataIndex: 'service',
+      title: 'Category',
+      dataIndex: 'category',
       key: 'key',
     },
     {
-      title: 'Cost',
-      dataIndex: 'cost',
+      title: 'Type',
+      dataIndex: 'type',
       key: 'key',
     },
     {
@@ -37,10 +37,9 @@ function DashboardServiceTable() {
 
   return (
     <div>
-      <h1>Working</h1>
       <Table dataSource={data} columns={column} />
     </div>
   );
 }
 
-export default DashboardServiceTable;
+export default CategoriesTable;
