@@ -9,14 +9,6 @@ import {
 function AddCategoryForm({ programs, visible, onCreate, onCancel }) {
   const { Option } = Select;
   const [form] = Form.useForm();
-  const [newPrograms, setNewPrograms] = useState([]);
-
-  useEffect(() => {
-    getAllProgramsAction(res => {
-      console.log(res);
-    });
-    console.log(programs);
-  }, []);
 
   return (
     <Modal
@@ -57,9 +49,9 @@ function AddCategoryForm({ programs, visible, onCreate, onCancel }) {
           ]}
         >
           <Select placeholder="Please select the category">
-            <Option value="Program A">Program A</Option>
-            <Option value="Program B">Program B</Option>
-            <Option value="Program C">Program C</Option>
+            {programs.map(program => {
+              return <Option value="Program A">{program.program_name}</Option>;
+            })}
           </Select>
         </Form.Item>
 

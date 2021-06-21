@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import AddCategoryForm from '../../forms/AddCategoryForm';
 import { connect } from 'react-redux';
@@ -14,6 +14,10 @@ function Categories() {
     // addCategoryAction(categoryObj);
     setVisible(false);
   };
+
+  useEffect(() => {
+    getAllProgramsAction();
+  }, []);
 
   return (
     <div>
