@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Form, Input, Select } from 'antd';
+import { connect } from 'react-redux';
+import {
+  addProgramAction,
+  getAllProgramsAction,
+} from '../../state/actions/index.js';
 
-export default function AddCategoryForm({ visible, onCreate, onCancel }) {
+function AddCategoryForm({ visible, onCreate, onCancel }) {
   const { Option } = Select;
   const [form] = Form.useForm();
+  const [programs, setPrograms] = useState([]);
+
+  useState(() => {
+    getAllProgramsAction(res => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <Modal
@@ -61,3 +73,15 @@ export default function AddCategoryForm({ visible, onCreate, onCancel }) {
     </Modal>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.user,
+    programs: state.program.programs,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addProgramAction,
+  getAllProgramsAction,
+})(AddCategoryForm);
