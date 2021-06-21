@@ -36,9 +36,13 @@ function DashboardServiceTable() {
   ];
 
   return (
-    <div>
+    <div className="center">
       <h1>Working</h1>
-      <Table dataSource={data} columns={column} />
+      <Table
+        pagination={{ position: ['bottomCenter'] }}
+        dataSource={data}
+        columns={column}
+      />
     </div>
   );
 }

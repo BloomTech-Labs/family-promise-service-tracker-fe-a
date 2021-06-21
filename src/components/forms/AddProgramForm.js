@@ -33,7 +33,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
         }}
       >
         <Form.Item
-          name="name"
+          name="program_name"
           label="Program Name"
           rules={[
             {
@@ -44,7 +44,7 @@ function AddProgramForm({ visible, onCreate, onCancel }) {
         >
           <Input placeholder="Program Name" />
         </Form.Item>
-        <Form.Item label="Program Description" name="description">
+        <Form.Item label="Program Description" name="program_description">
           <Input.TextArea
             showCount
             maxLength={240}
