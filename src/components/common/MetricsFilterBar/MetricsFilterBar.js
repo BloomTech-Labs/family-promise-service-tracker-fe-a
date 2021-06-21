@@ -69,8 +69,11 @@ const MetricsFilterBar = ({
       >
         {programs.map(individualProgram => {
           return (
-            <Option value={individualProgram.id} key={individualProgram.id}>
-              {individualProgram.type}
+            <Option
+              value={individualProgram.program_id}
+              key={individualProgram.program_id}
+            >
+              {individualProgram.program_name}
             </Option>
           );
         })}
@@ -92,10 +95,10 @@ const MetricsFilterBar = ({
         {serviceTypes.map(individualServiceType => {
           return (
             <Option
-              value={individualServiceType.prgram_id}
-              key={individualServiceType.id}
+              value={individualServiceType.service_type_id}
+              key={individualServiceType.service_type_id}
             >
-              {individualServiceType.name}
+              {individualServiceType.service_type_name}
             </Option>
           );
         })}
@@ -117,10 +120,10 @@ const MetricsFilterBar = ({
         {serviceProviders.map(individualServiceProvider => {
           return (
             <Option
-              value={individualServiceProvider.id}
-              key={individualServiceProvider.id}
+              value={individualServiceProvider.provider_id}
+              key={individualServiceProvider.provider_id}
             >
-              {individualServiceProvider.firstName}
+              {individualServiceProvider.provider_first_name}
             </Option>
           );
         })}
@@ -141,8 +144,12 @@ const MetricsFilterBar = ({
       >
         {recipients.map(individualRecipient => {
           return (
-            <Option value={individualRecipient.id} key={individualRecipient.id}>
-              {individualRecipient.first_name} {individualRecipient.last_name}
+            <Option
+              value={individualRecipient.recipient_id}
+              key={individualRecipient.recipient_id}
+            >
+              {individualRecipient.recipient_first_name}{' '}
+              {individualRecipient.recipient_last_name}
             </Option>
           );
         })}

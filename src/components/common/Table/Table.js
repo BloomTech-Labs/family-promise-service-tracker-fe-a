@@ -94,13 +94,13 @@ const TableComponent = ({
         const programs = [];
         employee.programs.forEach(program => {
           if (program !== null) {
-            programs.push(program.name);
+            programs.push(program.program_name);
           }
         });
         tableData.push({
-          key: employee.id,
-          firstName: employee.firstName,
-          lastName: employee.lastName,
+          key: employee.provider_id,
+          firstName: employee.provider_first_name,
+          lastName: employee.provider_last_name,
           role: selectRole(employee.role),
           programs: programs,
         });
