@@ -6,15 +6,16 @@ import {
   getAllProgramsAction,
 } from '../../state/actions/index.js';
 
-function AddCategoryForm({ visible, onCreate, onCancel }) {
+function AddCategoryForm({ programs, visible, onCreate, onCancel }) {
   const { Option } = Select;
   const [form] = Form.useForm();
-  const [programs, setPrograms] = useState([]);
+  const [newPrograms, setNewPrograms] = useState([]);
 
-  useState(() => {
+  useEffect(() => {
     getAllProgramsAction(res => {
       console.log(res);
     });
+    console.log(programs);
   }, []);
 
   return (
