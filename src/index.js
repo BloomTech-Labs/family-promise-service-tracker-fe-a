@@ -25,6 +25,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { NavbarHeader } from './components/common/index';
+import { CategoriesPage } from './components/pages/Categories';
 
 ReactDOM.render(
   <Router>
@@ -64,6 +65,7 @@ function App() {
         <SecureRoute path="/profile" component={MyProfile} />
         <SecureRoute path="/employees" component={EmployeesPage} />
         <SecureRoute path="/programs" component={ProgramsPage} />
+        <SecureRoute path="/categories" component={CategoriesPage} />
         <SecureRoute path="/recipients" component={RecipientsPage} />
         <SecureRoute path="/services" component={ServicesPage} />
         <SecureRoute path="/dashboard" component={DashboardPage} />
