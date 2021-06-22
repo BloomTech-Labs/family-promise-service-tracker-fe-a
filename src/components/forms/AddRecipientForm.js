@@ -8,9 +8,6 @@ const { Option } = Select;
 
 function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
-  const str = 'abc';
-  const temp = 456;
-  console.log(str + temp);
 
   return (
     <>
