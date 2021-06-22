@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Form, Input, Select } from 'antd';
+import { connect } from 'react-redux';
+import {
+  addProgramAction,
+  getAllProgramsAction,
+} from '../../state/actions/index.js';
 
-export default function AddCategoryForm({ visible, onCreate, onCancel }) {
+function AddCategoryForm({ programs, visible, onCreate, onCancel }) {
   const { Option } = Select;
   const [form] = Form.useForm();
 
@@ -44,9 +49,9 @@ export default function AddCategoryForm({ visible, onCreate, onCancel }) {
           ]}
         >
           <Select placeholder="Please select the category">
-            <Option value="Program A">Program A</Option>
-            <Option value="Program B">Program B</Option>
-            <Option value="Program C">Program C</Option>
+            {programs.map(program => {
+              return <Option value="Program A">{program.program_name}</Option>;
+            })}
           </Select>
         </Form.Item>
 
@@ -61,3 +66,15 @@ export default function AddCategoryForm({ visible, onCreate, onCancel }) {
     </Modal>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.user,
+    programs: state.program.programs,
+  };
+};
+
+export default connect(mapStateToProps, {
+  addProgramAction,
+  getAllProgramsAction,
+})(AddCategoryForm);

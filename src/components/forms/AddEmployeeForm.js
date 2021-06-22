@@ -8,7 +8,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
   return (
     <Modal
       visible={visible}
-      title="Add a New Employee"
+      title="Add a New Provider"
       okText="Add"
       cancelText="Cancel"
       width="80%"
@@ -17,7 +17,6 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         form
           .validateFields()
           .then(values => {
-            console.log('employee form values', values);
             form.resetFields();
             onCreate(values);
           })
@@ -35,7 +34,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         }}
       >
         <Form.Item
-          name="firstName"
+          name="provider_first_name"
           label="First Name"
           rules={[
             {
@@ -47,7 +46,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
           <Input placeholder="First Name" />
         </Form.Item>
         <Form.Item
-          name="lastName"
+          name="provider_last_name"
           label="Last Name"
           rules={[
             {
@@ -74,7 +73,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
             <Select.Option value="Program Manager">
               Program Manager
             </Select.Option>
-            <Select.Option value="service_provider">
+            <Select.Option value="Service Provider">
               Service Provider
             </Select.Option>
             ))

@@ -8,6 +8,9 @@ const { Option } = Select;
 
 function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
+  const str = 'abc';
+  const temp = 456;
+  console.log(str + temp);
 
   return (
     <>
@@ -40,7 +43,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
         >
           <Form.Item
             label="First Name"
-            name="first_name"
+            name="recipient_first_name"
             rules={[
               {
                 required: true,
@@ -52,7 +55,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           </Form.Item>
           <Form.Item
             label="Last Name"
-            name="last_name"
+            name="recipient_last_name"
             rules={[
               {
                 required: true,
