@@ -467,7 +467,6 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
-      {console.log(services)}
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
