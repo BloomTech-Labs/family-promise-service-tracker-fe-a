@@ -1,2 +1,19 @@
-1. Recipient table edit fields not populating with dropdowns or options. (E.g. Radio button yes no for Veteran)
-2. Service provider field on Log Service form is only pulling in service providers and not allowing Admin or Program managers to be set as the provider. Additionally seems to be pulling in all service providers rather than only those assigned to the service type that is being added.
+1. The backend team created an all new table schema, names have been changed throughout the site. If something is breaking, double check the naming schema. Changes are recorded in this doc: https://docs.google.com/document/d/1kAsDqFNVSUVvSCgczPOsPthMqTzC0lCNS9RZr0xsOOs/edit?usp=sharing 
+
+Program Manager/ Admin User Types
+2. Categories Components - 
+    - needs an endpoint and to be connected (action and reducer are built out)
+ 
+3. Recipients - AddRecipient Form Component
+          - The Address dropdown is broken. This is because the table schema has changed to accept Address, Zip, State, etc. fields instead of being a dropdown.
+          - OR if you think it makes more sense, connect it to a household instead. This would mean a user would have to create a household before creating a                  recipient. 
+4. Sort features on each table aren't working. This could be because of the name mismatch from the new tables. 
+
+5. Service Table - Edit feature. If you click edit and change something it changes every input field. 
+
+
+Service Provider User Type
+
+1. Need to work on adjusting this form to display the custom service types that a program manager creates. 
+
+
