@@ -1,41 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, Modal, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
+import { getAllCategoriesAction } from '../../state/actions';
 function AddServiceTypeForm({
   onCreate,
   onCancel,
   visible,
   programs,
   categories,
+  change,
+  getAllCategoriesAction,
 }) {
   const [form] = Form.useForm();
-  // const [customDropDown, setCustomDropDown] = useState(false)
+
+  //state for which dropdown Value is selected
   const [dropDownValue, setDropDownValue] = useState('');
-  // const toggleAddCustomDropdown = () => {
-  //   setCustomDropDown(!customDropDown)
-  // }
 
   const handleSelectCustomField = ({ key }) => {
     setDropDownValue(key);
   };
-  //figure out
+
+  //this needs to be connected to an endpoint which has not yet been built to fetch all of the categories
+  useEffect(() => {
+    getAllCategoriesAction();
+  }, [change, getAllCategoriesAction]);
+
   const menu = (
     <Menu onClick={handleSelectCustomField}>
       <Menu.Item key="Number" value="Number">
         <a>Number</a>
       </Menu.Item>
-      <Menu.Item key="1" value="Text">
+      <Menu.Item key="Text">
         <a>Text</a>
       </Menu.Item>
-      <Menu.Item key="2" value="Dropdown">
+      <Menu.Item key="Dropdown">
         <a>Dropdown</a>
       </Menu.Item>
-      <Menu.Item key="3" value="Checkboxes">
+      <Menu.Item key="Checkboxes">
         <a>Checkboxes</a>
       </Menu.Item>
-      <Menu.Item key="4" value="RadioButtons">
+      <Menu.Item key="RadioButtons">
         <a>Radio Buttons</a>
       </Menu.Item>
     </Menu>
@@ -138,29 +144,21 @@ function AddServiceTypeForm({
               Add A Custom Service Field <DownOutlined />
             </a>
           </Dropdown>
-          {/* <Form.Item
-            name="custom_form"
-            label="Add A Custom Form"
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: 'Please input the program type',
-          //   },
-          // ]}
-          >
-            <Select size="large" placeholder="Add A Custom Entry Field">
 
-              <Select.Option key="Number" value="Number" onChange={() => { setDropDownValue("Number") }}>
-                Number
-                </Select.Option>
-
-            </Select>
-          </Form.Item> */}
-          {dropDownValue === 'Number' ? (
-            <CC_NumberInput />
-          ) : (
-            <h1> womp womp</h1>
-          )}
+          {dropDownValue === 'Number' ? <CC_NumberInput /> : <></>}
+          {/* // Add these in and build this out in the forms>CustomizableComponents folder */}
+          {/* {dropDownValue === 'Text' ? (
+            <CC_TextInput />
+          ) : <></>}
+          {dropDownValue === 'Dropdown' ? (
+            <CC_DropdownInput />
+          ) : <></>}
+          {dropDownValue === 'Checkboxes' ? (
+            <CC_CheckboxesInput />
+          ) : <></>}
+          {dropDownValue === 'RadioButton' ? (
+            <CC_RadioButtonInput />
+          ) : <></>} */}
         </Form>
       </Modal>
     </>
@@ -172,7 +170,10 @@ const mapStateToProps = state => {
     recipients: state.recipient.recipients,
     serviceTypes: state.service.serviceTypes,
     programs: state.program.programs,
-    categories: state.category.categories,
+    // categories: state.categories, //add categories and change back in once endpoint is ready. Might need to switch to state.category.categories depending on endpoint
+    // change: state.change
   };
 };
-export default connect(mapStateToProps, null)(AddServiceTypeForm);
+export default connect(mapStateToProps, { getAllCategoriesAction })(
+  AddServiceTypeForm
+);
