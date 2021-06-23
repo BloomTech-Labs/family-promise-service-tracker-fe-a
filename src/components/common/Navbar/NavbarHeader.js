@@ -29,7 +29,11 @@ const NavbarHeader = ({ user, getUserAction }) => {
           background: 'white',
         }}
       >
-        {user.role ? <HamburgerMenu userRole={user.role} /> : <></>}
+        {user.role ? (
+          <HamburgerMenu userRole={user.role} avatar={user.avatarUrl} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

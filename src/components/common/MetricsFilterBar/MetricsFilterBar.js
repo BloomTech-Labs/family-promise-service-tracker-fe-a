@@ -39,10 +39,9 @@ const MetricsFilterBar = ({
     setDrilledRecipient(value);
   }
 
+
   //for when a user clicks out of dropdown area
-  function onBlur() {
-    console.log('blur');
-  }
+  function onBlur() {}
 
   //for when a user clicks on a dropdown
   function onFocusPrograms() {
@@ -62,9 +61,7 @@ const MetricsFilterBar = ({
   }
 
   //for when a user manually searches a dropdown
-  function onSearch(value) {
-    console.log('search', value);
-  }
+  function onSearch(value) {}
 
   return (
     <div>

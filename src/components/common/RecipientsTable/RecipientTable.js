@@ -95,7 +95,6 @@ const RecipientTable = ({
 
   const deleteRecipient = key => {
     deleteRecipientAction(key);
-    console.log('key', key);
   };
 
   const save = async recipientId => {

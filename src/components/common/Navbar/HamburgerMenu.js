@@ -12,8 +12,9 @@ import {
 } from '@ant-design/icons';
 import logo from '../../../assets/logo.png';
 import SubMenu from 'antd/lib/menu/SubMenu';
+import Avatar from 'antd/lib/avatar/avatar';
 
-const HamburgerMenu = ({ userRole }) => {
+const HamburgerMenu = ({ userRole, avatar }) => {
   const history = useHistory();
 
   const handleLogout = () => {
@@ -54,8 +55,10 @@ const HamburgerMenu = ({ userRole }) => {
           <SubMenu
             key="profile"
             id="nav-profile"
-            icon={<UserOutlined />}
-            title="Profile"
+            icon={
+              <Avatar size="large" icon={<img src={avatar} alt="avatar" />} />
+            }
+            title=""
           >
             <Menu.Item
               key="viewProfile"
