@@ -4,7 +4,6 @@ import MyProfileComponent from '../../common/MyProfileComponent';
 import MetricsFilterBar from '../../common/MetricsFilterBar/MetricsFilterBar';
 import DashboardServiceTable from './DashboardServiceTable';
 
-
 // import GraphsPlaceholder from '../../common/GraphsPlaceholder/GraphsPlaceholder';
 
 function RenderDashboardPage({ user, status }) {
