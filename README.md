@@ -13,7 +13,7 @@ Our goal is to build a generalizable monitoring and evaluation (M&E) platform th
 You can find the deployed project at [a.familypromiseservicetracker.dev/](a.familypromiseservicetracker.dev/).
 
 ## Contributors
-### Front-End Team
+### Front-End Team (Labs 33)
 
 |                                                        [Hussain Ali](https://github.com/princeali415)                                                        |                                                   [Ruben Ramirez](https://github.com/rubesworld)                                                   |                                                      [Bryan Diaz](https://github.com/bdiaz12345)                                                       |                                                       [Jose Robles](https://github.com/jcrobles1989)                                                         |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
@@ -24,7 +24,7 @@ You can find the deployed project at [a.familypromiseservicetracker.dev/](a.fami
 
 <br>
 
-### Back-End Team
+### Back-End Team (Labs 33)
 |                                                   [Chris Sutton](https://github.com/suttonchristopher)                                                       |                                                      [Brandon O'Neal](https://github.com/brandononeal)                                                       |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
 | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619474173/ChrisS.jpg" width = "200" />](https://github.com/suttonchristopher) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619473829/BrandonON.jpg" width = "200" />](https://github.com/brandononeal) |
