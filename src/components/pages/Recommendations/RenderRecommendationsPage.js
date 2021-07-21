@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Recommendation({ values }) {
+function RenderRecommendationsPage({ values }) {
   if (!values) {
     return <h3>Working fetching your Recommendations...</h3>;
   }
@@ -12,4 +12,4 @@ function Recommendation({ values }) {
   );
 }
 
-export default Recommendation;
+export default RenderRecommendationsPage;

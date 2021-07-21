@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import TitleComponent from '../../common/Title';
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
-import Recommendation from './Recommenation';
+import RenderRecommendationsPage from './RenderRecommendationsPage';
 
 function RecommendationsContainer() {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    axiosWithAuth.get('/recommendations').then(res => {
-      setRecommendations(res.data);
-    });
+    axiosWithAuth()
+      .get('/recommendations')
+      .then(res => {
+        setRecommendations(res.data);
+      });
   }, []);
 
   return (
@@ -19,7 +21,7 @@ function RecommendationsContainer() {
       </div>
       {/* {recommendations.map((recommendation, idx) => {
         return 
-          <Recommendation key={idx} values={recomemendation} />})
+          <RenderRecommendationsPage key={idx} values={recommendation} />})
         } */}
     </div>
   );

@@ -16,7 +16,7 @@ import './app.scss';
 
 import { MyProfile } from './components/pages/MyProfile';
 import { DashboardPage } from './components/pages/Dashboard';
-import { Recommendations } from './components/pages/Recommendations';
+import { RecommendationsPage } from './components/pages/Recommendations';
 import { EmployeesPage } from './components/pages/Employees';
 import { ProgramsPage } from './components/pages/Programs';
 import { RecipientsPage } from './components/pages/Recipients';
@@ -71,7 +71,7 @@ function App() {
         <SecureRoute path="/recipients" component={RecipientsPage} />
         <SecureRoute path="/services" component={ServicesPage} />
         <SecureRoute path="/dashboard" component={DashboardPage} />
-        <SecureRoute path="/recommendations" component={Recommendations} />
+        <SecureRoute path="/recommendations" component={RecommendationsPage} />
         <Route path="/customcomponent" component={CC_NumberInput} />
         <Route component={NotFoundPage} />
       </Switch>
