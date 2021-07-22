@@ -206,8 +206,8 @@ const TableComponent = ({
           >
             <Select size="middle" mode="multiple">
               {programs.map(item => (
-                <Select.Option key={item} value={item.id}>
-                  {item.name}
+                <Select.Option key={item.program_id} value={item.program_id}>
+                  {item.program_name}
                 </Select.Option>
               ))}
             </Select>
