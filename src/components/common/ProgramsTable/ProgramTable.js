@@ -142,7 +142,7 @@ const ProgramTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteProgram(record.id);
+                deleteProgram(record.program_id);
               }}
               danger
             >
