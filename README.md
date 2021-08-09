@@ -12,91 +12,10 @@ Our goal is to build a generalizable monitoring and evaluation (M&E) platform th
 
 You can find the deployed project at [a.familypromiseservicetracker.dev/](a.familypromiseservicetracker.dev/).
 
-## Contributors
-### **Front-End Team (Labs 35)**
-
-|                                                        [Adam Purdy](https://github.com/PurdyRad)                                                             |                                                   [Jason Corchado](https://github.com/JasonCorchado)                                               |                                      [Jonathan Calderon](https://github.com/Jonathan1600)                                                   |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars.githubusercontent.com/u/76630666?v=4" width = "200" />](https://github.com/PurdyRad)                                              | [<img src="https://avatars.githubusercontent.com/u/77353218?v=4" width = "200" />](https://github.com/JasonCorchado)                               | [<img src="https://avatars.githubusercontent.com/u/70250506?s=400" width = "200" />](https://github.com/Jonathan1600)                       |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/PurdyRad)                                       |                               [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/JasonCorchado)                           |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/Jonathan1600)                          |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/adam-purdy/)                       |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/jason-corchado/)            | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/jonathan-calderon-silberman/)|
-
-|                                                        [Monica Zwissler](https://github.com/Monicascz)                                                       |                                                   [Robert Allen](https://github.com/robertjallen)                                                  |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars.githubusercontent.com/u/73200302?v=4" width = "200" />](https://github.com/Monicascz)                                             | [<img src="https://avatars.githubusercontent.com/u/20561145?s=400" width = "200" />](https://github.com/robertjallen)                              |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/Monicascz)                                      |                               [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/robertjallen)                            |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/monicascz)                         |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/robertallendev/)            |
-
-
-<br>
-
-### **Back-End Team (Labs 35)**
-|                                                        [Adam Selter](https://github.com/blackcatwizard)                                                      |                                                   [Domenic Scarcella](https://github.com/DomenicScarcella)                                         |                                        [Jay Ponce de Leon](https://github.com/jaypdl)                                                       |                                                       [Matthew Ellis](https://github.com/MatthewEllisTx/)                                     |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
-| [<img src="https://avatars.githubusercontent.com/u/73545965?v=4" width = "200" />](https://github.com/blackcatwizard)                                        |          [<img src="https://avatars.githubusercontent.com/u/76451364?s=400" width = "200" />](https://github.com/DomenicScarcella)                 |              [<img src="https://avatars.githubusercontent.com/u/20601752?v=4" width = "200" />](https://github.com/jaypdl)                  | [<img src="https://avatars.githubusercontent.com/u/77289520?v=4" width = "200" />](https://github.com/MatthewEllisTx/)                        |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/blackcatwizard)                                 |                        [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/DomenicScarcella)                               |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/jaypdl)                                |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/MatthewEllisTx/)                         |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/adam-selter/)                      |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/domenicscarcella/)          |   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/jayponcedeleon/)           |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/mbellistx/)    |
-
-|                                                        [Monica Zwissler](https://github.com/Monicascz)                                                       |                                                   [Nick Samples](https://github.com/samplesn08)                                                    |                                      [Weston Woodard](https://github.com/SpicyLunchbox)                                                     |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://avatars.githubusercontent.com/u/73200302?v=4" width = "200" />](https://github.com/Monicascz)                                             | [<img src="https://avatars.githubusercontent.com/u/53315294?v=4" width = "200" />](https://github.com/samplesn08)                                  | [<img src="https://avatars.githubusercontent.com/u/69223774?s=400" width = "200" />](https://github.com/SpicyLunchbox)                      |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/Monicascz)                                      |                               [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/samplesn08)                              |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/SpicyLunchbox)                         |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/monicascz)                         |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/nicholas-samples/)          | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/weston-woodard-76709988/)    |
-
-<br>
-
-### **Front-End Team (Labs 33)**
-
-|                                                        [Hussain Ali](https://github.com/princeali415)                                                        |                                                   [Ruben Ramirez](https://github.com/rubesworld)                                                   |                                                      [Bryan Diaz](https://github.com/bdiaz12345)                                                       |                                                       [Jose Robles](https://github.com/jcrobles1989)                                                         |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | 
-| [<img src="https://res.cloudinary.com/dyp2opcpj/image/upload/v1618184678/images/gij4edsbp3709samouln.jpg" width = "200" />](https://github.com/princeali415) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1618698077/ruben-ramirez.jpg" width = "200" />](https://github.com/rubesworld) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619463650/bryanD.png" width = "200" />](https://github.com/bdiaz12345) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619477734/Jose.png" width = "200" />](https://github.com/jcrobles1989) |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/princeali415)                                   |                               [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/rubesworld)                               |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/bdiaz12345)                           |                          [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/jcrobles1989)                              |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/hussain-ali-58a9b690/)             |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/rubenandresramirez)         |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/bryan-diaz-816a081b9/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/jcroblesorozco/)                |
-
-
-<br>
-
-### **Back-End Team (Labs 33)**
-|                                                   [Chris Sutton](https://github.com/suttonchristopher)                                                       |                                                      [Brandon O'Neal](https://github.com/brandononeal)                                                       |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619474173/ChrisS.jpg" width = "200" />](https://github.com/suttonchristopher) | [<img src="https://res.cloudinary.com/water-my-plants/image/upload/v1619473829/BrandonON.jpg" width = "200" />](https://github.com/brandononeal) |
-|                                  [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/suttonchristopher)                                   |                               [<img src="https://github.com/favicon.ico" width="32"> ](https://github.com/brandononeal)                          |
-|            [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/suttonchristopher/)             |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="32"> ](https://www.linkedin.com/in/brandonaoneal)         |
-
-<br>
-<br>
-
-![https://mit-license.org](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![https://reactjs.org](https://img.shields.io/badge/react-v16.13.1-blue)
-![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
-
-- Fork and clone the repo to install it as your own remote.
-  - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
-- run: `npm install` to download all dependencies.
-- run: `npm start` to start your local development server.
-
-> When using Okta for authentication, the app will need to run locally on port 3000.
-
-### Key Features
-
-- Admin users can add / edit / delete employees, add / edit / delete programs, add / edit / delete services types & add / edit / delete services.
-- Program Managers can add / edit / delete programs, add / edit / delete services types & add / edit / delete services.
-- Service Managers can view and add / edit / delete services.
-- All users can update their profile image and names.
-
-#### Front end deployed to AWS Amplify.
-
-#### [Back end](https://github.com/Lambda-School-Labs/family-promise-service-tracker-be-a) built using:
-
-#### Node.js with Postgres
-
-- point one
-- point two
-- point three
-
 # Installation Instructions
 
-create your project repo by forking or using this as a template.
+Create your project repo by forking or using this as a template.
+Make sure you have Node.js installed locally.
 run: `npm install` to download all dependencies.
 run: `npm start` to start the live server. Note: must be running on localhost:3000
 g
