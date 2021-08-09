@@ -85,7 +85,7 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Unit"
+            label="Unit Type"
             name="unit"
             rules={[
               {
@@ -102,14 +102,14 @@ function AddServiceForm({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Quantity" name="quantity">
+          <Form.Item label="Quantity Of Units" name="quantity">
             <InputNumber size="large" min="0" />
           </Form.Item>
-          <Form.Item label="Value" name="value">
+          <Form.Item label="Value of Services Rendered" name="value">
             <InputNumber size="large" min="0" />
           </Form.Item>
           <Form.Item
-            label="Status"
+            label="Service Status"
             name="status_id"
             rules={[
               {
@@ -128,7 +128,7 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Address"
+            label="Recipient Address"
             name="address"
             rules={[
               {
@@ -140,7 +140,7 @@ function AddServiceForm({
             <Input placeholder="Enter Street Address" size="large" />
           </Form.Item>
           <Form.Item
-            label="City"
+            label="Recipient City"
             name="city"
             rules={[
               {
@@ -152,7 +152,7 @@ function AddServiceForm({
             <Input placeholder="Enter City" size="large" />
           </Form.Item>
           <Form.Item
-            label="State"
+            label="Recipient State"
             name="state"
             rules={[
               {
@@ -164,7 +164,7 @@ function AddServiceForm({
             <Input placeholder="Enter State" size="large" />
           </Form.Item>
           <Form.Item
-            label="Zip Code"
+            label="Recipient Zip Code"
             name="zip_code"
             rules={[
               {
@@ -195,7 +195,7 @@ function AddServiceForm({
             </Form.Item>
           </div>
           <Form.Item
-            label="Provider"
+            label="Service Provider"
             name="provider_id"
             rules={[
               {
@@ -212,7 +212,7 @@ function AddServiceForm({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Insert notes" name="notes">
+          <Form.Item label="Case Notes" name="notes">
             <TextArea
               placeholder="Enter Details..."
               showCount
