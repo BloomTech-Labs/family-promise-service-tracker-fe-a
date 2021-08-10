@@ -207,7 +207,7 @@ const ServicesTable = ({
       }),
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) =>
-        record.service_entry_data.status.includes(value),
+        record.service_entry_data.default.Status.includes(value),
       ellipsis: true,
       editable: true,
       render: (_, record) => {
@@ -215,7 +215,7 @@ const ServicesTable = ({
         return editable ? (
           <Form.Item
             name="status_id"
-            initialValue={record.service_entry_data.status}
+            initialValue={record.service_entry_data.default.Status}
             style={{ margin: 0 }}
             rules={[
               {
@@ -224,7 +224,10 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select size="middle" value={record.service_entry_data.status}>
+            <Select
+              size="middle"
+              value={record.service_entry_data.default.Status}
+            >
               {STATUSES.map(status => (
                 <Select.Option key={status.id} value={status.id}>
                   {status.type}
@@ -233,7 +236,7 @@ const ServicesTable = ({
             </Select>
           </Form.Item>
         ) : (
-          <>{record.service_entry_data.status}</>
+          <>{record.service_entry_data.default.Status}</>
         );
       },
     },
@@ -366,7 +369,7 @@ const ServicesTable = ({
           <Form.Item
             name="notes"
             style={{ margin: 0 }}
-            initialValue={record.service_entry_data.notes}
+            initialValue={record.service_entry_data.default.Notes}
             rules={[
               {
                 required: false,
@@ -374,12 +377,15 @@ const ServicesTable = ({
               },
             ]}
           >
-            <TextArea value={record.service_entry_data.notes} rows={10} />
+            <TextArea
+              value={record.service_entry_data.default.Notes}
+              rows={10}
+            />
           </Form.Item>
         ) : (
           <>
-            {record.service_entry_data.notes
-              ? record.service_entry_data.notes
+            {record.service_entry_data.default.Notes
+              ? record.service_entry_data.default.Notes
               : 'N/A'}
           </>
         );
