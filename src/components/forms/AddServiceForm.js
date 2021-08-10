@@ -116,8 +116,13 @@ function AddServiceForm({
           >
             <Select placeholder="Select Provider" size="large">
               {serviceProviders.map(provider => (
-                <Select.Option key={provider.id} value={provider.id}>
-                  {provider.firstName + ' ' + provider.lastName}
+                <Select.Option
+                  key={provider.provider_id}
+                  value={provider.provider_id}
+                >
+                  {provider.provider_first_name +
+                    ' ' +
+                    provider.provider_last_name}
                 </Select.Option>
               ))}
             </Select>
