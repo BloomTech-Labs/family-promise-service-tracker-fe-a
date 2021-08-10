@@ -48,6 +48,7 @@ const ServicesTable = ({
     setFilteredInfo(filters);
   };
 
+  // NOTE: each row of the table of logged services is "record"
   const clearFilters = () => setFilteredInfo('');
   const clearAll = () => setSortedInfo('') && setFilteredInfo('');
   const isEditing = record => record.id === editingKey;
