@@ -47,24 +47,25 @@ function AddServiceForm({
             modifier: 'public',
           }}
         >
-          <Form.Item
-            label="Recipient Name"
-            name="recipient_id"
-            rules={[
-              {
-                required: true,
-                message: 'Please select the Recipient',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select Recipient">
-              {recipients.map(recipient => (
-                <Select.Option key={recipient.id} value={recipient.id}>
-                  {recipient.first_name + ' ' + recipient.last_name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+          <div className="date-time-wrapper">
+            <Form.Item
+              label="Date & Time of Service"
+              name="provided_at"
+              rules={[
+                {
+                  required: true,
+                  message: 'Enter Date',
+                },
+              ]}
+            >
+              <DatePicker
+                showTime
+                use12Hours
+                format="MMMM Do YYYY, h:mm a"
+                size="large"
+              />
+            </Form.Item>
+          </div>
 
           <Form.Item
             label="Service Type"
@@ -85,31 +86,7 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Unit"
-            name="unit"
-            rules={[
-              {
-                required: true,
-                message: 'Please select the unit',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select Unit Type">
-              {serviceTypes.map(item => (
-                <Select.Option key={item.id} value={item.id}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item label="Quantity" name="quantity">
-            <InputNumber size="large" min="0" />
-          </Form.Item>
-          <Form.Item label="Value" name="value">
-            <InputNumber size="large" min="0" />
-          </Form.Item>
-          <Form.Item
-            label="Status"
+            label="Service Status"
             name="status_id"
             rules={[
               {
@@ -128,74 +105,7 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Address"
-            name="address"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the address',
-              },
-            ]}
-          >
-            <Input placeholder="Enter Street Address" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="City"
-            name="city"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the city',
-              },
-            ]}
-          >
-            <Input placeholder="Enter City" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="State"
-            name="state"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the state',
-              },
-            ]}
-          >
-            <Input placeholder="Enter State" size="large" />
-          </Form.Item>
-          <Form.Item
-            label="Zip Code"
-            name="zip_code"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter the zip code',
-              },
-            ]}
-          >
-            <Input placeholder="Enter Zip Code" size="large" />
-          </Form.Item>
-          <div className="date-time-wrapper">
-            <Form.Item
-              label="Date & Time"
-              name="provided_at"
-              rules={[
-                {
-                  required: true,
-                  message: 'Enter Date',
-                },
-              ]}
-            >
-              <DatePicker
-                showTime
-                use12Hours
-                format="MMMM Do YYYY, h:mm a"
-                size="large"
-              />
-            </Form.Item>
-          </div>
-          <Form.Item
-            label="Provider"
+            label="Service Provider"
             name="provider_id"
             rules={[
               {
@@ -212,12 +122,103 @@ function AddServiceForm({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Insert notes" name="notes">
+          <Form.Item label="Case Notes" name="notes">
             <TextArea
               placeholder="Enter Details..."
               showCount
               maxLength={240}
             />
+          </Form.Item>
+          <Form.Item
+            label="Unit (Class, Tickets, etc)"
+            name="unit"
+            rules={[
+              {
+                required: true,
+                message: 'Please select the unit',
+              },
+            ]}
+          >
+            <Select size="large" placeholder="Select Unit Type">
+              {serviceTypes.map(item => (
+                <Select.Option key={item.id} value={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item label="Quantity Of Units" name="quantity">
+            <InputNumber size="large" min="0" />
+          </Form.Item>
+          <Form.Item label="Value of Services In Dollars" name="value">
+            <InputNumber size="large" min="0" />
+          </Form.Item>
+
+          <Form.Item
+            label="Recipient Name"
+            name="recipient_id"
+            rules={[
+              {
+                required: true,
+                message: 'Please select the Recipient',
+              },
+            ]}
+          >
+            <Select size="large" placeholder="Select Recipient">
+              {recipients.map(recipient => (
+                <Select.Option key={recipient.id} value={recipient.id}>
+                  {recipient.first_name + ' ' + recipient.last_name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Recipient Address"
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the address',
+              },
+            ]}
+          >
+            <Input placeholder="Enter Street Address" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Recipient City"
+            name="city"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the city',
+              },
+            ]}
+          >
+            <Input placeholder="Enter City" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Recipient State"
+            name="state"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the state',
+              },
+            ]}
+          >
+            <Input placeholder="Enter State" size="large" />
+          </Form.Item>
+          <Form.Item
+            label="Recipient Zip Code"
+            name="zip_code"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the zip code',
+              },
+            ]}
+          >
+            <Input placeholder="Enter Zip Code" size="large" />
           </Form.Item>
         </Form>
       </Modal>
