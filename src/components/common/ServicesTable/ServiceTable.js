@@ -456,10 +456,7 @@ const ServicesTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                console.log('services', services);
-                console.log('record info', record);
-                console.log();
-                message.success('This is deleted.');
+                message.success('Deleted Successfully');
                 deleteService(record.service_entry_id);
               }}
               danger
