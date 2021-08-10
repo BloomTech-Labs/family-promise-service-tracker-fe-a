@@ -37,6 +37,7 @@ const ServicesTable = ({
   services,
   serviceTypes,
   recipients,
+  serviceProviders,
 }) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
@@ -66,6 +67,44 @@ const ServicesTable = ({
   };
 
   const columns = [
+    {
+      title: 'Date Provided',
+      dataIndex: 'date',
+      key: 'date',
+      width: 100,
+      editable: true,
+      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
+      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
+      defaultSortOrder: 'descend',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <Form.Item
+            name="service_date"
+            initialValue={moment(record.service_date)}
+            rules={[
+              {
+                required: true,
+                message: 'Enter Date',
+              },
+            ]}
+          >
+            <DatePicker
+              showTime
+              use12Hours
+              format="MMMM Do YYYY, h:mm a"
+              size="medium"
+            />
+          </Form.Item>
+        ) : (
+          <>
+            {moment(record.service_date).format('MMM Do YYYY')}
+            <br />
+            {moment(record.service_date).format('h:mm a')}
+          </>
+        );
+      },
+    },
     {
       title: 'Service Type',
       dataIndex: 'service_type',
@@ -385,43 +424,7 @@ const ServicesTable = ({
         );
       },
     },
-    {
-      title: 'Date Provided',
-      dataIndex: 'date',
-      key: 'date',
-      editable: true,
-      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
-      sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
-      defaultSortOrder: 'descend',
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="service_date"
-            initialValue={moment(record.service_date)}
-            rules={[
-              {
-                required: true,
-                message: 'Enter Date',
-              },
-            ]}
-          >
-            <DatePicker
-              showTime
-              use12Hours
-              format="MMMM Do YYYY, h:mm a"
-              size="medium"
-            />
-          </Form.Item>
-        ) : (
-          <>
-            {moment(record.service_date).format('MMM Do YYYY')}
-            <br />
-            {moment(record.service_date).format('h:mm a')}
-          </>
-        );
-      },
-    },
+
     {
       title: 'Actions',
       dataIndex: 'actions',
@@ -467,6 +470,8 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
+      {console.log('LOOK HERE', services)}
+      {console.log('LOOK HERE ALSO', serviceProviders)}
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
@@ -500,6 +505,7 @@ const mapStateToProps = state => {
     recipients: state.recipient.recipients,
     services: state.service.services,
     serviceTypes: state.serviceType.serviceTypes,
+    serviceProviders: state.serviceProviders,
   };
 };
 
