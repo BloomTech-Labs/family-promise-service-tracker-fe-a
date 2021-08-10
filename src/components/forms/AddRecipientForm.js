@@ -8,6 +8,7 @@ const { Option } = Select;
 
 function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
+  console.log('Look', households);
 
   return (
     <>
@@ -22,6 +23,8 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           form
             .validateFields()
             .then(values => {
+              console.log('Households: ', households);
+              console.log('Values: ', values);
               form.resetFields();
               onCreate(values);
             })
@@ -131,7 +134,10 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           <Form.Item label="Select Recipient Address" name="household_id">
             <Select size="large" placeholder="Select Address">
               {households.map(household => (
-                <Select.Option key={household.id} value={household.id}>
+                <Select.Option
+                  key={household.household_id}
+                  value={household.household_id}
+                >
                   {household.address +
                     ', ' +
                     household.city +
