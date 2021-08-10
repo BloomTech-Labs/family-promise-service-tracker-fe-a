@@ -171,8 +171,13 @@ function AddServiceForm({
           >
             <Select size="large" placeholder="Select Recipient">
               {recipients.map(recipient => (
-                <Select.Option key={recipient.id} value={recipient.id}>
-                  {recipient.first_name + ' ' + recipient.last_name}
+                <Select.Option
+                  key={recipient.recipient_id}
+                  value={recipient.recipient_id}
+                >
+                  {recipient.recipient_first_name +
+                    ' ' +
+                    recipient.recipient_last_name}
                 </Select.Option>
               ))}
             </Select>
