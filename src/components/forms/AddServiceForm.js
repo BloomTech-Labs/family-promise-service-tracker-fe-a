@@ -79,8 +79,11 @@ function AddServiceForm({
           >
             <Select size="large" placeholder="Select Service Type">
               {serviceTypes.map(item => (
-                <Select.Option key={item.id} value={item.id}>
-                  {item.name}
+                <Select.Option
+                  key={item.service_type_id}
+                  value={item.service_type_id}
+                >
+                  {item.service_type_name}
                 </Select.Option>
               ))}
             </Select>
