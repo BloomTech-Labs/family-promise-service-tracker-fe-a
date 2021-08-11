@@ -203,9 +203,9 @@ const RecipientTable = ({
       dataIndex: 'gender',
       key: 'gender',
       filters: [
-        { text: 'Male', value: 'male' },
-        { text: 'Female', value: 'female' },
-        { text: 'Non Binary', value: 'nonbinary' },
+        { text: 'Male', value: 'Male' },
+        { text: 'Female', value: 'Female' },
+        { text: 'Non Binary', value: 'Nonbinary' },
       ],
       filteredValue: filteredInfo.gender || null,
       onFilter: (value, record) => record.gender === value,
