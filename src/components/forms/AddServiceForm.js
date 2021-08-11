@@ -157,10 +157,10 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item label="Quantity Of Units" name="quantity">
-            <InputNumber size="large" min="0" />
+            <InputNumber type="number" size="large" min="0" />
           </Form.Item>
           <Form.Item label="Value of Services In Dollars" name="value">
-            <InputNumber size="large" min="0" />
+            <InputNumber type="number" size="large" min="0" />
           </Form.Item>
 
           <Form.Item
