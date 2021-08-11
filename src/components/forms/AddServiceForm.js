@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
 import { STATUSES } from '../../const';
+import { UNIT_OPTIONS } from '../../const';
 import {
   getServiceProviders,
   addServiceAction,
@@ -148,9 +149,9 @@ function AddServiceForm({
             ]}
           >
             <Select size="large" placeholder="Select Unit Type">
-              {serviceTypes.map(item => (
-                <Select.Option key={item.id} value={item.id}>
-                  {item.name}
+              {UNIT_OPTIONS.map(item => (
+                <Select.Option key={item.id} value={item.unit_type}>
+                  {item.unit_type}
                 </Select.Option>
               ))}
             </Select>
