@@ -241,14 +241,14 @@ const RecipientTable = ({
       dataIndex: 'race',
       key: 'race',
       filters: [
-        { text: 'Indian Native Alaskan', value: 'indian_native_alaskan' },
-        { text: 'Asian', value: 'asian' },
-        { text: 'Black', value: 'black' },
+        { text: 'Indian Native Alaskan', value: 'Indian Native Alaskan' },
+        { text: 'Asian', value: 'Asian' },
+        { text: 'Black', value: 'Black' },
         {
           text: 'Hawaiian Pacific Islander',
-          value: 'hawaiian_pacific_islander',
+          value: 'Hawaiian Pacific Islander',
         },
-        { text: 'White', value: 'white' },
+        { text: 'White', value: 'White' },
       ],
       filteredValue: filteredInfo.race || null,
       onFilter: (value, record) => record.race.includes(value),
@@ -416,6 +416,7 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
+      {console.log('rec', recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">
