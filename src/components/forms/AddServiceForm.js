@@ -178,7 +178,7 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Address Where Service Received"
+            label="Service Address (not permanent address)"
             name="address"
             rules={[
               {
@@ -190,7 +190,7 @@ function AddServiceForm({
             <Input placeholder="Enter Street Address" size="large" />
           </Form.Item>
           <Form.Item
-            label="City Where Service Received"
+            label="Service City"
             name="city"
             rules={[
               {
@@ -202,7 +202,7 @@ function AddServiceForm({
             <Input placeholder="Enter City" size="large" />
           </Form.Item>
           <Form.Item
-            label="State Where Service Received"
+            label="Service State"
             name="state"
             rules={[
               {
@@ -214,7 +214,7 @@ function AddServiceForm({
             <Input placeholder="Enter State" size="large" />
           </Form.Item>
           <Form.Item
-            label="Zip Code Where Service Received"
+            label="Service Zip Code"
             name="zip_code"
             rules={[
               {
