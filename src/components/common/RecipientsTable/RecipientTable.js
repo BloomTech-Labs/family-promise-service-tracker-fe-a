@@ -310,8 +310,8 @@ const RecipientTable = ({
     },
     {
       title: 'Veteran Status',
-      dataIndex: 'veteran_status',
-      key: 'veteran_status',
+      dataIndex: 'recipient_veteran_status',
+      key: 'recipient_veteran_status',
       filters: [
         { text: 'Veteran', value: true },
         { text: 'Not a Veteran', value: false },
