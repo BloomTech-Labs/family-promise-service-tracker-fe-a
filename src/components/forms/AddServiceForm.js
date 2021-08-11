@@ -1,5 +1,5 @@
 /* NOTES:
-    STATUSES and UNIT-OPTIONS 
+    STATUSES and UNIT-OPTIONS hard coded, b/c not in easily accessible place in database
 */
 
 import React from 'react';
