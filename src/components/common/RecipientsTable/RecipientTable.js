@@ -31,7 +31,6 @@ const RecipientTable = ({
   editRecipientAction,
   deleteRecipientAction,
   recipients,
-  households,
   change,
 }) => {
   const [form] = Form.useForm();
