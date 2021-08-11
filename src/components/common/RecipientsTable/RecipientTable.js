@@ -252,6 +252,7 @@ const RecipientTable = ({
           value: 'Hawaiian Pacific Islander',
         },
         { text: 'White', value: 'White' },
+        { text: 'Other', value: 'Some other race' },
       ],
       filteredValue: filteredInfo.race || null,
       onFilter: (value, record) => record.race.includes(value),
@@ -421,6 +422,7 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
+      {console.log(recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">

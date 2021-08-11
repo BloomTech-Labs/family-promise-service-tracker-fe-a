@@ -8,7 +8,6 @@ const { Option } = Select;
 
 function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
-  console.log('Look', households);
 
   return (
     <>
