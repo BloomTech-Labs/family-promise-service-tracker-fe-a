@@ -1,12 +1,7 @@
-/* NOTES:
-    STATUSES and UNIT-OPTIONS hard coded, b/c not in easily accessible place in database
-*/
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
 import { STATUSES } from '../../const';
-import { UNIT_OPTIONS } from '../../const';
 import {
   getServiceProviders,
   addServiceAction,
