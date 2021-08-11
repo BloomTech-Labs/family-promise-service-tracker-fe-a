@@ -12,6 +12,7 @@ import {
   Select,
   Button,
   DatePicker,
+  message,
 } from 'antd';
 import {
   LoadingOutlined,
@@ -55,7 +56,9 @@ const ServicesTable = ({
   const isEditing = record => record.id === editingKey;
   const edit = record => setEditingKey(record.id);
   const cancel = () => setEditingKey('');
-  const deleteService = key => deleteServiceAction(key);
+  const deleteService = key => {
+    deleteServiceAction(key);
+  };
 
   const save = async serviceId => {
     try {
@@ -463,7 +466,8 @@ const ServicesTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteService(record.id);
+                message.success('Deleted Successfully');
+                deleteService(record.service_entry_id);
               }}
               danger
             >

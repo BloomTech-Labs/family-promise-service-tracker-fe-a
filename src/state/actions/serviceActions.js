@@ -102,14 +102,10 @@ export const editServiceAction = (serviceId, serviceObj) => dispatch => {
 
 export const deleteServiceAction = serviceId => dispatch => {
   dispatch({ type: DELETE_SERVICE_START });
-
   axiosWithAuth()
     .delete(`/api/service_entries/${serviceId}`)
     .then(res => {
-      // backend is returning id of deleted object in a message string - this is a
-      // brittle method to get that id but will work without making backend changes
-      const id = parseInt(res.data.message.match(/\d+/)[0]);
-      dispatch({ type: DELETE_SERVICE_SUCCESS, payload: id });
+      dispatch({ type: DELETE_SERVICE_SUCCESS, payload: serviceId });
     })
     .catch(err => {
       dispatch({ type: DELETE_SERVICE_FAIL, payload: err.message });
