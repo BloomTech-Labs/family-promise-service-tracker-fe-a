@@ -171,23 +171,27 @@ const RecipientTable = ({
       },
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-      sorter: (a, b) => a.recipient_date_of_birth - b.recipient_date_of_birth,
-      sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
+      title: 'Date of Birth',
+      dataIndex: 'Date of Birth',
+      key: 'Date of Birth',
+      filteredValue: filteredInfo.recipient_date_of_birth || null,
+      onFilter: (value, record) =>
+        record.recipient_date_of_birth.includes(value),
+      sorter: (a, b) =>
+        a.recipient_date_of_birth.localeCompare(b.recipient_date_of_birth),
+      sortOrder: sortedInfo.columnKey === 'Date of Birth' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="age"
+            name="Date of Birth"
             style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: `Please input an age!`,
+                message: `Please input an date of birth!`,
               },
             ]}
           >
@@ -345,7 +349,9 @@ const RecipientTable = ({
       title: 'Household ID',
       dataIndex: 'household_id',
       key: 'household_id',
-      sorter: (a, b) => a.household_id - b.household_id,
+      filteredValue: filteredInfo.household_id || null,
+      onFilter: (value, record) => record.household_id.includes(value),
+      sorter: (a, b) => a.household_id.localeCompare(b.household_id),
       sortOrder: sortedInfo.columnKey === 'household_id' && sortedInfo.order,
       ellipsis: true,
       editable: true,
@@ -416,7 +422,6 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
-      {console.log('rec', recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">
