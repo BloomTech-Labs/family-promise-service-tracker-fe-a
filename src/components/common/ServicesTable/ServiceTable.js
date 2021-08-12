@@ -116,9 +116,10 @@ const ServicesTable = ({
       filters: serviceTypes.map(s => {
         return { text: s.service_type_name, value: s.service_type_name };
       }),
-      filteredValue: filteredInfo.serviceType || null,
+      filteredValue: filteredInfo.service_type || null,
       onFilter: (value, record) =>
         record.service_type.service_type_name.includes(value),
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -127,7 +128,7 @@ const ServicesTable = ({
           <Form.Item
             name="service_type_id"
             style={{ margin: 0 }}
-            initialValue={record.service_type_id}
+            initialValue={record.service_type}
             rules={[
               {
                 required: true,
@@ -388,6 +389,8 @@ const ServicesTable = ({
       },
     },
   ];
+
+  console.log('filteredInfo: ', filteredInfo);
 
   return (
     <div className="servicesTable">
