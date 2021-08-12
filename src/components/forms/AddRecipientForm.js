@@ -134,7 +134,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           <Form.Item label="Select Recipient Address" name="household_id">
             <Select size="large" placeholder="Select Address">
               {households.map(household => (
-                // look by map state to props, the "household.address" etc doesn't exist
+                // look by map-state-to-props, the "household.address" etc doesn't exist,
                 <Select.Option
                   key={household.household_id}
                   value={household.household_id}

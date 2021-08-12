@@ -33,6 +33,7 @@ function AddServiceForm({
           form
             .validateFields()
             .then(values => {
+              console.log('values', values);
               form.resetFields();
               onCreate(values);
             })

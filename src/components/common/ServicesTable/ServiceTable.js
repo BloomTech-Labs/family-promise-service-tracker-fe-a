@@ -77,9 +77,16 @@ const ServicesTable = ({
       key: 'date',
       width: 100,
       editable: true,
-      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
+      //   filteredValue: filteredInfo.record || null,
+      //   sorter: (a, b) =>
+      // a.record.service_date.localeCompare(b.record.service_date),
+      //     moment(a.record.service_date) - moment(b.record.service_date),
+      //   sortOrder: sortedInfo.columnKey === 'record' && sortedInfo.order,
+
+      sorter: (a, b) => moment(a.service_date) - moment(b.service_date),
       sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
       defaultSortOrder: 'descend',
+
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -391,8 +398,8 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
-      {console.log('LOOK HERE', services)}
-      {console.log('LOOK HERE ALSO', serviceProviders)}
+      {/* {console.log('LOOK HERE', services)}
+      {console.log('LOOK HERE ALSO', serviceProviders)} */}
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
