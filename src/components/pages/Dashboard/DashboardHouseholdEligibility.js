@@ -9,23 +9,35 @@ export default function EligibilityDashboard() {
   });
   const [householdId, setHouseholdId] = useState(null);
 
-  const handleChange = () => {};
+  const handleChange = event => {
+    setHouseholdId(event.target.value);
+  };
 
   const getEligibility = household_id => {
-    axios.get(`/${household_id}`).then(res => {});
-    setEligible().catch(err => {});
+    axios
+      .get(`/${household_id}`)
+      .then(res => {
+        setEligible({
+          resident_assistance_eligibility:
+            res.data.resident_assistance_eligibility,
+          reduced_bus_fare_eligibility: res.data.reduced_bus_fare_eligibility,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="eligibilityDashboardContainer">
       <h1>Eligibility</h1>
       <div className="eligibilityForm">
-        <form>
+        <form onSubmit={getEligibility(householdId)}>
           <label htmlFor="householdId">
             <input
               name="householdId"
               id="householdId"
-              placeholder="Enter A Household"
+              placeholder="Enter A Household ID"
               value={householdId}
             />
           </label>
