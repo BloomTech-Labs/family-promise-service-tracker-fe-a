@@ -408,7 +408,7 @@ const RecipientTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteRecipient(record.id);
+                deleteRecipient(record.recipient_id);
               }}
               danger
             >
