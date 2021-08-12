@@ -426,7 +426,6 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
-      {console.log(recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">
