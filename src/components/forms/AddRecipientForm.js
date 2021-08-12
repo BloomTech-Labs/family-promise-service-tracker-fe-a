@@ -133,6 +133,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           <Form.Item label="Select Recipient Address" name="household_id">
             <Select size="large" placeholder="Select Address">
               {households.map(household => (
+                // look by map-state-to-props, the "household.address" etc doesn't exist,
                 <Select.Option
                   key={household.household_id}
                   value={household.household_id}
@@ -152,6 +153,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
   );
 }
 
+// TO DO: no connection from household to address in this current config thats usable. Will need to get some kind of request linking the household to location, and map that for the recipient address
 const mapStateToProps = state => {
   return {
     households: state.household.households,

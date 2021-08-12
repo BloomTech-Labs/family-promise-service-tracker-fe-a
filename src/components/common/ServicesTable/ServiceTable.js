@@ -18,7 +18,6 @@ import {
   LoadingOutlined,
   DeleteOutlined,
   EditOutlined,
-  // ControlOutlined,
 } from '@ant-design/icons';
 
 // Action Imports
@@ -77,9 +76,10 @@ const ServicesTable = ({
       key: 'date',
       width: 100,
       editable: true,
-      sorter: (a, b) => moment(a.provided_at) - moment(b.provided_at),
+      sorter: (a, b) => moment(a.service_date) - moment(b.service_date),
       sortOrder: sortedInfo.columnKey === 'date' && sortedInfo.order,
       defaultSortOrder: 'descend',
+
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -391,8 +391,6 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
-      {console.log('LOOK HERE', services)}
-      {console.log('LOOK HERE ALSO', serviceProviders)}
       {services.length < 1 && <LoadingOutlined className="loader" />},
       {services.length >= 1 && (
         <Form form={form}>
