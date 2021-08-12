@@ -3,7 +3,10 @@ import axios from 'axios';
 import '../../../styles/Dashboard.scss';
 
 export default function EligibilityDashboard() {
-  const [eligible, setEligible] = useState('');
+  const [eligible, setEligible] = useState({
+    resident_assistance_eligibility: false,
+    reduced_bus_fare_eligibility: false,
+  });
   const [householdId, setHouseholdId] = useState(null);
 
   const handleChange = () => {};
@@ -32,10 +35,11 @@ export default function EligibilityDashboard() {
       <div className="eligibilityResults">
         <p>
           Eligible For Residential Assistance:
-          {eligible.resident_assistance_eligibility}
+          {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
         </p>
         <p>
-          Eligible For Reduced Bus Fare: {eligible.reduced_bus_fare_eligibility}
+          Eligible For Reduced Bus Fare:
+          {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
         </p>
       </div>
     </div>
