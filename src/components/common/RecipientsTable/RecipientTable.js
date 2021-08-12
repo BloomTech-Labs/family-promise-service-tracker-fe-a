@@ -69,6 +69,10 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllHouseholdAction();
+    // change is a one of the attribute in application state, when it
+    // changed, the useEffect will be invoke. Any change for the data is
+    // just an two moves, one is use axio call to perform a specific move
+    // and then grab all the data again.
   }, [change, getAllHouseholdAction, getAllRecipientAction]);
 
   const isEditing = record => record.id === editingKey;
