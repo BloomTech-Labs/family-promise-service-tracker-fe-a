@@ -58,6 +58,34 @@
   color: #712c94;
 }
 
+.eligibilityDashboardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  input {
+    padding: 0.4rem;
+    margin: 1rem;
+    box-shadow: 0rem 0.5rem 0.5rem 0rem black;
+    border-radius: 0.5rem;
+  }
+  button {
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    box-shadow: 0rem 0.5rem 0.5rem 0rem black;
+    background-color: white;
+  }
+}
+.eligibilityResults {
+  margin: 1rem;
+  box-shadow: 0.5rem 0rem 0.5rem 0rem black;
+  padding: 0.75rem;
+  p {
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .profile-card {
     width: auto;
