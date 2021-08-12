@@ -114,7 +114,7 @@ const ServicesTable = ({
       dataIndex: 'service_type',
       key: 'service_type',
       filters: serviceTypes.map(s => {
-        return { text: s.name, value: s.name };
+        return { text: s.service_type_name, value: s.service_type_name };
       }),
       filteredValue: filteredInfo.serviceType || null,
       onFilter: (value, record) =>
