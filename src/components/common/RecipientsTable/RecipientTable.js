@@ -69,6 +69,10 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllHouseholdAction();
+    // change is a one of the attribute in application state, when it
+    // changed, the useEffect will be invoke. Any change for the data is
+    // just an two moves, one is use axio call to perform a specific move
+    // and then grab all the data again.
   }, [change, getAllHouseholdAction, getAllRecipientAction]);
 
   const isEditing = record => record.id === editingKey;
@@ -408,7 +412,7 @@ const RecipientTable = ({
             <Popconfirm
               title="Sure to delete?"
               onConfirm={() => {
-                deleteRecipient(record.id);
+                deleteRecipient(record.recipient_id);
               }}
               danger
             >
@@ -422,7 +426,6 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
-      {console.log(recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">
