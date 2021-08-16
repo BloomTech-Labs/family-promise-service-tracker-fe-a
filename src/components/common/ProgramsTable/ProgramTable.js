@@ -29,7 +29,7 @@ const ProgramTable = ({
     getAllProgramsAction();
   }, [change, getAllProgramsAction]);
 
-  const isEditing = record => record.id === editingKey;
+  const isEditing = record => record.program_id === editingKey;
 
   const edit = record => {
     form.setFieldsValue({
@@ -37,7 +37,7 @@ const ProgramTable = ({
       program_description: '',
       ...record,
     });
-    setEditingKey(record.id);
+    setEditingKey(record.program_id);
   };
 
   const cancel = () => {
