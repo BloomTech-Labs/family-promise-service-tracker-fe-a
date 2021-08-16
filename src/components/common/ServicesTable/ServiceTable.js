@@ -128,7 +128,7 @@ const ServicesTable = ({
           <Form.Item
             name="service_type_id"
             style={{ margin: 0 }}
-            initialValue={record.service_type}
+            initialValue={record.service_type_id}
             rules={[
               {
                 required: true,
