@@ -114,11 +114,12 @@ const ServicesTable = ({
       dataIndex: 'service_type',
       key: 'service_type',
       filters: serviceTypes.map(s => {
-        return { text: s.name, value: s.name };
+        return { text: s.service_type_name, value: s.service_type_name };
       }),
-      filteredValue: filteredInfo.serviceType || null,
+      filteredValue: filteredInfo.service_type || null,
       onFilter: (value, record) =>
         record.service_type.service_type_name.includes(value),
+      ellipsis: true,
       editable: true,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -388,6 +389,8 @@ const ServicesTable = ({
       },
     },
   ];
+
+  console.log('filteredInfo: ', filteredInfo);
 
   return (
     <div className="servicesTable">
