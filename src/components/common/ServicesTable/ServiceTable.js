@@ -113,6 +113,7 @@ const ServicesTable = ({
       title: 'Service Type',
       dataIndex: 'service_type',
       key: 'service_type',
+      width: 100,
       filters: serviceTypes.map(s => {
         return { text: s.name, value: s.name };
       }),
@@ -152,9 +153,10 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Status',
+      title: 'Service Status',
       dataIndex: 'status',
       key: 'status',
+      width: 100,
       filters: STATUSES.map(s => {
         return { text: s.type, value: s.type };
       }),
@@ -194,9 +196,10 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Recipient',
+      title: 'Service Recipient',
       dataIndex: 'recipient',
       key: 'recipient',
+      width: 140,
       editable: false,
       filteredValue: filteredInfo.recipient || null,
       sorter: (a, b) =>
@@ -239,9 +242,10 @@ const ServicesTable = ({
       },
     },
     {
-      title: 'Location',
+      title: 'Location Service Received',
       dataIndex: 'location',
       key: 'location',
+      width: 175,
       editable: false,
       render: (_, record) => {
         const editable = isEditing(record);
@@ -311,40 +315,42 @@ const ServicesTable = ({
         );
       },
     },
-    {
-      title: 'Notes',
-      dataIndex: 'notes',
-      key: 'notes',
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="notes"
-            style={{ margin: 0 }}
-            initialValue={record.service_entry_data.default.Notes}
-            rules={[
-              {
-                required: false,
-                message: 'Please select a notes',
-              },
-            ]}
-          >
-            <TextArea
-              value={record.service_entry_data.default.Notes}
-              rows={10}
-            />
-          </Form.Item>
-        ) : (
-          <>
-            {record.service_entry_data.default.Notes
-              ? record.service_entry_data.default.Notes
-              : 'N/A'}
-          </>
-        );
-      },
-    },
+    // Based on consensus, we think it makes for easier visibility / sorting to not make notes accessible on this table, but instead on a modal that allows you to edit all the
+    // fields on the service table for a specific record, which will be tackled in a seperate user story / trello card.
 
+    // {
+    //   title: 'Notes',
+    //   dataIndex: 'notes',
+    //   key: 'notes',
+    //   editable: true,
+    //   render: (_, record) => {
+    //     const editable = isEditing(record);
+    //     return editable ? (
+    //       <Form.Item
+    //         name="notes"
+    //         style={{ margin: 0 }}
+    //         initialValue={record.service_entry_data.default.Notes}
+    //         rules={[
+    //           {
+    //             required: false,
+    //             message: 'Please select a notes',
+    //           },
+    //         ]}
+    //       >
+    //         <TextArea
+    //           value={record.service_entry_data.default.Notes}
+    //           rows={10}
+    //         />
+    //       </Form.Item>
+    //     ) : (
+    //       <>
+    //         {record.service_entry_data.default.Notes
+    //           ? record.service_entry_data.default.Notes
+    //           : 'N/A'}
+    //       </>
+    //     );
+    //   },
+    // },
     {
       title: 'Actions',
       dataIndex: 'actions',
