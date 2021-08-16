@@ -45,12 +45,12 @@ export default function EligibilityDashboard() {
         </form>
       </div>
       <div className="eligibilityResults">
-        <p>
-          Eligible For Residential Assistance:
+        <p>Eligible For Residential Assistance</p>
+        <p className="resultAnswer">
           {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
         </p>
-        <p>
-          Eligible For Reduced Bus Fare:
+        <p>Eligible For Reduced Bus Fare</p>
+        <p className="resultAnswer">
           {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
         </p>
       </div>
