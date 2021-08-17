@@ -53,6 +53,7 @@
 }
 
 .dropdowns-holder {
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -61,7 +62,16 @@
 .dashboard .dropdown-dashboard {
   margin-bottom: 1rem;
 }
-
+.metricsBarLabelSelectPair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  label {
+    margin: 0.5rem;
+    font-weight: bold;
+  }
+}
 //Eligibility Section Of Dashboard Tab
 
 .eligibilityDashboardContainer {

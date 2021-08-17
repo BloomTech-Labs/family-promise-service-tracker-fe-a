@@ -93,85 +93,91 @@ const MetricsFilterBar = ({
             })}
           </Select>
         </div>
-        <label>Service Type</label>
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Service Type-"
-          onChange={onChangeServiceType}
-          onFocus={onFocusServiceTypes}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {serviceTypes.map(individualServiceType => {
-            return (
-              <Option
-                value={individualServiceType.service_type_name}
-                key={individualServiceType.service_type_id}
-              >
-                {individualServiceType.service_type_name}
-              </Option>
-            );
-          })}
-        </Select>
-        <label>Service Provider</label>
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Service Provider-"
-          onChange={onChangeServiceProvider}
-          onFocus={onFocusServiceProviders}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {serviceProviders.map(individualServiceProvider => {
-            return (
-              <Option
-                value={individualServiceProvider.provider_first_name}
-                key={individualServiceProvider.provider_id}
-              >
-                {individualServiceProvider.provider_first_name}
-              </Option>
-            );
-          })}
-        </Select>
-        <label>Service Recipient</label>
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Recipients-"
-          onChange={onChangeRecipient}
-          onFocus={onFocusRecipients}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {recipients.map(individualRecipient => {
-            return (
-              <Option
-                value={
-                  individualRecipient.recipient_first_name +
-                  individualRecipient.recipient_last_name
-                }
-                key={individualRecipient.recipient_id}
-              >
-                {individualRecipient.recipient_first_name}{' '}
-                {individualRecipient.recipient_last_name}
-              </Option>
-            );
-          })}
-        </Select>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Type</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Service Type-"
+            onChange={onChangeServiceType}
+            onFocus={onFocusServiceTypes}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {serviceTypes.map(individualServiceType => {
+              return (
+                <Option
+                  value={individualServiceType.service_type_name}
+                  key={individualServiceType.service_type_id}
+                >
+                  {individualServiceType.service_type_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Provider</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Service Provider-"
+            onChange={onChangeServiceProvider}
+            onFocus={onFocusServiceProviders}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {serviceProviders.map(individualServiceProvider => {
+              return (
+                <Option
+                  value={individualServiceProvider.provider_first_name}
+                  key={individualServiceProvider.provider_id}
+                >
+                  {individualServiceProvider.provider_first_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Recipient</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Recipients-"
+            onChange={onChangeRecipient}
+            onFocus={onFocusRecipients}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {recipients.map(individualRecipient => {
+              return (
+                <Option
+                  value={
+                    individualRecipient.recipient_first_name +
+                    individualRecipient.recipient_last_name
+                  }
+                  key={individualRecipient.recipient_id}
+                >
+                  {individualRecipient.recipient_first_name}{' '}
+                  {individualRecipient.recipient_last_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
       </div>
     </div>
   );
