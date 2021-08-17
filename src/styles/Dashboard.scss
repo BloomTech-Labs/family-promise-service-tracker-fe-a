@@ -1,3 +1,5 @@
+//General Dashboard Tab
+
 .dashboard .title-container {
   padding: 0%;
 }
@@ -5,9 +7,7 @@
   max-width: 100%;
 }
 
-.dashboard .dropdown-dashboard {
-  margin-bottom: 1rem;
-}
+//Profile Card
 
 .tiny-avatar {
   width: 60px;
@@ -22,19 +22,6 @@
   justify-content: center;
   justify-items: center;
 }
-
-.metrics-holder-dashboard {
-  padding: 0 1rem 1rem 1rem;
-  width: 90vw;
-}
-
-.dropdowns-holder {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
 .profile-card {
   width: 90vw;
   display: flex;
@@ -58,6 +45,36 @@
   color: #712c94;
 }
 
+//Metrics Bar On Dashboard Tab
+
+.metrics-holder-dashboard {
+  padding: 0 1rem 1rem 1rem;
+  width: 90vw;
+}
+
+.dropdowns-holder {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.dashboard .dropdown-dashboard {
+  margin-bottom: 1rem;
+}
+.metricsBarLabelSelectPair {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left-align;
+  label {
+    margin: 0.5rem;
+    font-weight: bold;
+    text-align: left-align;
+  }
+}
+//Eligibility Section Of Dashboard Tab
+
 .eligibilityDashboardContainer {
   display: flex;
   flex-direction: column;
@@ -76,6 +93,7 @@
     border: 0.2rem solid black;
   }
 }
+
 .eligibilityResults {
   display: flex;
   flex-direction: column;
@@ -94,6 +112,8 @@
     width: 5rem;
   }
 }
+
+//MEDIA QUERIES
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .profile-card {

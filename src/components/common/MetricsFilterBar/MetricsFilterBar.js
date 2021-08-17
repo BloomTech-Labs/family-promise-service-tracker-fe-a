@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../../styles/Dashboard.scss';
 import {
   getServiceProviders,
   getAllServiceTypesAction,
@@ -7,7 +8,6 @@ import {
 } from '../../../state/actions/index';
 import { connect } from 'react-redux';
 import { Select } from 'antd';
-import MetricsSelected from './MetricsSelected';
 
 const MetricsFilterBar = ({
   programs,
@@ -39,7 +39,6 @@ const MetricsFilterBar = ({
     setDrilledRecipient(value);
   }
 
-
   //for when a user clicks out of dropdown area
   function onBlur() {}
 
@@ -66,116 +65,119 @@ const MetricsFilterBar = ({
   return (
     <div>
       <div className="dropdowns-holder metrics-filter-bar">
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Program-"
-          onChange={onChangeProgram}
-          onFocus={onFocusPrograms}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {programs.map(individualProgram => {
-            return (
-              <Option
-                value={individualProgram.program_name}
-                key={individualProgram.program_id}
-              >
-                {individualProgram.program_name}
-              </Option>
-            );
-          })}
-        </Select>
-
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Service Type-"
-          onChange={onChangeServiceType}
-          onFocus={onFocusServiceTypes}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {serviceTypes.map(individualServiceType => {
-            return (
-              <Option
-                value={individualServiceType.service_type_name}
-                key={individualServiceType.service_type_id}
-              >
-                {individualServiceType.service_type_name}
-              </Option>
-            );
-          })}
-        </Select>
-
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Service Provider-"
-          onChange={onChangeServiceProvider}
-          onFocus={onFocusServiceProviders}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {serviceProviders.map(individualServiceProvider => {
-            return (
-              <Option
-                value={individualServiceProvider.provider_first_name}
-                key={individualServiceProvider.provider_id}
-              >
-                {individualServiceProvider.provider_first_name}
-              </Option>
-            );
-          })}
-        </Select>
-
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Recipients-"
-          onChange={onChangeRecipient}
-          onFocus={onFocusRecipients}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {recipients.map(individualRecipient => {
-            return (
-              <Option
-                value={
-                  individualRecipient.recipient_first_name +
-                  individualRecipient.recipient_last_name
-                }
-                key={individualRecipient.recipient_id}
-              >
-                {individualRecipient.recipient_first_name}{' '}
-                {individualRecipient.recipient_last_name}
-              </Option>
-            );
-          })}
-        </Select>
+        <div className="metricsBarLabelSelectPair">
+          <label>Program Type</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Program-"
+            onChange={onChangeProgram}
+            onFocus={onFocusPrograms}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {programs.map(individualProgram => {
+              return (
+                <Option
+                  value={individualProgram.program_name}
+                  key={individualProgram.program_id}
+                >
+                  {individualProgram.program_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Type</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Service Type-"
+            onChange={onChangeServiceType}
+            onFocus={onFocusServiceTypes}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {serviceTypes.map(individualServiceType => {
+              return (
+                <Option
+                  value={individualServiceType.service_type_name}
+                  key={individualServiceType.service_type_id}
+                >
+                  {individualServiceType.service_type_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Provider</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Service Provider-"
+            onChange={onChangeServiceProvider}
+            onFocus={onFocusServiceProviders}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {serviceProviders.map(individualServiceProvider => {
+              return (
+                <Option
+                  value={individualServiceProvider.provider_first_name}
+                  key={individualServiceProvider.provider_id}
+                >
+                  {individualServiceProvider.provider_first_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <div className="metricsBarLabelSelectPair">
+          <label>Service Recipient</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Recipients-"
+            onChange={onChangeRecipient}
+            onFocus={onFocusRecipients}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {recipients.map(individualRecipient => {
+              return (
+                <Option
+                  value={
+                    individualRecipient.recipient_first_name +
+                    individualRecipient.recipient_last_name
+                  }
+                  key={individualRecipient.recipient_id}
+                >
+                  {individualRecipient.recipient_first_name}{' '}
+                  {individualRecipient.recipient_last_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
       </div>
-      <MetricsSelected
-        program={drilledProgram}
-        serviceType={drilledServiceType}
-        serviceProvider={drilledServiceProvider}
-        recipient={drilledRecipient}
-      />
     </div>
   );
 };
