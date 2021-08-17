@@ -8,7 +8,6 @@ import {
 } from '../../../state/actions/index';
 import { connect } from 'react-redux';
 import { Select } from 'antd';
-import MetricsSelected from './MetricsSelected';
 
 const MetricsFilterBar = ({
   programs,
