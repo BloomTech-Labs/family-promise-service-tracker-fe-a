@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../../styles/Dashboard.scss';
 import {
   getServiceProviders,
   getAllServiceTypesAction,
@@ -39,7 +40,6 @@ const MetricsFilterBar = ({
     setDrilledRecipient(value);
   }
 
-
   //for when a user clicks out of dropdown area
   function onBlur() {}
 
@@ -66,31 +66,34 @@ const MetricsFilterBar = ({
   return (
     <div>
       <div className="dropdowns-holder metrics-filter-bar">
-        <Select
-          className="dropdown-dashboard"
-          showSearch
-          style={{ width: 200 }}
-          placeholder="-Select Program-"
-          onChange={onChangeProgram}
-          onFocus={onFocusPrograms}
-          onBlur={onBlur}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {programs.map(individualProgram => {
-            return (
-              <Option
-                value={individualProgram.program_name}
-                key={individualProgram.program_id}
-              >
-                {individualProgram.program_name}
-              </Option>
-            );
-          })}
-        </Select>
-
+        <div className="metricsBarLabelSelectPair">
+          <label>Program Type</label>
+          <Select
+            className="dropdown-dashboard"
+            showSearch
+            style={{ width: 200 }}
+            placeholder="-Select Program-"
+            onChange={onChangeProgram}
+            onFocus={onFocusPrograms}
+            onBlur={onBlur}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {programs.map(individualProgram => {
+              return (
+                <Option
+                  value={individualProgram.program_name}
+                  key={individualProgram.program_id}
+                >
+                  {individualProgram.program_name}
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+        <label>Service Type</label>
         <Select
           className="dropdown-dashboard"
           showSearch
@@ -115,7 +118,7 @@ const MetricsFilterBar = ({
             );
           })}
         </Select>
-
+        <label>Service Provider</label>
         <Select
           className="dropdown-dashboard"
           showSearch
@@ -140,7 +143,7 @@ const MetricsFilterBar = ({
             );
           })}
         </Select>
-
+        <label>Service Recipient</label>
         <Select
           className="dropdown-dashboard"
           showSearch
@@ -170,12 +173,6 @@ const MetricsFilterBar = ({
           })}
         </Select>
       </div>
-      <MetricsSelected
-        program={drilledProgram}
-        serviceType={drilledServiceType}
-        serviceProvider={drilledServiceProvider}
-        recipient={drilledRecipient}
-      />
     </div>
   );
 };

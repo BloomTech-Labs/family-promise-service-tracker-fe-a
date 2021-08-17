@@ -1,6 +1,18 @@
 import React from 'react';
 import { Typography, Space } from 'antd';
 
+/* 
+      Renders a text area with results of selection from dropdown, used to be imported into MetricsFilterBar.js and shown below the dropdown, needed to be passed the following props 
+      as well / this is the code that appeared below the dropdown code for the MetricsFilterBar:
+
+      <MetricsSelected
+        program={drilledProgram}
+        serviceType={drilledServiceType}
+        serviceProvider={drilledServiceProvider}
+        recipient={drilledRecipient}
+      />
+    */
+
 const MetricsSelected = ({
   program,
   serviceType,
