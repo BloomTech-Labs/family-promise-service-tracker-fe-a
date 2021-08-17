@@ -65,11 +65,12 @@
 .metricsBarLabelSelectPair {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: left;
+  text-align: left-align;
   label {
     margin: 0.5rem;
     font-weight: bold;
+    text-align: left-align;
   }
 }
 //Eligibility Section Of Dashboard Tab
