@@ -13,9 +13,12 @@ export default function EligibilityDashboard() {
     setHouseholdId(event.target.value);
   };
 
-  const getEligibility = household_id => {
+  const getEligibility = (event, householdId) => {
+    event.preventDefault();
     axios
-      .get(`/${household_id}`)
+      .post(
+        `http://family-promise-dev.us-east-1.elasticbeanstalk.com/eligibility/${householdId}`
+      )
       .then(res => {
         setEligible({
           resident_assistance_eligibility:
@@ -32,13 +35,18 @@ export default function EligibilityDashboard() {
     <div className="eligibilityDashboardContainer">
       <h1>Eligibility</h1>
       <div className="eligibilityForm">
-        <form onSubmit={getEligibility(householdId)}>
+        <form
+          onSubmit={event => {
+            getEligibility(event, householdId);
+          }}
+        >
           <label htmlFor="householdId">
             <input
               name="householdId"
               id="householdId"
               placeholder="Enter A Household ID"
               value={householdId}
+              onChange={handleChange}
             />
           </label>
           <button>Submit</button>
