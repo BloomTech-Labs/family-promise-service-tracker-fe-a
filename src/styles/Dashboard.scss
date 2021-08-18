@@ -93,6 +93,11 @@
     border: 0.2rem solid black;
   }
 }
+.eligibilityForm {
+  input {
+    width: 18rem;
+  }
+}
 
 .eligibilityResults {
   display: flex;
