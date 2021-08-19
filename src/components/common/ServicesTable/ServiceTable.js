@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { STATUSES } from '../../../const';
+import '../../../styles/Services.scss';
 import {
   Table,
   Input,
