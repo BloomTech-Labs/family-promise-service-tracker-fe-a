@@ -13,22 +13,28 @@
 
 //DESKTOP - SERVICES TAB / SERVICES TABLE
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .servicesTable {
-    margin-left: 9rem;
-    margin-right: 9rem;
+    margin-left: 13rem;
+    margin-right: 13rem;
   }
   .servicesTabAddButtonsWrapper {
-    margin-right: 9rem;
+    margin-right: 13rem;
+  }
+  .servicesTitleContainer {
+    margin-left: 11rem;
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1399px) {
+@media (min-width: 1025px) and (max-width: 1599px) {
   .servicesTable {
     margin-left: 5rem;
     margin-right: 5rem;
   }
   .servicesTabAddButtonsWrapper {
     margin-right: 5rem;
+  }
+  .servicesTitleContainer {
+    margin-left: 3rem;
   }
 }

@@ -365,7 +365,7 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
-      {services.length < 1 && <LoadingOutlined className="loader" />},
+      {services.length < 1 && <LoadingOutlined className="loader" />}
       {services.length >= 1 && (
         <Form form={form}>
           <Space className="filters" align="baseline">
