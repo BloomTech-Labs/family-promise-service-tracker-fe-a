@@ -23,11 +23,11 @@ function MyProfileComponent({ user, Role, Programs }) {
         </Space>
         <Space direction="vertical" className="card-child">
           <Text type="secondary">Role</Text>
-          <Text className="card-text">{user.role}</Text>
+          <Text className="card-text">{user.provider_role_id}</Text>
         </Space>
         <Space direction="vertical" className="card-child">
           <Text type="secondary">Programs</Text>
-          <Text className="card-text">{user.programs.length}</Text>
+          {/* <Text className="card-text">{user.programs.length}</Text> */}
         </Space>
         <Button
           size="medium"
