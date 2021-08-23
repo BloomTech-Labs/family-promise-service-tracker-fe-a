@@ -6,6 +6,7 @@ function MyProfileComponent({ user, Role, Programs }) {
   //Be sure to pass the TitleText in quotes when you render component
   const { Text } = Typography;
   const history = useHistory();
+  console.log('user: ', user);
   return (
     <div className="center">
       <Title TitleText="MyProfile" className="center" />
@@ -23,11 +24,11 @@ function MyProfileComponent({ user, Role, Programs }) {
         </Space>
         <Space direction="vertical" className="card-child">
           <Text type="secondary">Role</Text>
-          <Text className="card-text">{user.role}</Text>
+          <Text className="card-text">{user.provider_role_id}</Text>
         </Space>
         <Space direction="vertical" className="card-child">
           <Text type="secondary">Programs</Text>
-          <Text className="card-text">{user.programs.length}</Text>
+          {/* <Text className="card-text">{user.programs.length}</Text> */}
         </Space>
         <Button
           size="medium"
