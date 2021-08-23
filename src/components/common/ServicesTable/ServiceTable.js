@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { STATUSES } from '../../../const';
+import '../../../styles/Services.scss';
 import {
   Table,
   Input,
@@ -316,42 +317,6 @@ const ServicesTable = ({
         );
       },
     },
-    // Based on consensus, we think it makes for easier visibility / sorting to not make notes accessible on this table, but instead on a modal that allows you to edit all the
-    // fields on the service table for a specific record, which will be tackled in a seperate user story / trello card.
-
-    // {
-    //   title: 'Notes',
-    //   dataIndex: 'notes',
-    //   key: 'notes',
-    //   editable: true,
-    //   render: (_, record) => {
-    //     const editable = isEditing(record);
-    //     return editable ? (
-    //       <Form.Item
-    //         name="notes"
-    //         style={{ margin: 0 }}
-    //         initialValue={record.service_entry_data.default.Notes}
-    //         rules={[
-    //           {
-    //             required: false,
-    //             message: 'Please select a notes',
-    //           },
-    //         ]}
-    //       >
-    //         <TextArea
-    //           value={record.service_entry_data.default.Notes}
-    //           rows={10}
-    //         />
-    //       </Form.Item>
-    //     ) : (
-    //       <>
-    //         {record.service_entry_data.default.Notes
-    //           ? record.service_entry_data.default.Notes
-    //           : 'N/A'}
-    //       </>
-    //     );
-    //   },
-    // },
     {
       title: 'Actions',
       dataIndex: 'actions',
@@ -400,7 +365,7 @@ const ServicesTable = ({
 
   return (
     <div className="servicesTable">
-      {services.length < 1 && <LoadingOutlined className="loader" />},
+      {services.length < 1 && <LoadingOutlined className="loader" />}
       {services.length >= 1 && (
         <Form form={form}>
           <Space className="filters" align="baseline">

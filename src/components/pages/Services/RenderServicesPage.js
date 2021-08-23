@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
+import '../../../styles/Services.scss';
 
 //redux import
 import {
@@ -71,7 +72,7 @@ function RenderServicesPage({
           }}
         />
       </div>
-      <div>
+      <div className="servicesTabAddButtonsWrapper">
         <Button
           type="primary"
           onClick={() => {

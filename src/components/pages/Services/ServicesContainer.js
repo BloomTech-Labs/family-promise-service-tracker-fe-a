@@ -2,12 +2,15 @@ import React from 'react';
 import RenderServicesPage from './RenderServicesPage';
 import TitleComponent from '../../common/Title';
 import ServiceTable from '../../common/ServicesTable/ServiceTable';
+import '../../../styles/Services.scss';
 
 function ServicesContainer() {
   return (
     <div>
       <div className="sub-header">
-        <TitleComponent TitleText="Services" />
+        <div className="servicesTitleContainer">
+          <TitleComponent TitleText="Services" />
+        </div>
         <RenderServicesPage />
       </div>
       <div>
