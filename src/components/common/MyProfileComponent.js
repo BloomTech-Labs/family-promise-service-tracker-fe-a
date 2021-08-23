@@ -6,7 +6,6 @@ function MyProfileComponent({ user, Role, Programs }) {
   //Be sure to pass the TitleText in quotes when you render component
   const { Text } = Typography;
   const history = useHistory();
-  console.log('user: ', user);
   return (
     <div className="center">
       <Title TitleText="MyProfile" className="center" />
