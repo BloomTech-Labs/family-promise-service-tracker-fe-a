@@ -6,7 +6,7 @@ import { addRecipientAction } from '../../state/actions/recipientActions';
 
 const { Option } = Select;
 
-function AddRecipientForm({ visible, onCreate, onCancel, households }) {
+function EditRecipientForm({ visible, onCreate, onCancel, households }) {
   const [form] = Form.useForm();
 
   return (
@@ -14,8 +14,8 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
       <Modal
         width="80%"
         visible={visible}
-        title="Create New Recipient"
-        okText="Create Recipient"
+        title="Edit Recipient"
+        okText="Save"
         cancelText="Cancel"
         onCancel={onCancel}
         onOk={() => {
@@ -23,8 +23,6 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
             .validateFields()
             .then(values => {
               onCreate(values);
-              console.log(values);
-
               form.resetFields();
             })
             .catch(info => {
@@ -57,11 +55,12 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
             name="recipient_middle_name"
             rules={[
               {
-                message: "Please enter the Recipient's Middle Name",
+                required: true,
+                message: "Please enter the Recipient's First Name",
               },
             ]}
           >
-            <Input placeholder="Enter Middle Name" size="large" />
+            <Input placeholder="Enter First Name" size="large" />
           </Form.Item>
           <Form.Item
             label="Last Name"
@@ -100,24 +99,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
             <Select placeholder="Please select their gender">
               <Option value={1}>Female</Option>
               <Option value={2}>Male</Option>
-              <Option value={3}>Transgender: M to F</Option>
-              <Option value={4}>Transgender: F to M</Option>
-              <Option value={5}>Gender fluid</Option>
-              <Option value={6}>Agender</Option>
-              <Option value={7}>Androgynous</Option>
-              <Option value={8}>Bi-gender</Option>
-              <Option value={9}>Non-binary</Option>
-              <Option value={10}>Demi-boy</Option>
-              <Option value={11}>Demi-girl</Option>
-              <Option value={12}>Genderqueer</Option>
-              <Option value={13}>Gender noncomforming</Option>
-              <Option value={14}>Tri-gender</Option>
-              <Option value={15}>All genders</Option>
-              <Option value={16}>In the middle of boy and girl</Option>
-              <Option value={17}>Intersex</Option>
-              <Option value={18}>Not sure</Option>
-              <Option value={19}>Prefer not to say</Option>
-              <Option value={20}>Other</Option>
+              <Option value={3}>Non-Binary Gender</Option>
             </Select>
           </Form.Item>
           <Form.Item
@@ -134,7 +116,6 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
             <Select
               // mode="multiple" - limiting race to 1 temporarily to test Create Recipient
               placeholder="Please select the race of the recipient"
-              rules={[{ required: true }]}
             >
               <Option value={1}>White/Caucasian</Option>
               <Option value={2}>Black/African American</Option>
@@ -143,11 +124,7 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
               <Option value={5}>Some other race</Option>
             </Select>
           </Form.Item>
-          <Form.Item
-            label="Select Ethnicity"
-            name="ethnicity_id"
-            rules={[{ required: true }]}
-          >
+          <Form.Item label="Select Ethnicity" name="ethnicity_id">
             <Radio.Group>
               <Radio value={1}>Hispanic or Latino</Radio>
               <Radio value={2}>Not Hispanic or Latino</Radio>
@@ -156,18 +133,13 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
           <Form.Item
             label="Select Veteran Status"
             name="recipient_veteran_status"
-            rules={[{ required: true }]}
           >
             <Radio.Group>
               <Radio value="true">Veteran</Radio>
               <Radio value="false">Not a Veteran</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item
-            label="Select Recipient Address"
-            name="household_id"
-            rules={[{ required: true }]}
-          >
+          <Form.Item label="Select Recipient Address" name="household_id">
             <Select size="large" placeholder="Select Address">
               {households.map(household => (
                 <Select.Option
@@ -197,4 +169,4 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   addRecipientAction,
-})(AddRecipientForm);
+})(EditRecipientForm);
