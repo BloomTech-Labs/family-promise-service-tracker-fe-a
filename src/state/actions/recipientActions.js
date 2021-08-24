@@ -35,7 +35,12 @@ export const getAllRecipientAction = () => dispatch => {
   axiosWithAuth()
     .get(`/api/recipients`)
     .then(res => {
-      dispatch({ type: GET_ALL_RECIPIENT_SUCCESS, payload: res.data });
+      const data = res.data.map(recipient => {
+        const index = recipient.recipient_date_of_birth.indexOf('T');
+        const temp = recipient.recipient_date_of_birth.substring(0, index);
+        return { ...recipient, recipient_date_of_birth: temp };
+      });
+      dispatch({ type: GET_ALL_RECIPIENT_SUCCESS, payload: data });
     })
     .catch(err => {
       dispatch({ type: GET_ALL_RECIPIENT_FAIL, payload: err.message });

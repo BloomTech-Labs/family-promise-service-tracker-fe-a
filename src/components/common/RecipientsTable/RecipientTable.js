@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import {
-  Table,
-  Input,
-  Typography,
-  Form,
-  Space,
-  Popconfirm,
-  Select,
-  Button,
-} from 'antd';
+import EditRecipientForm from '../../forms/EditRecipientForm';
+import { Table, Typography, Form, Space, Button } from 'antd';
 import {
   LoadingOutlined,
-  DeleteOutlined,
-  EditOutlined,
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  SettingOutlined,
 } from '@ant-design/icons';
 
 // Action Imports
@@ -24,6 +17,48 @@ import {
   deleteRecipientAction,
   getAllHouseholdAction,
 } from '../../../state/actions';
+
+const genders = [
+  '',
+  'Female',
+  'Male',
+  'Transgender: M to F',
+  'Transgender: F to M',
+  'Gender fluid',
+  'Agender',
+  'Androgynous',
+  'Bi-gender',
+  'Non-binary',
+  'Demi-boy',
+  'Demi-girl',
+  'Genderqueer',
+  'Gender noncomforming',
+  'Tri-gender',
+  'All genders',
+  'In the middle of boy and girl',
+  'Intersex',
+  'Not sure',
+  'Prefer not to say',
+  'Other',
+];
+
+const ethnicities = [
+  '',
+  'Hispanic/Latino',
+  'Non-Hispanic/Non-Latino',
+  'Prefer not to say',
+];
+
+const races = [
+  '',
+  'White',
+  'Black/African-Americian',
+  'Asian',
+  'Native Americian/First Peoples',
+  'Hawaiian/Pacific Islander',
+  'Other',
+  'Prefer not to say',
+];
 
 const RecipientTable = ({
   getAllHouseholdAction,
@@ -37,6 +72,8 @@ const RecipientTable = ({
   const [editingKey, setEditingKey] = useState('');
   const [sortedInfo, setSortedInfo] = useState('');
   const [filteredInfo, setFilteredInfo] = useState('');
+  const [editing, setEditing] = useState(false);
+  const [key, setKey] = useState('');
 
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
@@ -75,27 +112,6 @@ const RecipientTable = ({
     // and then grab all the data again.
   }, [change, getAllHouseholdAction, getAllRecipientAction]);
 
-  const isEditing = record => record.id === editingKey;
-
-  const edit = record => {
-    form.setFieldsValue({
-      first_name: '',
-      last_name: '',
-      age: '',
-      gender: '',
-      race: '',
-      ethnicity: '',
-      veteran_status: '',
-      household_id: [],
-      ...record,
-    });
-    setEditingKey(record.id);
-  };
-
-  const cancel = () => {
-    setEditingKey('');
-  };
-
   const deleteRecipient = key => {
     deleteRecipientAction(key);
   };
@@ -112,38 +128,7 @@ const RecipientTable = ({
 
   const columns = [
     {
-      title: 'First Name',
-      dataIndex: 'first_name',
-      key: 'first_name',
-      filteredValue: filteredInfo.recipient_first_name || null,
-      onFilter: (value, record) => record.recipient_first_name.includes(value),
-      sorter: (a, b) =>
-        a.recipient_first_name.localeCompare(b.recipient_first_name),
-      sortOrder: sortedInfo.columnKey === 'first_name' && sortedInfo.order,
-      ellipsis: true,
-      editable: true,
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            first_name="first_name"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input a first name!`,
-              },
-            ]}
-          >
-            <Input value={record.recipient_first_name} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient_first_name}</>
-        );
-      },
-    },
-    {
-      title: 'Last Name',
+      title: 'Name',
       dataIndex: 'last_name',
       key: 'last_name',
       filteredValue: filteredInfo.recipient_last_name || null,
@@ -154,22 +139,8 @@ const RecipientTable = ({
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            last_name="last_name"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input a last name!`,
-              },
-            ]}
-          >
-            <Input value={record.recipient_last_name} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient_last_name}</>
+        return (
+          <>{`${record.recipient_first_name}, ${record.recipient_last_name}`}</>
         );
       },
     },
@@ -177,6 +148,7 @@ const RecipientTable = ({
       title: 'Date of Birth',
       dataIndex: 'Date of Birth',
       key: 'Date of Birth',
+      width: 140,
       filteredValue: filteredInfo.recipient_date_of_birth || null,
       onFilter: (value, record) =>
         record.recipient_date_of_birth.includes(value),
@@ -186,140 +158,95 @@ const RecipientTable = ({
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="Date of Birth"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please input an date of birth!`,
-              },
-            ]}
-          >
-            <Input value={record.recipient_date_of_birth} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient_date_of_birth}</>
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {record.recipient_date_of_birth}
+          </div>
         );
       },
     },
     {
       title: 'Gender',
-      dataIndex: 'gender',
-      key: 'gender',
+      dataIndex: 'gender_id',
+      width: 100,
+      key: 'gender_id',
       filters: [
-        { text: 'Male', value: 'Male' },
-        { text: 'Female', value: 'Female' },
-        { text: 'Non Binary', value: 'Nonbinary' },
+        { text: 'Female', value: 1 },
+        { text: 'Male', value: 2 },
+        { text: 'Transgender: M to F', value: 3 },
+        { text: 'Transgender: F to M', value: 4 },
+        { text: 'Gender fluid', value: 5 },
+        { text: 'Agender', value: 6 },
+        { text: 'Androgynous', value: 7 },
+        { text: 'Bi-gender', value: 8 },
+        { text: 'Non-binary', value: 9 },
+        { text: 'Demi-boy', value: 10 },
+        { text: 'Demi-girl', value: 11 },
+        { text: 'Genderqueer', value: 12 },
+        { text: 'Gender noncomforming', value: 13 },
+        { text: 'Tri-gender', value: 14 },
+        { text: 'All genders', value: 15 },
+        { text: 'In the middle of boy and girl', value: 16 },
+        { text: 'Intersex', value: 17 },
+        { text: 'Not sure', value: 18 },
+        { text: 'Prefer not to say', value: 19 },
+        { text: 'Other', value: 20 },
       ],
-      filteredValue: filteredInfo.gender || null,
-      onFilter: (value, record) => record.gender === value,
-      sortOrder: sortedInfo.columnKey === 'gender' && sortedInfo.order,
+      filteredValue: filteredInfo.gender_id || null,
+      onFilter: (value, record) => record.gender_id === value,
+      sortOrder: sortedInfo.columnKey === 'gender_id' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="gender"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a gender',
-              },
-            ]}
-          >
-            <Select placeholder="Please select their gender">
-              <Select.Option value="male">Male</Select.Option>
-              <Select.Option value="female">Female</Select.Option>
-              <Select.Option value="nonbinary">Non-Binary Gender</Select.Option>
-            </Select>
-          </Form.Item>
-        ) : (
-          <>{record.gender}</>
-        );
+        return <>{genders[record.gender_id]}</>;
       },
     },
     {
       title: 'Race',
-      dataIndex: 'race',
-      key: 'race',
+      dataIndex: 'race_id',
+      key: 'race_id',
       filters: [
-        { text: 'Indian Native Alaskan', value: 'Indian Native Alaskan' },
-        { text: 'Asian', value: 'Asian' },
-        { text: 'Black', value: 'Black' },
-        {
-          text: 'Hawaiian Pacific Islander',
-          value: 'Hawaiian Pacific Islander',
-        },
-        { text: 'White', value: 'White' },
-        { text: 'Other', value: 'Some other race' },
+        { text: 'White', value: 1 },
+        { text: 'Black/African-Americian', value: 2 },
+        { text: 'Asian', value: 3 },
+        { text: 'Native Americian/First Peoples', value: 4 },
+        { text: 'Hawaiian/Pacific Islander', value: 5 },
+        { text: 'Other', value: 6 },
+        { text: 'Prefer not to say', value: 7 },
       ],
-      filteredValue: filteredInfo.race || null,
-      onFilter: (value, record) => record.race.includes(value),
-      sortOrder: sortedInfo.columnKey === 'race' && sortedInfo.order,
+      filteredValue: filteredInfo.race_id || null,
+      onFilter: (value, record) => record.race_id === value,
+      sortOrder: sortedInfo.columnKey === 'race_id' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="race"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a race',
-              },
-            ]}
-          >
-            <Input value={record.race} />
-          </Form.Item>
-        ) : (
-          <>{record.race}</>
-        );
+        return <>{races[record.race_id]}</>;
       },
     },
     {
       title: 'Ethnicity',
-      dataIndex: 'ethnicity',
-      key: 'ethnicity',
+      dataIndex: 'ethnicity_id',
+      key: 'ethnicity_id',
+      width: 150,
       filters: [
-        { text: 'Hispanic', value: 'Hispanic' },
-        { text: 'Non-Hispanic', value: 'Non-Hispanic' },
+        { text: 'Hispanic/Latino', value: 1 },
+        { text: 'Non-Hispanic/Non-Latino', value: 2 },
+        { text: 'Prefer not to say', value: 3 },
       ],
-      filteredValue: filteredInfo.ethnicity || null,
-      onFilter: (value, record) => record.ethnicity.length === value.length,
-      sortOrder: sortedInfo.columnKey === 'ethnicity' && sortedInfo.order,
+      filteredValue: filteredInfo.ethnicity_id || null,
+      onFilter: (value, record) => record.ethnicity_id === value,
+      sortOrder: sortedInfo.columnKey === 'ethnicity_id' && sortedInfo.order,
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="ethnicity"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select an ethnicity',
-              },
-            ]}
-          >
-            <Input value={record.ethnicity} />
-          </Form.Item>
-        ) : (
-          <>{record.ethnicity}</>
-        );
+        return <>{ethnicities[record.ethnicity_id]}</>;
       },
     },
     {
-      title: 'Veteran Status',
+      title: 'Veteran',
       dataIndex: 'recipient_veteran_status',
       key: 'recipient_veteran_status',
+      width: 100,
       filters: [
         { text: 'Veteran', value: true },
         { text: 'Not a Veteran', value: false },
@@ -330,22 +257,10 @@ const RecipientTable = ({
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="veteran_status"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please select a veteran status',
-              },
-            ]}
-          >
-            <Input value={record.recipient_veteran_status} />
-          </Form.Item>
-        ) : (
-          <>{record.recipient_veteran_status ? 'Yes' : 'No'}</>
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {record.recipient_veteran_status ? 'Yes' : 'No'}
+          </div>
         );
       },
     },
@@ -360,64 +275,57 @@ const RecipientTable = ({
       ellipsis: true,
       editable: true,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <Form.Item
-            name="household_id"
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: 'Please input the household size',
-              },
-            ]}
-          >
-            <Input value={record.household_id} />
-          </Form.Item>
-        ) : (
-          <>{record.household_id}</>
+        return <>{record.household_id}</>;
+      },
+    },
+    {
+      title: 'Active',
+      dataIndex: 'recipient_is_active',
+      key: 'recipient_is_active',
+      width: 80,
+      filters: [
+        { text: 'Yes', value: true },
+        { text: 'No', value: false },
+      ],
+      filteredValue: filteredInfo.recipient_is_active || null,
+      onFilter: (value, record) => record.recipient_is_active === value,
+      sortOrder:
+        sortedInfo.columnKey === 'recipient_is_active' && sortedInfo.order,
+      ellipsis: true,
+      editable: true,
+      render: (_, record) => {
+        return (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {record.recipient_is_active ? (
+              <CheckCircleOutlined style={{ color: '#53c31b' }} />
+            ) : (
+              <CloseCircleOutlined style={{ color: '#FF4848' }} />
+            )}
+          </div>
         );
       },
     },
     {
-      title: 'Actions',
-      dataIndex: 'actions',
-      key: 'actions',
+      title: 'Setting',
+      dataIndex: 'setting',
+      key: 'setting',
+      width: 70,
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Space size="middle">
-              <button
-                onClick={() => save(record.id)}
-                style={{ color: '#1890FF', marginRight: 8 }}
-              >
-                Save
-              </button>
-              <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <button style={{ color: '#1890FF' }}>Cancel</button>
-              </Popconfirm>
-            </Space>
-          </span>
-        ) : (
-          <Space size="large">
+        return (
+          <Space
+            size="large"
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
             <Typography.Link
               disabled={editingKey !== ''}
               style={{ color: '#1890FF' }}
-              onClick={() => edit(record)}
-            >
-              {<EditOutlined />}
-            </Typography.Link>
-
-            <Popconfirm
-              title="Sure to delete?"
-              onConfirm={() => {
-                deleteRecipient(record.recipient_id);
+              onClick={() => {
+                setKey(record.recipient_id);
+                setEditing(true);
               }}
-              danger
             >
-              {<DeleteOutlined />}
-            </Popconfirm>
+              {<SettingOutlined />}
+            </Typography.Link>
           </Space>
         );
       },
@@ -426,6 +334,17 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
+      <EditRecipientForm
+        visible={editing}
+        onCreate={() => {
+          alert('This is submited');
+        }}
+        onCancel={() => {
+          setEditing(false);
+        }}
+        recipient_id={key}
+      />
+      {console.log(recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
         <Form form={form} className="recipient-table">
@@ -442,7 +361,7 @@ const RecipientTable = ({
             dataSource={recipients}
             size="small"
             tableLayout="fixed"
-            rowKey={record => record.id}
+            rowKey={record => record.recipient_id}
           />
         </Form>
       )}
