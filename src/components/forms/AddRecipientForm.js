@@ -136,11 +136,13 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
               placeholder="Please select the race of the recipient"
               rules={[{ required: true }]}
             >
-              <Option value={1}>White/Caucasian</Option>
-              <Option value={2}>Black/African American</Option>
+              <Option value={1}>White</Option>
+              <Option value={2}>Black/African-American</Option>
               <Option value={3}>Asian</Option>
-              <Option value={4}>Native Hawaiian or Pacific Islander</Option>
-              <Option value={5}>Some other race</Option>
+              <Option value={4}>Native Americian/First Peoples</Option>
+              <Option value={5}>Hawaiian/Pacific Islander</Option>
+              <Option value={6}>Other</Option>
+              <Option value={7}>Prefer not to say</Option>
             </Select>
           </Form.Item>
           <Form.Item
@@ -149,8 +151,9 @@ function AddRecipientForm({ visible, onCreate, onCancel, households }) {
             rules={[{ required: true }]}
           >
             <Radio.Group>
-              <Radio value={1}>Hispanic or Latino</Radio>
-              <Radio value={2}>Not Hispanic or Latino</Radio>
+              <Radio value={1}>Hispanic/Latino</Radio>
+              <Radio value={2}>Non-Hispanic/Non-Latino</Radio>
+              <Radio value={3}>Prefer not to say</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
