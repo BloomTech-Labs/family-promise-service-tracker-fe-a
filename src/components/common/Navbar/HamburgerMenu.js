@@ -84,19 +84,7 @@ const HamburgerMenu = ({ userRole, avatar }) => {
           >
             Dashboard
           </Menu.Item>
-
-          {userRole === 'Administrator' ? (
-            <Menu.Item
-              key="employees"
-              icon={<TeamOutlined />}
-              onClick={() => onClick('/employees')}
-            >
-              Employees
-            </Menu.Item>
-          ) : (
-            <></>
-          )}
-          {userRole === 'Administrator' || userRole === 'Program Manager' ? (
+          {userRole === 1 || userRole === 2 ? (
             <Menu.Item
               key="programs"
               icon={<ProjectOutlined />}
@@ -108,25 +96,30 @@ const HamburgerMenu = ({ userRole, avatar }) => {
             <></>
           )}
           <Menu.Item
-            key="categories"
+            key="services"
             icon={<ReconciliationOutlined />}
-            onClick={() => onClick('/categories')}
+            onClick={() => onClick('/services')}
           >
-            Categories
+            Services
           </Menu.Item>
+          {/* TO DO: update employee as Providers */}
+          {userRole === 1 ? (
+            <Menu.Item
+              key="employees"
+              icon={<TeamOutlined />}
+              onClick={() => onClick('/employees')}
+            >
+              Providers
+            </Menu.Item>
+          ) : (
+            <></>
+          )}
           <Menu.Item
             key="recipients"
             icon={<UsergroupAddOutlined />}
             onClick={() => onClick('/recipients')}
           >
             Recipients
-          </Menu.Item>
-          <Menu.Item
-            key="services"
-            icon={<ReconciliationOutlined />}
-            onClick={() => onClick('/services')}
-          >
-            Services
           </Menu.Item>
         </Menu>
       </div>
