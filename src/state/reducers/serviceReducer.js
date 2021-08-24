@@ -69,7 +69,7 @@ export const serviceReducer = (state = initialServiceState, action) => {
     case GET_SERVICE_SUCCESS:
       return {
         ...state,
-        service: action.payload,
+        services: action.payload,
         status: 'Success',
       };
     case GET_SERVICE_FAIL:
