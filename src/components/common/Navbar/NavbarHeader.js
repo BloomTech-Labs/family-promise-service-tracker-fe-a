@@ -7,7 +7,7 @@ import { getUserAction } from '../../../state/actions';
 
 const NavbarHeader = ({ user, getUserAction }) => {
   const { authState, authService } = useOktaAuth();
-
+  console.log('user: ', user);
   useEffect(() => {
     authState.isAuthenticated &&
       authService.getUser().then(user => {
