@@ -30,7 +30,7 @@ import {
   editRecipientAction,
   deleteRecipientAction,
 } from '../../../state/actions';
-import TextArea from 'antd/lib/input/TextArea';
+// import TextArea from 'antd/lib/input/TextArea';
 
 const ServicesTable = ({
   deleteServiceAction,
@@ -49,7 +49,6 @@ const ServicesTable = ({
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
-
   // NOTE: each row of the table of logged services is "record"
   const clearFilters = () => setFilteredInfo('');
   const clearAll = () => setSortedInfo('') && setFilteredInfo('');
@@ -82,6 +81,7 @@ const ServicesTable = ({
       defaultSortOrder: 'descend',
 
       render: (_, record) => {
+        console.log('record: ', record);
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
@@ -163,8 +163,7 @@ const ServicesTable = ({
         return { text: s.type, value: s.type };
       }),
       filteredValue: filteredInfo.status || null,
-      onFilter: (value, record) =>
-        record.service_entry_data.default.Status.includes(value),
+      onFilter: (value, record) => record.status.status.includes(value),
       ellipsis: true,
       editable: true,
       render: (_, record) => {
@@ -172,7 +171,7 @@ const ServicesTable = ({
         return editable ? (
           <Form.Item
             name="status_id"
-            initialValue={record.service_entry_data.default.Status}
+            initialValue={record.status.status}
             style={{ margin: 0 }}
             rules={[
               {
@@ -181,10 +180,7 @@ const ServicesTable = ({
               },
             ]}
           >
-            <Select
-              size="middle"
-              value={record.service_entry_data.default.Status}
-            >
+            <Select size="middle" value={record.status.status}>
               {STATUSES.map(status => (
                 <Select.Option key={status.id} value={status.id}>
                   {status.type}
@@ -193,7 +189,7 @@ const ServicesTable = ({
             </Select>
           </Form.Item>
         ) : (
-          <>{record.service_entry_data.default.Status}</>
+          <>{record.status.status}</>
         );
       },
     },
