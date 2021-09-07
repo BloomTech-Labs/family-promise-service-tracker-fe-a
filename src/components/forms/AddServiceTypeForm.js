@@ -68,7 +68,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
             label="Service Name"
             rules={[
               {
-                // required: true,
+                required: true,
                 message: 'Please input the service name',
               },
             ]}
@@ -80,7 +80,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
             label="Program"
             rules={[
               {
-                required: true,
+                // required: true
                 message: 'Please input the program type',
               },
             ]}
