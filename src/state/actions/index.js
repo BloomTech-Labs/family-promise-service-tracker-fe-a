@@ -32,14 +32,6 @@ export {
 } from './programActions';
 
 export {
-  getAllCategoriesAction,
-  getCategoryByIdAction,
-  addCategoryAction,
-  editCategoryAction,
-  deleteCategoryAction,
-} from './categoriesActions';
-
-export {
   getAllEmployeeAction,
   getEmployeeByIdAction,
   addEmployeeAction,
