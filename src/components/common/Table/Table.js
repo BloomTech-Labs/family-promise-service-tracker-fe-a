@@ -42,7 +42,6 @@ const TableComponent = ({
   useEffect(() => {
     getAllEmployeeAction();
     getAllProgramsAction();
-    console.log('useEffect');
   }, [change, getAllEmployeeAction, getAllProgramsAction]);
 
   const isEditing = record => record.key === editingKey;
@@ -90,17 +89,11 @@ const TableComponent = ({
   };
 
   const userObjCreator = () => {
-    console.log('employees****');
-    console.log(employees);
-    console.log('programs');
-    console.log(programs);
-
     if (employees) {
       employees.forEach(employee => {
         const programsArray = [];
         programs.forEach(program => {
           if (program !== null) {
-            console.log(program.program_name);
             programsArray.push(program.program_name);
           }
         });
@@ -113,7 +106,6 @@ const TableComponent = ({
         });
       });
     }
-    console.log(tableData);
   };
   userObjCreator();
 
