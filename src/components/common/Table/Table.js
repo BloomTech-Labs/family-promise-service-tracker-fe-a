@@ -42,6 +42,7 @@ const TableComponent = ({
   useEffect(() => {
     getAllEmployeeAction();
     getAllProgramsAction();
+    console.log('useEffect');
   }, [change, getAllEmployeeAction, getAllProgramsAction]);
 
   const isEditing = record => record.key === editingKey;
@@ -77,11 +78,11 @@ const TableComponent = ({
   };
 
   const selectRole = role => {
-    return role === 'Administrator'
+    return role === 1
       ? 'Administrator'
-      : role === 'Program Manager'
+      : role === 2
       ? 'Program Manager'
-      : role === 'service_provider'
+      : role === 3
       ? 'Service Provider'
       : role === 'unassigned'
       ? 'None'
@@ -89,23 +90,30 @@ const TableComponent = ({
   };
 
   const userObjCreator = () => {
+    console.log('employees****');
+    console.log(employees);
+    console.log('programs');
+    console.log(programs);
+
     if (employees) {
       employees.forEach(employee => {
-        const programs = [];
-        employee.programs.forEach(program => {
+        const programsArray = [];
+        programs.forEach(program => {
           if (program !== null) {
-            programs.push(program.program_name);
+            console.log(program.program_name);
+            programsArray.push(program.program_name);
           }
         });
         tableData.push({
           key: employee.provider_id,
           firstName: employee.provider_first_name,
           lastName: employee.provider_last_name,
-          role: selectRole(employee.role),
-          programs: programs,
+          role: selectRole(employee.provider_role_id),
+          programs: programsArray,
         });
       });
     }
+    console.log(tableData);
   };
   userObjCreator();
 
