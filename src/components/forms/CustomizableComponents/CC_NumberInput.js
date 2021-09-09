@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Radio } from 'antd';
 
-function CC_NumberInput({ onCreate, onCancel, visible, programs, categories }) {
+function CC_NumberInput({ onCreate, onCancel, visible, programs }) {
   return (
     <div>
       <h3>Custom Field Entry Name</h3>

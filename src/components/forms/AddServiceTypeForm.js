@@ -3,16 +3,8 @@ import { connect } from 'react-redux';
 import { Form, Input, Select, Modal, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
-import { getAllCategoriesAction } from '../../state/actions';
-function AddServiceTypeForm({
-  onCreate,
-  onCancel,
-  visible,
-  programs,
-  categories,
-  change,
-  getAllCategoriesAction,
-}) {
+
+function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
 
   //state for which dropdown Value is selected
@@ -21,11 +13,6 @@ function AddServiceTypeForm({
   const handleSelectCustomField = ({ key }) => {
     setDropDownValue(key);
   };
-
-  //this needs to be connected to an endpoint which has not yet been built to fetch all of the categories
-  useEffect(() => {
-    getAllCategoriesAction();
-  }, [change, getAllCategoriesAction]);
 
   const menu = (
     <Menu onClick={handleSelectCustomField}>
@@ -81,7 +68,7 @@ function AddServiceTypeForm({
             label="Service Name"
             rules={[
               {
-                // required: true,
+                required: true,
                 message: 'Please input the service name',
               },
             ]}
@@ -93,7 +80,7 @@ function AddServiceTypeForm({
             label="Program"
             rules={[
               {
-                required: true,
+                // required: true
                 message: 'Please input the program type',
               },
             ]}
@@ -102,27 +89,6 @@ function AddServiceTypeForm({
               {programs.map(item => (
                 <Select.Option key={item.id} value={item.id}>
                   {item.program_name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="category_id"
-            label="Category"
-            rules={[
-              {
-                required: true,
-                message: 'Please input the category type',
-              },
-            ]}
-          >
-            <Select size="large" placeholder="Select Category">
-              {programs.map((
-                // switch to categories once connected to backend.
-                item
-              ) => (
-                <Select.Option key={item.id} value={item.id}>
-                  {item.category_name}
                 </Select.Option>
               ))}
             </Select>
@@ -170,10 +136,6 @@ const mapStateToProps = state => {
     recipients: state.recipient.recipients,
     serviceTypes: state.service.serviceTypes,
     programs: state.program.programs,
-    // categories: state.categories, //add categories and change back in once endpoint is ready. Might need to switch to state.category.categories depending on endpoint
-    // change: state.change
   };
 };
-export default connect(mapStateToProps, { getAllCategoriesAction })(
-  AddServiceTypeForm
-);
+export default connect(mapStateToProps)(AddServiceTypeForm);
