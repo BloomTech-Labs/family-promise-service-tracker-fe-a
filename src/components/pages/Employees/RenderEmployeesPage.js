@@ -9,7 +9,7 @@ function RenderEmployeePage({ addEmployeeAction, user }) {
   // instead of using Okta Groups, simple react-router-dom is used for convenience
   // permission clauses based on "src/common/Navbar/HamburgerMenu.js"
   const history = useHistory();
-  if (user.role !== 'Administrator') history.push('/');
+  if (user.role !== 1) history.push('/');
 
   const [visible, setVisible] = useState(false);
 
