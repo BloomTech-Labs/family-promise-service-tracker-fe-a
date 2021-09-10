@@ -116,10 +116,9 @@ const RecipientTable = ({
     deleteRecipientAction(key);
   };
 
-  const save = async recipientId => {
+  const save = (recipientId, values) => {
     try {
-      const recipientObj = await form.validateFields();
-      editRecipientAction(recipientId, recipientObj);
+      editRecipientAction(recipientId, values);
       setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
@@ -336,7 +335,8 @@ const RecipientTable = ({
     <div style={{}}>
       <EditRecipientForm
         visible={editing}
-        onCreate={() => {
+        onCreate={values => {
+          save(key, values);
           alert('This is submited');
         }}
         onCancel={() => {
