@@ -9,3 +9,4 @@ export { employeeReducer } from './employeeReducer';
 export { recipientReducer } from './recipientReducer';
 export { householdReducer } from './householdReducer';
 export { statusReducer } from './statusReducer';
+export { serviceUnitReducer } from './serviceUnitReducer';
