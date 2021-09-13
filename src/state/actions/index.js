@@ -54,3 +54,11 @@ export {
   editHouseholdAction,
   deleteHouseholdAction,
 } from './householdActions';
+
+export {
+  getAllLocationAction,
+  getLocationByIdAction,
+  addLocationAction,
+  editLocationAction,
+  deleteLocationAction,
+} from './locationActions';
