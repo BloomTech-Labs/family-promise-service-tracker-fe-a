@@ -9,6 +9,7 @@ import {
   employeeReducer,
   recipientReducer,
   householdReducer,
+  locationReducer,
 } from './reducers/index';
 // test
 export const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ export const rootReducer = combineReducers({
   employee: employeeReducer,
   recipient: recipientReducer,
   household: householdReducer,
+  location: locationReducer,
 });
 
 const logger = createLogger({
