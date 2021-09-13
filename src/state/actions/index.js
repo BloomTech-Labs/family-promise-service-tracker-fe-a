@@ -55,6 +55,10 @@ export {
   deleteHouseholdAction,
 } from './householdActions';
 
+export { getAllStatusAction } from './statusActions';
+
+export { getAllServiceUnitAction } from './serviceUnitActions';
+
 export {
   getAllLocationAction,
   getLocationByIdAction,

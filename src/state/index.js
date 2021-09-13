@@ -9,6 +9,8 @@ import {
   employeeReducer,
   recipientReducer,
   householdReducer,
+  statusReducer,
+  serviceUnitReducer,
   locationReducer,
 } from './reducers/index';
 // test
@@ -20,6 +22,8 @@ export const rootReducer = combineReducers({
   employee: employeeReducer,
   recipient: recipientReducer,
   household: householdReducer,
+  status: statusReducer,
+  serviceUnit: serviceUnitReducer,
   location: locationReducer,
 });
 
