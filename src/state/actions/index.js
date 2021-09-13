@@ -54,3 +54,5 @@ export {
   editHouseholdAction,
   deleteHouseholdAction,
 } from './householdActions';
+
+export { getAllStatusAction } from './statusActions';
