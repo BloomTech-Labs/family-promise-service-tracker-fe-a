@@ -58,3 +58,11 @@ export {
 export { getAllStatusAction } from './statusActions';
 
 export { getAllServiceUnitAction } from './serviceUnitActions';
+
+export {
+  getAllLocationAction,
+  getLocationByIdAction,
+  addLocationAction,
+  editLocationAction,
+  deleteLocationAction,
+} from './locationActions';
