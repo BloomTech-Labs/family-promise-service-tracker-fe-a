@@ -61,7 +61,7 @@ export const addLocationAction = locationObj => dispatch => {
   dispatch({ type: ADD_LOCATION_START });
 
   axiosWithAuth()
-    .post(`/api/providers`, locationObj)
+    .post(`/api/locations`, locationObj)
     .then(res => {
       dispatch({ type: ADD_LOCATION_SUCCESS, payload: res.data });
     })
@@ -77,7 +77,7 @@ export const editLocationAction = (locationId, locationObj) => dispatch => {
   dispatch({ type: EDIT_LOCATION_START });
 
   axiosWithAuth()
-    .put(`/api/providers/${locationId}`, locationObj)
+    .put(`/api/locations/${locationId}`, locationObj)
     .then(res => {
       dispatch({ type: EDIT_LOCATION_SUCCESS, payload: res.data });
     })
@@ -93,7 +93,7 @@ export const deleteLocationAction = locationId => dispatch => {
   dispatch({ type: DELETE_LOCATION_START });
 
   axiosWithAuth()
-    .delete(`/api/providers/${locationId}`)
+    .delete(`/api/locations/${locationId}`)
     .then(res => {
       dispatch({ type: DELETE_LOCATION_SUCCESS, payload: res.data });
     })
