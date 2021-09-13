@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, DatePicker, Radio, Modal } from 'antd';
+import moment from 'moment';
 
-import { addRecipientAction } from '../../state/actions/recipientActions';
+import {
+  addRecipientAction,
+  getRecipientByIdAction,
+} from '../../state/actions/recipientActions';
 
 const { Option } = Select;
 
-function EditRecipientForm({ visible, onCreate, onCancel, households }) {
+function EditRecipientForm({
+  visible,
+  onCreate,
+  onCancel,
+  households,
+  recipient_id,
+  recipientToEdit,
+}) {
   const [form] = Form.useForm();
-
   return (
     <>
       <Modal
@@ -47,6 +57,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 message: "Please enter the Recipient's First Name",
               },
             ]}
+            initialValue={recipientToEdit.recipient_first_name}
           >
             <Input placeholder="Enter First Name" size="large" />
           </Form.Item>
@@ -59,6 +70,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 message: "Please enter the Recipient's First Name",
               },
             ]}
+            initialValue={recipientToEdit.recipient_middle_name}
           >
             <Input placeholder="Enter First Name" size="large" />
           </Form.Item>
@@ -71,6 +83,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 message: "Please enter the Recipient's Last Name",
               },
             ]}
+            initialValue={recipientToEdit.recipient_last_name}
           >
             <Input placeholder="Enter Last Name" size="large" />
           </Form.Item>
@@ -82,6 +95,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 required: true,
               },
             ]}
+            initialValue={moment(recipientToEdit.recipient_date_of_birth)}
           >
             <DatePicker format="YYYY-MM-DD" />
           </Form.Item>
@@ -95,6 +109,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 message: 'Please select their gender',
               },
             ]}
+            initialValue={recipientToEdit.gender_id}
           >
             <Select placeholder="Please select their gender">
               <Option value={1}>Female</Option>
@@ -112,6 +127,7 @@ function EditRecipientForm({ visible, onCreate, onCancel, households }) {
                 // type: 'array',
               },
             ]}
+            initialValue={recipientToEdit.race_id}
           >
             <Select
               // mode="multiple" - limiting race to 1 temporarily to test Create Recipient
