@@ -56,3 +56,5 @@ export {
 } from './householdActions';
 
 export { getAllStatusAction } from './statusActions';
+
+export { getAllServiceUnitAction } from './serviceUnitActions';
