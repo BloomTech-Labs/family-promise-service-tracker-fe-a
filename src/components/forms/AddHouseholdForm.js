@@ -17,8 +17,8 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
           form
             .validateFields()
             .then(values => {
-              form.resetFields();
               onCreate(values);
+              form.resetFields();
             })
             .catch(info => {
               console.log('Validate Failed', info);
