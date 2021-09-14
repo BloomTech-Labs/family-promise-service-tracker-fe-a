@@ -44,7 +44,19 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
             },
           ]}
         >
-          <Input placeholder="First Name" />
+          <Input placeholder="provider_id" />
+        </Form.Item>
+        <Form.Item
+          name="employee_id"
+          label="employee_id"
+          rules={[
+            {
+              required: true,
+              message: 'Please input the employee_id',
+            },
+          ]}
+        >
+          <Input placeholder="employee_id" />
         </Form.Item>
         <Form.Item
           name="provider_first_name"
@@ -69,6 +81,30 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
           ]}
         >
           <Input placeholder="Last Name" />
+        </Form.Item>
+        <Form.Item
+          name="provider_email"
+          label="Email"
+          rules={[
+            {
+              required: false,
+              message: 'Please input the employee email',
+            },
+          ]}
+        >
+          <Input placeholder="Email" />
+        </Form.Item>
+        <Form.Item
+          name="provider_phone_number"
+          label="Phone Number"
+          rules={[
+            {
+              required: false,
+              message: 'Please input the employee phone number',
+            },
+          ]}
+        >
+          <Input placeholder="Phone Number" />
         </Form.Item>
         <Form.Item
           label="Role"
