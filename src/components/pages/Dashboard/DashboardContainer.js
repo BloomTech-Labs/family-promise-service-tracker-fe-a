@@ -1,7 +1,6 @@
 import React from 'react';
 import RenderDashboardPage from './RenderDashboardPage';
 import TitleComponent from '../../common/Title';
-import DashboardServiceTable from './DashboardServiceTable';
 
 function DashboardContainer() {
   return (
