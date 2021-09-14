@@ -66,3 +66,7 @@ export {
   editLocationAction,
   deleteLocationAction,
 } from './locationActions';
+
+export { getAllRaceAction } from './raceActions';
+
+export { getAllEthnicityAction } from './ethnicityActions';
