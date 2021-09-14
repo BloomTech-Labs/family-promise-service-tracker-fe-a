@@ -69,4 +69,4 @@ export {
 
 export { getAllServiceRatingAction } from './serviceRatingActions';
 
-export { getAllGenderAction } from './genderAction';
+export { getAllGenderAction } from './genderActions';
