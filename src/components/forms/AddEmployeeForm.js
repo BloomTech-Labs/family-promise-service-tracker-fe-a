@@ -17,8 +17,9 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         form
           .validateFields()
           .then(values => {
-            form.resetFields();
             onCreate(values);
+            form.resetFields();
+            console.log(values);
           })
           .catch(info => {
             console.log('Validate Failed:', info);
@@ -33,6 +34,18 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
           modifier: 'public',
         }}
       >
+        <Form.Item
+          name="provider_id"
+          label="provider_id"
+          rules={[
+            {
+              required: true,
+              message: 'Please input the provider_id',
+            },
+          ]}
+        >
+          <Input placeholder="First Name" />
+        </Form.Item>
         <Form.Item
           name="provider_first_name"
           label="First Name"
@@ -59,7 +72,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         </Form.Item>
         <Form.Item
           label="Role"
-          name="role"
+          name="provider_role_id"
           rules={[
             {
               required: true,
@@ -69,23 +82,19 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
         >
           <Select size="large" placeholder="Select Employee Role">
             {/* Could be dynamic by mapping through list of roles */}
-            <Select.Option value="Administrator">Administrator</Select.Option>
-            <Select.Option value="Program Manager">
-              Program Manager
-            </Select.Option>
-            <Select.Option value="Service Provider">
-              Service Provider
-            </Select.Option>
+            <Select.Option value={1}>Administrator</Select.Option>
+            <Select.Option value={2}>Program Manager</Select.Option>
+            <Select.Option value={3}>Service Provider</Select.Option>
             ))
           </Select>
         </Form.Item>
-        <Form.Item label="Programs" name="programs">
+        {/* <Form.Item label="Programs" name="programs">
           <Select placeholder="Select Programs" mode="multiple" size="large">
             {programs.map(item => (
               <Select.Option key={item}> {item}</Select.Option>
             ))}
           </Select>
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Modal>
   );
