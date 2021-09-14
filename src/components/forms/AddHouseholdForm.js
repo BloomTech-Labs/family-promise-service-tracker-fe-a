@@ -33,67 +33,58 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
           }}
         >
           <Form.Item
-            label="Address"
-            name="address"
+            label="location Id"
+            name="location_id"
             rules={[
               {
                 required: true,
-                message: 'Please enter the address',
+                message: 'Please enter the location id',
               },
             ]}
           >
-            <Input placeholder="Enter Street Address" size="large" />
+            <Input placeholder="Enter location id" size="large" />
           </Form.Item>
           <Form.Item
-            label="City"
-            name="city"
+            label="Household Name"
+            name="household_name"
             rules={[
               {
                 required: true,
-                message: 'Please enter the city',
+                message: 'Please enter household name',
               },
             ]}
           >
-            <Input placeholder="Enter City" size="large" />
+            <Input placeholder="Please enter household name" size="large" />
           </Form.Item>
           <Form.Item
-            label="State"
-            name="state"
+            label="Household Size"
+            name="household_size"
             rules={[
               {
                 required: true,
-                message: 'Please enter the state',
+                message: 'Please enter the household size',
               },
             ]}
           >
-            <Input placeholder="Enter State" size="large" />
+            <InputNumber
+              placeholder="Please enter the household size"
+              size="large"
+            />
           </Form.Item>
           <Form.Item
-            label="Zip Code"
-            name="zip_code"
+            label="Household Monthly Income"
+            name="household_monthly_income"
             rules={[
               {
                 required: true,
-                message: 'Please enter the zip code',
+                message: 'Please enter the household monthly income',
               },
             ]}
           >
-            <InputNumber placeholder="Enter Zip Code" size="large" />
-          </Form.Item>
-          <Form.Item label="Household Size" name="household_size">
-            <InputNumber size="large" placeholder="0" min="0" max="20" />
-          </Form.Item>
-          <Form.Item
-            label="Household Characteristics"
-            name="household_characteristics"
-            rules={[
-              {
-                message:
-                  'Please enter any additional details about the household',
-              },
-            ]}
-          >
-            <Input.TextArea placeholder="Enter Details..." />
+            <Input
+              placeholder="Please enter the household monthly income"
+              size="large"
+            />
           </Form.Item>
         </Form>
       </Modal>
