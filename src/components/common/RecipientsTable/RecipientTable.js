@@ -74,6 +74,7 @@ const RecipientTable = ({
   const [filteredInfo, setFilteredInfo] = useState('');
   const [editing, setEditing] = useState(false);
   const [key, setKey] = useState('');
+  const [recipientToEdit, setRecipientToEdit] = useState({});
 
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
@@ -106,20 +107,20 @@ const RecipientTable = ({
   useEffect(() => {
     getAllRecipientAction();
     getAllHouseholdAction();
+    console.log('CURRENT_RECIPIENT: ', recipientToEdit);
     // change is a one of the attribute in application state, when it
     // changed, the useEffect will be invoke. Any change for the data is
     // just an two moves, one is use axio call to perform a specific move
     // and then grab all the data again.
-  }, [change, getAllHouseholdAction, getAllRecipientAction]);
+  }, [change, getAllHouseholdAction, getAllRecipientAction, recipientToEdit]);
 
   const deleteRecipient = key => {
     deleteRecipientAction(key);
   };
 
-  const save = async recipientId => {
+  const save = (recipientId, values) => {
     try {
-      const recipientObj = await form.validateFields();
-      editRecipientAction(recipientId, recipientObj);
+      editRecipientAction(recipientId, values);
       setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
@@ -322,6 +323,8 @@ const RecipientTable = ({
               onClick={() => {
                 setKey(record.recipient_id);
                 setEditing(true);
+                setRecipientToEdit(record);
+                console.log('new state recipient', key);
               }}
             >
               {<SettingOutlined />}
@@ -334,16 +337,21 @@ const RecipientTable = ({
 
   return (
     <div style={{}}>
-      <EditRecipientForm
-        visible={editing}
-        onCreate={() => {
-          alert('This is submited');
-        }}
-        onCancel={() => {
-          setEditing(false);
-        }}
-        recipient_id={key}
-      />
+      {editing ? (
+        <EditRecipientForm
+          visible={editing}
+          recipientToEdit={recipientToEdit}
+          onCreate={values => {
+            save(key, values);
+            alert('This is submited');
+          }}
+          onCancel={() => {
+            setEditing(false);
+            setRecipientToEdit({});
+          }}
+          recipient_id={key}
+        />
+      ) : null}
       {console.log(recipients)}
       {recipients.length < 1 && <LoadingOutlined className="loader" />},
       {recipients.length >= 1 && (
