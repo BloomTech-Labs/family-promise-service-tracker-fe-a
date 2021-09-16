@@ -70,3 +70,11 @@ export {
 export { getAllServiceRatingAction } from './serviceRatingActions';
 
 export { getAllGenderAction } from './genderActions';
+
+export {
+  getAllServiceTypeProgramsAction,
+  getServiceTypeProgramsByIdAction,
+  editServiceTypeProgramsAction,
+  addServiceTypeProgramsAction,
+  deleteServiceTypeProgramsAction,
+} from './ServiceTypeProgramsActions';
