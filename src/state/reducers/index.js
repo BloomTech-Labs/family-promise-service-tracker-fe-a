@@ -13,3 +13,4 @@ export { serviceUnitReducer } from './serviceUnitReducer';
 export { locationReducer } from './locationReducer';
 export { serviceRatingReducer } from './serviceRatingReducer';
 export { genderReducer } from './genderReducer';
+export { serviceTypeProgramsReducer } from './serviceTypeProgramsReducer';
