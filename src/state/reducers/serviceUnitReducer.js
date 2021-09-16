@@ -6,7 +6,7 @@ import {
 } from '../actions/serviceUnitActions';
 
 export const initialServiceUnitState = {
-  service_units: [],
+  serviceUnits: [],
   status: 'Resolved',
   error: '',
 };
@@ -21,7 +21,7 @@ export const serviceUnitReducer = (state = initialServiceUnitState, action) => {
     case GET_ALL_SERVICE_UNITS_SUCCESS:
       return {
         ...state,
-        service_units: action.payload,
+        serviceUnits: action.payload,
         status: 'Success',
       };
     case GET_ALL_SERVICE_UNITS_FAIL:
