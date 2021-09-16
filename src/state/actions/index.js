@@ -77,4 +77,4 @@ export {
   editServiceTypeProgramsAction,
   addServiceTypeProgramsAction,
   deleteServiceTypeProgramsAction,
-} from './ServiceTypeProgramsActions';
+} from './serviceTypeProgramsActions';
