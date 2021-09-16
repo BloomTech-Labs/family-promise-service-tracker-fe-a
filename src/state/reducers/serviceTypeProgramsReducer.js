@@ -21,7 +21,7 @@ import {
   DELETE_SERVICE_TYPE_PROGRAMS_RESOLVE,
 } from '../actions/serviceTypeProgramsActions';
 
-export const initialServiceTypeState = {
+export const initialServiceTypeProgramsState = {
   serviceTypePrograms: [],
   serviceTypeProgram: null,
   status: 'Resolved',
@@ -30,7 +30,7 @@ export const initialServiceTypeState = {
 };
 
 export const serviceTypeProgramsReducer = (
-  state = initialServiceTypeState,
+  state = initialServiceTypeProgramsState,
   action
 ) => {
   switch (action.type) {
@@ -43,7 +43,7 @@ export const serviceTypeProgramsReducer = (
     case GET_ALL_SERVICE_TYPE_PROGRAMS_SUCCESS:
       return {
         ...state,
-        serviceTypes: action.payload,
+        serviceTypePrograms: action.payload,
         status: 'Success',
       };
     case GET_ALL_SERVICE_TYPE_PROGRAMS_FAIL:
