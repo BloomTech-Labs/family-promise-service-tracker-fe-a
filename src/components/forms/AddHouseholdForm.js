@@ -37,7 +37,7 @@ function AddHouseholdForm({ visible, onCreate, onCancel }) {
             name="location_id"
             rules={[
               {
-                required: true,
+                required: false,
                 message: 'Please enter the location id',
               },
             ]}

@@ -78,3 +78,7 @@ export {
   addServiceTypeProgramsAction,
   deleteServiceTypeProgramsAction,
 } from './serviceTypeProgramsActions';
+
+export { getAllRaceAction } from './raceActions';
+
+export { getAllEthnicityAction } from './ethnicityActions';
