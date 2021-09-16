@@ -70,3 +70,7 @@ export {
 export { getAllServiceRatingAction } from './serviceRatingActions';
 
 export { getAllGenderAction } from './genderActions';
+
+export { getAllRaceAction } from './raceActions';
+
+export { getAllEthnicityAction } from './ethnicityActions';
