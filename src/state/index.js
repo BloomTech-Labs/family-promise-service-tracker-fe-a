@@ -30,7 +30,7 @@ export const rootReducer = combineReducers({
   location: locationReducer,
   serviceRating: serviceRatingReducer,
   gender: genderReducer,
-  serviceTypeProgramsReducer: serviceTypeProgramsReducer,
+  serviceTypePrograms: serviceTypeProgramsReducer,
 });
 
 const logger = createLogger({
