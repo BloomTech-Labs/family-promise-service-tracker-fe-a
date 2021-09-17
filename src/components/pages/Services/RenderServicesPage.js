@@ -12,6 +12,10 @@ import {
   getAllRecipientAction,
   addServiceTypeAction,
   getAllServicesAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 } from '../../../state/actions/index';
 
 //component import
@@ -26,6 +30,10 @@ function RenderServicesPage({
   getAllServiceTypesAction,
   getAllProgramsAction,
   addServiceTypeAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
@@ -36,12 +44,20 @@ function RenderServicesPage({
     getAllRecipientAction();
     getAllServiceTypesAction();
     getAllProgramsAction();
+    getAllServiceUnitAction();
+    getAllStatusAction();
+    getAllLocationAction();
+    getAllServiceRatingAction();
   }, [
     getAllServicesAction,
     getServiceProviders,
     getAllRecipientAction,
     getAllServiceTypesAction,
     getAllProgramsAction,
+    getAllServiceUnitAction,
+    getAllStatusAction,
+    getAllLocationAction,
+    getAllServiceRatingAction,
   ]);
 
   const onCreate = values => {
@@ -100,6 +116,10 @@ const mapStateToProps = state => {
     serviceTypes: state.serviceType.serviceTypes,
     recipients: state.recipient.recipients,
     programs: state.program.programs,
+    serviceUnits: state.serviceUnit.serviceUnits,
+    statuses: state.status.statuses,
+    locations: state.location.locations,
+    serviceRatings: state.serviceRating.serviceRatings,
   };
 };
 
@@ -111,4 +131,8 @@ export default connect(mapStateToProps, {
   getAllRecipientAction,
   getAllServiceTypesAction,
   getAllProgramsAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 })(RenderServicesPage);
