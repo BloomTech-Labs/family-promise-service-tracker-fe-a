@@ -14,6 +14,7 @@ import {
   locationReducer,
   serviceRatingReducer,
   genderReducer,
+  serviceTypeProgramsReducer,
   raceReducer,
   ethnicityReducer,
 } from './reducers/index';
@@ -31,6 +32,7 @@ export const rootReducer = combineReducers({
   location: locationReducer,
   serviceRating: serviceRatingReducer,
   gender: genderReducer,
+  serviceTypePrograms: serviceTypeProgramsReducer,
   race: raceReducer,
   ethnicity: ethnicityReducer,
 });
