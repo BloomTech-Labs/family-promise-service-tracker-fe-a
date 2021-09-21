@@ -14,6 +14,9 @@ import {
   locationReducer,
   serviceRatingReducer,
   genderReducer,
+  serviceTypeProgramsReducer,
+  raceReducer,
+  ethnicityReducer,
 } from './reducers/index';
 // test
 export const rootReducer = combineReducers({
@@ -29,6 +32,9 @@ export const rootReducer = combineReducers({
   location: locationReducer,
   serviceRating: serviceRatingReducer,
   gender: genderReducer,
+  serviceTypePrograms: serviceTypeProgramsReducer,
+  race: raceReducer,
+  ethnicity: ethnicityReducer,
 });
 
 const logger = createLogger({
