@@ -7,11 +7,15 @@ import '../../../styles/Services.scss';
 import {
   addServiceAction,
   getServiceProviders,
-  getAllServiceTypesAction,
+  getAllServiceTypeProgramsAction,
   getAllProgramsAction,
   getAllRecipientAction,
   addServiceTypeAction,
   getAllServicesAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 } from '../../../state/actions/index';
 
 //component import
@@ -23,9 +27,13 @@ function RenderServicesPage({
   getServiceProviders,
   getAllServicesAction,
   getAllRecipientAction,
-  getAllServiceTypesAction,
   getAllProgramsAction,
   addServiceTypeAction,
+  getAllServiceTypeProgramsAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 }) {
   const [visible, setVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
@@ -34,19 +42,43 @@ function RenderServicesPage({
     getAllServicesAction();
     getServiceProviders();
     getAllRecipientAction();
-    getAllServiceTypesAction();
+    getAllServiceTypeProgramsAction();
     getAllProgramsAction();
+    getAllServiceUnitAction();
+    getAllStatusAction();
+    getAllLocationAction();
+    getAllServiceRatingAction();
   }, [
     getAllServicesAction,
     getServiceProviders,
     getAllRecipientAction,
-    getAllServiceTypesAction,
+    getAllServiceTypeProgramsAction,
     getAllProgramsAction,
+    getAllServiceUnitAction,
+    getAllStatusAction,
+    getAllLocationAction,
+    getAllServiceRatingAction,
   ]);
 
   const onCreate = values => {
+    const { provided_at, duration } = values;
+    const service_date = provided_at.format('YYYY-MM-DD[T00:00:00.000Z]');
+    const service_time = provided_at.format('HH:mm:ss');
+    const service_duration = duration.format('HH:mm:ss');
+    const service_entry_data = {};
+
+    const newService = {
+      ...values,
+      service_date,
+      service_time,
+      service_duration,
+      service_entry_data,
+    };
+    delete newService.provided_at;
+    delete newService.duration;
+
     setVisible(false);
-    addServiceAction(values);
+    addServiceAction(newService);
   };
 
   const onCreateType = values => {
@@ -97,9 +129,13 @@ function RenderServicesPage({
 const mapStateToProps = state => {
   return {
     serviceProviders: state.service.serviceProviders,
-    serviceTypes: state.serviceType.serviceTypes,
+    serviceTypePrograms: state.serviceTypePrograms.serviceTypePrograms,
     recipients: state.recipient.recipients,
     programs: state.program.programs,
+    serviceUnits: state.serviceUnit.serviceUnits,
+    statuses: state.status.statuses,
+    locations: state.location.locations,
+    serviceRatings: state.serviceRating.serviceRatings,
   };
 };
 
@@ -109,6 +145,10 @@ export default connect(mapStateToProps, {
   getAllServicesAction,
   getServiceProviders,
   getAllRecipientAction,
-  getAllServiceTypesAction,
+  getAllServiceTypeProgramsAction,
   getAllProgramsAction,
+  getAllServiceUnitAction,
+  getAllStatusAction,
+  getAllLocationAction,
+  getAllServiceRatingAction,
 })(RenderServicesPage);
