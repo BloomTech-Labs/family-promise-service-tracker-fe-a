@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Select, InputNumber, DatePicker, Modal } from 'antd';
-// import { STATUSES } from '../../const';
-// import { UNIT_OPTIONS } from '../../const';
+import {
+  Form,
+  Input,
+  Select,
+  InputNumber,
+  DatePicker,
+  TimePicker,
+  Modal,
+} from 'antd';
 import {
   getServiceProviders,
   addServiceAction,
@@ -16,7 +22,7 @@ function AddServiceForm({
   onCancel,
   serviceProviders,
   recipients,
-  serviceTypes,
+  serviceTypePrograms,
   serviceUnits,
   statuses,
   locations,
@@ -37,7 +43,6 @@ function AddServiceForm({
           form
             .validateFields()
             .then(values => {
-              console.log('values', values);
               form.resetFields();
               onCreate(values);
             })
@@ -72,12 +77,12 @@ function AddServiceForm({
               />
             </Form.Item>
           </div>
-          <Form.Item label="Duration of Service (in minutes)" name="duration">
-            <InputNumber type="number" size="large" min="0" />
+          <Form.Item label="Duration of Service (HH:MM:SS)" name="duration">
+            <TimePicker />
           </Form.Item>
           <Form.Item
             label="Recipient Name"
-            name="recipient_id"
+            name="primary_recipient_id"
             rules={[
               {
                 required: true,
@@ -100,7 +105,7 @@ function AddServiceForm({
           </Form.Item>
           <Form.Item
             label="Service Address (not always permanent address)"
-            name="address"
+            name="location_id"
             rules={[
               {
                 required: true,
@@ -125,7 +130,7 @@ function AddServiceForm({
           </Form.Item>
           <Form.Item
             label="Service Provider"
-            name="provider_id"
+            name="primary_provider_id"
             rules={[
               {
                 required: true,
@@ -147,8 +152,8 @@ function AddServiceForm({
             </Select>
           </Form.Item>
           <Form.Item
-            label="Service Type"
-            name="service_type_id"
+            label="Service Type Program"
+            name="service_type_program_id"
             rules={[
               {
                 required: true,
@@ -157,12 +162,12 @@ function AddServiceForm({
             ]}
           >
             <Select size="large" placeholder="Select Service Type">
-              {serviceTypes.map(item => (
+              {serviceTypePrograms.map(item => (
                 <Select.Option
-                  key={item.service_type_id}
-                  value={item.service_type_id}
+                  key={item.service_type_program_id}
+                  value={item.service_type_program_id}
                 >
-                  {item.service_type_name}
+                  {`${item.program_name} - ${item.service_type_name}`}
                 </Select.Option>
               ))}
             </Select>
@@ -187,7 +192,7 @@ function AddServiceForm({
           </Form.Item>
           <Form.Item
             label="Unit (Class, Tickets, etc)"
-            name="unit"
+            name="service_unit_id"
             rules={[
               {
                 required: true,
@@ -206,13 +211,13 @@ function AddServiceForm({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Quantity Of Units" name="quantity">
+          <Form.Item label="Quantity Of Units" name="service_quantity">
             <InputNumber type="number" size="large" min="0" />
           </Form.Item>
-          <Form.Item label="Value of Services In Dollars" name="value">
+          <Form.Item label="Value of Services In Dollars" name="service_value">
             <InputNumber type="number" size="large" min="0" />
           </Form.Item>
-          <Form.Item label="Case Notes" name="notes">
+          <Form.Item label="Case Notes" name="service_entry_notes">
             <TextArea
               placeholder="Enter Details..."
               showCount
@@ -221,7 +226,7 @@ function AddServiceForm({
           </Form.Item>
           <Form.Item
             label="Rating"
-            name="rating"
+            name="service_rating_id"
             rules={[
               {
                 required: true,
@@ -251,7 +256,7 @@ const mapStateToProps = state => {
   return {
     serviceProviders: state.service.serviceProviders,
     recipients: state.recipient.recipients,
-    serviceTypes: state.serviceType.serviceTypes,
+    serviceTypePrograms: state.serviceTypePrograms.serviceTypePrograms,
     serviceUnits: state.serviceUnit.serviceUnits,
     statuses: state.status.statuses,
     locations: state.location.locations,

@@ -7,7 +7,7 @@ import '../../../styles/Services.scss';
 import {
   addServiceAction,
   getServiceProviders,
-  getAllServiceTypesAction,
+  getAllServiceTypeProgramsAction,
   getAllProgramsAction,
   getAllRecipientAction,
   addServiceTypeAction,
@@ -27,9 +27,9 @@ function RenderServicesPage({
   getServiceProviders,
   getAllServicesAction,
   getAllRecipientAction,
-  getAllServiceTypesAction,
   getAllProgramsAction,
   addServiceTypeAction,
+  getAllServiceTypeProgramsAction,
   getAllServiceUnitAction,
   getAllStatusAction,
   getAllLocationAction,
@@ -42,7 +42,7 @@ function RenderServicesPage({
     getAllServicesAction();
     getServiceProviders();
     getAllRecipientAction();
-    getAllServiceTypesAction();
+    getAllServiceTypeProgramsAction();
     getAllProgramsAction();
     getAllServiceUnitAction();
     getAllStatusAction();
@@ -52,7 +52,7 @@ function RenderServicesPage({
     getAllServicesAction,
     getServiceProviders,
     getAllRecipientAction,
-    getAllServiceTypesAction,
+    getAllServiceTypeProgramsAction,
     getAllProgramsAction,
     getAllServiceUnitAction,
     getAllStatusAction,
@@ -113,7 +113,7 @@ function RenderServicesPage({
 const mapStateToProps = state => {
   return {
     serviceProviders: state.service.serviceProviders,
-    serviceTypes: state.serviceType.serviceTypes,
+    serviceTypePrograms: state.serviceTypePrograms.serviceTypePrograms,
     recipients: state.recipient.recipients,
     programs: state.program.programs,
     serviceUnits: state.serviceUnit.serviceUnits,
@@ -129,7 +129,7 @@ export default connect(mapStateToProps, {
   getAllServicesAction,
   getServiceProviders,
   getAllRecipientAction,
-  getAllServiceTypesAction,
+  getAllServiceTypeProgramsAction,
   getAllProgramsAction,
   getAllServiceUnitAction,
   getAllStatusAction,
