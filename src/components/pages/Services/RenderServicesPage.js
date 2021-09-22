@@ -61,8 +61,24 @@ function RenderServicesPage({
   ]);
 
   const onCreate = values => {
+    const { provided_at, duration } = values;
+    const service_date = provided_at.format('YYYY-MM-DD[T00:00:00.000Z]');
+    const service_time = provided_at.format('HH:mm:ss');
+    const service_duration = duration.format('HH:mm:ss');
+    const service_entry_data = {};
+
+    const newService = {
+      ...values,
+      service_date,
+      service_time,
+      service_duration,
+      service_entry_data,
+    };
+    delete newService.provided_at;
+    delete newService.duration;
+
     setVisible(false);
-    addServiceAction(values);
+    addServiceAction(newService);
   };
 
   const onCreateType = values => {
