@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Button } from 'antd';
 
-export default function LeftMenu({ visible, onClick }) {
+export default function LeftMenu({ visible, onClick, logout }) {
   const [key, setKey] = useState({ current: 'menu-dashboard' });
 
   const handleSelect = e => {
@@ -39,7 +39,7 @@ export default function LeftMenu({ visible, onClick }) {
         </Menu.Item>
       </Menu>
       <div className="ant-btn-container">
-        <Button>Log Out</Button>
+        <Button onClick={logout}>Log Out</Button>
       </div>
     </>
   );

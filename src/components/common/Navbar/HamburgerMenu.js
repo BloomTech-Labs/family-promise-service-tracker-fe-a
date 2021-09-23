@@ -5,7 +5,7 @@ import logo from '../../../assets/logo.png';
 import LeftMenu from './LeftMenu';
 import '../../../styles/DrawerMenu.scss';
 
-const HamburgerMenu = ({ onClick }) => {
+const HamburgerMenu = ({ click, logout }) => {
   const [visible, setVisible] = useState(false);
 
   const clickVisible = () => {
@@ -32,7 +32,7 @@ const HamburgerMenu = ({ onClick }) => {
         onClose={onClose}
         placement="left"
       >
-        <LeftMenu visible={clickVisible} onClick={onClick} />
+        <LeftMenu visible={clickVisible} onClick={click} logout={logout} />
       </Drawer>
     </Layout>
   );

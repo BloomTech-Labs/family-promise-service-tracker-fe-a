@@ -28,6 +28,14 @@ const NavbarHeader = ({ user, getUserAction }) => {
     setMedia({ match: e.matches });
   });
 
+  const handleLogout = () => {
+    localStorage.removeItem('okta-token-storage');
+    localStorage.removeItem('okta-cache-storage');
+    localStorage.removeItem('username');
+    history.push('/login');
+    window.location.reload();
+  };
+
   const onClick = path => {
     history.push(path);
   };
@@ -50,7 +58,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           media.match ? (
             <TabMenu userRole={user.role} avatar={user.avatarUrl} />
           ) : (
-            <HamburgerMenu onClick={onClick} />
+            <HamburgerMenu logout={handleLogout} click={onClick} />
           )
         ) : (
           <></>
