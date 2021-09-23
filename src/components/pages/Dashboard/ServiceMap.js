@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
-import ReactMapGL, { FlyToInterpolator } from 'react-map-gl';
+import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
+import purplePing from '../../../assets/purplePing.png';
+import yellowPing from '../../../assets/yellowPing.png';
+import bluePing from '../../../assets/bluePing.png';
+// Map for dashboard:
 
-export default function ServiceMap() {
+// Must have a token setup in a .env.local file
+// with the following format for map to render
+// REACT_APP_MAPBOX_TOKEN = "Token string"
+export default function ServiceMap(props) {
   const [viewport, setViewport] = useState({
     width: 5000,
     height: 500,
@@ -11,6 +18,7 @@ export default function ServiceMap() {
     zoom: 11,
   });
 
+  // Logic for reset button
   const resetViewport = () => {
     setViewport({
       ...viewport,
@@ -22,14 +30,43 @@ export default function ServiceMap() {
     });
   };
 
+  // Marker generator taking in data from props currently
+  // Currently hardcoded needs conditional logic to display
+  // different markers dynamically based on program type
+  const markers = React.useMemo(
+    () =>
+      props.data.map(dot => (
+        <Marker
+          key={dot.program}
+          longitude={dot.longitude}
+          latitude={dot.latitude}
+        >
+          <img src={yellowPing} />
+        </Marker>
+      )),
+    [props.data]
+  );
+
   return (
-    <div>
+    <div className="service-map">
       <ReactMapGL
         {...viewport}
         onViewportChange={nextViewport => setViewport(nextViewport)}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      />
+      >
+        {markers}
+      </ReactMapGL>
       <button onClick={resetViewport}>Reset</button>
     </div>
   );
 }
+
+// if (dot.program === "Prevention"){
+//   dot.style.backgroundColor = '#472D5B'
+// }
+// if (dot.program === "Shelter Support"){
+//   dot.style.backgroundColor = '#FEC357'
+// }
+// else {
+//   dot.style.backgroundColor = '#006FBA'
+// }

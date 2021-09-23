@@ -50,6 +50,13 @@ run: `npm install` to download all dependencies.
 run: `npm start` to start the live server. Note: must be running on localhost:3000
 g
 
+# Map setup
+
+Setting up map for dashboard:
+
+Must have a token setup in a .env.local file (must create file on fresh clone) with the following format for map to render
+` REACT_APP_MAPBOX_TOKEN = "Token string" `
+
 # Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
