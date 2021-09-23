@@ -5,8 +5,11 @@ import logo from '../../../assets/logo.png';
 import LeftMenu from './LeftMenu';
 import '../../../styles/DrawerMenu.scss';
 
+let current = 'menu-dashboard';
+
 const HamburgerMenu = ({ avatar, click, logout, user }) => {
   const [visible, setVisible] = useState(false);
+  const [key, setkey] = useState({ current });
 
   const clickVisible = () => {
     setVisible(!visible);
@@ -18,7 +21,14 @@ const HamburgerMenu = ({ avatar, click, logout, user }) => {
 
   return (
     <Layout>
-      <Menu>
+      <Menu
+        theme="light"
+        mode="horizontal"
+        className="sub-hambuger-menu"
+        id="hamburger-nav"
+        onDeselect={() => setkey({ current })}
+        selectedKeys={[key.current]}
+      >
         <Menu.Item key="hamburger-menu">
           <MenuOutlined onClick={clickVisible} />
         </Menu.Item>
@@ -34,8 +44,9 @@ const HamburgerMenu = ({ avatar, click, logout, user }) => {
       >
         <LeftMenu
           avatar={avatar}
+          current={current}
           visible={clickVisible}
-          onClick={click}
+          click={click}
           logout={logout}
           user={user}
         />
