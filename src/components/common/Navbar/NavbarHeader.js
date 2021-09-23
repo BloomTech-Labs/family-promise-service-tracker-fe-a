@@ -58,7 +58,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           media.match ? (
             <TabMenu userRole={user.role} avatar={user.avatarUrl} />
           ) : (
-            <HamburgerMenu logout={handleLogout} click={onClick} />
+            <HamburgerMenu user={user} logout={handleLogout} click={onClick} />
           )
         ) : (
           <></>

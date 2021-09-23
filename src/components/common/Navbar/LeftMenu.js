@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, Button } from 'antd';
+import { Menu, Button, Avatar } from 'antd';
 
-export default function LeftMenu({ visible, onClick, logout }) {
+export default function LeftMenu({ visible, onClick, logout, avatar, user }) {
   const [key, setKey] = useState({ current: 'menu-dashboard' });
 
   const handleSelect = e => {
@@ -10,6 +10,8 @@ export default function LeftMenu({ visible, onClick, logout }) {
   };
   return (
     <>
+      <Avatar size="large" icon={<img src={user.avatarUrl} alt="avatar" />} />
+      <div className="menu-text"> Hello {user.firstName}!</div>
       <Menu
         mode="inline"
         style={{ border: 'none' }}
