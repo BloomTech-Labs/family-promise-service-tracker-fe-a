@@ -5,12 +5,14 @@ import TabMenu from './TabMenu';
 import HamburgerMenu from './HamburgerMenu';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserAction } from '../../../state/actions';
+import { useHistory } from 'react-router';
 
 const NavbarHeader = ({ user, getUserAction }) => {
   const { authState, authService } = useOktaAuth();
   const [media, setMedia] = useState({
     match: window.matchMedia('(min-width: 769px)').matches,
   });
+  const history = useHistory();
 
   useEffect(() => {
     authState.isAuthenticated &&
@@ -25,6 +27,10 @@ const NavbarHeader = ({ user, getUserAction }) => {
     e.preventDefault();
     setMedia({ match: e.matches });
   });
+
+  const onClick = path => {
+    history.push(path);
+  };
 
   return (
     <div>
@@ -44,7 +50,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           media.match ? (
             <TabMenu userRole={user.role} avatar={user.avatarUrl} />
           ) : (
-            <HamburgerMenu />
+            <HamburgerMenu onClick={onClick} />
           )
         ) : (
           <></>
