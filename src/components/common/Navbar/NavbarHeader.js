@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import HamburgerMenu from './HamburgerMenu';
+import TabMenu from './TabMenu';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserAction } from '../../../state/actions';
 
@@ -30,7 +30,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
         }}
       >
         {user.role ? (
-          <HamburgerMenu userRole={user.role} avatar={user.avatarUrl} />
+          <TabMenu userRole={user.role} avatar={user.avatarUrl} />
         ) : (
           <></>
         )}
