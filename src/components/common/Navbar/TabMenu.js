@@ -9,6 +9,7 @@ import {
   UsergroupAddOutlined,
   LeftCircleOutlined,
   AppstoreOutlined,
+  FileSearchOutlined,
 } from '@ant-design/icons';
 import logo from '../../../assets/logo.png';
 import SubMenu from 'antd/lib/menu/SubMenu';
@@ -120,6 +121,13 @@ const TabMenu = ({ userRole, avatar }) => {
             onClick={() => onClick('/recipients')}
           >
             Recipients
+          </Menu.Item>
+          <Menu.Item
+            key="reports"
+            icon={<FileSearchOutlined />}
+            onClick={() => onClick('/reports')}
+          >
+            Reports
           </Menu.Item>
         </Menu>
       </div>

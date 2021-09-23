@@ -30,9 +30,9 @@ const HamburgerMenu = ({ avatar, click, logout, user }) => {
         selectedKeys={[key.current]}
       >
         <Menu.Item key="hamburger-menu">
-          <MenuOutlined onClick={clickVisible} />
+          <MenuOutlined onClick={clickVisible} style={{ fontSize: '24px' }} />
         </Menu.Item>
-        <Menu.Item className="top-bar-img">
+        <Menu.Item className="top-bar-img" style={{ border: 'none' }}>
           <img src={logo} alt="Family Promise Logo" />
         </Menu.Item>
       </Menu>
