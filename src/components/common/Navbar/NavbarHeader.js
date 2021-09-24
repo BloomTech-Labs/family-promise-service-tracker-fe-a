@@ -1,19 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import TabMenu from './TabMenu';
 import HamburgerMenu from './HamburgerMenu';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserAction } from '../../../state/actions';
+import { useHistory } from 'react-router';
 
 const NavbarHeader = ({ user, getUserAction }) => {
   const { authState, authService } = useOktaAuth();
-  console.log('user: ', user);
+  const [media, setMedia] = useState({
+    match: window.matchMedia('(min-width: 769px)').matches,
+  });
+  const history = useHistory();
+
   useEffect(() => {
     authState.isAuthenticated &&
       authService.getUser().then(user => {
         getUserAction(user.sub);
       });
   }, [authState.isAuthenticated, authService, getUserAction]);
+
+  let mql = window.matchMedia('(min-width: 769px)');
+
+  mql.addEventListener('change', e => {
+    e.preventDefault();
+    setMedia({ match: e.matches });
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('okta-token-storage');
+    localStorage.removeItem('okta-cache-storage');
+    localStorage.removeItem('username');
+    history.push('/login');
+    window.location.reload();
+  };
+
+  const onClick = path => {
+    history.push(path);
+  };
 
   return (
     <div>
@@ -30,7 +55,11 @@ const NavbarHeader = ({ user, getUserAction }) => {
         }}
       >
         {user.role ? (
-          <HamburgerMenu userRole={user.role} avatar={user.avatarUrl} />
+          media.match ? (
+            <TabMenu userRole={user.role} avatar={user.avatarUrl} />
+          ) : (
+            <HamburgerMenu user={user} logout={handleLogout} click={onClick} />
+          )
         ) : (
           <></>
         )}

@@ -1,128 +1,56 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
-import {
-  UserOutlined,
-  TeamOutlined,
-  ProjectOutlined,
-  ReconciliationOutlined,
-  UsergroupAddOutlined,
-  LeftCircleOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Menu, Drawer, Layout } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import logo from '../../../assets/logo.png';
-import SubMenu from 'antd/lib/menu/SubMenu';
-import Avatar from 'antd/lib/avatar/avatar';
+import LeftMenu from './LeftMenu';
+import '../../../styles/DrawerMenu.scss';
 
-const HamburgerMenu = ({ userRole, avatar }) => {
-  const history = useHistory();
+let current = 'menu-dashboard';
 
-  const handleLogout = () => {
-    localStorage.removeItem('okta-token-storage');
-    localStorage.removeItem('okta-cache-storage');
-    localStorage.removeItem('username');
-    history.push('/login');
-    window.location.reload();
+const HamburgerMenu = ({ avatar, click, logout, user }) => {
+  const [visible, setVisible] = useState(false);
+  const [key, setkey] = useState({ current });
+
+  const clickVisible = () => {
+    setVisible(!visible);
   };
 
-  const onClick = path => {
-    history.push(path);
+  const onClose = () => {
+    setVisible(false);
   };
 
   return (
-    <Layout
-      className="navBar"
-      style={{
-        backgroundColor: 'white',
-        maxWidth: '100%',
-        margin: '0px auto',
-      }}
-    >
-      <div className="navBar">
-        <Menu
-          theme="light"
-          mode="horizontal"
-          className="sub-navBar"
-          id="top-nav"
-        >
-          <Menu.Item
-            key="logo"
-            id="nav-logo"
-            onClick={() => onClick('/dashboard')}
-          >
-            <img src={logo} className="top-bar-img" alt="Family Promise Logo" />
-          </Menu.Item>
-          <SubMenu
-            key="profile"
-            id="nav-profile"
-            icon={
-              <Avatar size="large" icon={<img src={avatar} alt="avatar" />} />
-            }
-            title=""
-          >
-            <Menu.Item
-              key="viewProfile"
-              icon={<UserOutlined />}
-              onClick={() => onClick('/profile')}
-            >
-              My Profile
-            </Menu.Item>
-            <Menu.Item
-              key="6"
-              icon={<LeftCircleOutlined />}
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu.Item>
-          </SubMenu>
-        </Menu>
-        <Menu theme="light" mode="horizontal" className="sub-navBar">
-          <Menu.Item
-            key="dashboard"
-            icon={<AppstoreOutlined />}
-            onClick={() => onClick('/dashboard')}
-          >
-            Dashboard
-          </Menu.Item>
-          {userRole === 1 || userRole === 2 ? (
-            <Menu.Item
-              key="programs"
-              icon={<ProjectOutlined />}
-              onClick={() => onClick('/programs')}
-            >
-              Programs
-            </Menu.Item>
-          ) : (
-            <></>
-          )}
-          <Menu.Item
-            key="services"
-            icon={<ReconciliationOutlined />}
-            onClick={() => onClick('/services')}
-          >
-            Services
-          </Menu.Item>
-          {/* TO DO: update employee as Providers */}
-          {userRole === 1 ? (
-            <Menu.Item
-              key="employees"
-              icon={<TeamOutlined />}
-              onClick={() => onClick('/employees')}
-            >
-              Providers
-            </Menu.Item>
-          ) : (
-            <></>
-          )}
-          <Menu.Item
-            key="recipients"
-            icon={<UsergroupAddOutlined />}
-            onClick={() => onClick('/recipients')}
-          >
-            Recipients
-          </Menu.Item>
-        </Menu>
-      </div>
+    <Layout>
+      <Menu
+        theme="light"
+        mode="horizontal"
+        className="sub-hambuger-menu"
+        id="hamburger-nav"
+        onDeselect={() => setkey({ current })}
+        selectedKeys={[key.current]}
+      >
+        <Menu.Item key="hamburger-menu">
+          <MenuOutlined onClick={clickVisible} style={{ fontSize: '24px' }} />
+        </Menu.Item>
+        <Menu.Item className="top-bar-img" style={{ border: 'none' }}>
+          <img src={logo} alt="Family Promise Logo" />
+        </Menu.Item>
+      </Menu>
+      <Drawer
+        visible={visible}
+        closable={true}
+        onClose={onClose}
+        placement="left"
+      >
+        <LeftMenu
+          avatar={avatar}
+          current={current}
+          visible={clickVisible}
+          click={click}
+          logout={logout}
+          user={user}
+        />
+      </Drawer>
     </Layout>
   );
 };

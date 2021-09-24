@@ -1,0 +1,22 @@
+#hamburger-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#hamburger-nav .top-bar-img {
+  margin-left: auto;
+}
+
+.ant-drawer-body .ant-avatar {
+  display: block;
+  margin: 8% 0 8% 24px;
+}
+
+.ant-drawer-body .ant-btn-container {
+  text-align: center;
+  margin: 10% auto;
+}
+
+.menu-text {
+  margin: 3% 0 3% 24px;
+}

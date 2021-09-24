@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 
 function RenderProgramsPage({ addProgramAction, getAllProgramsAction, user }) {
   // instead of using Okta Groups, simple react-router-dom is used for convenience
-  // permission clauses based on "src/common/Navbar/HamburgerMenu.js"
+  // permission clauses based on "src/common/Navbar/TabMenu.js"
   const history = useHistory();
   if (user.role !== 1 && user.role !== 2) {
     history.push('/');
