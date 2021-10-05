@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, Modal, Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
+// import { DownOutlined } from '@ant-design/icons';
+// import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
 
 function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
 
   //state for which dropdown Value is selected
-  const [dropDownValue, setDropDownValue] = useState('');
+  // const [dropDownValue, setDropDownValue] = useState('');
 
-  const handleSelectCustomField = ({ key }) => {
-    setDropDownValue(key);
-  };
+  // const handleSelectCustomField = ({ key }) => {
+  //   setDropDownValue(key);
+  // };
 
   // const menu = (
   //   <Menu onClick={handleSelectCustomField}>
