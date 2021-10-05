@@ -1,28 +1,4 @@
-/* .mapMarkerStylezoomedOut is for styling of zoomed out wide view of map clusters  */
-/* .mapMarkerStyle is for zoomed in view styling of map services */
-
-.mapMarkerStyle {
-    background: blue;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: block;
-    left: -0.5rem;
-    top: -0.5rem;
-    position: relative;
-    border-radius: 1.5rem 1.5rem 0;
-    transform: rotate(45deg);
-    border: 1px solid #FFFFFF;
-}
-
-.mapMarkerStylezoomedOut {
-    background: blue;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: block;
-    left: -0.5rem;
-    top: -0.5rem;
-    position: relative;
-    border-radius: 1.5rem 1.5rem 0;
-    transform: rotate(45deg);
-    border: 1px solid #FFFFFF;
-}
+#map {
+    width: 100vw;
+    height: 100vh;
+  }
