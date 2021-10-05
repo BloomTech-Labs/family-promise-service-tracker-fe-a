@@ -4,6 +4,7 @@ import ReactMapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 import purplePing from '../../../assets/purplePing.png';
 import yellowPing from '../../../assets/yellowPing.png';
 import bluePing from '../../../assets/bluePing.png';
+import './styles.css';
 // Map for dashboard:
 
 // Must have a token setup in a .env.local file
@@ -33,6 +34,9 @@ export default function ServiceMap(props) {
   // Marker generator taking in data from props currently
   // Currently hardcoded needs conditional logic to display
   // different markers dynamically based on program type
+  // .mapMarkerStylezoomedOut is for styling of zoomed out wide view of map clusters
+  // .mapMarkerStyle is for zoomed in view styling of map services
+  // if else if else - style={{background: dot.program === "Prevention" ? '#472D5B' : dot.program === "Shelter Support" ? '#FEC357' : '#006FBA'}}>
   const markers = React.useMemo(
     () =>
       props.data.map(dot => (
@@ -41,7 +45,19 @@ export default function ServiceMap(props) {
           longitude={dot.longitude}
           latitude={dot.latitude}
         >
-          <img src={yellowPing} />
+          {/* <img src={yellowPing} /> */}
+
+          <div
+            className="mapMarkerStylezoomedOut"
+            style={{
+              background:
+                dot.program === 'Prevention'
+                  ? '#472D5B'
+                  : dot.program === 'Shelter Support'
+                  ? '#FEC357'
+                  : '#006FBA',
+            }}
+          ></div>
         </Marker>
       )),
     [props.data]

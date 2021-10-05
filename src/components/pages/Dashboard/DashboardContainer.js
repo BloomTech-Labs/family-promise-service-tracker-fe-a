@@ -15,7 +15,7 @@ function DashboardContainer() {
               // Currently for testing only
               [
                 {
-                  program: 'Shelter Support',
+                  program: 'Prevention',
                   longitude: -117.426048,
                   latitude: 47.658779,
                 },
