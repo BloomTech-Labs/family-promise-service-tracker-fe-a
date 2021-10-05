@@ -19,8 +19,6 @@ import './styles.css';
 // REACT_APP_MAPBOX_TOKEN = "Token string"
 export default function ServiceMap(props) {
   const [viewport, setViewport] = useState({
-    width: 5000,
-    height: 500,
     latitude: 47.658779,
     longitude: -117.426048,
     zoom: 11,
