@@ -3,6 +3,26 @@ import RenderDashboardPage from './RenderDashboardPage';
 import TitleComponent from '../../common/Title';
 import ServiceMap from './ServiceMap';
 function DashboardContainer() {
+  const geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: { id: '1', name: 'Prevention' },
+        geometry: { type: 'Point', coordinates: [-117.426048, 47.658779] },
+      },
+      {
+        type: 'Feature',
+        properties: { id: '2', name: 'Shelter Support' },
+        geometry: { type: 'Point', coordinates: [-117.5, 47.9] },
+      },
+      {
+        type: 'Feature',
+        properties: { id: '3', name: 'Aftercare' },
+        geometry: { type: 'Point', coordinates: [-117.5, 47.7] },
+      },
+    ],
+  };
   return (
     <div className="dashboard">
       <div className="sub-header center">
@@ -13,18 +33,7 @@ function DashboardContainer() {
               // Needs to be refactored to take in response from api with
               // data in this format
               // Currently for testing only
-              [
-                {
-                  program: 'Shelter Support',
-                  longitude: -117.426048,
-                  latitude: 47.658779,
-                },
-                {
-                  program: 'Shelter Support',
-                  longitude: -117.5,
-                  latitude: 47.9,
-                },
-              ]
+              geojson
             }
           />
         </div>
