@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, Modal, Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
+// import { DownOutlined } from '@ant-design/icons';
+// import CC_NumberInput from './CustomizableComponents/CC_NumberInput';
 
 function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
   const [form] = Form.useForm();
 
   //state for which dropdown Value is selected
-  const [dropDownValue, setDropDownValue] = useState('');
+  // const [dropDownValue, setDropDownValue] = useState('');
 
-  const handleSelectCustomField = ({ key }) => {
-    setDropDownValue(key);
-  };
+  // const handleSelectCustomField = ({ key }) => {
+  //   setDropDownValue(key);
+  // };
 
-  const menu = (
-    <Menu onClick={handleSelectCustomField}>
-      <Menu.Item key="Number" value="Number">
-        <a>Number</a>
-      </Menu.Item>
-      <Menu.Item key="Text">
-        <a>Text</a>
-      </Menu.Item>
-      <Menu.Item key="Dropdown">
-        <a>Dropdown</a>
-      </Menu.Item>
-      <Menu.Item key="Checkboxes">
-        <a>Checkboxes</a>
-      </Menu.Item>
-      <Menu.Item key="RadioButtons">
-        <a>Radio Buttons</a>
-      </Menu.Item>
-    </Menu>
-  );
+  // const menu = (
+  //   <Menu onClick={handleSelectCustomField}>
+  //     <Menu.Item key="Number" value="Number">
+  //       <a>Number</a>
+  //     </Menu.Item>
+  //     <Menu.Item key="Text">
+  //       <a>Text</a>
+  //     </Menu.Item>
+  //     <Menu.Item key="Dropdown">
+  //       <a>Dropdown</a>
+  //     </Menu.Item>
+  //     <Menu.Item key="Checkboxes">
+  //       <a>Checkboxes</a>
+  //     </Menu.Item>
+  //     <Menu.Item key="RadioButtons">
+  //       <a>Radio Buttons</a>
+  //     </Menu.Item>
+  //   </Menu>
+  // );
 
   return (
     <>
@@ -64,7 +64,7 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
           }}
         >
           <Form.Item
-            name="name"
+            name="service_type_name"
             label="Service Name"
             rules={[
               {
@@ -80,21 +80,29 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
             label="Program"
             rules={[
               {
-                // required: true
+                required: true,
                 message: 'Please input the program type',
               },
             ]}
           >
-            <Select size="large" placeholder="Select Program">
+            <Select
+              mode="multiple"
+              allowClear
+              size="large"
+              placeholder="Select Program"
+            >
               {programs.map(item => (
-                <Select.Option key={item.id} value={item.id}>
+                <Select.Option key={item.program_id} value={item.program_id}>
                   {item.program_name}
                 </Select.Option>
               ))}
             </Select>
           </Form.Item>
 
-          <Form.Item label="Service Description" name="description">
+          <Form.Item
+            label="Service Description"
+            name="service_type_description"
+          >
             <Input.TextArea
               placeholder="Enter Details..."
               showCount
@@ -102,16 +110,16 @@ function AddServiceTypeForm({ onCreate, onCancel, visible, programs }) {
             />
           </Form.Item>
           {/* <button onClick={}>Add a custom Service Field</button> */}
-          <Dropdown name="dropdown_custom" overlay={menu} trigger={['click']}>
+          {/* <Dropdown name="dropdown_custom" overlay={menu} trigger={['click']}>
             <a
               className="custom_dropdown_selector"
               onClick={e => e.preventDefault()}
             >
               Add A Custom Service Field <DownOutlined />
             </a>
-          </Dropdown>
+          </Dropdown> */}
 
-          {dropDownValue === 'Number' ? <CC_NumberInput /> : <></>}
+          {/* {dropDownValue === 'Number' ? <CC_NumberInput /> : <></>} */}
           {/* // Add these in and build this out in the forms>CustomizableComponents folder */}
           {/* {dropDownValue === 'Text' ? (
             <CC_TextInput />
