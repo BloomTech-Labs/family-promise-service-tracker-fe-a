@@ -14,6 +14,8 @@ import { store } from './state/index';
 import 'antd/dist/antd.less';
 import './app.scss';
 
+import HouseholdEligibility from './components/forms/HouseholdEligibility';
+// new implicmation
 import { MyProfile } from './components/pages/MyProfile';
 import { DashboardPage } from './components/pages/Dashboard';
 import { EmployeesPage } from './components/pages/Employees';
@@ -69,6 +71,7 @@ function App() {
         <SecureRoute path="/services" component={ServicesPage} />
         <SecureRoute path="/dashboard" component={DashboardPage} />
         <Route path="/customcomponent" component={CC_NumberInput} />
+        <Route path-="/household" component={HouseholdEligibility} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
