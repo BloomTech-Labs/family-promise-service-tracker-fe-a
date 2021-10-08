@@ -7,9 +7,9 @@ export const clusterLayer = {
     'circle-color': [
       'step',
       ['get', 'point_count'],
-      '#472D5B',
+      '#cad1d8',
       100,
-      '#FEC357',
+      '#cad1d8',
       750,
       '#006FBA',
     ],
@@ -35,7 +35,7 @@ export const unclusteredPointLayer = {
   source: 'programClusters',
   filter: ['!', ['has', 'point_count']],
   paint: {
-    'circle-color': '#11b4da',
+    'circle-color': '#FEC357',
     'circle-radius': 4,
     'circle-stroke-width': 1,
     'circle-stroke-color': '#fff',

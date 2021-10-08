@@ -15,6 +15,8 @@ export default function ServiceMap(props) {
     zoom: 11,
     bearing: 0,
     pitch: 0,
+    width: 5000,
+    height: 500,
   });
 
   const mapRef = useRef(null);
@@ -38,7 +40,7 @@ export default function ServiceMap(props) {
         <ReactMapGL
           {...viewport}
           width="100vw"
-          height="50vh"
+          height="70vh"
           mapStyle="mapbox://styles/mapbox/light-v9"
           onViewportChange={setViewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
