@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function HouseholdEligibility() {
+//  Displayable list prepares for a dynamic setting with redux
+
+const HouseholdEligibility = props => {
   return (
     <ul>
+      <h3> Services </h3>
       <li className="eligible"> Shower</li>
       <li className="eligible">Laundry </li>
       <li className="eligible"> Case Managment </li>
@@ -17,6 +21,10 @@ function HouseholdEligibility() {
       <li className="eligible"> Counseling </li>
     </ul>
   );
-}
+};
 
-export default HouseholdEligibility;
+const stateToProps = state => ({
+  //services: state.service.services,
+});
+
+export default connect(stateToProps)(HouseholdEligibility);
