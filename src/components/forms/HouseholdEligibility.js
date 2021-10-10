@@ -4,7 +4,7 @@ import List from './lists';
 
 //  Displayable list prepares for a dynamic setting
 
-const HouseholdEligibility = () => (
+const HouseholdEligibility = props => (
   <div>
     <h3> Services </h3>
     <List />
@@ -13,4 +13,12 @@ const HouseholdEligibility = () => (
   </div>
 );
 
-export default HouseholdEligibility;
+const mapStateToprops = state => {
+  console.log(state);
+  return {
+    services: state.services,
+    Laundry: state.Laundry,
+  };
+};
+
+export default connect(mapStateToprops)(HouseholdEligibility);

@@ -1,18 +1,22 @@
 // container
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class list extends Component {
-  render() {
-    return (
-      <ul>
-        <li> Prevention</li>
-        <li> Sheleter Support</li>
-        <li> AfterCare </li>
-      </ul>
-    );
-  }
+const list = props => {
+  return (
+    <div>
+      <ul>Lists </ul>
+    </div>
+  );
+};
+
+// takes an application state and passes to the component as props. You can now pass the service as props.
+function mapStateToProps(state) {
+  return {
+    services: state.services,
+    Laundry: state.Laundry,
+  };
 }
 
-export default list;
+export default connect(mapStateToProps)(list);

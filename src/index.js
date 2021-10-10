@@ -15,7 +15,6 @@ import 'antd/dist/antd.less';
 import './app.scss';
 
 import HouseholdEligibility from './components/forms/HouseholdEligibility';
-// new implicmation
 import { MyProfile } from './components/pages/MyProfile';
 import { DashboardPage } from './components/pages/Dashboard';
 import { EmployeesPage } from './components/pages/Employees';
@@ -28,6 +27,10 @@ import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
 import { NavbarHeader } from './components/common/index';
 import CC_NumberInput from './components/forms/CustomizableComponents/CC_NumberInput';
+
+//const store = createStore(
+//allReducers,
+//);
 
 ReactDOM.render(
   <Router>
