@@ -1,22 +1,13 @@
 import * as React from 'react';
 import { useState, useRef } from 'react';
 // import ReactMapGL, { Source, Layer } from 'react-map-gl';
-import ReactMapGL, {
-  Marker,
-  Source,
-  Layer,
-  Popup,
-  NavigationControl,
-} from 'react-map-gl';
-import {
-  clusterLayer,
-  clusterCountLayer,
-  unclusteredPointLayer,
-} from './layers';
+import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
+import { clusterLayer } from './layers';
 import './styles.css';
 import CITIES from './cities.json';
 import CityInfo from './City-Info';
 import CityPin from './city-pin';
+
 export default function ServiceMap(props) {
   const [viewport, setViewport] = useState({
     latitude: 47.658779,
@@ -58,7 +49,7 @@ export default function ServiceMap(props) {
     return (
       popupInfo && (
         <Popup
-          tipSize={5}
+          tipSize={10}
           anchor="bottom"
           longitude={popupInfo.longitude}
           latitude={popupInfo.latitude}
