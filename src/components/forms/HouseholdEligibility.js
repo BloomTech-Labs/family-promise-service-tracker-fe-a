@@ -16,7 +16,7 @@ const HouseholdEligibility = props => (
 const mapStateToprops = state => {
   console.log(state);
   return {
-    services: state.services,
+    Showers: state.Showers,
     Laundry: state.Laundry,
   };
 };
