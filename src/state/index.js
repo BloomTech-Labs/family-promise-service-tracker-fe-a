@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import {
+  activeService,
   userReducer,
   serviceReducer,
   serviceTypeReducer,
@@ -21,6 +22,7 @@ import {
 } from './reducers/index';
 // test
 export const rootReducer = combineReducers({
+  active: activeService,
   user: userReducer,
   service: serviceReducer,
   serviceType: serviceTypeReducer,

@@ -1,24 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import List from './lists';
+import List from './HouseholdLists';
+import ServiceDetail from '../forms/HouseholdActive';
 
-//  Displayable list prepares for a dynamic setting
-
+//  main layout
 const HouseholdEligibility = props => (
   <div>
     <h3> Services </h3>
     <List />
     <hr />
-    <h3> Details</h3>
+    <h3> Household Eligibility</h3>
+    <ServiceDetail />
   </div>
 );
 
 const mapStateToprops = state => {
-  console.log(state);
-  return {
-    Showers: state.Showers,
-    Laundry: state.Laundry,
-  };
+  return {};
 };
 
 export default connect(mapStateToprops)(HouseholdEligibility);
