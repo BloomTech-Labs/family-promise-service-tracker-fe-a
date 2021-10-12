@@ -33,7 +33,6 @@ export default function ServiceMap(props) {
         key={`marker-${index}`}
         longitude={location.longitude}
         latitude={location.latitude}
-        n
       >
         {/* Changes the color of the marker through "property_name" and the dummy data from cities.json through the city-pin.js file | Will be updated once we get BE data*/}
         <CityPin
