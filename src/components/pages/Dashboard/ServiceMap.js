@@ -93,7 +93,7 @@ export default function ServiceMap(props) {
         >
           {/* To make the marker, call the renderMarker function with two parameters, location and index */}
           {CITIES.map(renderMarker)}
-          {/* if the location is exists, the popup is shown on the map */}
+          {/* If the location is exists, the popup is shown on the map */}
           {/* Next step is to reenable the React-Map-GL Markers and Clusters using geojson and props.data */}
           {/* Then we can disable the svg markers in place and reenable popups through the React-Map-GL markers and or clusters  */}
           {renderPopUp()}

@@ -54,7 +54,7 @@ const NavbarHeader = ({ user, getUserAction }) => {
           background: 'white',
         }}
       >
-        {!user.role ? (
+        {user.role ? (
           media.match ? (
             <TabMenu userRole={user.role} avatar={user.avatarUrl} />
           ) : (
