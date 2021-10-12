@@ -24,7 +24,8 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingOutlined } from '@ant-design/icons';
-import { NavbarHeader } from './components/common/index';
+// import { NavbarHeader } from './components/common/index';
+import NavbarHeader from './components/common/Navbar/NavbarHeader.js';
 import CC_NumberInput from './components/forms/CustomizableComponents/CC_NumberInput';
 
 ReactDOM.render(
