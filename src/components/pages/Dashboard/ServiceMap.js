@@ -59,18 +59,6 @@ export default function ServiceMap(props) {
       )
     );
   };
-  // Currently hardcoded needs conditional logic to display
-  // different markers dynamically based on program type (line 44)
-  // See Figma prototype for example
-  const markers = React.useMemo(
-    () =>
-      props.data.map(dot => (
-        <Marker longitude={dot.longitude} latitude={dot.latitude}>
-          <img src={yellowPing} />
-        </Marker>
-      )),
-    [props.data]
-  );
 
   return (
     <div className="service-map">
