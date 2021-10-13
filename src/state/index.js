@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import {
+  activeService,
   userReducer,
   serviceReducer,
   serviceTypeReducer,
@@ -10,6 +11,7 @@ import {
   recipientReducer,
   householdReducer,
   statusReducer,
+  householdElig,
   serviceUnitReducer,
   locationReducer,
   serviceRatingReducer,
@@ -20,6 +22,7 @@ import {
 } from './reducers/index';
 // test
 export const rootReducer = combineReducers({
+  active: activeService,
   user: userReducer,
   service: serviceReducer,
   serviceType: serviceTypeReducer,
@@ -29,6 +32,7 @@ export const rootReducer = combineReducers({
   household: householdReducer,
   status: statusReducer,
   serviceUnit: serviceUnitReducer,
+  services: householdElig,
   location: locationReducer,
   serviceRating: serviceRatingReducer,
   gender: genderReducer,

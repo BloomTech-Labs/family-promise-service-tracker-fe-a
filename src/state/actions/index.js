@@ -6,6 +6,7 @@
 
 export { getUserAction, updateUserAction } from './userActions';
 
+export { toggleEditing } from './householdeligibilityActions';
 export {
   getAllServicesAction,
   getServiceByIdAction,
