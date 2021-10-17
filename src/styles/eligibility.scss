@@ -1,84 +1,81 @@
 //General Dashboard Tab
 
 .dashboard .title-container {
-    padding: 0%;
-  }
-  .dashboard * {
-    max-width: 100%;
-  }
-  
-  // Map Styles
-  
- 
-  
-  //Eligibility Section Of Dashboard Tab
-  
-  .service{
-    display: flex;
-    flex-direction: space-between;
-    
-  }
-  
-  .serviceButtonPurple{
-color: white;
-background-color: #DA70D6;
-justify-content:center;
-width:100px;
-
-
-
-  }
-
-  .serviceButtonYellow{
-    color: white;
-    background-color: #FFA500;
-    width:100px;
-
+  padding: 0%;
+}
+.dashboard * {
+  max-width: 100%;
 }
 
+// Map Styles
 
-.serviceButtonBlue{
+//Eligibility Section Of Dashboard Tab
+
+.service {
+  display: flex;
+  flex-direction: space-between;
+}
+
+// dashboard button
+.serviceButtonPurple {
   color: white;
-  background-color: #4169E1;
-  width:100px;
-
+  background-color: #da70d6;
+  justify-content: center;
+  width: 100px;
 }
 
-.Household{
-  display:flex;
+// dashboard button
+.serviceButtonYellow {
+  color: white;
+  background-color: #ffa500;
+  width: 100px;
+}
+
+// dashboard button
+.serviceButtonBlue {
+  color: white;
+  background-color: #4169e1;
+  width: 100px;
+}
+
+// Household Text
+.Household {
+  display: flex;
   justify-content: space-between;
 }
 
-
-.House{
- 
-  color: #A9A9A9;
-margin-top: 38px;
-
+// Household Text Bellow Map
+.House {
+  color: #a9a9a9;
+  margin-top: 38px;
 }
 
-
-.Eligiable{
-  color: #A9A9A9;
-
+//Eligiable  Bellow Map
+.Eligiable {
+  color: #a9a9a9;
 }
 
-
-.adjoinHouse{
-  width:1000px;
-  display:flex;
-  color: #A9A9A9;
-
+// Grouping both text
+.adjoinHouse {
+  width: 1000px;
+  display: flex;
+  color: #a9a9a9;
 }
 
-.serviceList{
-  color: #A9A9A9;
- 
+// Color for list bellow dashboard
+.serviceList {
+  color: #a9a9a9;
 }
 
-.groupedList{
-display:flex;
-justify-content:space-between;
-margin-left: 28rem;
-margin-right:28rem;
-};
+// grouping the list in twos bellow dashboard
+.groupedList {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 28rem;
+  margin-right: 28rem;
+}
+
+// resizing logo
+#logo{
+width:10rem;
+}

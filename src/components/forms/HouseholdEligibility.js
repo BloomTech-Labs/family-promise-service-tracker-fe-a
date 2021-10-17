@@ -8,11 +8,19 @@ import logo from '../../../src/assets/logo.png';
 //  main layout
 const HouseholdEligibility = props => (
   <div>
+    <img id="logo" src={logo} alt="Logo" />
     <List />
     <hr />
     <ServiceMap />
-    <RenderDashboardPage />
-    <ServiceDetail />
+    <div>
+      <div>
+        <RenderDashboardPage />
+      </div>
+
+      <div>
+        <ServiceDetail />
+      </div>
+    </div>
   </div>
 );
 

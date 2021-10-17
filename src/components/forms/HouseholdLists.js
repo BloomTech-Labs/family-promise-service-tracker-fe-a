@@ -16,7 +16,6 @@ function HouseholdList(props) {
       {props.services.map(service => {
         return (
           <div key={service.id} onClick={() => props.selectUser(service)}>
-            <img src={logo} alt="Logo" />
             <div>
               <header className="service">
                 <Button type="primary" className="serviceButtonPurpl">
