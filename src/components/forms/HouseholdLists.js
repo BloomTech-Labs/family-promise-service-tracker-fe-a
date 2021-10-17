@@ -8,17 +8,19 @@ import { selectUser } from '../../state/actions/householdeligibilityActions';
 
 function HouseholdList(props) {
   return (
-    <div>
-      {console.log(props.services.services)}{' '}
+    <div className="service">
+      {console.log(props.services.services)}
       {props.services.map(service => {
         return (
           <div key={service.id} onClick={() => props.selectUser(service)}>
-            {' '}
-            <h5>{service.Prevention} </h5> <h5>{service.Shelter} </h5>{' '}
-            <h5>{service.Aftercare} </h5>
+            <div className="service">
+              <h5 className="serviceButtonPurple">{service.Prevention} </h5>
+              <h5 className="serviceButtonYellow">{service.Shelter} </h5>
+              <h5 className="serviceButtonBlue">{service.Aftercare} </h5>
+            </div>
           </div>
         );
-      })}{' '}
+      })}
     </div>
   );
 }

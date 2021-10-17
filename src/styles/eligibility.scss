@@ -1,0 +1,58 @@
+//General Dashboard Tab
+
+.dashboard .title-container {
+    padding: 0%;
+  }
+  .dashboard * {
+    max-width: 100%;
+  }
+  
+  // Map Styles
+  
+  .service {
+    width: 50%;
+    height: 35%;
+  
+  }
+  
+  //Eligibility Section Of Dashboard Tab
+  
+  .service{
+    display: flex;
+    flex-direction: row;
+  
+    text-align: center;
+
+    
+  }
+  .eligibilityForm {
+    input {
+      width: 18rem;
+    }
+  }
+  
+  .serviceButtonPurple{
+     text-align: center;
+    justify-content: center;
+    
+    margin: 1rem;
+    margin-left: 10rem;
+    padding: 0.00rem;
+  
+  }
+
+  .serviceButtonYellow{
+    text-align: center;
+   justify-content: center;
+   margin: 1rem;
+   padding: 0.00rem;
+ 
+ }
+
+ .serviceButtonBlue{
+  text-align: center;
+ justify-content: center;
+ margin: 1rem;
+ padding: 0.00rem;
+
+}
