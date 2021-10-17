@@ -33,35 +33,47 @@ export default function EligibilityDashboard() {
 
   return (
     <div className="eligibilityDashboardContainer">
-      <h1>Eligibility</h1>
       <div className="eligibilityForm">
         <form
           onSubmit={event => {
             getEligibility(event, householdId);
           }}
         >
-          <label htmlFor="householdId">
-            <input
-              name="householdId"
-              id="householdId"
-              placeholder="Enter A Household ID"
-              value={householdId}
-              onChange={handleChange}
-            />
-          </label>
-          <button>Submit</button>
+          <div className="adjoin">
+            <div>
+              <h3 className="House"> Household </h3>
+              <h1 className="Eligiable"> Eligibility </h1>
+            </div>
+            <div>
+              <label htmlFor="householdId">
+                <input
+                  name="householdId"
+                  id="householdId"
+                  placeholder="Enter A Household ID"
+                  value={householdId}
+                  onChange={handleChange}
+                />
+              </label>
+              <button>Submit</button>
+            </div>
+          </div>
         </form>
-      </div>
-      <div className="eligibilityResults">
-        <p>Eligible For Residential Assistance</p>
-        <p className="resultAnswer">
-          {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
-        </p>
-        <p>Eligible For Reduced Bus Fare</p>
-        <p className="resultAnswer">
-          {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
-        </p>
       </div>
     </div>
   );
 }
+
+// Removed for styling purposes.
+
+//<div className="eligibilityResults">
+//  <p>Eligible For Residential Assistance</p>
+// <p className="resultAnswer">
+// {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
+// </p>
+// <p>Eligible For Reduced Bus Fare</p>
+//<p className="resultAnswer">
+// {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
+//</p>
+//</div>
+//
+//

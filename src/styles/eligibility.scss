@@ -9,50 +9,76 @@
   
   // Map Styles
   
-  .service {
-    width: 50%;
-    height: 35%;
-  
-  }
+ 
   
   //Eligibility Section Of Dashboard Tab
   
   .service{
     display: flex;
-    flex-direction: row;
-  
-    text-align: center;
-
+    flex-direction: space-between;
     
-  }
-  .eligibilityForm {
-    input {
-      width: 18rem;
-    }
   }
   
   .serviceButtonPurple{
-     text-align: center;
-    justify-content: center;
-    
-    margin: 1rem;
-    margin-left: 10rem;
-    padding: 0.00rem;
-  
+color: white;
+background-color: #DA70D6;
+justify-content:center;
+width:100px;
+
+
+
   }
 
   .serviceButtonYellow{
-    text-align: center;
-   justify-content: center;
-   margin: 1rem;
-   padding: 0.00rem;
- 
- }
-
- .serviceButtonBlue{
-  text-align: center;
- justify-content: center;
- margin: 1rem;
- padding: 0.00rem;
+    color: white;
+    background-color: #FFA500;
+    width:100px;
 
 }
+
+
+.serviceButtonBlue{
+  color: white;
+  background-color: #4169E1;
+  width:100px;
+
+}
+
+.Household{
+  display:flex;
+  justify-content: space-between;
+}
+
+
+.House{
+ 
+  color: #A9A9A9;
+margin-top: 38px;
+
+}
+
+
+.Eligiable{
+  color: #A9A9A9;
+
+}
+
+
+.adjoinHouse{
+  width:1000px;
+  display:flex;
+  color: #A9A9A9;
+
+}
+
+.serviceList{
+  color: #A9A9A9;
+ 
+}
+
+.groupedList{
+display:flex;
+justify-content:space-between;
+margin-left: 28rem;
+margin-right:28rem;
+};
