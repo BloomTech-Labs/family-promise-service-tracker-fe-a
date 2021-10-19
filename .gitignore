@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
@@ -29,3 +30,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+\package.json
+\package-lock.json
