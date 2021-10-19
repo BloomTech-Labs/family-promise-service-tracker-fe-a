@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState, useRef } from 'react';
 // import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
-import { clusterLayer } from './layers';
+// import { clusterLayer } from './layers';
+// import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './layers';
 import './styles.css';
 import CITIES from './cities.json';
 import CityInfo from './City-Info';
@@ -62,14 +63,6 @@ export default function ServiceMap(props) {
 
   return (
     <div className="service-map">
-      {/* <ReactMapGL
-        {...viewport}
-        onViewportChange={nextViewport => setViewport(nextViewport)}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      >
-        {markers}
-      </ReactMapGL>
-      <button onClick={resetViewport}>Reset</button> */}
       <>
         <ReactMapGL
           {...viewport}
@@ -78,7 +71,7 @@ export default function ServiceMap(props) {
           mapStyle="mapbox://styles/mapbox/light-v9"
           onViewportChange={updateViewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          interactiveLayerIds={[clusterLayer.id]}
+          // interactiveLayerIds={[clusterLayer.id]}
           ref={mapRef}
         >
           {/* To make the marker, call the renderMarker function with two parameters, location and index */}
@@ -87,18 +80,6 @@ export default function ServiceMap(props) {
           {/* Next step is to reenable the React-Map-GL Markers and Clusters using geojson and props.data */}
           {/* Then we can disable the svg markers in place and reenable popups through the React-Map-GL markers and or clusters  */}
           {renderPopUp()}
-          {/* <Source
-            id="programClusters"
-            type="geojson"
-            data={props.data}
-            cluster={true}
-            clusterMaxZoom={14}
-            clusterRadius={50}
-          >
-            <Layer {...clusterLayer} />
-            <Layer {...clusterCountLayer} />
-            <Layer {...unclusteredPointLayer} />
-          </Source> */}
         </ReactMapGL>
         {/* <button onClick={resetViewport}>Reset</button>  */}
       </>
