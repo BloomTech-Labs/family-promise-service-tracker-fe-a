@@ -14,7 +14,6 @@ import { store } from './state/index';
 import 'antd/dist/antd.less';
 import './app.scss';
 
-import HouseholdEligibility from './components/forms/HouseholdEligibility';
 import { MyProfile } from './components/pages/MyProfile';
 import { DashboardPage } from './components/pages/Dashboard';
 import { EmployeesPage } from './components/pages/Employees';
@@ -28,6 +27,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 // import { NavbarHeader } from './components/common/index';
 import NavbarHeader from './components/common/Navbar/NavbarHeader.js';
 import CC_NumberInput from './components/forms/CustomizableComponents/CC_NumberInput';
+import { ReportsPage } from './components/pages/Reports';
 
 //const store = createStore(
 //allReducers,
@@ -74,8 +74,8 @@ function App() {
         <SecureRoute path="/recipients" component={RecipientsPage} />
         <SecureRoute path="/services" component={ServicesPage} />
         <SecureRoute path="/dashboard" component={DashboardPage} />
+        <SecureRoute path-="/reports" component={ReportsPage} />
         <Route path="/customcomponent" component={CC_NumberInput} />
-        <Route path-="/household" component={HouseholdEligibility} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
