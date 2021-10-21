@@ -1,33 +1,26 @@
 // container
 import React, { Component } from 'react';
+import { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectUser } from '../../state/actions/householdeligibilityActions';
 import 'antd/dist/antd.css';
 import { Button } from 'antd';
+
 import logo from '../../../src/assets/logo.png';
 // This component provides an option for the user to click and observe disparate eligibility for the surrounding area.
 
 function HouseholdList(props) {
   return (
-    <div className="service">
-      <Button> All </Button>
+    <div>
       {console.log(props.services.services)}
       {props.services.map(service => {
         return (
           <div key={service.id} onClick={() => props.selectUser(service)}>
-            <div>
-              <header className="service">
-                <Button type="primary" className="serviceButtonPurpl">
-                  {service.Prevention}{' '}
-                </Button>
-                <Button type="primary" className="serviceButtonYello">
-                  {service.Shelter}{' '}
-                </Button>
-                <Button type="primary" className="serviceButtonBlu">
-                  {service.Aftercare}{' '}
-                </Button>
-              </header>
+            <div className="serviceButtons">
+              <h3 id="yellowButton">{service.Prevention}</h3>
+              <h3 id="blueButton">{service.Shelter}</h3>
+              <h3 id="greenButton">{service.Aftercare}</h3>
             </div>
           </div>
         );

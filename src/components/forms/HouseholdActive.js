@@ -17,7 +17,6 @@ function ServiceDetail(props) {
         <h4 className="serviceList"> Showers{props.active.Showers} </h4>
         <h4 className="serviceList"> Laundry {props.active.Laundry}</h4>
         <h4 className="serviceList">
-          {' '}
           CaseManagement {props.active.CaseManagement}
         </h4>
         <h4 className="serviceList"> FoodBoxes {props.active.FoodBoxes}</h4>
@@ -26,26 +25,21 @@ function ServiceDetail(props) {
       </div>
       <div>
         <h4 className="serviceList">
-          {' '}
-          LifeSkillsClassess{props.active.LifeSkillsClassess}{' '}
+          LifeSkillsClassess{props.active.LifeSkillsClassess}
         </h4>
         <h4 className="serviceList">
-          {' '}
-          SecurityDeposit{props.active.SecurityDeposit}{' '}
+          SecurityDeposit{props.active.SecurityDeposit}
         </h4>
         <h4 className="serviceList"> BusToken {props.active.BusToken} </h4>
         <h4 className="serviceList"> BusPasses{props.active.BusPasses} </h4>
         <h4 className="serviceList">
-          {' '}
-          RentalAssitance{props.active.RentalAssistance}{' '}
+          RentalAssitance{props.active.RentalAssistance}
         </h4>
         <h4 className="serviceList">
-          {' '}
-          FoodAssistance{props.active.FoodAssistance}{' '}
+          FoodAssistance{props.active.FoodAssistance}
         </h4>
         <h4 className="serviceList">
-          {' '}
-          MentalHealth {props.active.MentalHealth}{' '}
+          MentalHealth {props.active.MentalHealth}
         </h4>
       </div>
     </div>

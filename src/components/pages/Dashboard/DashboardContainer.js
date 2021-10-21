@@ -2,6 +2,8 @@ import React from 'react';
 import RenderDashboardPage from './RenderDashboardPage';
 import TitleComponent from '../../common/Title';
 import ServiceMap from './ServiceMap';
+import ServiceDetail from '../../forms/HouseholdActive';
+import List from '../../forms/HouseholdLists';
 function DashboardContainer() {
   const geojson = {
     type: 'FeatureCollection',
@@ -113,6 +115,7 @@ function DashboardContainer() {
       <div className="sub-header center">
         <TitleComponent TitleText="Dashboard" className="center" />
         <div>
+          <List />
           <ServiceMap
             data={
               // Needs to be refactored to take in response from api with
@@ -124,6 +127,7 @@ function DashboardContainer() {
         </div>
       </div>
       <RenderDashboardPage className="dashboard-page" />
+      <ServiceDetail />
     </div>
   );
 }

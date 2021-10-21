@@ -3,7 +3,7 @@ import * as React from 'react';
 
 function CityInfo(props) {
   const { info } = props;
-  const displayName = `${info.city}, ${info.state}`;
+  const displayName = `${info.title}, ${info.body}`;
 
   return (
     <div>

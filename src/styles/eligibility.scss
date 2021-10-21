@@ -13,35 +13,12 @@
 
 .service {
   display: flex;
-  flex-direction: space-between;
-}
-
-// dashboard button
-.serviceButtonPurple {
-  color: white;
-  background-color: #da70d6;
-  justify-content: center;
-  width: 100px;
-}
-
-// dashboard button
-.serviceButtonYellow {
-  color: white;
-  background-color: #ffa500;
-  width: 100px;
-}
-
-// dashboard button
-.serviceButtonBlue {
-  color: white;
-  background-color: #4169e1;
-  width: 100px;
 }
 
 // Household Text
 .Household {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 // Household Text Bellow Map
@@ -70,12 +47,52 @@
 // grouping the list in twos bellow dashboard
 .groupedList {
   display: flex;
-  justify-content: space-between;
-  margin-left: 28rem;
-  margin-right: 28rem;
+  justify-content: space-evenly;
+  margin-top: 2rem;
 }
 
 // resizing logo
-#logo{
-width:10rem;
+#logo {
+  width: 10rem;
+  margin-bottom: 30px;
+}
+
+.logolist {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.LogoMenu {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+#foldOutlined{
+  margin-left: 2rem;
+
+}
+.serviceButtons{
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+.purpleButton{
+ 
+width: 25%;
+display: inline-block;
+}
+.yellowButton{
+ 
+width:25%;
+}
+
+.blueButton{
+  
+  width:25%;
+
 }

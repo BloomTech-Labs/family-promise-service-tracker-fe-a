@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import 'antd/dist/antd.css';
+import { Button, Input, Space } from 'antd';
 import axios from 'axios';
 import '../../../styles/Dashboard.scss';
+import { AudioOutlined } from '@ant-design/icons';
 
 export default function EligibilityDashboard() {
   const [eligible, setEligible] = useState({
@@ -31,6 +34,15 @@ export default function EligibilityDashboard() {
       });
   };
 
+  const suffix = (
+    <AudioOutlined
+      style={{
+        fontSize: 16,
+        color: '#1890ff',
+      }}
+    />
+  );
+  const onSearch = value => console.log(value);
   return (
     <div className="eligibilityDashboardContainer">
       <div className="eligibilityForm">
@@ -45,16 +57,20 @@ export default function EligibilityDashboard() {
               <h1 className="Eligiable"> Eligibility </h1>
             </div>
             <div>
-              <label htmlFor="householdId">
-                <input
+              <Space htmlFor="householdId">
+                <Input
                   name="householdId"
                   id="householdId"
                   placeholder="Enter A Household ID"
+                  enterButton="Search"
                   value={householdId}
                   onChange={handleChange}
+                  size="small"
+                  suffix={suffix}
+                  onSearch={onSearch}
                 />
-              </label>
-              <button>Submit</button>
+                <Button style={{ color: '#6495ED' }}> Submit </Button>
+              </Space>
             </div>
           </div>
         </form>
