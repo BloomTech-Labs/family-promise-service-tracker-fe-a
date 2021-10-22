@@ -31,7 +31,7 @@ function HouseholdList(props) {
   );
 }
 
-// takes an application state and passes to the component as props. You can now pass the service as props.
+// takes an application state and passes to the component as props. You can now pass the service as props...
 function mapStateToProps(state) {
   console.log(state);
   return {
