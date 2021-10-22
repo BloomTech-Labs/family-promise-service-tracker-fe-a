@@ -37,9 +37,11 @@ export const getAllRecipientAction = () => dispatch => {
     .then(res => {
       const data = res.data.map(recipient => {
         const index = recipient.recipient_date_of_birth.indexOf('T');
+        console.log(recipient);
         const temp = recipient.recipient_date_of_birth.substring(0, index);
         return { ...recipient, recipient_date_of_birth: temp };
       });
+
       dispatch({ type: GET_ALL_RECIPIENT_SUCCESS, payload: data });
     })
     .catch(err => {

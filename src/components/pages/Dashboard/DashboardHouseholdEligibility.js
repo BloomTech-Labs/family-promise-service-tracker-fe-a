@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import 'antd/dist/antd.css';
+import { Button, Input, Space } from 'antd';
 import axios from 'axios';
 import '../../../styles/Dashboard.scss';
+import { AudioOutlined } from '@ant-design/icons';
 
 export default function EligibilityDashboard() {
   const [eligible, setEligible] = useState({
@@ -31,37 +34,62 @@ export default function EligibilityDashboard() {
       });
   };
 
+  const suffix = (
+    <AudioOutlined
+      style={{
+        fontSize: 16,
+        color: '#1890ff',
+      }}
+    />
+  );
+  const onSearch = value => console.log(value);
   return (
     <div className="eligibilityDashboardContainer">
-      <h1>Eligibility</h1>
       <div className="eligibilityForm">
         <form
           onSubmit={event => {
             getEligibility(event, householdId);
           }}
         >
-          <label htmlFor="householdId">
-            <input
-              name="householdId"
-              id="householdId"
-              placeholder="Enter A Household ID"
-              value={householdId}
-              onChange={handleChange}
-            />
-          </label>
-          <button>Submit</button>
+          <div className="adjoin">
+            <div>
+              <h3 className="House"> Household </h3>
+              <h1 className="Eligiable"> Eligibility </h1>
+            </div>
+            <div>
+              <Space htmlFor="householdId">
+                <Input
+                  name="householdId"
+                  id="householdId"
+                  placeholder="Enter A Household ID"
+                  enterButton="Search"
+                  value={householdId}
+                  onChange={handleChange}
+                  size="small"
+                  suffix={suffix}
+                  onSearch={onSearch}
+                />
+                <Button style={{ color: '#6495ED' }}> Submit </Button>
+              </Space>
+            </div>
+          </div>
         </form>
-      </div>
-      <div className="eligibilityResults">
-        <p>Eligible For Residential Assistance</p>
-        <p className="resultAnswer">
-          {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
-        </p>
-        <p>Eligible For Reduced Bus Fare</p>
-        <p className="resultAnswer">
-          {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
-        </p>
       </div>
     </div>
   );
 }
+
+// Removed for styling purposes.
+
+//<div className="eligibilityResults">
+//  <p>Eligible For Residential Assistance</p>
+// <p className="resultAnswer">
+// {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
+// </p>
+// <p>Eligible For Reduced Bus Fare</p>
+//<p className="resultAnswer">
+// {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
+//</p>
+//</div>
+//
+//

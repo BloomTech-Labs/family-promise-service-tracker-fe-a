@@ -10,6 +10,7 @@ function RenderDashboardPage({ user, status }) {
     <div>
       <div className="metrics-holder-dashboard center">
         {/* <MetricsFilterBar /> */}
+
         <EligibilityDashboard />
         <div className="metrics-dashboard"></div>
       </div>

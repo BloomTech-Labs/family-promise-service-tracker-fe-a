@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState, useRef } from 'react';
+import axios from 'axios';
+import { useState, useRef, useEffect } from 'react';
 // import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import { clusterLayer } from './layers';
@@ -18,6 +19,17 @@ export default function ServiceMap(props) {
     width: 5000,
     height: 500,
   });
+
+  const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/service_type').then(response => {
+      const allservices = response.data;
+      setPost(allservices);
+
+      console.log(allservices);
+    });
+  }, []);
 
   const [popupInfo, setPopupInfo] = useState(null);
 

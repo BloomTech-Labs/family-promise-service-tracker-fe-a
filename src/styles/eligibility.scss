@@ -1,0 +1,110 @@
+//General Dashboard Tab
+
+.dashboard .title-container {
+  padding: 0%;
+}
+.dashboard * {
+  max-width: 100%;
+}
+
+// Map Styles
+
+//Eligibility Section Of Dashboard Tab
+
+.service {
+  display: flex;
+}
+
+// Household Text
+.Household {
+  display: flex;
+  justify-content: space-around;
+}
+
+// Household Text Bellow Map
+.House {
+  color: #a9a9a9;
+  margin-top: 38px;
+}
+
+//Eligiable  Bellow Map
+.Eligiable {
+  color: #a9a9a9;
+}
+
+// Grouping both text
+.adjoinHouse {
+  width: 1000px;
+  display: flex;
+  color: #a9a9a9;
+}
+
+// Color for list bellow dashboard
+.serviceList {
+  color: #a9a9a9;
+}
+
+// grouping the list in twos bellow dashboard
+.groupedList {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+// resizing logo
+#logo {
+  width: 10rem;
+  margin-bottom: 30px;
+}
+
+.logolist {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.LogoMenu {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+#foldOutlined {
+  margin-left: 2rem;
+}
+.serviceButtons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.purpleButton {
+  width: 25%;
+  display: inline-block;
+}
+.yellowButton {
+  width: 25%;
+}
+
+.blueButton {
+  width: 25%;
+}
+
+section {
+  flex-direction: 'row';
+}
+
+.serviceButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 5vh;
+}
+
+
+Button{
+display: flex;
+justify-content: center;
+width:15rem;
+}
