@@ -34,6 +34,7 @@ function HouseholdList(props) {
     });
     props.selectUser(service);
   };
+
   return (
     <Tabs defaultActiveKey="1" centered onTabClick={handleTabClick}>
       {createListItems()}
