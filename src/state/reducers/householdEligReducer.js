@@ -6,7 +6,7 @@ export const initialState = {
   services: [
     {
       id: 1,
-      Prevention: 'Prevention',
+      type: 'Prevention',
       Showers: '✔️',
       Laundry: '❌',
       CaseManagement: '✔️',
@@ -23,7 +23,7 @@ export const initialState = {
     },
     {
       id: 2,
-      Shelter: 'Shelter',
+      type: 'Shelter',
       Showers: '✔️',
       Laundry: '✔️',
       CaseManagement: '❌',
@@ -40,7 +40,7 @@ export const initialState = {
     },
     {
       id: 3,
-      Aftercare: 'Aftercare',
+      type: 'Aftercare',
       Showers: '✔️',
       Laundry: '✔️',
       CaseManagement: '✔️',

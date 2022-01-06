@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectUser } from '../../state/actions/householdeligibilityActions';
 import 'antd/dist/antd.css';
-import { Button } from 'antd';
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs;
 
 // This component provides an option for the user to click and observe disparate eligibility for the surrounding area.
 
@@ -12,27 +14,36 @@ function HouseholdList(props) {
   const createListItems = () => {
     return props.services.map(service => {
       return (
-        <Button
-          type="primary"
+        <TabPane
+          tab={service.type}
           key={service.id}
-          onClick={() => props.selectUser(service)}
+          className={service.type.toLowerCase()}
         >
           {service.Prevention} {service.Shelter} {service.Aftercare}
-        </Button>
+        </TabPane>
       );
     });
   };
 
+  const handleTabClick = tabId => {
+    let service = {};
+    props.services.forEach(item => {
+      if (String(item.id) === tabId) {
+        service = item;
+      }
+    });
+    props.selectUser(service);
+  };
   return (
-    <div className="">
-      <div className="serviceButton">{createListItems()}</div>
-      );
-    </div>
+    <Tabs defaultActiveKey="1" centered onTabClick={handleTabClick}>
+      {createListItems()}
+    </Tabs>
   );
 }
 
 // takes an application state and passes to the component as props. You can now pass the service as props...
 function mapStateToProps(state) {
+  console.log(state);
   return {
     services: state.services.services,
   };
