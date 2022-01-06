@@ -30,7 +30,7 @@ export default function EligibilityDashboard() {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -42,7 +42,7 @@ export default function EligibilityDashboard() {
       }}
     />
   );
-  const onSearch = value => console.log(value);
+  const onSearch = value => value;
   return (
     <div className="eligibilityDashboardContainer">
       <div className="eligibilityForm">
@@ -78,18 +78,3 @@ export default function EligibilityDashboard() {
     </div>
   );
 }
-
-// Removed for styling purposes.
-
-//<div className="eligibilityResults">
-//  <p>Eligible For Residential Assistance</p>
-// <p className="resultAnswer">
-// {eligible.resident_assistance_eligibility ? ' Yes' : ' No'}
-// </p>
-// <p>Eligible For Reduced Bus Fare</p>
-//<p className="resultAnswer">
-// {eligible.reduced_bus_fare_eligibility ? ' Yes' : ' No'}
-//</p>
-//</div>
-//
-//

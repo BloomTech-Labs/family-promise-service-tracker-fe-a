@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import '../../styles/Dashboard.scss';
 import 'antd/dist/antd.css';
-//../../styles/Dashboard.scss'
 // This component allows the user to activate different household eligibilities for each services. All state props
-//from householdactiveReducer will drop in this component.
 
 function ServiceDetail(props) {
   if (!props.active) {

@@ -19,7 +19,7 @@ function CityInfo(props) {
       <img
         width={240}
         src={info.image}
-        alt="image of city we are gathering data from"
+        alt="The city from which we are gathering data"
       />
     </div>
   );

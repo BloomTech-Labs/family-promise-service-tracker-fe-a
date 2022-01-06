@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Radio } from 'antd';
+import { Input, Radio } from 'antd';
 
 function CC_NumberInput({ onCreate, onCancel, visible, programs }) {
   return (
@@ -21,18 +21,6 @@ function CC_NumberInput({ onCreate, onCancel, visible, programs }) {
         maxLength="400"
       />
     </div>
-    // <Form.Item
-    //     name="name1"
-    //     label="Service Name1"
-    //     rules={[
-    //         {
-    //             // required: true,
-    //             message: 'Please input the service name',
-    //         },
-    //     ]}
-    // >
-    //     <Input size="large" placeholder="Enter Name" />
-    // </Form.Item>
   );
 }
 const mapStateToProps = state => {
