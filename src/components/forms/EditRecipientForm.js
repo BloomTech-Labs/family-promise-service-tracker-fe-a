@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Select, DatePicker, Radio, Modal } from 'antd';
 import moment from 'moment';
 
-import {
-  addRecipientAction,
-  getRecipientByIdAction,
-} from '../../state/actions/recipientActions';
+import { addRecipientAction } from '../../state/actions/recipientActions';
 
 const { Option } = Select;
 
@@ -15,7 +12,6 @@ function EditRecipientForm({
   onCreate,
   onCancel,
   households,
-  recipient_id,
   recipientToEdit,
 }) {
   const [form] = Form.useForm();
@@ -124,15 +120,11 @@ function EditRecipientForm({
               {
                 required: true,
                 message: 'Please select the race of the recipient',
-                // type: 'array',
               },
             ]}
             initialValue={recipientToEdit.race_id}
           >
-            <Select
-              // mode="multiple" - limiting race to 1 temporarily to test Create Recipient
-              placeholder="Please select the race of the recipient"
-            >
+            <Select placeholder="Please select the race of the recipient">
               <Option value={1}>White/Caucasian</Option>
               <Option value={2}>Black/African American</Option>
               <Option value={3}>Asian</Option>

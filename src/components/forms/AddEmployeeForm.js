@@ -3,7 +3,6 @@ import { Modal, Form, Input, Select } from 'antd';
 
 function AddEmployeeForm({ visible, onCreate, onCancel }) {
   const [form] = Form.useForm();
-  const programs = ['Prevention', 'Aftercare', 'Sheltering'];
 
   return (
     <Modal
@@ -22,7 +21,7 @@ function AddEmployeeForm({ visible, onCreate, onCancel }) {
             console.log(values);
           })
           .catch(info => {
-            console.log('Validate Failed:', info);
+            console.error('Validate Failed:', info);
           });
       }}
     >
